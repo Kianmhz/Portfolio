@@ -10,6 +10,8 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/google-fonts": "^3.0.2",
+    "@nuxtjs/tailwindcss": "^6.8.0",
     "autoprefixer": "^10.4.15",
     "nuxt": "^3.7.0",
     "postcss": "^8.4.28",
