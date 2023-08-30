@@ -4,14 +4,8 @@ export default defineNuxtConfig({
     assetsInclude: ['**/*.JPG']
   },
   modules: [
-    '@nuxtjs/google-fonts',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
   ],
-  googleFonts: {
-    families: {
-      Roboto: [400, 500, 700]
-    }
-  },
   devtools: { enabled: true },
   css: ["~/assets/main.css"],
 })

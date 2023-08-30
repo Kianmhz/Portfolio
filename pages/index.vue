@@ -1,14 +1,30 @@
+
 <template>
     <div class="intro">
         <div class="container">
+            <!-- Text Content -->
             <div>
-                <h2>Hello</h2>
-                <h1>Kianmehr</h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                <button>SCROLL FOR MORE</button>
+                <h2>Hello, it's</h2>
+                <h1>Kianmehr<span class="dot">.</span></h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <button>
+                    <span class="content">
+                        <span class="btn-text">SCROLL FOR MORE</span>
+                    </span>
+                    <div class="arrow"></div>
+                </button>
             </div>
+            <!-- Image Content -->
             <div>
-                <img src="~/assets/img/IMG_1042.JPG"/>
+                <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="skills-title">
+        <div class="container">
+            <div>
+                <h1>My Skillset</h1>
             </div>
         </div>
     </div>
@@ -16,7 +32,6 @@
     <div class="skills">
         <div class="container">
             <div>
-                <h2>My Skills</h2>
                 <h1>What I Do</h1>
             </div>
             <div>
@@ -92,27 +107,57 @@
         </div>
     </div>
 
+    <div class="projects-title">
+        <div class="container">
+            <div>
+                <h1>My recent projects</h1>
+            </div>
+        </div>
+    </div>
+
     <div class="projects">
         <div class="container">
             <div>
-                <h1>My Projects</h1>
+                <h1>Project 1</h1>
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                 <button>Git Hub</button>
             </div>
             <div>
                 <img src="~/assets/img/IMG_1042.JPG"/>
             </div>
+        </div>
+    </div>
+
+    <div class="project-buttons">
+        <div class="container">
             <div>
-                <h1>Project 1</h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                <button>B</button>
+                <button>F</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="resume-header">
+        <div class="container">
+            <div>
+                <h1>Resume and Certifications</h1>
             </div>
         </div>
     </div>
 
     <div class="resume">
         <div class="container">
-            <div>
-                <h1>My Resume</h1>
-                <button>Get Resume</button>
+            <div class="resume-card">
+                <div class="resume-img"><img src="~/assets/img/IMG_1042.JPG"></div>
+                <div class="resume-title">Resume</div>
+            </div>
+            <div class="resume-card">
+                <div class="resume-img"><img src="~/assets/img/IMG_1042.JPG"></div>
+                <div class="resume-title">Python Certification</div>
+            </div>
+            <div class="resume-card">
+                <div class="resume-img"><img src="~/assets/img/IMG_1042.JPG"></div>
+                <div class="resume-title">C++ Certification</div>
             </div>
         </div>
     </div>
@@ -120,8 +165,8 @@
     <div class="about">
         <div class="container">
             <div>
-                <h1>About Me</h1>
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</span>
+                <h1>Instagram</h1>
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
                 <button>IG</button>
             </div>
             <div>
@@ -146,59 +191,101 @@
     .intro {
         display: flex;
         justify-content: center;
-        padding: 50px 0;
     }
-    .intro .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-    }
+
     .intro .container div {
         flex: 1 1 50%;
     }
-    .intro .container div img {
-        width: 100%;
-    }
+
     .intro .container div h1 {
-        font-size: 3rem;
+        font-size: 5rem;
         font-weight: 700;
-        margin-bottom: 20px;
     }
     .intro .container div h2 {
         font-size: 2rem;
         font-weight: 700;
-        margin-bottom: 20px;
     }
     .intro .container div p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 400;
-        line-height: 1.5;
         margin-bottom: 20px;
+        color: #909090;
     }
+
+    .intro .container div .dot {
+        color: #AF0404;
+    }
+
+    /* Default button styles */
     .intro .container div button {
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        padding: 10px;
-        border-bottom: 1px solid white;
+        padding: 15px 0px;
+        position: relative;
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+        overflow: hidden;
+        background: transparent;
+        border: none;
     }
-    @media (max-width: 768px) {
-        .intro .container div {
-            flex: 1 1 100%;
-        }
+
+    .content {
+        display: inline-block;
+        position: relative;
+        transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease-in-out;
+    }
+
+    .content::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #AF0404;
+    }
+
+    /* Hover effect to slightly scale and fade out the content (text and underline) */
+    .intro .container div button:hover .content {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    .arrow {
+        position: absolute;
+        left: 50%;
+        bottom: 10%;
+        width: 20px;
+        height: 20px;
+        border-left: 3px solid #AF0404;
+        border-bottom: 3px solid #AF0404;
+        transform: translate(-50%, 100%) rotate(-45deg);
+        opacity: 0;
+        transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s, opacity 0.4s ease-in-out 0.1s;
+    }
+
+    /* When button is hovered, arrow becomes visible and moves into view */
+    .intro .container div button:hover .arrow {
+        opacity: 1;
+        animation: bounce 0.8s infinite;
+    }
+    
+    .skills-title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .skills-title .container h1 {
+        font-size: 7rem;
+        font-weight: 700;
+        margin: 500px 0px;
+        background: linear-gradient(to bottom, #FF0000, #FF6363, #AF0404);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
     }
 
     .skills {
         display: flex;
         justify-content: center;
         padding: 50px 0;
-    }
-    .skills .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
     }
     .skills .container div {
         flex: 1 1 50%;
@@ -208,21 +295,11 @@
         font-weight: 700;
         margin-bottom: 20px;
     }
-    .skills .container div h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
     .skills .container div p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 400;
-        line-height: 1.5;
         margin-bottom: 20px;
-    }
-    @media (max-width: 768px) {
-        .skills .container div {
-            flex: 1 1 100%;
-        }
+        color: #909090;
     }
 
     .languages {
@@ -230,14 +307,9 @@
         justify-content: center;
         padding: 50px 0;
     }
-    .languages .container {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-    }
     .languages .container div {
-        flex: 1;
+        flex: 1 100%;
+        padding: 50px 0px;
     }
     .languages .container div h1 {
         font-size: 3rem;
@@ -246,47 +318,46 @@
     }
     .logos {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 logos in one row */
-        gap: 20px;
+        grid-template-columns: repeat(3, 1fr); /* 2 logos in one row */
+        row-gap: 150px; /* Spacing between logos */
         justify-items: center; /* Center logos horizontally in each grid cell */
         align-items: center; /* Center logos vertically in each grid cell */
     }
     /* SVG styles */
     .logos svg {
-        width: 70px;   /* Adjust this as needed */
-        height: 70px;  /* Adjust this as needed */
+        width: 100px;   /* Adjust this as needed */
+        height: auto;  /* Adjust this as needed */
         transition: transform 0.3s ease;
     }
     .logos svg:hover {
-        transform: scale(1.1);  /* Adjust this value for hover effect */
+        transform: scale(1.2);  /* Adjust this value for hover effect */
     }
     .logos svg:nth-child(4) {
-        width: 120px;
-        height: 120px;
+        width: 180px;
+        height: auto;
     }
     .logos svg:nth-child(5) {
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: auto;
     }
-    @media (max-width: 768px) {
-        .languages .container div {
-            flex: 1 1 100%;
-        }
-        .logos {
-            grid-template-columns: repeat(1, 1fr); /* 1 logo in one row */
-        }
+
+    .projects-title {
+        display: flex;
+        justify-content: center;
+    }
+    .projects-title .container h1 {
+        font-size: 7rem;
+        font-weight: 700;
+        margin: 500px 0px;
+        background: linear-gradient(to bottom, #FF0000, #FF6363, #AF0404);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
     }
 
     .projects {
         display: flex;
         justify-content: center;
-        padding: 50px 0;
-    }
-    .projects .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
     }
     .projects .container div {
         flex: 1 1 50%;
@@ -311,98 +382,100 @@
     .projects .container div img {
         width: 100%;
     }
-    @media (max-width: 768px) {
-        .projects .container div {
-            flex: 1 1 100%;
-        }
+
+    .project-buttons {
+        display: flex;
+        justify-content: center;
+    }
+    .project-buttons .container div button{
+        padding: 20px;
+    }
+
+    .resume-header {
+        padding: 50px;
+        display: flex;
+        justify-content: center;
+    }
+    .resume-header .container {
+        justify-content: flex-start;
+    }
+    .resume-header .container div h1{
+        background: linear-gradient(to bottom, #FF0000, #FF6363, #AF0404);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        font-size: 3rem;
+        font-weight: 700;
     }
 
     .resume {
+        padding: 20px;
         display: flex;
         justify-content: center;
-        padding: 50px 0;
     }
+
     .resume .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
     }
-    .resume .container div {
-        flex: 1 1 50%;
+
+    .resume-card {
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        transition: transform 0.3s ease;
     }
-    .resume .container div h1 {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 20px;
+
+    .resume-card:hover {
+        transform: translateY(-10px);
     }
-    .resume .container div button {
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        padding: 10px;
-        border-bottom: 1px solid white;
+
+    .resume-img {
+        width: 30%;
+        opacity: 0.4;
+        margin-bottom: 10px;
     }
-    @media (max-width: 768px) {
-        .resume .container div {
-            flex: 1 1 100%;
-        }
+
+    .resume-title {
+        opacity: 0.4;
+        font-weight: bold;
     }
+
 
     .about {
         display: flex;
         justify-content: center;
         padding: 50px 0;
     }
-    .about .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-    }
     .about .container div {
         flex: 1 1 50%;
     }
     .about .container div h1 {
-        font-size: 3rem;
+        font-size: 1rem;
         font-weight: 700;
-        margin-bottom: 20px;
+        color: #AF0404;
     }
-    .about .container div span {
-        font-size: 1.2rem;
-        font-weight: 400;
-        line-height: 1.5;
-        margin-bottom: 20px;
+    .about .container div h2 {
+        font-size: 2rem;
+        font-weight: 700;
     }
     .about .container div button {
         font-size: 1rem;
         font-weight: 400;
         line-height: 1.5;
         padding: 10px;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid #AF0404;
     }
     .about .container div p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 400;
-        line-height: 1.5;
-        margin-bottom: 20px;
-    }
-    @media (max-width: 768px) {
-        .about .container div {
-            flex: 1 1 100%;
-        }
+        color: #909090;
     }
 
     .email {
         display: flex;
         justify-content: center;
         padding: 50px 0;
-    }
-    .email .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
     }
     .email .container div {
         flex: 1 1 50%;
@@ -430,10 +503,5 @@
         line-height: 1.5;
         padding: 10px;
         border-bottom: 1px solid white;
-    }
-    @media (max-width: 768px) {
-        .email .container div {
-            flex: 1 1 100%;
-        }
     }
 </style>
