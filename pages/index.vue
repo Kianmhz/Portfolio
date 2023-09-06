@@ -39,7 +39,7 @@
                 <h1>What I Do</h1>
                 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
             </div>
-            <div>
+            <div class="skills-grid">
                 <div>
                     <h2>title</h2>
                     <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
@@ -51,7 +51,11 @@
                 <div>
                     <h2>title</h2>
                     <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                </div>               
+                </div>
+                <div>
+                    <h2>title</h2>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                </div>                    
             </div>
         </div>
     </div>
@@ -130,6 +134,11 @@
     </div>
 
     <div class="projects-title">
+        <div class="slider">
+            <video autoplay loop muted>
+                <source src="~/assets/video/video.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="container">
             <div>
                 <h1>My recent projects</h1>
@@ -168,23 +177,25 @@
     </div>
 
     <div class="resume">
-        <div class="resume-container">
-            <div class="resume-card" id="card3">
-                <div class="resume-img">
-                    <img src="~/assets/img/CPP.JPG">
-                    <div class="resume-title">C++ Certification</div>
+        <div class="container">
+            <div class="resume-container">
+                <div class="resume-card" id="card3">
+                    <div class="resume-img">
+                        <img src="~/assets/img/CPP.JPG">
+                        <div class="resume-title">C++ Certification</div>
+                    </div>
                 </div>
-            </div>
-            <div class="resume-card" id="card2">
-                <div class="resume-img">
-                    <img src="~/assets/img/python.JPG">
-                    <div class="resume-title">Python Certification</div>
+                <div class="resume-card" id="card2">
+                    <div class="resume-img">
+                        <img src="~/assets/img/python.JPG">
+                        <div class="resume-title">Python Certification</div>
+                    </div>
                 </div>
-            </div>
-            <div class="resume-card" id="card1">
-                <div class="resume-img">
-                    <img src="~/assets/img/CPP.JPG">
-                    <div class="resume-title">Resume</div>
+                <div class="resume-card" id="card1">
+                    <div class="resume-img">
+                        <img src="~/assets/img/CPP.JPG">
+                        <div class="resume-title">Resume</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -322,6 +333,7 @@
     .skills-title {
         display: flex;
         justify-content: center;
+        align-items: center;
     }
     .skills-title .container h1 {
         font-size: 7rem;
@@ -331,40 +343,6 @@
         color: transparent;
         -webkit-background-clip: text;
         background-clip: text;
-    }
-    .slider {
-        position: absolute;
-        top: 1200px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        z-index: 0; /* This will ensure the video stays behind the content */
-    }
-    .slider::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Gradient shadow effect */
-        pointer-events: none;
-    }
-    .slider::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Gradient shadow effect */
-        pointer-events: none;
-    }
-    .slider video {
-        width: 100%; /* This will ensure video takes full width */
-        height: 100%; /* This will ensure video takes full height */
-        object-fit: cover; /* This will cover the container */
     }
 
     .skills {
@@ -385,6 +363,11 @@
         font-weight: 400;
         margin-bottom: 20px;
         color: #909090;
+    }
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
     }
 
     .languages {
@@ -433,6 +416,7 @@
     .projects-title {
         display: flex;
         justify-content: center;
+        align-items: center;
     }
     .projects-title .container h1 {
         font-size: 7rem;
@@ -494,10 +478,13 @@
         font-weight: 700;
     }
 
+    .resume {
+        display: flex;
+        justify-content: center;
+    }
     .resume-container {
         position: relative;
         width: 80%;
-        max-width: 900px;
         margin: 0 auto;
         padding-bottom: 600px;
     }
@@ -507,9 +494,6 @@
         left: 0;
         transition: transform 0.3s ease;
         box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
-    }
-    .resume-img {
-        position: relative;
     }
     .resume-img::after {
         content: '';
@@ -617,9 +601,9 @@
     .gmail-pic svg {
         position: absolute;
         width: 40%;
+        left: 1350px;
         height: auto;
         filter: brightness(0.6);
-        left: 1350px;
         -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
         mask-image: linear-gradient(to right, black 0%, transparent 100%);
     }
