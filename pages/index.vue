@@ -23,7 +23,7 @@
     <div class="skills-title">
         <div class="slider">
             <video autoplay loop muted>
-                <source src="~/assets/img/video.mp4" type="video/mp4">
+                <source src="~/assets/video/video.mp4" type="video/mp4">
             </video>
         </div>
         <div class="container">
@@ -180,22 +180,16 @@
         <div class="container">
             <div class="resume-container">
                 <div class="resume-card" id="card3">
-                    <div class="resume-img">
-                        <img src="~/assets/img/CPP.JPG">
-                        <div class="resume-title">C++ Certification</div>
-                    </div>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                    <h1 class="resume-title">Python</h1>
                 </div>
                 <div class="resume-card" id="card2">
-                    <div class="resume-img">
-                        <img src="~/assets/img/python.JPG">
-                        <div class="resume-title">Python Certification</div>
-                    </div>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                    <h1 class="resume-title">C++</h1>
                 </div>
                 <div class="resume-card" id="card1">
-                    <div class="resume-img">
-                        <img src="~/assets/img/CPP.JPG">
-                        <div class="resume-title">Resume</div>
-                    </div>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                    <h1>Resume</h1>
                 </div>
             </div>
         </div>
@@ -334,11 +328,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100vh; /* Gives the container a full viewport height */
     }
     .skills-title .container h1 {
         font-size: 7rem;
         font-weight: 700;
-        margin: 500px 0px;
         background: linear-gradient(to right, #00DC82, #00FFA6);
         color: transparent;
         -webkit-background-clip: text;
@@ -417,11 +411,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100vh; /* Gives the container a full viewport height */
     }
     .projects-title .container h1 {
         font-size: 7rem;
         font-weight: 700;
-        margin: 500px 0px;
         background: linear-gradient(to right, #00DC82, #00FFA6);
         color: transparent;
         -webkit-background-clip: text;
@@ -481,57 +475,72 @@
     .resume {
         display: flex;
         justify-content: center;
+        align-items: center;
     }
     .resume-container {
         position: relative;
-        width: 80%;
-        margin: 0 auto;
-        padding-bottom: 600px;
+        width: 1000px; /* Defines a width */
+        height: 500px; /* Defines a height */
     }
     .resume-card {
         position: absolute;
-        top: 0;
-        left: 0;
-        transition: transform 0.3s ease;
-        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        width: calc(100% - 40px); /* Adjusted width */
+        height: calc(100% - 40px); /* Adjusted height */
+        background: linear-gradient(to right, rgb(24, 24, 24), rgb(0, 0, 0)); /* Gradient shadow effect */
+        transition: 0.3s ease;
+        box-shadow: -30px 0px 30px rgba(0, 0, 0, 0.7);
+        padding: 40px; /* Added padding */
     }
-    .resume-img::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 10%;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); /* Gradient shadow effect */
-        pointer-events: none;
-    }
-    .resume-title {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
+    .resume-card p {
         color: white;
-        z-index: 10;
+        font-size: 2rem;
+        line-height: 1.5;
+    }
+    .resume-card h1 {
+        position: absolute;
+        top: 350px;
+        color: #909090;
+        font-size: 2rem; /* Adjusted font-size */
+        margin-bottom: 20px; /* Added margin-bottom */
     }
     /* Card-specific styles for positioning and hover effect */
     #card1 {
         z-index: 3;
         transform: translateX(10%);
+        border-left: 2px solid #00FFFF;
     }
     #card2 {
         z-index: 2;
+        border-left: 2px solid #00FFA6;
     }
     #card3 {
         z-index: 1;
         transform: translateX(-10%);
+        border-left: 2px solid #00DC82;
+    }
+    #card2 {
+        filter: brightness(0.6);
+    }
+    #card3 {
+        filter: brightness(0.6);
+    }
+    #card2:hover {
+        filter: brightness(1);
+    }
+    #card3:hover {
+        filter: brightness(1);
     }
     #card3:hover ~ #card1 {
         transform: translateX(100%);
+        filter: brightness(0.6);
     }
     #card3:hover ~ #card2 {
         transform: translateX(90%);
+        filter: brightness(0.6);
     }
     #card2:hover ~ #card1 {
         transform: translateX(90%);
+        filter: brightness(0.6);
     }
 
     .wrap {
