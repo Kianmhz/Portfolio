@@ -1,3 +1,21 @@
+<script setup>
+import { ref } from 'vue';
+
+const currentProjectIndex = ref(0);
+
+const goBack = () => {
+  if (currentProjectIndex.value > 0) {
+    currentProjectIndex.value--;
+  }
+};
+
+const goForward = () => {
+  if (currentProjectIndex.value < 2) {
+    currentProjectIndex.value++;
+  }
+};
+</script>
+
 <template>
     <div class="intro">
         <div class="container">
@@ -148,23 +166,47 @@
 
     <div class="projects">
         <div class="container">
-            <div>
-                <h1>Project 1</h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                <button>Git Hub</button>
-            </div>
-            <div>
-                <img src="~/assets/img/IMG_1042.JPG"/>
-            </div>
+            <transition-group name="fade" tag="div" class="transition-container" mode="out-in" @before-enter="beforeEnter">
+                <div v-if="currentProjectIndex === 0" key="0" class="project-item">
+                  <div class="project-info">
+                      <h1>Project 1</h1>
+                      <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+                      <button>Git Hub</button>
+                  </div>
+                  <div class="project-image">
+                      <img src="~/assets/img/IMG_1042.JPG"/>
+                  </div>
+                </div>
+                
+                <div v-if="currentProjectIndex === 1" key="1" class="project-item">
+                  <div class="project-info">
+                      <h1>Project 2</h1>
+                      <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                      <button>Git Hub</button>
+                  </div>
+                  <div class="project-image">
+                      <img src="~/assets/img/IMG_1042.JPG"/>
+                  </div>
+                </div>
+                
+                <div v-if="currentProjectIndex === 2" key="2" class="project-item">
+                  <div class="project-info">
+                      <h1>Project 3</h1>
+                      <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
+                      <button>Git Hub</button>
+                  </div>
+                  <div class="project-image">
+                      <img src="~/assets/img/IMG_1042.JPG"/>
+                  </div>
+                </div>   
+            </transition-group>
         </div>
     </div>
 
     <div class="project-buttons">
         <div class="container">
-            <div>
-                <button>B</button>
-                <button>F</button>
-            </div>
+            <button @click="goBack">B</button>
+            <button @click="goForward">F</button>
         </div>
     </div>
 
@@ -204,13 +246,13 @@
     </div>
 
     <div class="about">
+        <div class="linkedin-pic">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                <path fill="#0288D1" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path><path fill="#FFF" d="M12 19H17V36H12zM14.485 17h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99C24.957 25.543 25 26.511 25 27v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36 36 36z"></path>
+            </svg>
+        </div>
         <div class="container">
             <div>
-                <div class="linkedin-pic">
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-                        <path fill="#0288D1" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path><path fill="#FFF" d="M12 19H17V36H12zM14.485 17h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99C24.957 25.543 25 26.511 25 27v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36 36 36z"></path>
-                    </svg>
-                </div>
                 <h1>linkedin</h1>
                 <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
                 <button>linkedin</button>
@@ -222,17 +264,17 @@
     </div>
 
     <div class="about">
+        <div class="gmail-pic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="52 42 88 66">
+                <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/>
+                <path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/>
+                <path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/>
+                <path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/>
+                <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/>
+            </svg>
+        </div>
         <div class="container">
             <div>
-                <div class="gmail-pic">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="52 42 88 66">
-                        <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/>
-                        <path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/>
-                        <path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/>
-                        <path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/>
-                        <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/>
-                    </svg>
-                </div>
                 <h1>Email</h1>
                 <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
                 <button>Gmail</button>
@@ -308,7 +350,7 @@
     .arrow {
         position: absolute;
         left: 50%;
-        bottom: 10%;
+        bottom: 15%;
         width: 20px;
         height: 20px;
         border-left: 3px solid #00DC82;
@@ -425,6 +467,7 @@
     .projects {
         display: flex;
         justify-content: center;
+        position: relative;
     }
     .projects .container div {
         flex: 1 1 50%;
@@ -449,7 +492,57 @@
     .projects .container div img {
         width: 100%;
     }
-
+    
+    .project-item {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+    }
+    
+    .project-info, .project-image {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .project-image {
+        flex-shrink: 0;
+        margin-left: 10px;
+    }
+    
+    .transition-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 1000px; /* adjust according to your content */
+    }
+    .fade-leave-active {
+        position: absolute;
+        transition: opacity 0.5s, transform 0.5s;
+    }
+      
+    .fade-leave-to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+      
+    .fade-enter-from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+      
+    .fade-enter-active {
+        transition: opacity 0.5s, transform 0.5s;
+    }
+      
+    .fade-enter-to {
+        opacity: 1;
+        transform: translateX(0);
+    }
     .project-buttons {
         display: flex;
         justify-content: center;
@@ -539,7 +632,7 @@
         filter: brightness(0.6);
     }
     #card2:hover ~ #card1 {
-        transform: translateX(90%);
+        transform: translateX(100%);
         filter: brightness(0.6);
     }
 
@@ -562,22 +655,38 @@
     }
 
     .linkedin-pic {
-        position: relative;
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 15%; /* Adjust width as needed */
+        z-index: 1000; /* So it stays on top */
     }
     .linkedin-pic svg {
-        position: absolute;
-        width: 50%;
+        width: 100%; /* this will take the width of the .gmail-pic */
         height: auto;
         filter: brightness(0.6);
-        left: -430px;
-        top: -55px;
         -webkit-mask-image: linear-gradient(to left, black 0%, transparent 100%);
         mask-image: linear-gradient(to left, black 0%, transparent 100%);
-    }  
+    } 
+    .gmail-pic {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 15%; /* Adjust width as needed */
+        z-index: 1000; /* So it stays on top */
+    }
+    .gmail-pic svg {
+        width: 100%; /* this will take the width of the .gmail-pic */
+        height: auto;
+        filter: brightness(0.6);
+        -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
+        mask-image: linear-gradient(to right, black 0%, transparent 100%);
+    }
     .about {
         display: flex;
         justify-content: center;
         padding: 50px 0;
+        position: relative;  /* Add this */
     }
     .about .container div {
         flex: 1 1 50%;
@@ -604,48 +713,4 @@
         color: #909090;
     }
 
-    .gmail-pic {
-        position: relative;
-    }
-    .gmail-pic svg {
-        position: absolute;
-        width: 40%;
-        left: 1350px;
-        height: auto;
-        filter: brightness(0.6);
-        -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
-        mask-image: linear-gradient(to right, black 0%, transparent 100%);
-    }
-    .email {
-        display: flex;
-        justify-content: center;
-        padding: 50px 0;
-    }
-    .email .container div {
-        flex: 1 1 50%;
-    }
-    .email .container div h1 {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
-    .email .container div span {
-        font-size: 1.2rem;
-        font-weight: 400;
-        line-height: 1.5;
-        margin-bottom: 20px;
-    }
-    .email .container div p {
-        font-size: 1.2rem;
-        font-weight: 400;
-        line-height: 1.5;
-        margin-bottom: 20px;
-    }
-    .email .container div button {
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        padding: 10px;
-        border-bottom: 1px solid white;
-    }
 </style>
