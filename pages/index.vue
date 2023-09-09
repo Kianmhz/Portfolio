@@ -509,7 +509,6 @@ function handleScroll() {
     .projects .container div img {
         width: 100%;
     }
-    
     .project-item {
         position: absolute;
         width: 100%;
@@ -519,24 +518,12 @@ function handleScroll() {
         justify-content: center;
         align-items: center;
     }
-    
     .project-image {
         flex-shrink: 0;
         margin-left: 10px;
     }
-
-    .back:hover {
-        animation: bouncex 0.8s infinite;
-    }
-
-    .forward:hover {
-        animation: bouncenx 0.8s infinite;
-    }
-    
-    
     .transition-container {
         position: relative;
-        overflow: hidden;
         width: 100%;
         height: 1000px; /* adjust according to your content */
     }
@@ -569,6 +556,14 @@ function handleScroll() {
     }
     .project-buttons .container div button{
         padding: 20px;
+    }
+
+    .back:hover {
+        animation: bouncex 0.8s infinite;
+    }
+
+    .forward:hover {
+        animation: bouncenx 0.8s infinite;
     }
 
     .resume-header {
