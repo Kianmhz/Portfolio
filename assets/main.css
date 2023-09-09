@@ -6,6 +6,7 @@
 body {
     background-color: black;
     color: white;
+    overflow-x: hidden;
 }
 .container {
     padding: 0px 10px;
@@ -46,6 +47,40 @@ body {
     height: 100%; /* This will ensure video takes full height */
     object-fit: cover; /* This will cover the container */
 }
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Gives the container a full viewport height */
+}
+.title .container h1 {
+    font-size: 7rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #00DC82, #00FFA6);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: relative;
+    opacity: 0; /* Initially hide the elements */
+    transition: transform 2s, opacity 2s; /* Transition settings */
+}
+
+.title .container div h1.from-right {
+    transform: translateX(100%);
+}
+
+.title .container div h1.from-left {
+    transform: translateX(-100%);
+}
+
+.title .container div h1.in-view {
+    transform: translateX(0%);
+    opacity: 1; /* Make visible when in view */
+}
+.title .container div h1:nth-child(2) {
+    margin-left: 300px; /* Offset the second text to the left */
+}
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translate(-50%, 0) rotate(-45deg);
@@ -55,5 +90,27 @@ body {
     }
     60% {
         transform: translate(-50%, -15%) rotate(-45deg);
+    }
+}
+@keyframes bouncex {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(0%);
+    }
+    40% {
+        transform: translateX(-30%);
+    }
+    60% {
+        transform: translateX(-15%);
+    }
+}
+@keyframes bouncenx {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(0%);
+    }
+    40% {
+        transform: translateX(30%);
+    }
+    60% {
+        transform: translateX(15%);
     }
 }

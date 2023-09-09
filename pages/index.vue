@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const currentProjectIndex = ref(0);
 
@@ -14,6 +14,36 @@ const goForward = () => {
     currentProjectIndex.value++;
   }
 };
+
+const inView1 = ref(false);
+const inView2 = ref(false);
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+  handleScroll();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
+
+function handleScroll() {
+  const elems = document.querySelectorAll('.title');
+  
+  const rect1 = elems[0].getBoundingClientRect();
+  if (rect1.top <= window.innerHeight && rect1.bottom >= 0) {
+    inView1.value = true;
+  } else {
+    inView1.value = false;
+  }
+  
+  const rect2 = elems[1].getBoundingClientRect();
+  if (rect2.top <= window.innerHeight && rect2.bottom >= 0) {
+    inView2.value = true;
+  } else {
+    inView2.value = false;
+  }
+}
 </script>
 
 <template>
@@ -38,7 +68,7 @@ const goForward = () => {
         </div>
     </div>
 
-    <div class="skills-title">
+    <div class="title">
         <div class="slider">
             <video autoplay loop muted>
                 <source src="~/assets/video/video.mp4" type="video/mp4">
@@ -46,7 +76,8 @@ const goForward = () => {
         </div>
         <div class="container">
             <div>
-                <h1>My Skillset</h1>
+                <h1 :class="{ 'from-right': !inView1, 'in-view': inView1 }">A Peek Into My</h1>
+                <h1 :class="{ 'from-left': !inView1, 'in-view': inView1 }">Software Skills</h1>
             </div>
         </div>
     </div>
@@ -151,7 +182,7 @@ const goForward = () => {
         </div>
     </div>
 
-    <div class="projects-title">
+    <div class="title">
         <div class="slider">
             <video autoplay loop muted>
                 <source src="~/assets/video/video.mp4" type="video/mp4">
@@ -159,7 +190,8 @@ const goForward = () => {
         </div>
         <div class="container">
             <div>
-                <h1>My recent projects</h1>
+                <h1 :class="{ 'from-right': !inView2, 'in-view': inView2 }">Discover My</h1>
+                <h1 :class="{ 'from-left': !inView2, 'in-view': inView2 }">Recent Projects</h1>
             </div>
         </div>
     </div>
@@ -205,8 +237,8 @@ const goForward = () => {
 
     <div class="project-buttons">
         <div class="container">
-            <button @click="goBack">B</button>
-            <button @click="goForward">F</button>
+            <button class="back" @click="goBack">B</button>
+            <button class="forward" @click="goForward">F</button>
         </div>
     </div>
 
@@ -449,21 +481,6 @@ const goForward = () => {
         height: auto;
     }
 
-    .projects-title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh; /* Gives the container a full viewport height */
-    }
-    .projects-title .container h1 {
-        font-size: 7rem;
-        font-weight: 700;
-        background: linear-gradient(to right, #00DC82, #00FFA6);
-        color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
     .projects {
         display: flex;
         justify-content: center;
@@ -499,12 +516,6 @@ const goForward = () => {
         top: 0;
         left: 0;
         display: flex;
-    }
-    
-    .project-info, .project-image {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
@@ -513,6 +524,15 @@ const goForward = () => {
         flex-shrink: 0;
         margin-left: 10px;
     }
+
+    .back:hover {
+        animation: bouncex 0.8s infinite;
+    }
+
+    .forward:hover {
+        animation: bouncenx 0.8s infinite;
+    }
+    
     
     .transition-container {
         position: relative;
@@ -712,5 +732,4 @@ const goForward = () => {
         font-weight: 400;
         color: #909090;
     }
-
 </style>
