@@ -18,10 +18,9 @@ const goForward = () => {
 
 const inView1 = ref(false);
 const inView2 = ref(false);
-let observer;
 
 onMounted(() => {
-    const callback = (entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.target.classList.contains('container-title1')) {
                 inView1.value = entry.isIntersecting;
@@ -29,9 +28,10 @@ onMounted(() => {
                 inView2.value = entry.isIntersecting;
             }
         });
-    };
-
-    observer = new IntersectionObserver(callback, { threshold: 0.1 });
+    }, 
+    {
+        threshold: 0.1,
+    });
 
     const container1Element = document.querySelector('.container-title1');
     const container2Element = document.querySelector('.container-title2');
@@ -48,9 +48,9 @@ onMounted(() => {
 const inViewSkills = ref(false);
 
 onMounted(() => {
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.target.classList.contains('skills-container')) {
+            if (entry.target.classList.contains('skills')) {
                 inViewSkills.value = entry.isIntersecting;
             }
         });
@@ -59,9 +59,29 @@ onMounted(() => {
             threshold: 0.1,
         }
     );
-    const skillsElement = document.querySelector('.skills-container');
+    const skillsElement = document.querySelector('.skills');
     if (skillsElement) {
         observer.observe(skillsElement);
+    }
+});
+
+const inViewIntro = ref(false);
+
+onMounted(() => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.target.classList.contains('intro')) {
+                inViewIntro.value = entry.isIntersecting;
+            }
+        });
+    },
+        {
+            threshold: 0.1,
+        }
+    );
+    const introElement = document.querySelector('.intro');
+    if (introElement) {
+        observer.observe(introElement);
     }
 });
 </script>
@@ -71,11 +91,15 @@ onMounted(() => {
         <div class="container">
             <!-- Text Content -->
             <div>
-                <h2>Hello, it's</h2>
-                <h1>Kianmehr<span class="dot">.</span></h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua.</p>
-                <button>
+                <h2 id="intro-h2" :class="{ 'animate-in': inViewIntro }">Hello, it's</h2>
+                <div id="intro-div" :class="{ 'animate-in': inViewIntro }">
+                    <h1>Kianmehr<span class="dot">.</span></h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua.
+                    </p>
+                </div>
+                <button :class="{ 'animate-in': inViewIntro }">
                     <span class="content">
                         <span class="btn-text">SCROLL FOR MORE</span>
                     </span>
@@ -83,7 +107,7 @@ onMounted(() => {
                 </button>
             </div>
             <!-- Image Content -->
-            <div>
+            <div class="intro-img" :class="{ 'animate-in': inViewIntro }">
                 <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
             </div>
         </div>
@@ -104,7 +128,7 @@ onMounted(() => {
     </div>
 
     <div class="skills">
-        <div class="container skills-container">
+        <div class="container">
             <div class="skills-intro" :class="{ 'animate-in': inViewSkills }">
                 <h1>What I Do</h1>
                 <p>
@@ -407,9 +431,32 @@ onMounted(() => {
 </template>
 
 <style>
+.intro-img {
+    opacity: 0;
+}
+
+#intro-h2 {
+    transform: translateY(40px);
+    opacity: 0;
+}
+
+#intro-div {
+    transform: translateY(80px);
+    opacity: 0;
+}
+
+#intro-h2.animate-in,
+#intro-div.animate-in,
+.intro-img.animate-in {
+    transform: translateY(0);
+    transition: transform 1s, opacity 1s;
+    opacity: 1;
+}
+
 .intro {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .intro .container div {
@@ -441,16 +488,22 @@ onMounted(() => {
 .intro .container div button {
     padding: 15px 0px;
     position: relative;
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s ease;
     overflow: hidden;
     background: transparent;
     border: none;
+    opacity: 0;
+}
+
+.intro .container div button.animate-in{
+    transition: opacity 0.5s 2s;
+    opacity: 1;
 }
 
 .content {
     display: inline-block;
     position: relative;
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease-in-out;
+    transition: transform 0.4s, opacity 0.4s ease-in-out;
 }
 
 .content::after {
@@ -472,14 +525,14 @@ onMounted(() => {
 .arrow {
     position: absolute;
     left: 50%;
-    bottom: 15%;
+    bottom: 10%;
     width: 20px;
     height: 20px;
     border-left: 3px solid #00DC82;
     border-bottom: 3px solid #00DC82;
     transform: translate(-50%, 100%) rotate(-45deg);
     opacity: 0;
-    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s, opacity 0.4s ease-in-out 0.1s;
+    transition: transform 0.5s 0.1s, opacity 0.5s ease-in-out 0.1s;
 }
 
 /* When button is hovered, arrow becomes visible and moves into view */
@@ -537,14 +590,19 @@ onMounted(() => {
 .skills-intro,
 .skills-grid div {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
 }
 
-.skills-intro.animate-in,
-.skills-grid div.animate-in {
+.skills-intro.animate-in {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.skills-grid div.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s ease-in, transform 1s ease-in;
 }
 
 .languages {
