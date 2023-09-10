@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const currentProjectIndex = ref(0);
 
@@ -15,35 +15,40 @@ const goForward = () => {
   }
 };
 
+
 const inView1 = ref(false);
 const inView2 = ref(false);
+let observer;
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-  handleScroll();
+  const callback = (entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.target.classList.contains('container-title1')) {
+        inView1.value = entry.isIntersecting;
+      } else if(entry.target.classList.contains('container-title2')) {
+        inView2.value = entry.isIntersecting;
+      }
+    });
+  };
+
+  observer = new IntersectionObserver(callback, { threshold: 0.1 });
+
+  const container1Element = document.querySelector('.container-title1');
+  const container2Element = document.querySelector('.container-title2');
+
+  if(container1Element) {
+    observer.observe(container1Element);
+  }
+  if(container2Element) {
+    observer.observe(container2Element);
+  }
 });
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
+onBeforeUnmount(() => {
+  if(observer) {
+    observer.disconnect();
+  }
 });
-
-function handleScroll() {
-  const elems = document.querySelectorAll('.title');
-  
-  const rect1 = elems[0].getBoundingClientRect();
-  if (rect1.top <= window.innerHeight && rect1.bottom >= 0) {
-    inView1.value = true;
-  } else {
-    inView1.value = false;
-  }
-  
-  const rect2 = elems[1].getBoundingClientRect();
-  if (rect2.top <= window.innerHeight && rect2.bottom >= 0) {
-    inView2.value = true;
-  } else {
-    inView2.value = false;
-  }
-}
 </script>
 
 <template>
@@ -74,7 +79,7 @@ function handleScroll() {
                 <source src="~/assets/video/video.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="container">
+        <div class="container container-title1">
             <div>
                 <h1 :class="{ 'from-right': !inView1, 'in-view': inView1 }">A Peek Into My</h1>
                 <h1 :class="{ 'from-left': !inView1, 'in-view': inView1 }">Software Skills</h1>
@@ -188,7 +193,7 @@ function handleScroll() {
                 <source src="~/assets/video/video.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="container">
+        <div class="container container-title2">
             <div>
                 <h1 :class="{ 'from-right': !inView2, 'in-view': inView2 }">Discover My</h1>
                 <h1 :class="{ 'from-left': !inView2, 'in-view': inView2 }">Recent Projects</h1>
