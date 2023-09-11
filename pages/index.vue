@@ -84,6 +84,26 @@ onMounted(() => {
         observer.observe(introElement);
     }
 });
+
+const inViewProject = ref(false);
+
+onMounted(() => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.target.classList.contains('projects')) {
+                inViewProject.value = entry.isIntersecting;
+            }
+        });
+    },
+        {
+            threshold: 0.5,
+        }
+    );
+    const projectElement = document.querySelector('.projects');
+    if (projectElement) {
+        observer.observe(projectElement);
+    }
+});
 </script>
 
 <template>
@@ -302,34 +322,34 @@ onMounted(() => {
         <div class="container">
             <transition-group name="fade" tag="div" class="transition-container" mode="out-in" @before-enter="beforeEnter">
                 <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                    <div class="project-info">
+                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
                         <h1>Project 1</h1>
                         <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
                         <button>Git Hub</button>
                     </div>
-                    <div class="project-image">
+                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
                         <img src="~/assets/img/IMG_1042.JPG" />
                     </div>
                 </div>
 
                 <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                    <div class="project-info">
+                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
                         <h1>Project 2</h1>
                         <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                         <button>Git Hub</button>
                     </div>
-                    <div class="project-image">
+                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
                         <img src="~/assets/img/IMG_1042.JPG" />
                     </div>
                 </div>
 
                 <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                    <div class="project-info">
+                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
                         <h1>Project 3</h1>
                         <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
                         <button>Git Hub</button>
                     </div>
-                    <div class="project-image">
+                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
                         <img src="~/assets/img/IMG_1042.JPG" />
                     </div>
                 </div>
@@ -707,9 +727,21 @@ onMounted(() => {
     align-items: center;
 }
 
+.project-info {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.project-info.animate-in,
+.project-image.animate-in {
+    opacity: 1;
+    transform: translate(0);
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
 .project-image {
-    flex-shrink: 0;
-    margin-left: 10px;
+    opacity: 0;
+    transform: translateX(50px);
 }
 
 .transition-container {
