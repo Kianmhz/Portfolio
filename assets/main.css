@@ -1,9 +1,10 @@
 *{padding: 0; margin: 0; box-sizing: border-box;}
+
 /* For Webkit browsers like Chrome/Safari */
 ::-webkit-scrollbar {
     width: 8px;
 }
-  
+
 ::-webkit-scrollbar-thumb {
     background-color: #44444489; /* Darker thumb color */
     border-radius: 10px; /* Rounded corners */
@@ -12,82 +13,13 @@
 ::-webkit-scrollbar-thumb:hover {
     background-color: #555; /* Slightly lighter thumb color when hovered */
 }
+
 body {
-    background-color: black;
-    color: white;
-    overflow-x: hidden;
+    @apply bg-black text-white overflow-x-hidden;
 }
+  
 .container {
-    padding: 0px 10px;
-    width: 80%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    z-index: 1;
-}
-.slider {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* This will ensure the video stays behind the content */
-}
-.slider::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Gradient shadow effect */
-}
-.slider::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Gradient shadow effect */
-}
-.slider video {
-    width: 100%; /* This will ensure video takes full width */
-    height: 100%; /* This will ensure video takes full height */
-    object-fit: cover; /* This will cover the container */
-}
-.title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Gives the container a full viewport height */
-}
-.title .container h1 {
-    font-size: 7rem;
-    font-weight: 700;
-    background: linear-gradient(to right, #00DC82, #00FFA6);
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    position: relative;
-    opacity: 0; /* Initially hide the elements */
-    transition: transform 1s, opacity 1s; /* Transition settings */
-}
-
-.title .container div h1.from-right {
-    transform: translateX(100%);
-}
-
-.title .container div h1.from-left {
-    transform: translateX(-100%);
-}
-
-.title .container div h1.in-view {
-    transform: translateX(0%);
-    opacity: 1; /* Make visible when in view */
-}
-.title .container div h1:nth-child(2) {
-    margin-left: 300px; /* Offset the second text to the left */
+    @apply p-0 mx-10 w-4/5 max-w-7xl flex justify-center items-center flex-wrap z-10;
 }
 
 @keyframes bounce {

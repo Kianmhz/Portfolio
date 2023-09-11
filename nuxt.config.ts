@@ -7,7 +7,13 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
   ],
   devtools: { enabled: true },
+  build: {
+    transpile: [
+        '@fortawesome/vue-fontawesome'
+    ]
+},
   css: [
-    "~/assets/main.css",
-  ],
+  "~/assets/main.css",
+  '@fortawesome/fontawesome-svg-core/styles.css',
+],
 })
