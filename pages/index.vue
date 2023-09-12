@@ -79,7 +79,7 @@ onMounted(() => {
                 </div>
                 <button :class="{ 'animate-intro': inViewIntro }">
                     <span class="content">
-                        <span class="btn-text">SCROLL FOR MORE</span>
+                        <span>SCROLL FOR MORE</span>
                     </span>
                     <div class="arrow"></div>
                 </button>
@@ -161,7 +161,10 @@ onMounted(() => {
                     <div class="project-info" :class="{ 'animate-in': inViewProject }">
                         <h1>Project 1</h1>
                         <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-                        <button>Git Hub</button>
+                        <button class="github-button">
+                            <font-awesome-icon :icon="['fab', 'github']" size="lg"/>
+                            <span class="button-text">Github</span>
+                        </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': inViewProject }">
                         <img src="~/assets/img/IMG_1042.JPG" />
@@ -172,7 +175,10 @@ onMounted(() => {
                     <div class="project-info" :class="{ 'animate-in': inViewProject }">
                         <h1>Project 2</h1>
                         <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                        <button>Git Hub</button>
+                        <button class="github-button">
+                            <font-awesome-icon :icon="['fab', 'github']" size="lg"/>
+                            <span class="button-text">Github</span>
+                        </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': inViewProject }">
                         <img src="~/assets/img/IMG_1042.JPG" />
@@ -183,7 +189,10 @@ onMounted(() => {
                     <div class="project-info" :class="{ 'animate-in': inViewProject }">
                         <h1>Project 3</h1>
                         <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
-                        <button class="p-[20px]">Git Hub</button>
+                        <button class="github-button">
+                            <font-awesome-icon :icon="['fab', 'github']" size="lg"/>
+                            <span class="button-text">Github</span>
+                        </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': inViewProject }">
                         <img src="~/assets/img/IMG_1042.JPG" />
@@ -237,7 +246,10 @@ onMounted(() => {
             <div>
                 <h1>linkedin</h1>
                 <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-                <button><font-awesome-icon :icon="['fab', 'linkedin']" /></button>
+                <button class="linkedin-button">
+                    <font-awesome-icon :icon="['fab', 'linkedin']" size="lg"/>
+                    <span class="button-text">LinkedIn</span>
+                </button>
             </div>
             <div>
                 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -260,7 +272,10 @@ onMounted(() => {
             <div>
                 <h1>Email</h1>
                 <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-                <button>Gmail</button>
+                <button class="email-button">
+                    <font-awesome-icon :icon="['fas', 'envelope']" size="lg" />
+                    <span class="button-text">Email</span>
+                </button>
             </div>
             <div>
                 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -390,14 +405,6 @@ onMounted(() => {
     @apply text-[2rem] font-[700] mb-[20px];
 }
 
-.projects .container div button {
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: 10px;
-    border-bottom: 1px solid #00DC82;
-}
-
 .projects .container div img {
     @apply w-full;
 }
@@ -525,15 +532,69 @@ onMounted(() => {
     @apply text-[2rem] font-[700];
 }
 
-.about .container div button {
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: 10px;
-    border-bottom: 1px solid #00DC82;
-}
-
 .about .container div p {
     @apply text-[1.1rem] font-[400] text-[#909090];
+}
+
+.github-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    width: 39.4px;
+    font-weight: 400;
+    padding: 10px;
+    border-bottom: 1px solid #00DC82;
+    transition: width 0.3s ease;
+}
+
+.github-button:hover {
+    width: 92.2px;
+}
+
+.linkedin-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    width: 37.5px;
+    font-weight: 400;
+    padding: 10px;
+    border-bottom: 1px solid #00DC82;
+    transition: width 0.3s ease;
+}
+
+.linkedin-button:hover {
+    width: 102px;
+}
+
+.email-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    width: 40px;
+    font-weight: 400;
+    padding: 10px;
+    border-bottom: 1px solid #00DC82;
+    transition: width 0.3s ease;
+}
+
+.email-button:hover {
+    width: 82.8px;
+}
+
+.button-text {
+    display: inline-block;
+    margin-left: 5px;
+    color: #fff;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    white-space: nowrap; /* This prevents the text from wrapping to the next line */
+}
+
+.linkedin-button:hover .button-text,
+.email-button:hover .button-text,
+.github-button:hover .button-text {
+    transform: translateX(0);
+    opacity: 1;
 }
 </style>
