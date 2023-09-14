@@ -24,6 +24,7 @@ const inView2 = ref(false);
 const inViewSkills = ref(false);
 const inViewIntro = ref(false);
 const inViewProject = ref(false);
+const inViewLanguages = ref(false);
 
 onMounted(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -38,6 +39,8 @@ onMounted(() => {
                 inViewIntro.value = entry.isIntersecting;
             } else if (entry.target.classList.contains('projects')) {
                 inViewProject.value = entry.isIntersecting;
+            } else if (entry.target.classList.contains('languages')) {
+                inViewLanguages.value = entry.isIntersecting;
             }
         });
     },
@@ -50,7 +53,8 @@ onMounted(() => {
         '.container-title2',
         '.skills',
         '.intro',
-        '.projects'
+        '.projects',
+        '.languages'
     ];
 
     elementsToObserve.forEach(selector => {
@@ -137,10 +141,10 @@ onMounted(() => {
 
     <div class="languages">
         <div class="container">
-            <div>
+            <div class="opacity-[0] translate-y-[40px]" :class="{ 'fade-in':inViewLanguages }">
                 <h1 class="text-[3rem] font-[700]">Languages</h1>
+                <Logos />
             </div>
-            <Logos />
         </div>
     </div>
 
@@ -204,8 +208,8 @@ onMounted(() => {
 
     <div class="project-buttons">
         <div class="container">
-            <button class="back" @click="goBack">B</button>
-            <button class="forward" @click="goForward">F</button>
+            <button id="back" class="mx-[100px]" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']" size="xl"/></button>
+            <button id="forward" class="mx-[100px]" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']" size="xl"/></button>
         </div>
     </div>
 
@@ -384,6 +388,12 @@ onMounted(() => {
     @apply flex justify-center py-[50px];
 }
 
+.fade-in {
+    transform: translateX(0);
+    transition: transform 0.5s 0.5s, opacity 0.5s 0.5s ease-in;
+    opacity: 1;
+}
+
 .languages .container div {
     flex: 1 100%;
     padding: 50px 0px;
@@ -425,7 +435,7 @@ onMounted(() => {
 .project-image.animate-in {
     opacity: 1;
     transform: translate(0);
-    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+    transition: opacity 0.5s 0.5s ease-in, transform 0.5s 0.5s ease-in;
 }
 
 .fade-leave-active {
@@ -443,24 +453,21 @@ onMounted(() => {
     transform: translateX(100%);
 }
 
-.fade-enter-active {
-    transition: opacity 0.5s, transform 0.5s;
-}
-
 .fade-enter-to {
     opacity: 1;
     transform: translateX(0);
+    transition: opacity 0.5s, transform 0.5s;
 }
 
 .project-buttons {
     @apply flex justify-center;
 }
 
-.back:hover {
+#back:hover {
     animation: bouncex 0.8s infinite;
 }
 
-.forward:hover {
+#forward:hover {
     animation: bouncenx 0.8s infinite;
 }
 
@@ -484,7 +491,7 @@ onMounted(() => {
     font-size: 7rem;
     font-weight: 400;
     padding: 50px 0px;
-    background: linear-gradient(to bottom, #00FFFF, #00DC82, #FFFF00);
+    background: linear-gradient(to bottom, #00FFFF, #00DC82, #00FFA6);
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
