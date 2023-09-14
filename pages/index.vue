@@ -1,20 +1,21 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import Logos from '~/components/logos.vue';
-import Slider from '~/components/slider.vue';
-import Cards from '~/components/cards.vue';
-
 const currentProjectIndex = ref(0);
 
 const goBack = () => {
     if (currentProjectIndex.value > 0) {
         currentProjectIndex.value--;
+        
+        document.documentElement.style.setProperty('--translate-x-leave', '100%');
+        document.documentElement.style.setProperty('--translate-x-enter', '-100%');
     }
 };
 
 const goForward = () => {
     if (currentProjectIndex.value < 2) {
         currentProjectIndex.value++;
+
+        document.documentElement.style.setProperty('--translate-x-leave', '-100%');
+        document.documentElement.style.setProperty('--translate-x-enter', '100%');
     }
 };
 
@@ -114,7 +115,7 @@ onMounted(() => {
                     dolore magna aliqua."
                 </p>
             </div>
-            <div class="grid grid-cols-2 gap-[50px] opacity-[0] transform translate-y-[40px]" id="skills-grind" :class="{ 'animate-skills': inViewSkills }">
+            <div class="grid grid-cols-2 gap-[50px] opacity-[0] transform translate-y-[40px]" id="skills-grid" :class="{ 'animate-skills': inViewSkills }">
                 <div>
                     <h2>title</h2>
                     <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -378,7 +379,7 @@ onMounted(() => {
     transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
 
-#skills-grind.animate-skills {
+#skills-grid.animate-skills {
     opacity: 1;
     transform: translateY(0);
     transition: opacity 1s ease-in, transform 1s ease-in;
@@ -445,12 +446,12 @@ onMounted(() => {
 
 .fade-leave-to {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(var(--translate-x-leave));
 }
 
 .fade-enter-from {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(var(--translate-x-enter));
 }
 
 .fade-enter-to {
