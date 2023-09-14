@@ -465,11 +465,11 @@ onMounted(() => {
 }
 
 #back:hover {
-    animation: bouncex 0.8s infinite;
+    animation: bounce-x 0.8s infinite;
 }
 
 #forward:hover {
-    animation: bouncenx 0.8s infinite;
+    animation: bouncex 0.8s infinite;
 }
 
 .resume-header {
