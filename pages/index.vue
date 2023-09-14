@@ -19,6 +19,9 @@ const goForward = () => {
     }
 };
 
+const setProjectIndex = (index) => {
+      currentProjectIndex.value = index;
+    };
 
 const inView1 = ref(false);
 const inView2 = ref(false);
@@ -210,6 +213,11 @@ onMounted(() => {
     <div class="project-buttons">
         <div class="container">
             <button id="back" class="mx-[100px]" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']" size="xl"/></button>
+            <div class="dots">
+                <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
+                <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
+                <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
+            </div>
             <button id="forward" class="mx-[100px]" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']" size="xl"/></button>
         </div>
     </div>
@@ -472,6 +480,18 @@ onMounted(() => {
     animation: bouncex 0.8s infinite;
 }
 
+.dots {
+    @apply flex gap-4 justify-center items-center relative;
+  }
+  
+  .dots div {
+    @apply w-3 h-3 rounded-full bg-gray-500 cursor-pointer;
+  }
+  
+  .dots div.active {
+    @apply w-4 h-4 bg-[#00DC82];
+  }
+  
 .resume-header {
     @apply p-[50px] flex justify-center;
 }
