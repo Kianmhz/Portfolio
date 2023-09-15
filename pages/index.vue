@@ -71,21 +71,20 @@ const left_intro_title = ref(null);
 const right_intro_title = ref(null);
 const left_intro2_title = ref(null);
 const right_intro2_title = ref(null);
-const video_elemenet_height = ref(null);
+const first_text_section3 = ref(null);
+const second_text_section3 = ref(null);
+const third_text_section3 = ref(null);
 
 const positionTitle = () => {
-    // section 1 titles
-    const lenght_left_intro_title = left_intro_title.value.offsetWidth;
-    const lenght_right_intro_title = right_intro_title.value.offsetWidth;
-    
-    // video element height
-    const var_video_elemenet_height = video_elemenet_height.value.offsetHeight;
-    
+    // section 1 titles    
     // total screen height & width
     const screen_height = document.documentElement.scrollHeight - window.innerHeight;
     
     // Rate section1 calculations
-    const rate = (window.scrollY/screen_height) * 6 * 100;
+    var rate = (window.scrollY/screen_height) * 7 * 100;
+    if (rate > 130) {
+        var rate = 130;
+    }
     // const rate = (window.scrollY/screen_height) * ((screen_width*6)/screen_width) * 100;
     
     // Move left text to the right
@@ -95,8 +94,6 @@ const positionTitle = () => {
     
     // section 2 titles
     const intro2_position = left_intro2_title.value.offsetTop;
-    const lenght_left_intro2_title = left_intro2_title.value.offsetWidth;
-    const lenght_right_intro2_title = right_intro2_title.value.offsetWidth;
     // Rate section1 calculations
     const rate2 = ((window.scrollY-intro2_position)/(screen_height-intro2_position)) * 6 * 100;
     // Move left text to the right
@@ -104,8 +101,21 @@ const positionTitle = () => {
     // Move right text to the left
     right_intro2_title.value.style.right = `${rate2}%`;
 
+    // section 3 titles
+    const top_first_text_section3 = first_text_section3.value.offsetTop;
+    // Rate section1 calculations
+    var rate3 = ((window.scrollY-top_first_text_section3)/(screen_height-top_first_text_section3)) * 100;
+    if (rate3 > 0) {
+        var rate3 = 0;
+    }
+    // Move left text to the right
+    first_text_section3.value.style.right = `${rate3*1.5}%`;
+    second_text_section3.value.style.right = `${rate3*2.5}%`;
+    third_text_section3.value.style.right = `${rate3*3.5}%`;
 
-    console.log("Rate ", rate);
+
+
+    console.log("Rate ", rate3);
 
 };
 
@@ -294,7 +304,9 @@ onMounted(() => {
         <div class="wrap">
             <div class="container">
                 <div>
-                    <p>And that's a wrap,<br>What's next? <br>Stay in touch!</p>
+                    <p ref="first_text_section3">And that's a wrap</p>
+                    <p ref="second_text_section3">What's next?</p>
+                    <p ref="third_text_section3">Stay in touch!</p>
                 </div>
             </div>
         </div>
@@ -550,6 +562,7 @@ onMounted(() => {
 .wrap .container div p {
     font-size: 7rem;
     font-weight: 400;
+    position: relative;
     padding: 50px 0px;
     background: linear-gradient(to bottom, #00FFFF, #00DC82, #00FFA6);
     color: transparent;
