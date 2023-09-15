@@ -4,7 +4,7 @@ const currentProjectIndex = ref(0);
 const goBack = () => {
     if (currentProjectIndex.value > 0) {
         currentProjectIndex.value--;
-        
+
         document.documentElement.style.setProperty('--translate-x-leave', '100%');
         document.documentElement.style.setProperty('--translate-x-enter', '-100%');
     }
@@ -20,8 +20,8 @@ const goForward = () => {
 };
 
 const setProjectIndex = (index) => {
-      currentProjectIndex.value = index;
-    };
+    currentProjectIndex.value = index;
+};
 
 const inView1 = ref(false);
 const inView2 = ref(false);
@@ -53,8 +53,6 @@ onMounted(() => {
         });
 
     const elementsToObserve = [
-        '.container-title1',
-        '.container-title2',
         '.skills',
         '.intro',
         '.projects',
@@ -68,212 +66,272 @@ onMounted(() => {
         }
     });
 });
+
+const left_intro_title = ref(null);
+const right_intro_title = ref(null);
+const left_intro2_title = ref(null);
+const right_intro2_title = ref(null);
+const video_elemenet_height = ref(null);
+
+const positionTitle = () => {
+    // section 1 titles
+    const lenght_left_intro_title = left_intro_title.value.offsetWidth;
+    const lenght_right_intro_title = right_intro_title.value.offsetWidth;
+    
+    // video element height
+    const var_video_elemenet_height = video_elemenet_height.value.offsetHeight;
+    
+    // total screen height & width
+    const screen_height = document.documentElement.scrollHeight - window.innerHeight;
+    
+    // Rate section1 calculations
+    const rate = (window.scrollY/screen_height) * 6 * 100;
+    // const rate = (window.scrollY/screen_height) * ((screen_width*6)/screen_width) * 100;
+    
+    // Move left text to the right
+    left_intro_title.value.style.right = `${rate}%`;
+    // Move right text to the left
+    right_intro_title.value.style.left = `${rate}%`;
+    
+    // section 2 titles
+    const intro2_position = left_intro2_title.value.offsetTop;
+    const lenght_left_intro2_title = left_intro2_title.value.offsetWidth;
+    const lenght_right_intro2_title = right_intro2_title.value.offsetWidth;
+    // Rate section1 calculations
+    const rate2 = ((window.scrollY-intro2_position)/(screen_height-intro2_position)) * 6 * 100;
+    // Move left text to the right
+    left_intro2_title.value.style.left = `${rate2}%`;
+    // Move right text to the left
+    right_intro2_title.value.style.right = `${rate2}%`;
+
+
+    console.log("Rate ", rate);
+
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', positionTitle);
+});
 </script>
 
 <template>
-    <div class="intro">
-        <div class="container">
-            <!-- Text Content -->
-            <div>
-                <h2 class="text-[2rem] font-[700] transform translate-y-[40px] opacity-[0]"
-                    :class="{ 'animate-intro': inViewIntro }">Hello, it's</h2>
-                <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
-                    <h1 class="text-[5rem] font-[700]">Kianmehr<span class="text-[#00DC82]">.</span></h1>
-                    <p class="text-[1.1rem] font-[400] mb-[20px] text-[#909090]">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    <div ref="elementRef">
+        <div class="intro">
+            <div class="container">
+                <!-- Text Content -->
+                <div>
+                    <h2 class="text-[2rem] font-[700] transform translate-y-[40px] opacity-[0]"
+                        :class="{ 'animate-intro': inViewIntro }">Hello, it's</h2>
+                    <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
+                        <h1 class="text-[5rem] font-[700]">Kianmehr<span class="text-[#00DC82]">.</span></h1>
+                        <p class="text-[1.1rem] font-[400] mb-[20px] text-[#909090]">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et
+                            dolore magna aliqua.
+                        </p>
+                    </div>
+                    <button :class="{ 'animate-intro': inViewIntro }">
+                        <span class="content">
+                            <span>SCROLL FOR MORE</span>
+                        </span>
+                        <div class="arrow"></div>
+                    </button>
+                </div>
+                <!-- Image Content -->
+                <div class="opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
+                    <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
+                </div>
+            </div>
+        </div>
+
+        <div class="title">
+            <Slider />
+            <div class="container container-title1" ref="video_elemenet_height">
+                <div class="text-[3rem] font-[700] mb-[20px]">
+                    <h1 :class="{ 'from-right': !inView1, 'in-view': inView1 }" ref="left_intro_title">A Peek Into My</h1>
+                    <h1 :class="{ 'from-left': !inView1, 'in-view': inView1 }" ref="right_intro_title">Software Skills</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="skills">
+            <div class="container">
+                <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': inViewSkills }">
+                    <h1 class="text-[3rem] font-[700] mb-[20px]">What I Do</h1>
+                    <p>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         et
-                        dolore magna aliqua.
+                        dolore magna aliqua."
                     </p>
                 </div>
-                <button :class="{ 'animate-intro': inViewIntro }">
-                    <span class="content">
-                        <span>SCROLL FOR MORE</span>
-                    </span>
-                    <div class="arrow"></div>
-                </button>
-            </div>
-            <!-- Image Content -->
-            <div class="opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
-                <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
+                <div class="grid grid-cols-2 gap-[50px] opacity-[0] transform translate-y-[40px]" id="skills-grid"
+                    :class="{ 'animate-skills': inViewSkills }">
+                    <div>
+                        <h2>title</h2>
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et dolore magna aliqua."</p>
+                    </div>
+                    <div>
+                        <h2>title</h2>
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et dolore magna aliqua."</p>
+                    </div>
+                    <div>
+                        <h2>title</h2>
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et dolore magna aliqua."</p>
+                    </div>
+                    <div>
+                        <h2>title</h2>
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et dolore magna aliqua."</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="title">
-        <Slider />
-        <div class="container container-title1">
-            <div class="text-[3rem] font-[700] mb-[20px]">
-                <h1 :class="{ 'from-right': !inView1, 'in-view': inView1 }">A Peek Into My</h1>
-                <h1 :class="{ 'from-left': !inView1, 'in-view': inView1 }">Software Skills</h1>
+        <div class="languages">
+            <div class="container">
+                <div class="opacity-[0] translate-y-[40px]" :class="{ 'fade-in': inViewLanguages }">
+                    <h1 class="text-[3rem] font-[700]">Languages</h1>
+                    <Logos />
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="skills">
-        <div class="container">
-            <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': inViewSkills }">
-                <h1 class="text-[3rem] font-[700] mb-[20px]">What I Do</h1>
-                <p>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua."
-                </p>
-            </div>
-            <div class="grid grid-cols-2 gap-[50px] opacity-[0] transform translate-y-[40px]" id="skills-grid" :class="{ 'animate-skills': inViewSkills }">
+        <div class="title">
+            <Slider />
+            <div class="container container-title2">
                 <div>
-                    <h2>title</h2>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua."</p>
+                    <h1 :class="{ 'from-right': !inView2, 'in-view': inView2 }" ref="left_intro2_title">Discover My</h1>
+                    <h1 :class="{ 'from-left': !inView2, 'in-view': inView2 }" ref="right_intro2_title">Recent Projects</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="projects">
+            <div class="container">
+                <transition-group name="fade" tag="div" class="relative w-full h-[1000px]" mode="out-in"
+                    @before-enter="beforeEnter">
+                    <div v-if="currentProjectIndex === 0" key="0" class="project-item">
+                        <div class="project-info" :class="{ 'animate-in': inViewProject }">
+                            <h1>Project 1</h1>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+                            <button class="github-button">
+                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                <span class="button-text">Github</span>
+                            </button>
+                        </div>
+                        <div class="project-image" :class="{ 'animate-in': inViewProject }">
+                            <img src="~/assets/img/IMG_1042.JPG" />
+                        </div>
+                    </div>
+
+                    <div v-if="currentProjectIndex === 1" key="1" class="project-item">
+                        <div class="project-info" :class="{ 'animate-in': inViewProject }">
+                            <h1>Project 2</h1>
+                            <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                            <button class="github-button">
+                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                <span class="button-text">Github</span>
+                            </button>
+                        </div>
+                        <div class="project-image" :class="{ 'animate-in': inViewProject }">
+                            <img src="~/assets/img/IMG_1042.JPG" />
+                        </div>
+                    </div>
+
+                    <div v-if="currentProjectIndex === 2" key="2" class="project-item">
+                        <div class="project-info" :class="{ 'animate-in': inViewProject }">
+                            <h1>Project 3</h1>
+                            <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
+                            <button class="github-button">
+                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                <span class="button-text">Github</span>
+                            </button>
+                        </div>
+                        <div class="project-image" :class="{ 'animate-in': inViewProject }">
+                            <img src="~/assets/img/IMG_1042.JPG" />
+                        </div>
+                    </div>
+                </transition-group>
+            </div>
+        </div>
+
+        <div class="project-buttons">
+            <div class="container">
+                <button id="back" class="mx-[100px]" @click="goBack"><font-awesome-icon
+                        :icon="['fas', 'circle-chevron-left']" size="xl" /></button>
+                <div class="dots">
+                    <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
+                    <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
+                    <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
+                </div>
+                <button id="forward" class="mx-[100px]" @click="goForward"><font-awesome-icon
+                        :icon="['fas', 'circle-chevron-right']" size="xl" /></button>
+            </div>
+        </div>
+
+        <div class="resume-header">
+            <div class="container">
+                <div>
+                    <h1 class="text-[3rem] font-[700] text-[#00DC82]">Resume and Certifications</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="resume">
+            <div class="container">
+                <Cards />
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="container">
+                <div>
+                    <p>And that's a wrap,<br>What's next? <br>Stay in touch!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about">
+            <div class="container">
+                <div>
+                    <h1>linkedin</h1>
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
+                    <button class="linkedin-button">
+                        <font-awesome-icon :icon="['fab', 'linkedin']" size="lg" />
+                        <span class="button-text">LinkedIn</span>
+                    </button>
                 </div>
                 <div>
-                    <h2>title</h2>
                     <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua."</p>
+                        et
+                        dolore magna aliqua."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about">
+            <div class="container">
+                <div>
+                    <h1>Email</h1>
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
+                    <button class="email-button">
+                        <font-awesome-icon :icon="['fas', 'envelope']" size="lg" />
+                        <span class="button-text">Email</span>
+                    </button>
                 </div>
                 <div>
-                    <h2>title</h2>
                     <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua."</p>
+                        et
+                        dolore magna aliqua."</p>
                 </div>
-                <div>
-                    <h2>title</h2>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua."</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="languages">
-        <div class="container">
-            <div class="opacity-[0] translate-y-[40px]" :class="{ 'fade-in':inViewLanguages }">
-                <h1 class="text-[3rem] font-[700]">Languages</h1>
-                <Logos />
-            </div>
-        </div>
-    </div>
-
-    <div class="title">
-        <Slider />
-        <div class="container container-title2">
-            <div>
-                <h1 :class="{ 'from-right': !inView2, 'in-view': inView2 }">Discover My</h1>
-                <h1 :class="{ 'from-left': !inView2, 'in-view': inView2 }">Recent Projects</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="projects">
-        <div class="container">
-            <transition-group name="fade" tag="div" class="relative w-full h-[1000px]" mode="out-in" @before-enter="beforeEnter">
-                <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
-                        <h1>Project 1</h1>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-                        <button class="github-button">
-                            <font-awesome-icon :icon="['fab', 'github']" size="lg"/>
-                            <span class="button-text">Github</span>
-                        </button>
-                    </div>
-                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
-                        <img src="~/assets/img/IMG_1042.JPG" />
-                    </div>
-                </div>
-
-                <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
-                        <h1>Project 2</h1>
-                        <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                        <button class="github-button">
-                            <font-awesome-icon :icon="['fab', 'github']" size="lg"/>
-                            <span class="button-text">Github</span>
-                        </button>
-                    </div>
-                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
-                        <img src="~/assets/img/IMG_1042.JPG" />
-                    </div>
-                </div>
-
-                <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
-                        <h1>Project 3</h1>
-                        <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
-                        <button class="github-button">
-                            <font-awesome-icon :icon="['fab', 'github']" size="lg"/>
-                            <span class="button-text">Github</span>
-                        </button>
-                    </div>
-                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
-                        <img src="~/assets/img/IMG_1042.JPG" />
-                    </div>
-                </div>
-            </transition-group>
-        </div>
-    </div>
-
-    <div class="project-buttons">
-        <div class="container">
-            <button id="back" class="mx-[100px]" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']" size="xl"/></button>
-            <div class="dots">
-                <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
-                <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
-                <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
-            </div>
-            <button id="forward" class="mx-[100px]" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']" size="xl"/></button>
-        </div>
-    </div>
-
-    <div class="resume-header">
-        <div class="container">
-            <div>
-                <h1 class="text-[3rem] font-[700] text-[#00DC82]">Resume and Certifications</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="resume">
-        <div class="container">
-            <Cards />
-        </div>
-    </div>
-
-    <div class="wrap">
-        <div class="container">
-            <div>
-                <p>And that's a wrap,<br>What's next? <br>Stay in touch!</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="about">
-        <div class="container">
-            <div>
-                <h1>linkedin</h1>
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-                <button class="linkedin-button">
-                    <font-awesome-icon :icon="['fab', 'linkedin']" size="lg"/>
-                    <span class="button-text">LinkedIn</span>
-                </button>
-            </div>
-            <div>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua."</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="about">
-        <div class="container">
-            <div>
-                <h1>Email</h1>
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-                <button class="email-button">
-                    <font-awesome-icon :icon="['fas', 'envelope']" size="lg" />
-                    <span class="button-text">Email</span>
-                </button>
-            </div>
-            <div>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua."</p>
             </div>
         </div>
     </div>
@@ -463,16 +521,16 @@ onMounted(() => {
 
 .dots {
     @apply flex gap-4 justify-center items-center relative;
-  }
-  
-  .dots div {
+}
+
+.dots div {
     @apply w-3 h-3 rounded-full bg-gray-500 cursor-pointer;
-  }
-  
-  .dots div.active {
+}
+
+.dots div.active {
     @apply w-4 h-4 bg-[#00DC82];
-  }
-  
+}
+
 .resume-header {
     @apply p-[50px] flex justify-center;
 }
@@ -571,7 +629,8 @@ onMounted(() => {
     opacity: 0;
     transform: translateX(-20px);
     transition: transform 0.3s ease, opacity 0.3s ease;
-    white-space: nowrap; /* This prevents the text from wrapping to the next line */
+    white-space: nowrap;
+    /* This prevents the text from wrapping to the next line */
 }
 
 .linkedin-button:hover .button-text,
@@ -579,5 +638,4 @@ onMounted(() => {
 .github-button:hover .button-text {
     transform: translateX(0);
     opacity: 1;
-}
-</style>
+}</style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="slider">
+    <div class="slider" ref="video_elemenet_height">
         <video autoplay loop muted>
             <source src="~/assets/video/video.mp4" type="video/mp4">
         </video>
@@ -44,7 +44,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     position: relative;
-    opacity: 0; /* Initially hide the elements */
+    opacity: 1; /* Initially hide the elements */
     transition: transform 1s, opacity 1s; /* Transition settings */
 }
 
@@ -61,6 +61,6 @@
     opacity: 1; /* Make visible when in view */
 }
 .title .container div h1:nth-child(2) {
-    margin-left: 300px; /* Offset the second text to the left */
+    margin-left: 0px; /* Offset the second text to the left */
 }
 </style>
