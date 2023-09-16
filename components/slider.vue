@@ -44,7 +44,6 @@
     -webkit-background-clip: text;
     background-clip: text;
     position: relative;
-    opacity: 1; /* Initially hide the elements */
-    transition: transform 1s, opacity 1s; /* Transition settings */
+    white-space: nowrap;
 }
 </style>

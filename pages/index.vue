@@ -75,41 +75,61 @@ const firstTextSectionThreeElement = ref(null);
 const secondTextSectionThreeElement = ref(null);
 const thirdTextSectionThreeElement = ref(null);
 
+let sectionOffsets, sectionHeights;
+
+const calculateSectionData = () => {
+  sectionOffsets = [
+    leftIntroTitleElement.value.offsetTop,
+    leftIntroSectionTwoTitleElement.value.offsetTop,
+    firstTextSectionThreeElement.value.offsetTop,
+  ];
+
+  sectionHeights = [
+    leftIntroTitleElement.value.offsetHeight,
+    leftIntroSectionTwoTitleElement.value.offsetHeight,
+    firstTextSectionThreeElement.value.offsetHeight,
+  ];
+};
+
 const updateElementPositionsOnScroll = () => {
-    const totalScreenHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const totalScreenHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-    let sectionOneRate = (window.scrollY / totalScreenHeight) * 6 * 100;
-    if (sectionOneRate > 130) {
-        sectionOneRate = 130;
+  // Common logic for calculating rate
+  const calculateRate = (startPosition, multiplier, maxRate, offset = 0) => {
+    let rate = ((window.scrollY - startPosition + offset) / (totalScreenHeight - startPosition)) * multiplier;
+    if (rate > maxRate) {
+      rate = maxRate;
     }
+    return rate;
+  };
 
-    leftIntroTitleElement.value.style.right = `${sectionOneRate}%`;
-    rightIntroTitleElement.value.style.left = `${sectionOneRate}%`;
+  // Section 1
+  const sectionOneStartPosition = leftIntroTitleElement.value.offsetTop - window.innerHeight * 1.6; // Adjust this value to start the animation earlier or later
+  const sectionOneRate = calculateRate(sectionOneStartPosition, 500, 130);
+  leftIntroTitleElement.value.style.right = `${sectionOneRate}%`;
+  rightIntroTitleElement.value.style.left = `${sectionOneRate}%`;
 
-    const sectionTwoStartPosition = leftIntroSectionTwoTitleElement.value.offsetTop;
+  // Section 2
+  const sectionTwoStartPosition = leftIntroSectionTwoTitleElement.value.offsetTop - window.innerHeight * 1.5;
+  const baseOffset = window.innerHeight / 2 - leftIntroSectionTwoTitleElement.value.offsetHeight / 2;
+  const sectionTwoRate = calculateRate(sectionTwoStartPosition, 500, 130, -baseOffset);
+  leftIntroSectionTwoTitleElement.value.style.right = `${sectionTwoRate}%`;
+  rightIntroSectionTwoTitleElement.value.style.left = `${sectionTwoRate}%`;
 
-    let sectionTwoRate = ((window.scrollY - sectionTwoStartPosition) / (totalScreenHeight - sectionTwoStartPosition)) * 3 * 100;
-
-    const additionalOffset = 130;
-    var ratePlusOffset = sectionTwoRate+additionalOffset;
-    if (ratePlusOffset > 130) {
-    ratePlusOffset = 130;
-    }
-    leftIntroSectionTwoTitleElement.value.style.right = `${ratePlusOffset}%`;
-    rightIntroSectionTwoTitleElement.value.style.left = `${ratePlusOffset}%`;
-
-    const sectionThreeStartPosition = firstTextSectionThreeElement.value.offsetTop;
-    let sectionThreeRate = ((window.scrollY - sectionThreeStartPosition) / (totalScreenHeight - sectionThreeStartPosition)) * 100;
-    if (sectionThreeRate > 0) {
-        sectionThreeRate = 0;
-    }
-    firstTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.5}%`;
-    secondTextSectionThreeElement.value.style.right = `${sectionThreeRate * 1.25}%`;
-    thirdTextSectionThreeElement.value.style.right = `${sectionThreeRate * 2}%`;
+  // Section 3
+  const sectionThreeStartPosition = firstTextSectionThreeElement.value.offsetTop;
+  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 100, 0);
+  firstTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.1}%`;
+  secondTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.2}%`;
+  thirdTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.3}%`;
 };
 
 onMounted(() => {
-    window.addEventListener('scroll', updateElementPositionsOnScroll);
+  calculateSectionData();
+  window.addEventListener('scroll', updateElementPositionsOnScroll);
+
+  // Recalculate offsets and heights whenever the window is resized
+  window.addEventListener('resize', calculateSectionData);
 });
 
 </script>
@@ -557,6 +577,7 @@ onMounted(() => {
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
+    white-space: nowrap;
 }
 
 .about {
