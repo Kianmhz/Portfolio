@@ -110,9 +110,8 @@ const updateElementPositionsOnScroll = () => {
   rightIntroTitleElement.value.style.left = `${sectionOneRate}%`;
 
   // Section 2
-  const sectionTwoStartPosition = leftIntroSectionTwoTitleElement.value.offsetTop - window.innerHeight * 1.5;
-  const baseOffset = window.innerHeight / 2 - leftIntroSectionTwoTitleElement.value.offsetHeight / 2;
-  const sectionTwoRate = calculateRate(sectionTwoStartPosition, 500, 130, -baseOffset);
+  const sectionTwoStartPosition = leftIntroSectionTwoTitleElement.value.offsetTop - window.innerHeight * 1.6;
+  const sectionTwoRate = calculateRate(sectionTwoStartPosition, 330, 130);
   leftIntroSectionTwoTitleElement.value.style.right = `${sectionTwoRate}%`;
   rightIntroSectionTwoTitleElement.value.style.left = `${sectionTwoRate}%`;
 
