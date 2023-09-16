@@ -216,7 +216,7 @@ onMounted(() => {
 
         <div class="languages">
             <div class="container">
-                <div class="opacity-[0] translate-y-[40px]" :class="{ 'fade-in': inViewLanguages }">
+                <div class="opacity-[0] translate-y-[80px]" :class="{ 'fade-in': inViewLanguages }">
                     <h1 class="text-[3rem] font-[700]">Languages</h1>
                     <Logos />
                 </div>
@@ -566,17 +566,34 @@ onMounted(() => {
 
 .wrap .container {
     @apply justify-start;
+    white-space: nowrap;
 }
 
 .wrap .container div p {
     font-size: 7rem;
     font-weight: 400;
     position: relative;
-    background: linear-gradient(to bottom, #00FFFF, #00DC82, #00FFA6);
+}
+
+.wrap .container div p:nth-child(1) {
+    background: linear-gradient(to right, #00FFFF, #00FFA6);
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
-    white-space: nowrap;
+}
+
+.wrap .container div p:nth-child(2) {
+    background: linear-gradient(to right, #00FFA6, #00ff9d);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.wrap .container div p:nth-child(3) {
+    background: linear-gradient(to right, #00ff9d, #00DC82);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .about {
@@ -606,7 +623,7 @@ onMounted(() => {
     width: 39.4px;
     font-weight: 400;
     padding: 10px;
-    border-bottom: 1px solid #00DC82;
+    border-bottom: 2px solid #00DC82;
     transition: width 0.3s ease;
 }
 
@@ -621,7 +638,7 @@ onMounted(() => {
     width: 37.5px;
     font-weight: 400;
     padding: 10px;
-    border-bottom: 1px solid #00DC82;
+    border-bottom: 2px solid #00DC82;
     transition: width 0.3s ease;
 }
 
@@ -636,7 +653,7 @@ onMounted(() => {
     width: 40px;
     font-weight: 400;
     padding: 10px;
-    border-bottom: 1px solid #00DC82;
+    border-bottom: 2px solid #00DC82;
     transition: width 0.3s ease;
 }
 
