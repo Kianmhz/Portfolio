@@ -67,61 +67,51 @@ onMounted(() => {
     });
 });
 
-const left_intro_title = ref(null);
-const right_intro_title = ref(null);
-const left_intro2_title = ref(null);
-const right_intro2_title = ref(null);
-const first_text_section3 = ref(null);
-const second_text_section3 = ref(null);
-const third_text_section3 = ref(null);
+const leftIntroTitleElement = ref(null);
+const rightIntroTitleElement = ref(null);
+const leftIntroSectionTwoTitleElement = ref(null);
+const rightIntroSectionTwoTitleElement = ref(null);
+const firstTextSectionThreeElement = ref(null);
+const secondTextSectionThreeElement = ref(null);
+const thirdTextSectionThreeElement = ref(null);
 
-const positionTitle = () => {
-    // section 1 titles    
-    // total screen height & width
-    const screen_height = document.documentElement.scrollHeight - window.innerHeight;
-    
-    // Rate section1 calculations
-    var rate = (window.scrollY/screen_height) * 7 * 100;
-    if (rate > 130) {
-        var rate = 130;
+const updateElementPositionsOnScroll = () => {
+    const totalScreenHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    let sectionOneRate = (window.scrollY / totalScreenHeight) * 6 * 100;
+    if (sectionOneRate > 130) {
+        sectionOneRate = 130;
     }
-    // const rate = (window.scrollY/screen_height) * ((screen_width*6)/screen_width) * 100;
-    
-    // Move left text to the right
-    left_intro_title.value.style.right = `${rate}%`;
-    // Move right text to the left
-    right_intro_title.value.style.left = `${rate}%`;
-    
-    // section 2 titles
-    const intro2_position = left_intro2_title.value.offsetTop;
-    // Rate section1 calculations
-    const rate2 = ((window.scrollY-intro2_position)/(screen_height-intro2_position)) * 6 * 100;
-    // Move left text to the right
-    left_intro2_title.value.style.left = `${rate2}%`;
-    // Move right text to the left
-    right_intro2_title.value.style.right = `${rate2}%`;
 
-    // section 3 titles
-    const top_first_text_section3 = first_text_section3.value.offsetTop;
-    // Rate section1 calculations
-    var rate3 = ((window.scrollY-top_first_text_section3)/(screen_height-top_first_text_section3)) * 100;
-    if (rate3 > 0) {
-        var rate3 = 0;
+    leftIntroTitleElement.value.style.right = `${sectionOneRate}%`;
+    rightIntroTitleElement.value.style.left = `${sectionOneRate}%`;
+
+    const sectionTwoStartPosition = leftIntroSectionTwoTitleElement.value.offsetTop;
+
+    let sectionTwoRate = ((window.scrollY - sectionTwoStartPosition) / (totalScreenHeight - sectionTwoStartPosition)) * 3 * 100;
+
+    const additionalOffset = 130;
+    var ratePlusOffset = sectionTwoRate+additionalOffset;
+    if (ratePlusOffset > 130) {
+    ratePlusOffset = 130;
     }
-    // Move left text to the right
-    first_text_section3.value.style.right = `${rate3*1.5}%`;
-    second_text_section3.value.style.right = `${rate3*2.5}%`;
-    third_text_section3.value.style.right = `${rate3*3.5}%`;
+    leftIntroSectionTwoTitleElement.value.style.right = `${ratePlusOffset}%`;
+    rightIntroSectionTwoTitleElement.value.style.left = `${ratePlusOffset}%`;
 
-
-
-    console.log("Rate ", rate3);
-
+    const sectionThreeStartPosition = firstTextSectionThreeElement.value.offsetTop;
+    let sectionThreeRate = ((window.scrollY - sectionThreeStartPosition) / (totalScreenHeight - sectionThreeStartPosition)) * 100;
+    if (sectionThreeRate > 0) {
+        sectionThreeRate = 0;
+    }
+    firstTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.5}%`;
+    secondTextSectionThreeElement.value.style.right = `${sectionThreeRate * 1.25}%`;
+    thirdTextSectionThreeElement.value.style.right = `${sectionThreeRate * 2}%`;
 };
 
 onMounted(() => {
-    window.addEventListener('scroll', positionTitle);
+    window.addEventListener('scroll', updateElementPositionsOnScroll);
 });
+
 </script>
 
 <template>
@@ -157,10 +147,10 @@ onMounted(() => {
 
         <div class="title">
             <Slider />
-            <div class="container container-title1" ref="video_elemenet_height">
+            <div class="container container-title1">
                 <div class="text-[3rem] font-[700] mb-[20px]">
-                    <h1 :class="{ 'from-right': !inView1, 'in-view': inView1 }" ref="left_intro_title">A Peek Into My</h1>
-                    <h1 :class="{ 'from-left': !inView1, 'in-view': inView1 }" ref="right_intro_title">Software Skills</h1>
+                    <h1 style="transform: translateX(100%);" ref="leftIntroTitleElement">A Peek Into My</h1>
+                    <h1 style="transform: translateX(-100%);" ref="rightIntroTitleElement">Software Skills</h1>
                 </div>
             </div>
         </div>
@@ -218,8 +208,8 @@ onMounted(() => {
             <Slider />
             <div class="container container-title2">
                 <div>
-                    <h1 :class="{ 'from-right': !inView2, 'in-view': inView2 }" ref="left_intro2_title">Discover My</h1>
-                    <h1 :class="{ 'from-left': !inView2, 'in-view': inView2 }" ref="right_intro2_title">Recent Projects</h1>
+                    <h1 style="transform: translateX(100%);" ref="leftIntroSectionTwoTitleElement">Discover My</h1>
+                    <h1 style="transform: translateX(-100%);" ref="rightIntroSectionTwoTitleElement">Recent Projects</h1>
                 </div>
             </div>
         </div>
@@ -304,9 +294,9 @@ onMounted(() => {
         <div class="wrap">
             <div class="container">
                 <div>
-                    <p ref="first_text_section3">And that's a wrap</p>
-                    <p ref="second_text_section3">What's next?</p>
-                    <p ref="third_text_section3">Stay in touch!</p>
+                    <p ref="firstTextSectionThreeElement">And that's a wrap</p>
+                    <p ref="secondTextSectionThreeElement">What's next?</p>
+                    <p ref="thirdTextSectionThreeElement">Stay in touch!</p>
                 </div>
             </div>
         </div>
@@ -563,7 +553,6 @@ onMounted(() => {
     font-size: 7rem;
     font-weight: 400;
     position: relative;
-    padding: 50px 0px;
     background: linear-gradient(to bottom, #00FFFF, #00DC82, #00FFA6);
     color: transparent;
     -webkit-background-clip: text;

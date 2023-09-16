@@ -47,20 +47,4 @@
     opacity: 1; /* Initially hide the elements */
     transition: transform 1s, opacity 1s; /* Transition settings */
 }
-
-.title .container div h1.from-right {
-    transform: translateX(100%);
-}
-
-.title .container div h1.from-left {
-    transform: translateX(-100%);
-}
-
-.title .container div h1.in-view {
-    transform: translateX(0%);
-    opacity: 1; /* Make visible when in view */
-}
-.title .container div h1:nth-child(2) {
-    margin-left: 0px; /* Offset the second text to the left */
-}
 </style>
