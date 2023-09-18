@@ -156,226 +156,193 @@ onMounted(() => {
     <div v-if="NegativeScroll==true">
         <Navbar/>
     </div>
-    <div ref="elementRef">
-        <div class="intro">
-            <div class="container">
-                <!-- Text Content -->
-                <div>
-                    <h2 class="text-[2rem] font-[700] transform translate-y-[40px] opacity-[0]"
-                        :class="{ 'animate-intro': inViewIntro }">Hello, it's</h2>
-                    <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
-                        <h1 class="text-[5rem] font-[700]">Kianmehr<span class="text-[#00DC82]">.</span></h1>
-                        <p class="text-[1.1rem] font-[400] mb-[20px] text-[#909090]">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et
-                            dolore magna aliqua.
-                        </p>
-                    </div>
-                    <button :class="{ 'animate-intro': inViewIntro }">
-                        <span class="content">
-                            <span>SCROLL FOR MORE</span>
-                        </span>
-                        <div class="arrow"></div>
-                    </button>
-                </div>
-                <!-- Image Content -->
-                <div class="opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
-                    <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
-                </div>
-            </div>
-        </div>
-
-        <div class="title">
-            <Slider />
-            <div class="container container-title1">
-                <div class="text-[3rem] font-[700] mb-[20px]">
-                    <h1 style="transform: translateX(100%);" ref="leftIntroTitleElement">A Peek Into My</h1>
-                    <h1 style="transform: translateX(-100%);" ref="rightIntroTitleElement">Software Skills</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="skills">
-            <div class="container">
-                <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': inViewSkills }">
-                    <h1 class="text-[3rem] font-[700] mb-[20px]">What I Do</h1>
-                    <p>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    <div class="intro">
+        <div class="container">
+            <!-- Text Content -->
+            <div>
+                <h2 class="text-[2rem] font-[700] transform translate-y-[40px] opacity-[0]"
+                    :class="{ 'animate-intro': inViewIntro }">Hello, it's</h2>
+                <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
+                    <h1 class="text-[5rem] font-[700]">Kianmehr<span class="text-[#00DC82]">.</span></h1>
+                    <p class="text-[1.1rem] font-[400] mb-[20px] text-[#909090]">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
                         et
-                        dolore magna aliqua."
+                        dolore magna aliqua.
                     </p>
                 </div>
-                <div class="grid grid-cols-2 gap-[50px] opacity-[0] transform translate-y-[40px]" id="skills-grid"
-                    :class="{ 'animate-skills': inViewSkills }">
-                    <div>
-                        <h2>title</h2>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua."</p>
-                    </div>
-                    <div>
-                        <h2>title</h2>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua."</p>
-                    </div>
-                    <div>
-                        <h2>title</h2>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua."</p>
-                    </div>
-                    <div>
-                        <h2>title</h2>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et dolore magna aliqua."</p>
-                    </div>
-                </div>
+                <button :class="{ 'animate-intro': inViewIntro }">
+                    <span class="content">
+                        <span>SCROLL FOR MORE</span>
+                    </span>
+                    <div class="arrow"></div>
+                </button>
+            </div>
+            <!-- Image Content -->
+            <div class="opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
+                <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
             </div>
         </div>
+    </div>
 
-        <div class="languages">
-            <div class="container">
-                <div class="opacity-[0] translate-y-[80px]" :class="{ 'fade-in': inViewLanguages }">
-                    <h1 class="text-[3rem] font-[700]">Languages</h1>
-                    <Logos />
-                </div>
+    <div class="title">
+        <Slider />
+        <div class="container container-title1">
+            <div class="text-[3rem] font-[700] mb-[20px]">
+                <h1 style="transform: translateX(100%);" ref="leftIntroTitleElement">A Peek Into My</h1>
+                <h1 style="transform: translateX(-100%);" ref="rightIntroTitleElement">Software Skills</h1>
             </div>
         </div>
+    </div>
 
-        <div class="title">
-            <Slider />
-            <div class="container container-title2">
+    <div class="skills">
+        <div class="container">
+            <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': inViewSkills }">
+                <h1 class="text-[3rem] font-[700] mb-[20px]">What I Do</h1>
+                <p>
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua."
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-[50px] opacity-[0] transform translate-y-[40px]" id="skills-grid"
+                :class="{ 'animate-skills': inViewSkills }">
                 <div>
-                    <h1 style="transform: translateX(100%);" ref="leftIntroSectionTwoTitleElement">Discover My</h1>
-                    <h1 style="transform: translateX(-100%);" ref="rightIntroSectionTwoTitleElement">Recent Projects</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="projects">
-            <div class="container">
-                <transition-group name="fade" tag="div" class="relative w-full h-[1000px]"
-                    @before-enter="beforeEnter">
-                    <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                        <div class="project-info" :class="{ 'animate-in': inViewProject }">
-                            <h1>Project 1</h1>
-                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-                            <button class="github-button">
-                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                <span class="button-text">Github</span>
-                            </button>
-                        </div>
-                        <div class="project-image" :class="{ 'animate-in': inViewProject }">
-                            <img src="~/assets/img/IMG_1042.JPG" />
-                        </div>
-                    </div>
-
-                    <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                        <div class="project-info" :class="{ 'animate-in': inViewProject }">
-                            <h1>Project 2</h1>
-                            <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                            <button class="github-button">
-                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                <span class="button-text">Github</span>
-                            </button>
-                        </div>
-                        <div class="project-image" :class="{ 'animate-in': inViewProject }">
-                            <img src="~/assets/img/IMG_1042.JPG" />
-                        </div>
-                    </div>
-
-                    <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                        <div class="project-info" :class="{ 'animate-in': inViewProject }">
-                            <h1>Project 3</h1>
-                            <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
-                            <button class="github-button">
-                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                <span class="button-text">Github</span>
-                            </button>
-                        </div>
-                        <div class="project-image" :class="{ 'animate-in': inViewProject }">
-                            <img src="~/assets/img/IMG_1042.JPG" />
-                        </div>
-                    </div>
-                </transition-group>
-            </div>
-        </div>
-
-        <div class="project-buttons">
-            <div class="container">
-                <button id="back" class="mx-[100px]" @click="goBack"><font-awesome-icon
-                        :icon="['fas', 'circle-chevron-left']" size="xl" /></button>
-                <div class="dots">
-                    <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
-                    <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
-                    <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
-                </div>
-                <button id="forward" class="mx-[100px]" @click="goForward"><font-awesome-icon
-                        :icon="['fas', 'circle-chevron-right']" size="xl" /></button>
-            </div>
-        </div>
-
-        <div class="resume-header">
-            <div class="container">
-                <div>
-                    <h1 class="text-[3rem] font-[700] text-[#00DC82]">Resume and Certifications</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="resume">
-            <div class="container">
-                <Cards />
-            </div>
-        </div>
-
-        <div class="wrap">
-            <div class="container">
-                <div>
-                    <p ref="firstTextSectionThreeElement">And that's a wrap</p>
-                    <p ref="secondTextSectionThreeElement">What's next?</p>
-                    <p ref="thirdTextSectionThreeElement">Stay in touch!</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="about">
-            <div class="container">
-                <div>
-                    <h1>linkedin</h1>
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-                    <button class="linkedin-button">
-                        <font-awesome-icon :icon="['fab', 'linkedin']" size="lg" />
-                        <span class="button-text">LinkedIn</span>
-                    </button>
+                    <h2>title</h2>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua."</p>
                 </div>
                 <div>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et
-                        dolore magna aliqua."</p>
+                    <h2>title</h2>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua."</p>
+                </div>
+                <div>
+                    <h2>title</h2>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua."</p>
+                </div>
+                <div>
+                    <h2>title</h2>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua."</p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="about">
-            <div class="container">
-                <div>
-                    <h1>Email</h1>
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-                    <button class="email-button">
-                        <font-awesome-icon :icon="['fas', 'envelope']" size="lg" />
-                        <span class="button-text">Email</span>
-                    </button>
-                </div>
-                <div>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et
-                        dolore magna aliqua."</p>
-                </div>
+    <div class="languages">
+        <div class="container">
+            <div class="opacity-[0] translate-y-[80px]" :class="{ 'fade-in': inViewLanguages }">
+                <h1 class="text-[3rem] font-[700]">Languages</h1>
+                <Logos />
             </div>
+        </div>
+    </div>
+
+    <div class="title">
+        <Slider />
+        <div class="container container-title2">
+            <div>
+                <h1 style="transform: translateX(100%);" ref="leftIntroSectionTwoTitleElement">Discover My</h1>
+                <h1 style="transform: translateX(-100%);" ref="rightIntroSectionTwoTitleElement">Recent Projects</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="projects">
+        <div class="container">
+            <transition-group name="fade" tag="div" class="relative w-full h-[1000px]">
+                <div v-if="currentProjectIndex === 0" key="0" class="project-item">
+                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
+                        <h1>Project 1</h1>
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+                        <button class="github-button">
+                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            <span class="button-text">Github</span>
+                        </button>
+                    </div>
+                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
+                        <img src="~/assets/img/IMG_1042.JPG" />
+                    </div>
+                </div>
+
+                <div v-if="currentProjectIndex === 1" key="1" class="project-item">
+                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
+                        <h1>Project 2</h1>
+                        <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                        <button class="github-button">
+                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            <span class="button-text">Github</span>
+                        </button>
+                    </div>
+                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
+                        <img src="~/assets/img/IMG_1042.JPG" />
+                    </div>
+                </div>
+
+                <div v-if="currentProjectIndex === 2" key="2" class="project-item">
+                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
+                        <h1>Project 3</h1>
+                        <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
+                        <button class="github-button">
+                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            <span class="button-text">Github</span>
+                        </button>
+                    </div>
+                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
+                        <img src="~/assets/img/IMG_1042.JPG" />
+                    </div>
+                </div>
+            </transition-group>
+        </div>
+    </div>
+
+    <div class="project-buttons">
+        <div class="container">
+            <button id="back" class="mx-[100px]" @click="goBack"><font-awesome-icon
+                    :icon="['fas', 'circle-chevron-left']" size="xl" /></button>
+            <div class="dots">
+                <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
+                <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
+                <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
+            </div>
+            <button id="forward" class="mx-[100px]" @click="goForward"><font-awesome-icon
+                    :icon="['fas', 'circle-chevron-right']" size="xl" /></button>
+        </div>
+    </div>
+
+    <div class="resume-header">
+        <div class="container">
+            <div>
+                <h1 class="text-[3rem] font-[700] text-[#00DC82]">Resume and Certifications</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="resume">
+        <div class="container">
+            <Cards />
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="container">
+            <div>
+                <p ref="firstTextSectionThreeElement">And that's a wrap</p>
+                <p ref="secondTextSectionThreeElement">What's next?</p>
+                <p ref="thirdTextSectionThreeElement">Stay in touch!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact">
+        <div class="container">
+            <Contact />
         </div>
     </div>
 </template>
@@ -476,7 +443,7 @@ onMounted(() => {
 }
 
 .languages {
-    @apply flex justify-center py-[50px];
+    @apply flex justify-center;
 }
 
 .fade-in {
@@ -487,7 +454,7 @@ onMounted(() => {
 
 .languages .container div {
     flex: 1 100%;
-    padding: 50px 0px;
+    padding: 80px 0 0 0;
 }
 
 .projects {
@@ -618,24 +585,8 @@ onMounted(() => {
     background-clip: text;
 }
 
-.about {
+.contact {
     @apply flex justify-center py-[50px] relative;
-}
-
-.about .container div {
-    flex: 1 1 50%;
-}
-
-.about .container div h1 {
-    @apply text-[1rem] font-[700] text-[#00DC82];
-}
-
-.about .container div h2 {
-    @apply text-[2rem] font-[700];
-}
-
-.about .container div p {
-    @apply text-[1.1rem] font-[400] text-[#909090];
 }
 
 .github-button {
@@ -651,36 +602,6 @@ onMounted(() => {
 
 .github-button:hover {
     width: 92.2px;
-}
-
-.linkedin-button {
-    display: flex;
-    align-items: center;
-    border: none;
-    width: 37.5px;
-    font-weight: 400;
-    padding: 10px;
-    border-bottom: 2px solid #00DC82;
-    transition: width 0.3s ease;
-}
-
-.linkedin-button:hover {
-    width: 102px;
-}
-
-.email-button {
-    display: flex;
-    align-items: center;
-    border: none;
-    width: 40px;
-    font-weight: 400;
-    padding: 10px;
-    border-bottom: 2px solid #00DC82;
-    transition: width 0.3s ease;
-}
-
-.email-button:hover {
-    width: 82.8px;
 }
 
 .button-text {
@@ -699,4 +620,5 @@ onMounted(() => {
 .github-button:hover .button-text {
     transform: translateX(0);
     opacity: 1;
-}</style>
+}
+</style>

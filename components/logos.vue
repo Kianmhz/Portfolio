@@ -124,9 +124,7 @@
     row-gap: 150px;
     /* Spacing between logos */
     justify-items: center;
-    /* Center logos horizontally in each grid cell */
     align-items: center;
-    /* Center logos vertically in each grid cell */
 }
 
 .logos svg {

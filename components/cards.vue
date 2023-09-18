@@ -18,19 +18,15 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 .resume-card {
     position: absolute;
     width: calc(100% - 40px);
-    /* Adjusted width */
     height: calc(100% - 40px);
-    /* Adjusted height */
     background: linear-gradient(to right, rgb(24, 24, 24), rgb(0, 0, 0));
-    /* Gradient shadow effect */
     transition: 0.3s ease;
     box-shadow: -30px 0px 30px rgba(0, 0, 0, 0.7);
     padding: 40px;
-    /* Added padding */
 }
 
 .resume-card p {
