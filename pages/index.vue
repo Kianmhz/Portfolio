@@ -158,7 +158,6 @@ onMounted(() => {
     </div>
     <div class="intro">
         <div class="container">
-            <!-- Text Content -->
             <div>
                 <h2 class="text-[2rem] font-[700] transform translate-y-[40px] opacity-[0]"
                     :class="{ 'animate-intro': inViewIntro }">Hello, it's</h2>
@@ -178,7 +177,6 @@ onMounted(() => {
                     <div class="arrow"></div>
                 </button>
             </div>
-            <!-- Image Content -->
             <div class="opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
                 <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
             </div>
@@ -207,30 +205,7 @@ onMounted(() => {
             </div>
             <div class="grid grid-cols-2 gap-[50px] opacity-[0] transform translate-y-[40px]" id="skills-grid"
                 :class="{ 'animate-skills': inViewSkills }">
-                <div>
-                    <h2>title</h2>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua."</p>
-                </div>
-                <div>
-                    <h2>title</h2>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua."</p>
-                </div>
-                <div>
-                    <h2>title</h2>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua."</p>
-                </div>
-                <div>
-                    <h2>title</h2>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua."</p>
-                </div>
+                <Skillsets />
             </div>
         </div>
     </div>
@@ -313,14 +288,6 @@ onMounted(() => {
             </div>
             <button id="forward" class="mx-[100px]" @click="goForward"><font-awesome-icon
                     :icon="['fas', 'circle-chevron-right']" size="xl" /></button>
-        </div>
-    </div>
-
-    <div class="resume-header">
-        <div class="container">
-            <div>
-                <h1 class="text-[3rem] font-[700] text-[#00DC82]">Resume and Certifications</h1>
-            </div>
         </div>
     </div>
 

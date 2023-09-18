@@ -1,4 +1,5 @@
 <template>
+    <h1 class="text-[3rem] font-[700] py-[50px] text-[#00DC82]">Resume and Certifications</h1>
     <div class="relative w-[1000px] h-[500px]">
         <div class="resume-card" id="card3">
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
