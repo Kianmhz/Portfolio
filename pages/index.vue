@@ -104,20 +104,20 @@ const updateElementPositionsOnScroll = () => {
   };
 
   // Section 1
-  const sectionOneStartPosition = leftIntroTitleElement.value.offsetTop - window.innerHeight * 1.6; // Adjust this value to start the animation earlier or later
-  const sectionOneRate = calculateRate(sectionOneStartPosition, 500, 130);
+  const sectionOneStartPosition = leftIntroTitleElement.value.offsetTop - window.innerHeight * 1.9; // Adjust this value to start the animation earlier or later
+  const sectionOneRate = calculateRate(sectionOneStartPosition, 500, 120);
   leftIntroTitleElement.value.style.right = `${sectionOneRate}%`;
   rightIntroTitleElement.value.style.left = `${sectionOneRate}%`;
 
   // Section 2
-  const sectionTwoStartPosition = leftIntroSectionTwoTitleElement.value.offsetTop - window.innerHeight * 1.6;
-  const sectionTwoRate = calculateRate(sectionTwoStartPosition, 330, 130);
+  const sectionTwoStartPosition = leftIntroSectionTwoTitleElement.value.offsetTop - window.innerHeight * 1.9;
+  const sectionTwoRate = calculateRate(sectionTwoStartPosition, 340, 120);
   leftIntroSectionTwoTitleElement.value.style.right = `${sectionTwoRate}%`;
   rightIntroSectionTwoTitleElement.value.style.left = `${sectionTwoRate}%`;
 
   // Section 3
   const sectionThreeStartPosition = firstTextSectionThreeElement.value.offsetTop;
-  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 100, 0);
+  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 200, 0);
   firstTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.1}%`;
   secondTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.2}%`;
   thirdTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.3}%`;
@@ -131,9 +131,31 @@ onMounted(() => {
   window.addEventListener('resize', calculateSectionData);
 });
 
+const NegativeScroll = ref(false);
+
+let lastScrollMax = 0;
+
+const scrollHandler = () => {
+  const currentScrollY = window.scrollY;
+  
+  if (currentScrollY > lastScrollMax + 100) {
+    lastScrollMax = currentScrollY;
+    NegativeScroll.value = false;
+  } else if (currentScrollY < lastScrollMax - 100) {
+    lastScrollMax = currentScrollY;
+    NegativeScroll.value = true;
+  }
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', scrollHandler);
+});
 </script>
 
 <template>
+    <div v-if="NegativeScroll==true">
+        <Navbar/>
+    </div>
     <div ref="elementRef">
         <div class="intro">
             <div class="container">
@@ -235,7 +257,7 @@ onMounted(() => {
 
         <div class="projects">
             <div class="container">
-                <transition-group name="fade" tag="div" class="relative w-full h-[1000px]" mode="out-in"
+                <transition-group name="fade" tag="div" class="relative w-full h-[1000px]"
                     @before-enter="beforeEnter">
                     <div v-if="currentProjectIndex === 0" key="0" class="project-item">
                         <div class="project-info" :class="{ 'animate-in': inViewProject }">
