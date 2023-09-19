@@ -131,29 +131,28 @@ onMounted(() => {
   window.addEventListener('resize', calculateSectionData);
 });
 
-const NegativeScroll = ref(false);
+const isScrollingUp = ref(true);
+let maximumScrollPosition = 0;
 
-let lastScrollMax = 0;
-
-const scrollHandler = () => {
-  const currentScrollY = window.scrollY;
+const handleScroll = () => {
+  const currentScrollPosition = window.scrollY;
   
-  if (currentScrollY > lastScrollMax + 100) {
-    lastScrollMax = currentScrollY;
-    NegativeScroll.value = false;
-  } else if (currentScrollY < lastScrollMax - 100) {
-    lastScrollMax = currentScrollY;
-    NegativeScroll.value = true;
+  if (currentScrollPosition > maximumScrollPosition + 100) {
+    maximumScrollPosition = currentScrollPosition;
+    isScrollingUp.value = false;
+  } else if (currentScrollPosition < maximumScrollPosition - 100) {
+    maximumScrollPosition = currentScrollPosition;
+    isScrollingUp.value = true;
   }
 };
 
 onMounted(() => {
-    window.addEventListener('scroll', scrollHandler);
+    window.addEventListener('scroll', handleScroll);
 });
 </script>
 
 <template>
-    <div v-if="NegativeScroll==true">
+    <div v-if="isScrollingUp==true">
         <Navbar/>
     </div>
     <div class="intro">
