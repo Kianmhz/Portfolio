@@ -9,25 +9,13 @@
 
 <style scoped>
 .nav-bar {
+	@apply flex fixed flex-row flex-wrap justify-between w-full z-[100];
     background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
-	display: flex;
-    position: fixed;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	width: 100%;
-    z-index: 100;
 }
 .nav {
-	flex: 1;
-	padding: 15px;
-	color: #fff;
-	text-align: center;
-	text-decoration: none;
-	transition: 0.2s;
+	@apply flex-1 p-4 text-center text-white no-underline transition-all duration-200;
 }
 .nav:hover {
-	color: #00DC82;
-	font-weight: bold;
+    @apply text-[#00DC82] font-bold;
 }
 </style>

@@ -169,7 +169,7 @@ onMounted(() => {
                         dolore magna aliqua.
                     </p>
                 </div>
-                <button :class="{ 'animate-intro': inViewIntro }">
+                <button id="intro-button" class="py-[15px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0" :class="{ 'animate-intro': inViewIntro }">
                     <span class="content">
                         <span>SCROLL FOR MORE</span>
                     </span>
@@ -263,7 +263,7 @@ onMounted(() => {
                     <div class="project-info" :class="{ 'animate-in': inViewProject }">
                         <h1>Project 3</h1>
                         <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
-                        <button class="github-button">
+                        <button class="github-button hover:w-[92.2px];">
                             <font-awesome-icon :icon="['fab', 'github']" size="lg" />
                             <span class="button-text">Github</span>
                         </button>
@@ -276,7 +276,7 @@ onMounted(() => {
         </div>
     </div>
 
-    <div class="project-buttons">
+    <div class="flex justify-center">
         <div class="container">
             <button id="back" class="mx-[100px]" @click="goBack"><font-awesome-icon
                     :icon="['fas', 'circle-chevron-left']" size="xl" /></button>
@@ -290,7 +290,7 @@ onMounted(() => {
         </div>
     </div>
 
-    <div class="resume">
+    <div class="flex justify-center items-center">
         <div class="container">
             <Cards />
         </div>
@@ -306,7 +306,7 @@ onMounted(() => {
         </div>
     </div>
 
-    <div class="contact">
+    <div class="flex justify-center py-[50px] relative">
         <div class="container">
             <Contact />
         </div>
@@ -323,65 +323,52 @@ onMounted(() => {
 }
 
 .animate-intro {
-    transform: translateY(0);
+    @apply opacity-100 transform translate-y-0;
     transition: transform 1s, opacity 1s;
-    opacity: 1;
 }
 
-/* Default button styles */
-.intro .container div button {
-    padding: 15px 0px;
-    position: relative;
-    transition: transform 0.3s, box-shadow 0.3s ease;
-    overflow: hidden;
-    background: transparent;
-    border: none;
-    opacity: 0;
-}
-
-.intro .container div button.animate-intro {
+#intro-button.animate-intro {
+    @apply opacity-100;
     transition: opacity 0.5s 2s;
-    opacity: 1;
 }
 
 .content {
-    display: inline-block;
-    position: relative;
+    @apply inline-block relative;
     transition: transform 0.4s, opacity 0.4s ease-in-out;
 }
 
 .content::after {
+    @apply absolute bottom-[-10px] left-0 w-full h-[2px] bg-[#00DC82];
     content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #00DC82;
 }
 
-/* Hover effect to slightly scale and fade out the content (text and underline) */
-.intro .container div button:hover .content {
-    @apply transform scale-[0.5] opacity-[0];
+#intro-button:hover .content {
+    @apply transform scale-[0.5] opacity-0;
 }
 
 .arrow {
-    position: absolute;
-    left: 50%;
-    bottom: 10%;
-    width: 20px;
-    height: 20px;
+    @apply absolute left-1/2 bottom-[10%] w-5 h-5 opacity-0;
     border-left: 3px solid #00DC82;
     border-bottom: 3px solid #00DC82;
     transform: translate(-50%, 100%) rotate(-45deg);
-    opacity: 0;
     transition: transform 0.5s 0.1s, opacity 0.5s ease-in-out 0.1s;
 }
 
 /* When button is hovered, arrow becomes visible and moves into view */
-.intro .container div button:hover .arrow {
-    opacity: 1;
+#intro-button:hover .arrow {
+    @apply opacity-100;
     animation: bounce 0.8s infinite;
+}
+
+.title {
+    @apply flex justify-center items-center h-screen;
+}
+  
+.title .container h1 {
+    @apply text-[7rem] font-extrabold relative whitespace-nowrap text-transparent;
+    background: linear-gradient(to right, #00DC82, #00FFA6);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .skills {
@@ -397,14 +384,12 @@ onMounted(() => {
 }
 
 .animate-skills {
-    opacity: 1;
-    transform: translateY(0);
+    @apply opacity-100 transform translate-y-0;
     transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
 
 #skills-grid.animate-skills {
-    opacity: 1;
-    transform: translateY(0);
+    @apply opacity-100 transform translate-y-0;
     transition: opacity 1s ease-in, transform 1s ease-in;
 }
 
@@ -413,14 +398,13 @@ onMounted(() => {
 }
 
 .fade-in {
-    transform: translateX(0);
+    @apply opacity-100 transform translate-y-0;
     transition: transform 0.5s 0.5s, opacity 0.5s 0.5s ease-in;
-    opacity: 1;
 }
 
 .languages .container div {
     flex: 1 100%;
-    padding: 80px 0 0 0;
+    padding-top: 80px;
 }
 
 .projects {
@@ -457,9 +441,8 @@ onMounted(() => {
 
 .project-info.animate-in,
 .project-image.animate-in {
-    opacity: 1;
-    transform: translate(0);
-    transition: opacity 0.5s 0.5s ease-in, transform 0.5s 0.5s ease-in;
+    @apply opacity-100 transform translate-y-0 translate-x-0;
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
 
 .fade-leave-active {
@@ -478,13 +461,8 @@ onMounted(() => {
 }
 
 .fade-enter-to {
-    opacity: 1;
-    transform: translateX(0);
+    @apply opacity-100 transform translate-x-0;
     transition: opacity 0.5s, transform 0.5s;
-}
-
-.project-buttons {
-    @apply flex justify-center;
 }
 
 #back:hover {
@@ -507,27 +485,16 @@ onMounted(() => {
     @apply w-4 h-4 bg-[#00DC82];
 }
 
-.resume-header {
-    @apply p-[50px] flex justify-center;
-}
-
-.resume {
-    @apply flex justify-center items-center;
-}
-
 .wrap {
     @apply flex justify-center py-[50px];
 }
 
 .wrap .container {
-    @apply justify-start;
-    white-space: nowrap;
+    @apply justify-start whitespace-nowrap;
 }
 
 .wrap .container div p {
-    font-size: 7rem;
-    font-weight: 400;
-    position: relative;
+    @apply relative text-[7rem] font-normal;
 }
 
 .wrap .container div p:nth-child(1) {
@@ -551,40 +518,26 @@ onMounted(() => {
     background-clip: text;
 }
 
-.contact {
-    @apply flex justify-center py-[50px] relative;
-}
-
-.github-button {
-    display: flex;
-    align-items: center;
-    border: none;
-    width: 39.4px;
-    font-weight: 400;
-    padding: 10px;
-    border-bottom: 2px solid #00DC82;
-    transition: width 0.3s ease;
-}
-
 .github-button:hover {
     width: 92.2px;
 }
 
 .button-text {
-    display: inline-block;
-    margin-left: 5px;
-    color: #fff;
-    opacity: 0;
-    transform: translateX(-20px);
+    @apply inline-block ml-1 text-white opacity-0 translate-x-[-20px] whitespace-nowrap;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    white-space: nowrap;
-    /* This prevents the text from wrapping to the next line */
+}
+
+.github-button,
+.linkedin-button,
+.email-button {
+    @apply flex items-center border-0 w-[39.4px] font-normal p-2.5;
+    border-bottom: 2px solid #00DC82;
+    transition: width 0.3s ease;
 }
 
 .linkedin-button:hover .button-text,
 .email-button:hover .button-text,
 .github-button:hover .button-text {
-    transform: translateX(0);
-    opacity: 1;
+    @apply opacity-100 transform translate-x-0;
 }
 </style>

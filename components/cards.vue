@@ -21,13 +21,10 @@
 
 <style scoped>
 .resume-card {
-    position: absolute;
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
+    @apply absolute w-[calc(100%-40px)] h-[calc(100%-40px)] transition-all duration-300 ease-linear p-10;
     background: linear-gradient(to right, rgb(24, 24, 24), rgb(0, 0, 0));
     transition: 0.3s ease;
     box-shadow: -30px 0px 30px rgba(0, 0, 0, 0.7);
-    padding: 40px;
 }
 
 .resume-card p {
@@ -40,28 +37,26 @@
 
 /* Card-specific styles for positioning and hover effect */
 #card1 {
-    z-index: 3;
-    transform: translateX(10%);
+    @apply z-[3] translate-x-[10%];
     border-left: 2px solid #00FFFF;
 }
 
 #card2 {
-    z-index: 2;
+    @apply z-[2];
     border-left: 2px solid #00FFA6;
 }
 
 #card3 {
-    z-index: 1;
-    transform: translateX(-10%);
+    @apply z-[1] translate-x-[-10%];
     border-left: 2px solid #00DC82;
 }
 
 #card2 {
-    filter: brightness(0.6);
+    @apply filter brightness-[0.5];
 }
 
 #card3 {
-    filter: brightness(0.6);
+    @apply filter brightness-[0.5];
 }
 
 #card2:hover {
@@ -73,14 +68,14 @@
 }
 
 #card3:hover~#card1 {
-    @apply transform translate-x-[100%] filter brightness-[0.6];
+    @apply transform translate-x-[100%] filter brightness-[0.5];
 }
 
 #card3:hover~#card2 {
-    @apply transform translate-x-[90%] filter brightness-[0.6];
+    @apply transform translate-x-[90%] filter brightness-[0.5];
 }
 
 #card2:hover~#card1 {
-    @apply transform translate-x-[100%] filter brightness-[0.6];
+    @apply transform translate-x-[100%] filter brightness-[0.5];
 }
 </style>

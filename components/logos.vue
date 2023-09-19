@@ -1,5 +1,5 @@
 <template>
-    <div class="logos">
+    <div class="grid grid-cols-3 gap-y-[150px] justify-items-center items-center">
         <svg version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/"
             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -116,31 +116,21 @@
     </div>
 </template>
 
-<style>
-.logos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* 2 logos in one row */
-    row-gap: 150px;
-    /* Spacing between logos */
-    justify-items: center;
-    align-items: center;
-}
-
-.logos svg {
+<style scoped>
+svg {
     @apply w-[100px] h-auto transition-transform duration-300 ease-in;
 }
 
-.logos svg:hover {
+svg:hover {
     @apply transform scale-[1.2];
 }
 
-.logos svg:nth-child(4) {
+svg:nth-child(4) {
     @apply w-[180px] h-auto;
 }
 
-.logos svg:nth-child(5),
-.logos svg:nth-child(6) {
+svg:nth-child(5),
+svg:nth-child(6) {
     @apply w-[160px] h-auto;
 }
 </style>

@@ -45,30 +45,8 @@ p {
     @apply text-[1.1rem] font-[400] text-[#909090];
 }
 
-.linkedin-button {
-    display: flex;
-    align-items: center;
-    border: none;
-    width: 37.5px;
-    font-weight: 400;
-    padding: 10px;
-    border-bottom: 2px solid #00DC82;
-    transition: width 0.3s ease;
-}
-
 .linkedin-button:hover {
     width: 102px;
-}
-
-.email-button {
-    display: flex;
-    align-items: center;
-    border: none;
-    width: 40px;
-    font-weight: 400;
-    padding: 10px;
-    border-bottom: 2px solid #00DC82;
-    transition: width 0.3s ease;
 }
 
 .email-button:hover {
