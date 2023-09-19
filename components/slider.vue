@@ -12,14 +12,14 @@
 }
 
 .slider::after {
-    @apply absolute top-0 left-0 w-full h-[70%];
+    @apply absolute bottom-0 left-0 w-full h-[50%];
     content: '';
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
 .slider::before {
-    @apply absolute top-0 left-0 w-full h-full;
+    @apply absolute top-0 left-0 w-full h-[50%];
     content: '';
-    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 </style>
