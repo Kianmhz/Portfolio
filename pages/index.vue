@@ -290,6 +290,7 @@ onMounted(() => {
         </div>
     </div>
 
+    <ResumeHeader />
     <div class="flex justify-center items-center">
         <div class="container">
             <Cards />
