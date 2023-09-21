@@ -123,6 +123,8 @@ const scrollTo = (refName) => {
   }
 };
 
+let observer;
+
 onMounted(() => {
     // Initialize Intersection Observer.
     const classToStateMap = {
@@ -140,7 +142,7 @@ onMounted(() => {
         });
     };
 
-    const observer = new IntersectionObserver(observerCallback, { threshold: 0.1 });
+    observer = new IntersectionObserver(observerCallback, { threshold: 0.1 });
     Object.keys(classToStateMap).forEach(className => {
         const element = document.querySelector(`.${className}`);
         if (element) {
@@ -156,6 +158,8 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+    observer.disconnect();
+
     window.removeEventListener('scroll', updateElementPositionsOnScroll);
     window.removeEventListener('resize', calculateSectionData);
     window.removeEventListener('scroll', handleScroll);
