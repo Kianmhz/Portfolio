@@ -1,155 +1,6 @@
 <script setup>
+// Reactive references and states.
 const currentProjectIndex = ref(0);
-
-const goBack = () => {
-    if (currentProjectIndex.value > 0) {
-        currentProjectIndex.value--;
-
-        document.documentElement.style.setProperty('--translate-x-leave', '100%');
-        document.documentElement.style.setProperty('--translate-x-enter', '-100%');
-    }
-};
-
-const goForward = () => {
-    if (currentProjectIndex.value < 2) {
-        currentProjectIndex.value++;
-
-        document.documentElement.style.setProperty('--translate-x-leave', '-100%');
-        document.documentElement.style.setProperty('--translate-x-enter', '100%');
-    }
-};
-
-const setProjectIndex = (index) => {
-    currentProjectIndex.value = index;
-};
-
-const inView1 = ref(false);
-const inView2 = ref(false);
-const inViewSkills = ref(false);
-const inViewIntro = ref(false);
-const inViewProject = ref(false);
-const inViewLanguages = ref(false);
-
-onMounted(() => {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.target.classList.contains('container-title1')) {
-                inView1.value = entry.isIntersecting;
-            } else if (entry.target.classList.contains('container-title2')) {
-                inView2.value = entry.isIntersecting;
-            } else if (entry.target.classList.contains('skills')) {
-                inViewSkills.value = entry.isIntersecting;
-            } else if (entry.target.classList.contains('intro')) {
-                inViewIntro.value = entry.isIntersecting;
-            } else if (entry.target.classList.contains('projects')) {
-                inViewProject.value = entry.isIntersecting;
-            } else if (entry.target.classList.contains('languages')) {
-                inViewLanguages.value = entry.isIntersecting;
-            }
-        });
-    },
-        {
-            threshold: 0.1,
-        });
-
-    const elementsToObserve = [
-        '.skills',
-        '.intro',
-        '.projects',
-        '.languages'
-    ];
-
-    elementsToObserve.forEach(selector => {
-        const element = document.querySelector(selector);
-        if (element) {
-            observer.observe(element);
-        }
-    });
-});
-
-const leftIntroTitleElement = ref(null);
-const rightIntroTitleElement = ref(null);
-const leftIntroSectionTwoTitleElement = ref(null);
-const rightIntroSectionTwoTitleElement = ref(null);
-const firstTextSectionThreeElement = ref(null);
-const secondTextSectionThreeElement = ref(null);
-const thirdTextSectionThreeElement = ref(null);
-
-let sectionOffsets, sectionHeights;
-
-const calculateSectionData = () => {
-  sectionOffsets = [
-    leftIntroTitleElement.value.offsetTop,
-    leftIntroSectionTwoTitleElement.value.offsetTop,
-    firstTextSectionThreeElement.value.offsetTop,
-  ];
-
-  sectionHeights = [
-    leftIntroTitleElement.value.offsetHeight,
-    leftIntroSectionTwoTitleElement.value.offsetHeight,
-    firstTextSectionThreeElement.value.offsetHeight,
-  ];
-};
-
-const updateElementPositionsOnScroll = () => {
-  const totalScreenHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-  // Common logic for calculating rate
-  const calculateRate = (startPosition, multiplier, maxRate, offset = 0) => {
-    let rate = ((window.scrollY - startPosition + offset) / (totalScreenHeight - startPosition)) * multiplier;
-    if (rate > maxRate) {
-      rate = maxRate;
-    }
-    return rate;
-  };
-
-  // Section 1
-  const sectionOneStartPosition = leftIntroTitleElement.value.offsetTop - window.innerHeight * 1.9; // Adjust this value to start the animation earlier or later
-  const sectionOneRate = calculateRate(sectionOneStartPosition, 500, 120);
-  leftIntroTitleElement.value.style.right = `${sectionOneRate}%`;
-  rightIntroTitleElement.value.style.left = `${sectionOneRate}%`;
-
-  // Section 2
-  const sectionTwoStartPosition = leftIntroSectionTwoTitleElement.value.offsetTop - window.innerHeight * 1.9;
-  const sectionTwoRate = calculateRate(sectionTwoStartPosition, 340, 120);
-  leftIntroSectionTwoTitleElement.value.style.right = `${sectionTwoRate}%`;
-  rightIntroSectionTwoTitleElement.value.style.left = `${sectionTwoRate}%`;
-
-  // Section 3
-  const sectionThreeStartPosition = firstTextSectionThreeElement.value.offsetTop;
-  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 200, 0);
-  firstTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.1}%`;
-  secondTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.2}%`;
-  thirdTextSectionThreeElement.value.style.right = `${sectionThreeRate * 0.3}%`;
-};
-
-onMounted(() => {
-  calculateSectionData();
-  window.addEventListener('scroll', updateElementPositionsOnScroll);
-
-  // Recalculate offsets and heights whenever the window is resized
-  window.addEventListener('resize', calculateSectionData);
-});
-
-const isScrollingUp = ref(true);
-let maximumScrollPosition = 0;
-
-const handleScroll = () => {
-  const currentScrollPosition = window.scrollY;
-  
-  if (currentScrollPosition > maximumScrollPosition + 100) {
-    maximumScrollPosition = currentScrollPosition;
-    isScrollingUp.value = false;
-  } else if (currentScrollPosition < maximumScrollPosition - 100) {
-    maximumScrollPosition = currentScrollPosition;
-    isScrollingUp.value = true;
-  }
-};
-
-onMounted(() => {
-    window.addEventListener('scroll', handleScroll);
-});
-
 const scroll = reactive({
   home: null,
   title: null,
@@ -157,13 +8,158 @@ const scroll = reactive({
   projects: null,
   resume: null,
 });
+const state = reactive({
+    inViewTitle1: false,
+    inViewTitle2: false,
+    inViewSkills: false,
+    inViewIntro: false,
+    inViewProject: false,
+    inViewLanguages: false,
+});
+const elements = reactive({
+    leftIntroTitle: null,
+    rightIntroTitle: null,
+    leftIntroSectionTwoTitle: null,
+    rightIntroSectionTwoTitle: null,
+    firstTextSectionThree: null,
+    secondTextSectionThree: null,
+    thirdTextSectionThree: null
+});
 
+// Navigation functions for project viewing.
+const goBack = () => {
+    if (currentProjectIndex.value > 0) {
+        currentProjectIndex.value--;
+        document.documentElement.style.setProperty('--translate-x-leave', '100%');
+        document.documentElement.style.setProperty('--translate-x-enter', '-100%');
+    }
+};
+const goForward = () => {
+    if (currentProjectIndex.value < 2) {
+        currentProjectIndex.value++;
+        document.documentElement.style.setProperty('--translate-x-leave', '-100%');
+        document.documentElement.style.setProperty('--translate-x-enter', '100%');
+    }
+};
+const setProjectIndex = (index) => {
+    currentProjectIndex.value = index;
+};
+
+// Helper functions for scroll-based animations.
+let sectionOffsets, sectionHeights;
+const calculateSectionData = () => {
+  if (
+    elements.leftIntroTitle &&
+    elements.leftIntroSectionTwoTitle &&
+    elements.firstTextSectionThree
+  ) {
+    sectionOffsets = [
+      elements.leftIntroTitle.offsetTop,
+      elements.leftIntroSectionTwoTitle.offsetTop,
+      elements.firstTextSectionThree.offsetTop,
+    ];
+    sectionHeights = [
+      elements.leftIntroTitle.offsetHeight,
+      elements.leftIntroSectionTwoTitle.offsetHeight,
+      elements.firstTextSectionThree.offsetHeight,
+    ];
+  }
+};
+const updateElementPositionsOnScroll = () => {
+  const totalScreenHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+  // logic for calculating scroll rate.
+  const calculateRate = (startPosition, multiplier, maxRate, offset = 0) => {
+    let rate = ((window.scrollY - startPosition + offset) / (totalScreenHeight - startPosition)) * multiplier;
+    if (rate > maxRate) {
+      rate = maxRate;
+    }
+    return rate;
+  };
+  
+  // Animate elements based on scroll position.
+  const sectionOneStartPosition = elements.leftIntroTitle.offsetTop - window.innerHeight * 1.6;
+  const sectionOneRate = calculateRate(sectionOneStartPosition, 500, 120);
+  elements.leftIntroTitle.style.right = `${sectionOneRate}%`;
+  elements.rightIntroTitle.style.left = `${sectionOneRate}%`;
+  
+  const sectionTwoStartPosition = elements.leftIntroSectionTwoTitle.offsetTop - window.innerHeight * 1.6;
+  const sectionTwoRate = calculateRate(sectionTwoStartPosition, 340, 120);
+  elements.leftIntroSectionTwoTitle.style.right = `${sectionTwoRate}%`;
+  elements.rightIntroSectionTwoTitle.style.left = `${sectionTwoRate}%`;
+  
+  const sectionThreeStartPosition = elements.firstTextSectionThree.offsetTop;
+  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 200, 0);
+  elements.firstTextSectionThree.style.right = `${sectionThreeRate * 0.1}%`;
+  elements.secondTextSectionThree.style.right = `${sectionThreeRate * 0.2}%`;
+  elements.thirdTextSectionThree.style.right = `${sectionThreeRate * 0.3}%`;
+};
+
+// Scroll direction detection logic.
+const SCROLL_THRESHOLD = 100;
+const maximumScrollPosition = ref(0);
+const isScrollingUp = ref(true);
+const handleScroll = () => {
+    const currentScrollPosition = window.scrollY;
+    if (currentScrollPosition > maximumScrollPosition.value + SCROLL_THRESHOLD) {
+        if (isScrollingUp.value) {
+            isScrollingUp.value = false;
+        }
+        maximumScrollPosition.value = currentScrollPosition;
+    } 
+    else if (currentScrollPosition < maximumScrollPosition.value - SCROLL_THRESHOLD) {
+        if (!isScrollingUp.value) {
+            isScrollingUp.value = true;
+        }
+        maximumScrollPosition.value = currentScrollPosition;
+    }
+};
+
+// Smooth scroll to section.
 const scrollTo = (refName) => {
   const sectionRef = scroll[refName];
   if (sectionRef) {
     sectionRef.scrollIntoView({ behavior: 'smooth' });
   }
 };
+
+onMounted(() => {
+    // Initialize Intersection Observer.
+    const classToStateMap = {
+        'skills': 'inViewSkills',
+        'intro': 'inViewIntro',
+        'projects': 'inViewProject',
+        'languages': 'inViewLanguages',
+    };
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            const stateProperty = classToStateMap[entry.target.className];
+            if (stateProperty) {
+                state[stateProperty] = entry.isIntersecting;
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, { threshold: 0.1 });
+    Object.keys(classToStateMap).forEach(className => {
+        const element = document.querySelector(`.${className}`);
+        if (element) {
+            observer.observe(element);
+        }
+    });
+
+    // Initialize sections data and attach scroll handlers.
+    calculateSectionData();
+    window.addEventListener('scroll', updateElementPositionsOnScroll);
+    window.addEventListener('resize', calculateSectionData);
+    window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', updateElementPositionsOnScroll);
+    window.removeEventListener('resize', calculateSectionData);
+    window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
@@ -174,8 +170,8 @@ const scrollTo = (refName) => {
         <div class="container">
             <div>
                 <h2 class="text-[2rem] font-[700] transform translate-y-[40px] opacity-[0]"
-                    :class="{ 'animate-intro': inViewIntro }">Hello, it's</h2>
-                <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
+                    :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
+                <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
                     <h1 class="text-[5rem] font-[700]">Kianmehr<span class="text-[#00DC82]">.</span></h1>
                     <p class="text-[1.1rem] font-[400] mb-[20px] text-[#909090]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -184,14 +180,14 @@ const scrollTo = (refName) => {
                         dolore magna aliqua.
                     </p>
                 </div>
-                <button @click="scrollTo('title')" id="intro-button" class="py-[15px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0" :class="{ 'animate-intro': inViewIntro }">
+                <button @click="scrollTo('title')" id="intro-button" class="py-[15px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0" :class="{ 'animate-intro': state.inViewIntro }">
                     <span class="content">
                         <span>SCROLL FOR MORE</span>
                     </span>
                     <div class="arrow"></div>
                 </button>
             </div>
-            <div class="opacity-[0]" :class="{ 'animate-intro': inViewIntro }">
+            <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
                 <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
             </div>
         </div>
@@ -199,17 +195,17 @@ const scrollTo = (refName) => {
 
     <div class="title" :ref="el => { scroll.title = el }">
         <Slider />
-        <div class="container container-title1">
+        <div class="container">
             <div class="text-[3rem] font-[700] mb-[20px]">
-                <h1 style="transform: translateX(100%);" ref="leftIntroTitleElement">A Peek Into My</h1>
-                <h1 style="transform: translateX(-100%);" ref="rightIntroTitleElement">Software Skills</h1>
+                <h1 style="transform: translateX(100%);" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
+                <h1 style="transform: translateX(-100%);" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
             </div>
         </div>
     </div>
 
     <div class="skills" :ref="el => { scroll.whatIDo = el }">
         <div class="container">
-            <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': inViewSkills }">
+            <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
                 <h1 class="text-[3rem] font-[700] mb-[20px]">What I Do</h1>
                 <p>
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -218,7 +214,7 @@ const scrollTo = (refName) => {
                 </p>
             </div>
             <div class="grid grid-cols-2 gap-[50px] opacity-[0] transform translate-y-[40px]" id="skills-grid"
-                :class="{ 'animate-skills': inViewSkills }">
+                :class="{ 'animate-skills': state.inViewSkills }">
                 <Skillsets />
             </div>
         </div>
@@ -226,7 +222,7 @@ const scrollTo = (refName) => {
 
     <div class="languages">
         <div class="container">
-            <div class="opacity-[0] translate-y-[80px]" :class="{ 'fade-in': inViewLanguages }">
+            <div class="opacity-[0] translate-y-[80px]" :class="{ 'fade-in': state.inViewLanguages }">
                 <h1 class="text-[3rem] font-[700]">Languages</h1>
                 <Logos />
             </div>
@@ -235,10 +231,10 @@ const scrollTo = (refName) => {
 
     <div class="title">
         <Slider />
-        <div class="container container-title2">
+        <div class="container">
             <div>
-                <h1 style="transform: translateX(100%);" ref="leftIntroSectionTwoTitleElement">Discover My</h1>
-                <h1 style="transform: translateX(-100%);" ref="rightIntroSectionTwoTitleElement">Recent Projects</h1>
+                <h1 style="transform: translateX(100%);" :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
+                <h1 style="transform: translateX(-100%);" :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
             </div>
         </div>
     </div>
@@ -247,7 +243,7 @@ const scrollTo = (refName) => {
         <div class="container">
             <transition-group name="fade" tag="div" class="relative w-full h-[1000px]">
                 <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
+                    <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 1</h1>
                         <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
                         <button class="github-button">
@@ -255,13 +251,13 @@ const scrollTo = (refName) => {
                             <span class="button-text">Github</span>
                         </button>
                     </div>
-                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
+                    <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
                         <img src="~/assets/img/IMG_1042.JPG" />
                     </div>
                 </div>
 
                 <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
+                    <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 2</h1>
                         <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                         <button class="github-button">
@@ -269,13 +265,13 @@ const scrollTo = (refName) => {
                             <span class="button-text">Github</span>
                         </button>
                     </div>
-                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
+                    <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
                         <img src="~/assets/img/IMG_1042.JPG" />
                     </div>
                 </div>
 
                 <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                    <div class="project-info" :class="{ 'animate-in': inViewProject }">
+                    <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 3</h1>
                         <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
                         <button class="github-button hover:w-[92.2px];">
@@ -283,7 +279,7 @@ const scrollTo = (refName) => {
                             <span class="button-text">Github</span>
                         </button>
                     </div>
-                    <div class="project-image" :class="{ 'animate-in': inViewProject }">
+                    <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
                         <img src="~/assets/img/IMG_1042.JPG" />
                     </div>
                 </div>
@@ -315,9 +311,9 @@ const scrollTo = (refName) => {
     <div class="wrap">
         <div class="container">
             <div>
-                <p ref="firstTextSectionThreeElement">And that's a wrap</p>
-                <p ref="secondTextSectionThreeElement">What's next?</p>
-                <p ref="thirdTextSectionThreeElement">Stay in touch!</p>
+                <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
+                <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
+                <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
             </div>
         </div>
     </div>
@@ -370,7 +366,6 @@ const scrollTo = (refName) => {
     transition: transform 0.5s 0.1s, opacity 0.5s ease-in-out 0.1s;
 }
 
-/* When button is hovered, arrow becomes visible and moves into view */
 #intro-button:hover .arrow {
     @apply opacity-100;
     animation: bounce 0.8s infinite;

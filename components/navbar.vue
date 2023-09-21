@@ -1,6 +1,7 @@
 <script setup>
 const { scroll } = defineProps(['scroll']);
 
+// Smooth scroll to section.
 const scrollTo = (refName) => {
   const sectionRef = scroll[refName];
   if (sectionRef) {
