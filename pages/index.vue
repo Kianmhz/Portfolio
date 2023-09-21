@@ -438,10 +438,6 @@ onUnmounted(() => {
     @apply text-[2rem] font-[700] mb-[20px];
 }
 
-.projects .container div img {
-    @apply w-full;
-}
-
 .project-item {
     @apply absolute w-full top-0 left-0 flex justify-center items-center;
 }
@@ -452,6 +448,10 @@ onUnmounted(() => {
 
 .project-image {
     @apply opacity-0 transform translate-x-[50px];
+}
+
+.project-image img{
+    aspect-ratio: 3/5;
 }
 
 .project-info.animate-in,

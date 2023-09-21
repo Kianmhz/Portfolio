@@ -18,7 +18,7 @@ body {
 }
   
 .container {
-    @apply p-0 mx-10 w-4/5 max-w-7xl flex justify-center items-center flex-wrap z-10;
+    @apply w-4/5 max-w-7xl flex justify-center items-center flex-wrap z-10;
 }
 
 @keyframes bounce {

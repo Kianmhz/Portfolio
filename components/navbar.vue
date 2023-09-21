@@ -12,20 +12,35 @@ const scrollTo = (refName) => {
 
 <template>
     <div class="nav-bar">
-        <button @click="scrollTo('home')" class="nav"><img class="logo" src="~/assets/img/sign.png" alt="Home"></button>
+      <div class="container">
+        <button @click="scrollTo('home')" class="nav">
+          <div class="img-container">
+            <img class="logo" src="~/assets/img/sign.png" alt="Home">
+          </div>
+        </button>
         <button @click="scrollTo('whatIDo')" class="nav">What I do</button>
         <button @click="scrollTo('projects')" class="nav">Projects</button>
         <button @click="scrollTo('resume')" class="nav">Resume</button>
+      </div>
     </div>
 </template>
 
 <style scoped>
 .nav-bar {
-	  @apply flex fixed flex-row flex-wrap justify-between w-full z-[100];
+	  @apply flex fixed flex-row flex-wrap justify-center w-full z-[100];
     background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
 }
+
+.container {
+  @apply flex justify-between items-center flex-wrap;
+}
+
 .nav {
-  @apply flex-1 p-4 flex justify-center items-center transition-all duration-200;
+  @apply pt-2 transition-all duration-200;
+}
+
+.img-container {
+  @apply flex justify-center items-center w-full;
 }
 
 .logo {
@@ -37,6 +52,7 @@ const scrollTo = (refName) => {
   content: url('~/assets/img/signGreen.png');
   filter: brightness(100%);
 }
+
 .nav:hover {
     @apply text-[#00DC82] font-bold;
 }
