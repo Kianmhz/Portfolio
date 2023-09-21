@@ -15,7 +15,7 @@ const scrollTo = (refName) => {
       <div class="container">
         <button @click="scrollTo('home')" class="nav">
           <div class="img-container">
-            <img class="logo" src="~/assets/img/sign.png" alt="Home">
+            <Sign class="logo" />
           </div>
         </button>
         <button @click="scrollTo('whatIDo')" class="nav">What I do</button>
@@ -43,17 +43,7 @@ const scrollTo = (refName) => {
   @apply flex justify-center items-center w-full;
 }
 
-.logo {
-  @apply w-auto h-12 transition-all;
-  filter: invert(100%) brightness(100%);
-}
-
-.logo:hover {
-  content: url('~/assets/img/signGreen.png');
-  filter: brightness(100%);
-}
-
 .nav:hover {
-    @apply text-[#00DC82] font-bold;
+    @apply text-[#00DC82];
 }
 </style>
