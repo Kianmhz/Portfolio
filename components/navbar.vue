@@ -11,7 +11,7 @@ const scrollTo = (refName) => {
 
 <template>
     <div class="nav-bar">
-        <button @click="scrollTo('home')" class="nav"><img class="img2" src="~/assets/img/sign.png" alt="Home"></button>
+        <button @click="scrollTo('home')" class="nav"><img class="logo" src="~/assets/img/sign.png" alt="Home"></button>
         <button @click="scrollTo('whatIDo')" class="nav">What I do</button>
         <button @click="scrollTo('projects')" class="nav">Projects</button>
         <button @click="scrollTo('resume')" class="nav">Resume</button>
@@ -24,19 +24,15 @@ const scrollTo = (refName) => {
     background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
 }
 .nav {
-  @apply flex-1 p-4 transition-all duration-200;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply flex-1 p-4 flex justify-center items-center transition-all duration-200;
 }
 
-.nav img.img2 {
+.logo {
+  @apply w-auto h-12 transition-all;
   filter: invert(100%) brightness(100%);
-  height: 50px;
-  width: auto;
-  transition: all 0.5s ease-in-out;
 }
-.nav img.img2:hover {
+
+.logo:hover {
   content: url('~/assets/img/signGreen.png');
   filter: brightness(100%);
 }
