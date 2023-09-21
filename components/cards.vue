@@ -27,7 +27,7 @@
 }
 
 .resume-card p {
-    @apply text-[2rem] leading-[1.5];
+    @apply text-[2rem];
 }
 
 .resume-card h1 {

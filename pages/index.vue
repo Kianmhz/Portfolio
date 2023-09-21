@@ -167,9 +167,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div v-if="isScrollingUp==true">
-        <Navbar :scroll="scroll"/>
-    </div>
+    <transition name="navbar-fade">
+        <div class="navbar-wrapper" v-show="isScrollingUp==true">
+            <Navbar :scroll="scroll"/>
+        </div>
+    </transition>
     <div class="intro" :ref="el => { scroll.home = el }">
         <div class="container">
             <div>
@@ -451,7 +453,7 @@ onUnmounted(() => {
 }
 
 .project-image img{
-    aspect-ratio: 3/5;
+    aspect-ratio: 4/5;
 }
 
 .project-info.animate-in,
@@ -554,5 +556,73 @@ onUnmounted(() => {
 .email-button:hover .button-text,
 .github-button:hover .button-text {
     @apply opacity-100 transform translate-x-0;
+}
+
+/* navbar animation */
+.navbar-wrapper {
+    @apply fixed top-0 left-0 right-0 z-[100];
+  }
+
+.navbar-fade-enter-from, .navbar-fade-leave-to {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.navbar-fade-enter-to, .navbar-fade-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navbar-fade-enter-active, .navbar-fade-leave-active {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* For Tablets */
+@media (max-width: 1024px) {
+    .title .container h1 {
+        @apply text-[4.5rem];
+    }
+    
+    .projects .container div h1 {
+        @apply text-[3rem];
+    }
+
+    .projects .container div p {
+        @apply text-[1.5rem];
+    }
+
+    .wrap .container div p {
+        @apply text-[5rem];
+    }
+}
+
+/* For Mobile Devices */
+@media (max-width: 768px) {
+    .container {
+        @apply w-full px-4;
+    }
+
+    .title .container h1 {
+        @apply text-[4rem];
+    }
+
+    .skills .container div,
+    .projects .container div {
+        @apply flex-1 w-full;
+    }
+
+    .languages .container div {
+        @apply pt-40;
+    }
+
+    .wrap .container div p {
+        @apply text-[3.5rem];
+    }
+
+    .github-button:hover,
+    .linkedin-button:hover,
+    .email-button:hover {
+        @apply w-auto;
+    }
 }
 </style>
