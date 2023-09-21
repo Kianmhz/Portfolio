@@ -1,9 +1,20 @@
+<script setup>
+const { scroll } = defineProps(['scroll']);
+
+const scrollTo = (refName) => {
+  const sectionRef = scroll[refName];
+  if (sectionRef) {
+    sectionRef.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+</script>
+
 <template>
     <div class="nav-bar">
-        <a href="#" class="nav">Home</a>
-        <a href="#" class="nav">What I do</a>
-        <a href="#" class="nav">Projects</a>
-        <a href="#" class="nav">Resume</a>
+        <button @click="scrollTo('home')" class="nav"></button>
+        <button @click="scrollTo('whatIDo')" class="nav">What I do</button>
+        <button @click="scrollTo('projects')" class="nav">Projects</button>
+        <button @click="scrollTo('resume')" class="nav">Resume</button>
     </div>
 </template>
 

@@ -149,13 +149,28 @@ const handleScroll = () => {
 onMounted(() => {
     window.addEventListener('scroll', handleScroll);
 });
+
+const scroll = reactive({
+  home: null,
+  title: null,
+  whatIDo: null,
+  projects: null,
+  resume: null,
+});
+
+const scrollTo = (refName) => {
+  const sectionRef = scroll[refName];
+  if (sectionRef) {
+    sectionRef.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 </script>
 
 <template>
     <div v-if="isScrollingUp==true">
-        <Navbar/>
+        <Navbar :scroll="scroll"/>
     </div>
-    <div class="intro">
+    <div class="intro" :ref="el => { scroll.home = el }">
         <div class="container">
             <div>
                 <h2 class="text-[2rem] font-[700] transform translate-y-[40px] opacity-[0]"
@@ -169,7 +184,7 @@ onMounted(() => {
                         dolore magna aliqua.
                     </p>
                 </div>
-                <button id="intro-button" class="py-[15px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0" :class="{ 'animate-intro': inViewIntro }">
+                <button @click="scrollTo('title')" id="intro-button" class="py-[15px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0" :class="{ 'animate-intro': inViewIntro }">
                     <span class="content">
                         <span>SCROLL FOR MORE</span>
                     </span>
@@ -182,7 +197,7 @@ onMounted(() => {
         </div>
     </div>
 
-    <div class="title">
+    <div class="title" :ref="el => { scroll.title = el }">
         <Slider />
         <div class="container container-title1">
             <div class="text-[3rem] font-[700] mb-[20px]">
@@ -192,7 +207,7 @@ onMounted(() => {
         </div>
     </div>
 
-    <div class="skills">
+    <div class="skills" :ref="el => { scroll.whatIDo = el }">
         <div class="container">
             <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': inViewSkills }">
                 <h1 class="text-[3rem] font-[700] mb-[20px]">What I Do</h1>
@@ -228,7 +243,7 @@ onMounted(() => {
         </div>
     </div>
 
-    <div class="projects">
+    <div class="projects" :ref="el => { scroll.projects = el }">
         <div class="container">
             <transition-group name="fade" tag="div" class="relative w-full h-[1000px]">
                 <div v-if="currentProjectIndex === 0" key="0" class="project-item">
@@ -276,7 +291,7 @@ onMounted(() => {
         </div>
     </div>
 
-    <div class="flex justify-center">
+    <div class="flex justify-center" :ref="el => { scroll.resume = el }">
         <div class="container">
             <button id="back" class="mx-[100px]" @click="goBack"><font-awesome-icon
                     :icon="['fas', 'circle-chevron-left']" size="xl" /></button>

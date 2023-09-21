@@ -3,7 +3,7 @@
     <span class="my-text">My</span>
     <div class="wrapper">
         <ul class="list">
-        <li class="item">Resume</li>
+        <li class="item">Resume &</li>
         <li class="item">Certificates</li>
         </ul>
     </div>
