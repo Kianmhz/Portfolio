@@ -12,21 +12,23 @@ const scrollTo = (refName) => {
 const loaded = ref(false);
 
 onMounted(() => {
+  setTimeout(() => {
     loaded.value = true;
+  }, 2000); // slightly longer than animation duration to ensure it completes
 });
 </script>
 
 <template>
-  <div class="nav-bar">
+  <div class="nav-bar" :class="{ 'no-slide': loaded }">
     <div class="container">
-      <button v-if="loaded" @click="scrollTo('home')" class="nav slide-in">
+      <button @click="scrollTo('home')" class="nav slide-in">
         <div class="img-container">
           <Sign class="logo" />
         </div>
       </button>
-      <button v-if="loaded" @click="scrollTo('whatIDo')" class="nav slide-in delay-1">What I do</button>
-      <button v-if="loaded" @click="scrollTo('projects')" class="nav slide-in delay-2">Projects</button>
-      <button v-if="loaded" @click="scrollTo('resume')" class="nav slide-in delay-3">Resume</button>
+      <button @click="scrollTo('whatIDo')" class="nav slide-in delay-1">What I do</button>
+      <button @click="scrollTo('projects')" class="nav slide-in delay-2">Projects</button>
+      <button @click="scrollTo('resume')" class="nav slide-in delay-3">Resume</button>
     </div>
   </div>
 </template>
@@ -51,6 +53,11 @@ onMounted(() => {
 
 .slide-in {
   animation: slideInFromLeft 0.5s forwards;
+}
+
+.no-slide .slide-in {
+  animation: none;
+  opacity: 1;
 }
 
 /* Add varying delays for each button */
