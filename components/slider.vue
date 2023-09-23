@@ -1,5 +1,5 @@
 <template>
-    <div class="slider" ref="video_elemenet_height">
+    <div class="slider">
         <video class="w-full h-full object-cover" autoplay loop muted>
             <source src="~/assets/video/video.mp4" type="video/mp4">
         </video>

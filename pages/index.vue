@@ -1,5 +1,6 @@
 <script setup>
 // Reactive references and states.
+const isPageLoaded = ref(false);
 const currentProjectIndex = ref(0);
 const scroll = reactive({
   home: null,
@@ -155,6 +156,9 @@ onMounted(() => {
     window.addEventListener('scroll', updateElementPositionsOnScroll);
     window.addEventListener('resize', calculateSectionData);
     window.addEventListener('scroll', handleScroll);
+    setTimeout(() => {
+    isPageLoaded.value = true;
+  }, 50);
 });
 
 onUnmounted(() => {
@@ -201,7 +205,7 @@ onUnmounted(() => {
 
     <div class="title" :ref="el => { scroll.title = el }">
         <Slider />
-        <div class="container">
+        <div v-show="isPageLoaded" class="container">
             <div class="text-[3rem] font-[700] mb-[20px]">
                 <h1 style="transform: translateX(100%);" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
                 <h1 style="transform: translateX(-100%);" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
@@ -544,9 +548,7 @@ onUnmounted(() => {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.github-button,
-.linkedin-button,
-.email-button {
+.github-button{
     @apply flex items-center border-0 w-[39.4px] font-normal p-2.5;
     border-bottom: 2px solid #00DC82;
     transition: width 0.3s ease;
