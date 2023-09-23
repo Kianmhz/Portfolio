@@ -156,9 +156,6 @@ onMounted(() => {
     window.addEventListener('scroll', updateElementPositionsOnScroll);
     window.addEventListener('resize', calculateSectionData);
     window.addEventListener('scroll', handleScroll);
-    setTimeout(() => {
-    isPageLoaded.value = true;
-  }, 50);
 });
 
 onUnmounted(() => {
@@ -171,6 +168,7 @@ onUnmounted(() => {
 </script>
 
 <template>
+<div v-cloak>
     <transition name="navbar-fade">
         <div class="navbar-wrapper" v-show="isScrollingUp==true">
             <Navbar :scroll="scroll"/>
@@ -205,7 +203,7 @@ onUnmounted(() => {
 
     <div class="title" :ref="el => { scroll.title = el }">
         <Slider />
-        <div v-show="isPageLoaded" class="container">
+        <div class="container">
             <div class="text-[3rem] font-[700] mb-[20px]">
                 <h1 style="transform: translateX(100%);" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
                 <h1 style="transform: translateX(-100%);" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
@@ -333,11 +331,12 @@ onUnmounted(() => {
             <Contact />
         </div>
     </div>
+</div>
 </template>
 
 <style>
 .intro {
-    @apply flex justify-around items-center;
+    @apply flex justify-around items-center h-screen;
 }
 
 .intro .container div {

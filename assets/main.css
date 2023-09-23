@@ -13,6 +13,10 @@
     background-color: #555;
 }
 
+[v-cloak] {
+    display: none;
+  }
+
 body {
     @apply bg-black text-white overflow-x-hidden;
 }
