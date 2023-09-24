@@ -31,23 +31,23 @@
 }
 
 .resume-card h1 {
-    @apply absolute top-[350px] text-[#909090] text-[2rem] mb-[20px];
+    @apply absolute top-[350px] text-[var(--secondary-text-color)] text-[2rem] mb-[20px];
 }
 
 /* Card-specific styles for positioning and hover effect */
 #card1 {
     @apply z-[3] translate-x-[10%];
-    border-left: 2px solid #00FFFF;
+    border-left: 2px solid var(--tertiary-color);
 }
 
 #card2 {
     @apply z-[2];
-    border-left: 2px solid #00FFA6;
+    border-left: 2px solid var(--secondary-color);
 }
 
 #card3 {
     @apply z-[1] translate-x-[-10%];
-    border-left: 2px solid #00DC82;
+    border-left: 2px solid var(--main-color);
 }
 
 #card2 {

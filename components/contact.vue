@@ -34,7 +34,7 @@ div {
 }
 
 h1 {
-    @apply text-[1rem] font-[700] text-[#00DC82];
+    @apply text-[1rem] font-[700] text-[var(--main-color)];
 }
 
 h2 {
@@ -42,6 +42,6 @@ h2 {
 }
 
 p {
-    @apply text-[1.1rem] font-[400] text-[#909090];
+    @apply text-[1.1rem] font-[400] text-[var(--secondary-text-color)];
 }
 </style>

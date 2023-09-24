@@ -1,5 +1,15 @@
 *{padding: 0; margin: 0; box-sizing: border-box;}
 
+:root {
+    --main-bg-color: #000000;
+    --main-text-color: #ffffff;
+    --secondary-text-color: #909090;
+
+    --main-color: #00DC82;
+    --secondary-color: #00FFA6;
+    --tertiary-color: #00FFFF;
+}
+
 /* Scrollbar customization */
 ::-webkit-scrollbar {
     width: 8px;
@@ -18,7 +28,9 @@
 }
 
 body {
-    @apply bg-black text-white overflow-x-hidden;
+    @apply overflow-x-hidden;
+    background: var(--main-bg-color);
+    color: var(--main-text-color);
 }
 
 .container {

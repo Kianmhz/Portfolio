@@ -180,8 +180,8 @@ onUnmounted(() => {
                 <h2 class="text-[2rem] font-[700] transform translate-y-[40px] opacity-[0]"
                     :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
                 <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <h1 class="text-[5rem] font-[700]">Kianmehr<span class="text-[#00DC82]">.</span></h1>
-                    <p class="text-[1.1rem] font-[400] mb-[20px] text-[#909090]">
+                    <h1 class="text-[5rem] font-[700]">Kianmehr<span class="text-[var(--main-color)]">.</span></h1>
+                    <p class="text-[1.1rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore
                         et
@@ -350,7 +350,7 @@ onUnmounted(() => {
 }
 
 .content::after {
-    @apply absolute bottom-[-10px] left-0 w-full h-[2px] bg-[#00DC82];
+    @apply absolute bottom-[-10px] left-0 w-full h-[2px] bg-[var(--main-color)];
     content: '';
 }
 
@@ -360,8 +360,8 @@ onUnmounted(() => {
 
 .arrow {
     @apply absolute left-1/2 bottom-[10%] w-5 h-5 opacity-0;
-    border-left: 3px solid #00DC82;
-    border-bottom: 3px solid #00DC82;
+    border-left: 3px solid var(--main-color);
+    border-bottom: 3px solid var(--main-color);
     transform: translate(-50%, 100%) rotate(-45deg);
     transition: transform 0.5s 0.1s, opacity 0.5s ease-in-out 0.1s;
 }
@@ -378,7 +378,7 @@ onUnmounted(() => {
   
 .title .container h1 {
     @apply text-[7rem] font-extrabold relative whitespace-nowrap text-transparent;
-    background: linear-gradient(to right, #00DC82, #00FFA6);
+    background: linear-gradient(to right, var(--main-color), var(--secondary-color));
     -webkit-background-clip: text;
     background-clip: text;
 }
@@ -393,7 +393,7 @@ onUnmounted(() => {
 }
 
 .skills .container div p {
-    @apply text-[1.1rem] font-[400] mb-[20px] text-[#909090];
+    @apply text-[1.1rem] font-[400] mb-[20px] text-[var(--secondary-text-color)];
 }
 
 .languages {
@@ -456,7 +456,7 @@ onUnmounted(() => {
 }
 
 .dots div.active {
-    @apply w-4 h-4 bg-[#00DC82];
+    @apply w-4 h-4 bg-[var(--main-color)];
 }
 
 /* Wrap section styles */
@@ -473,21 +473,21 @@ onUnmounted(() => {
 }
 
 .wrap .container div p:nth-child(1) {
-    background: linear-gradient(to right, #00FFFF, #00FFA6);
+    background: linear-gradient(to right, var(--tertiary-color), var(--secondary-color));
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
 }
 
 .wrap .container div p:nth-child(2) {
-    background: linear-gradient(to right, #00FFA6, #00ff9d);
+    background: linear-gradient(to right, var(--secondary-color), #00ff9d);
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
 }
 
 .wrap .container div p:nth-child(3) {
-    background: linear-gradient(to right, #00ff9d, #00DC82);
+    background: linear-gradient(to right, #00ff9d, var(--main-color));
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
@@ -501,19 +501,19 @@ onUnmounted(() => {
 
 .github-button{
     @apply flex items-center border-0 w-[39.4px] font-normal p-2.5;
-    border-bottom: 2px solid #00DC82;
+    border-bottom: 2px solid var(--main-color);
     transition: width 0.3s ease;
 }
 
 .linkedin-button {
     @apply flex items-center border-0 w-[37.5px] font-normal p-2.5;
-    border-bottom: 2px solid #00DC82;
+    border-bottom: 2px solid var(--main-color);
     transition: width 0.3s ease;
 }
 
 .email-button {
     @apply flex items-center border-0 w-[40px] font-normal p-2.5;
-    border-bottom: 2px solid #00DC82;
+    border-bottom: 2px solid var(--main-color);
     transition: width 0.3s ease;
 }
 

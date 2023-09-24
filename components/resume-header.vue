@@ -1,5 +1,5 @@
 <template>
-<div class="resume-header text-[3rem] font-[700] text-[#00DC82]">
+<div class="resume-header text-[3rem] font-[700] text-[var(--main-color)]">
     <span class="my-text">My</span>
     <div class="wrapper">
         <ul class="list">

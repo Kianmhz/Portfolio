@@ -39,6 +39,6 @@ fill="#fff" stroke="none">
   }
   
 .sign:hover .svg {
-    fill: #00DC82;
+    fill: var(--main-color);
   }
 </style>
