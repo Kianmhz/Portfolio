@@ -1,30 +1,32 @@
 *{padding: 0; margin: 0; box-sizing: border-box;}
 
+/* Scrollbar customization */
 ::-webkit-scrollbar {
     width: 8px;
 }
-
 ::-webkit-scrollbar-thumb {
     background-color: #44444489;
     border-radius: 10px;
 }
-  
 ::-webkit-scrollbar-thumb:hover {
     background-color: #555;
 }
 
+/* To prevent FOUC and scroll jump */
 [v-cloak] {
     display: none;
-  }
+}
 
 body {
     @apply bg-black text-white overflow-x-hidden;
 }
-  
+
 .container {
     @apply w-4/5 max-w-[1400px] flex justify-center items-center flex-wrap z-10;
 }
 
+/* Animations */
+/* Bounce towards down */
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translate(-50%, 0) rotate(-45deg);
@@ -36,6 +38,8 @@ body {
         transform: translate(-50%, -15%) rotate(-45deg);
     }
 }
+
+/* Bounce towards negative x */
 @keyframes bounce-x {
     0%, 20%, 50%, 80%, 100% {
         transform: translateX(0%);
@@ -47,6 +51,8 @@ body {
         transform: translateX(-15%);
     }
 }
+
+/* Bounce towards x */
 @keyframes bouncex {
     0%, 20%, 50%, 80%, 100% {
         transform: translateX(0%);
@@ -56,5 +62,74 @@ body {
     }
     60% {
         transform: translateX(15%);
+    }
+}
+
+/* For Resume header to change text */
+@keyframes change {
+    0%, 25% {transform:translate3d(0,0,0);}
+    25%, 50% {transform:translate3d(0,-50%,0);}
+    50%, 75% {transform:translate3d(0,-50%,0);}
+    75%, 100% {transform:translate3d(0,0,0);}
+}
+
+/* For header on load animation */
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+  }
+
+/* For Tablets */
+@media (max-width: 1024px) {
+    .title .container h1 {
+        @apply text-[4.5rem];
+    }
+    
+    .projects .container div h1 {
+        @apply text-[3rem];
+    }
+
+    .projects .container div p {
+        @apply text-[1.5rem];
+    }
+
+    .wrap .container div p {
+        @apply text-[5rem];
+    }
+}
+
+/* For Mobile Devices */
+@media (max-width: 768px) {
+    .container {
+        @apply w-full px-4;
+    }
+
+    .title .container h1 {
+        @apply text-[4rem];
+    }
+
+    .skills .container div,
+    .projects .container div {
+        @apply flex-1 w-full;
+    }
+
+    .languages .container div {
+        @apply pt-40;
+    }
+
+    .wrap .container div p {
+        @apply text-[3.5rem];
+    }
+
+    .github-button:hover,
+    .linkedin-button:hover,
+    .email-button:hover {
+        @apply w-auto;
     }
 }

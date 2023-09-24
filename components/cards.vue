@@ -20,7 +20,7 @@
 
 <style scoped>
 .resume-card {
-    @apply absolute w-[calc(100%-40px)] h-[calc(100%-40px)] transition-all duration-300 ease-linear p-10;
+    @apply absolute w-[calc(100%-40px)] h-[calc(100%-40px)] p-10;
     background: linear-gradient(to right, rgb(24, 24, 24), rgb(0, 0, 0));
     transition: 0.3s ease;
     box-shadow: -30px 0px 30px rgba(0, 0, 0, 0.7);

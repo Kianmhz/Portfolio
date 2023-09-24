@@ -44,24 +44,4 @@ h2 {
 p {
     @apply text-[1.1rem] font-[400] text-[#909090];
 }
-
-.linkedin-button{
-    @apply flex items-center border-0 w-[37.5px] font-normal p-2.5;
-    border-bottom: 2px solid #00DC82;
-    transition: width 0.3s ease;
-}
-
-.email-button{
-    @apply flex items-center border-0 w-[40px] font-normal p-2.5;
-    border-bottom: 2px solid #00DC82;
-    transition: width 0.3s ease;
-}
-
-.linkedin-button:hover {
-    width: 102px;
-}
-
-.email-button:hover {
-    width: 82.8px;
-}
 </style>

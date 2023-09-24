@@ -3,8 +3,8 @@
     <span class="my-text">My</span>
     <div class="wrapper">
         <ul class="list">
-        <li class="item">Resume &</li>
-        <li class="item">Certificates</li>
+            <li class="item">Resume &</li>
+            <li class="item">Certificates</li>
         </ul>
     </div>
 </div>
@@ -12,28 +12,15 @@
 
 <style scoped>
 .resume-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px 0px;
+    @apply flex justify-center items-center my-[50px];
 }
-  .wrapper {
-    overflow: hidden;
-    height: 60px;
-    padding-left: 20px;
+
+.wrapper {
+    @apply overflow-hidden h-[60px] pl-5;
 }
-  
+
 .list {
-    text-align: left;
-    list-style: none;
+    @apply text-left list-none leading-[60px];
     animation: change 3s infinite;
-    line-height: 60px;
-}
-  
-@keyframes change {
-    0%, 25% {transform:translate3d(0,0,0);}
-    25%, 50% {transform:translate3d(0,-50%,0);}
-    50%, 75% {transform:translate3d(0,-50%,0);}
-    75%, 100% {transform:translate3d(0,0,0);}
 }
 </style>

@@ -34,11 +34,11 @@ fill="#fff" stroke="none">
 </template>
 
 <style scoped>
-.logo {
+.sign {
     @apply w-auto h-12;
   }
   
-.logo:hover .svg {
+.sign:hover .svg {
     fill: #00DC82;
   }
 </style>

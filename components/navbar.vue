@@ -23,7 +23,7 @@ onMounted(() => {
     <div class="container">
       <button @click="scrollTo('home')" class="nav slide-in">
         <div class="img-container">
-          <Sign class="logo" />
+          <Sign class="sign" />
         </div>
       </button>
       <button @click="scrollTo('whatIDo')" class="nav slide-in delay-1">What I do</button>
@@ -47,20 +47,23 @@ onMounted(() => {
   @apply pt-2 transition-all duration-200 opacity-0 hover:text-[#00DC82];
 }
 
+/* to make the logo centered */
 .img-container {
   @apply flex justify-center items-center w-full;
 }
 
+/* Initial load Animation for header */
 .slide-in {
   animation: slideInFromLeft 0.5s forwards;
 }
 
+/* To prevent animation from triggering after initial load */
 .no-slide .slide-in {
   animation: none;
   opacity: 1;
 }
 
-/* Add varying delays for each button */
+/* varying delays for each button */
 .delay-1 {
   animation-delay: 0.25s;
 }
@@ -71,16 +74,5 @@ onMounted(() => {
 
 .delay-3 {
   animation-delay: 0.75s;
-}
-
-@keyframes slideInFromLeft {
-  0% {
-      transform: translateX(-100%);
-      opacity: 0;
-  }
-  100% {
-      transform: translateX(0);
-      opacity: 1;
-  }
 }
 </style>

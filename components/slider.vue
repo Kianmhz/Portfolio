@@ -11,6 +11,7 @@
     @apply w-full h-full absolute z-0;
 }
 
+/* to make the bottom and top edges of video transition to background */
 .slider::after {
     @apply absolute bottom-0 left-0 w-full h-[80%];
     content: '';

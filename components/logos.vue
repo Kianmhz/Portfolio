@@ -118,7 +118,7 @@
 
 <style scoped>
 svg {
-    @apply w-[100px] h-auto transition-transform duration-300 ease-in;
+    @apply w-[20%] h-auto transition-transform duration-300 ease-in;
 }
 
 svg:hover {
@@ -126,11 +126,11 @@ svg:hover {
 }
 
 svg:nth-child(4) {
-    @apply w-[180px] h-auto;
+    @apply w-[35%] h-auto;
 }
 
 svg:nth-child(5),
 svg:nth-child(6) {
-    @apply w-[160px] h-auto;
+    @apply w-[30%] h-auto;
 }
 </style>

@@ -335,22 +335,13 @@ onUnmounted(() => {
 </template>
 
 <style>
+/* Intro section styles */
 .intro {
     @apply flex justify-around items-center h-screen;
 }
 
 .intro .container div {
     @apply flex-[1];
-}
-
-.animate-intro {
-    @apply opacity-100 transform translate-y-0;
-    transition: transform 1s, opacity 1s;
-}
-
-#intro-button.animate-intro {
-    @apply opacity-100;
-    transition: opacity 0.5s 2s;
 }
 
 .content {
@@ -380,6 +371,7 @@ onUnmounted(() => {
     animation: bounce 0.8s infinite;
 }
 
+/* Title section styles */
 .title {
     @apply flex justify-center items-center h-screen;
 }
@@ -391,6 +383,7 @@ onUnmounted(() => {
     background-clip: text;
 }
 
+/* Skills section styles */
 .skills {
     @apply flex justify-center;
 }
@@ -403,23 +396,8 @@ onUnmounted(() => {
     @apply text-[1.1rem] font-[400] mb-[20px] text-[#909090];
 }
 
-.animate-skills {
-    @apply opacity-100 transform translate-y-0;
-    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-}
-
-#skills-grid.animate-skills {
-    @apply opacity-100 transform translate-y-0;
-    transition: opacity 1s ease-in, transform 1s ease-in;
-}
-
 .languages {
     @apply flex justify-center;
-}
-
-.fade-in {
-    @apply opacity-100 transform translate-y-0;
-    transition: transform 0.5s 0.5s, opacity 0.5s 0.5s ease-in;
 }
 
 .languages .container div {
@@ -427,6 +405,7 @@ onUnmounted(() => {
     padding-top: 80px;
 }
 
+/* Projects section styles */
 .projects {
     @apply flex justify-center relative;
 }
@@ -459,32 +438,7 @@ onUnmounted(() => {
     aspect-ratio: 4/5;
 }
 
-.project-info.animate-in,
-.project-image.animate-in {
-    @apply opacity-100 transform translate-y-0 translate-x-0;
-    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-}
-
-.fade-leave-active {
-    position: absolute;
-    transition: opacity 0.5s, transform 0.5s;
-}
-
-.fade-leave-to {
-    opacity: 0;
-    transform: translateX(var(--translate-x-leave));
-}
-
-.fade-enter-from {
-    opacity: 0;
-    transform: translateX(var(--translate-x-enter));
-}
-
-.fade-enter-to {
-    @apply opacity-100 transform translate-x-0;
-    transition: opacity 0.5s, transform 0.5s;
-}
-
+/* Projects buttons styles */
 #back:hover {
     animation: bounce-x 0.8s infinite;
 }
@@ -505,6 +459,7 @@ onUnmounted(() => {
     @apply w-4 h-4 bg-[#00DC82];
 }
 
+/* Wrap section styles */
 .wrap {
     @apply flex justify-center py-[50px];
 }
@@ -538,10 +493,7 @@ onUnmounted(() => {
     background-clip: text;
 }
 
-.github-button:hover {
-    width: 92.2px;
-}
-
+/* Buttons styles */
 .button-text {
     @apply inline-block ml-1 text-white opacity-0 translate-x-[-20px] whitespace-nowrap;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -553,10 +505,91 @@ onUnmounted(() => {
     transition: width 0.3s ease;
 }
 
+.linkedin-button {
+    @apply flex items-center border-0 w-[37.5px] font-normal p-2.5;
+    border-bottom: 2px solid #00DC82;
+    transition: width 0.3s ease;
+}
+
+.email-button {
+    @apply flex items-center border-0 w-[40px] font-normal p-2.5;
+    border-bottom: 2px solid #00DC82;
+    transition: width 0.3s ease;
+}
+
+.linkedin-button:hover {
+    width: 102px;
+}
+
+.email-button:hover {
+    width: 82.8px;
+}
+
+.github-button:hover {
+    width: 92.2px;
+}
+
 .linkedin-button:hover .button-text,
 .email-button:hover .button-text,
 .github-button:hover .button-text {
     @apply opacity-100 transform translate-x-0;
+}
+
+/* In view transitions */
+
+/* Intro in view transitions */
+.animate-intro {
+    @apply opacity-100 transform translate-y-0;
+    transition: transform 1s, opacity 1s;
+}
+
+#intro-button.animate-intro {
+    @apply opacity-100;
+    transition: opacity 0.5s 2s;
+}
+
+/* Skills in view transitions */
+.animate-skills {
+    @apply opacity-100 transform translate-y-0;
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+#skills-grid.animate-skills {
+    @apply opacity-100 transform translate-y-0;
+    transition: opacity 1s ease-in, transform 1s ease-in;
+}
+
+/* Logos in view transitions */
+.fade-in {
+    @apply opacity-100 transform translate-y-0;
+    transition: transform 0.5s 0.5s, opacity 0.5s 0.5s ease-in;
+}
+
+/* Projects in view transitions */
+.project-info.animate-in,
+.project-image.animate-in {
+    @apply opacity-100 transform translate-y-0 translate-x-0;
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.fade-leave-active {
+    position: absolute;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.fade-leave-to {
+    opacity: 0;
+    transform: translateX(var(--translate-x-leave));
+}
+
+.fade-enter-from {
+    opacity: 0;
+    transform: translateX(var(--translate-x-enter));
+}
+
+.fade-enter-to {
+    @apply opacity-100 transform translate-x-0;
+    transition: opacity 0.5s, transform 0.5s;
 }
 
 /* navbar animation */
@@ -576,54 +609,5 @@ onUnmounted(() => {
 
 .navbar-fade-enter-active, .navbar-fade-leave-active {
     transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* For Tablets */
-@media (max-width: 1024px) {
-    .title .container h1 {
-        @apply text-[4.5rem];
-    }
-    
-    .projects .container div h1 {
-        @apply text-[3rem];
-    }
-
-    .projects .container div p {
-        @apply text-[1.5rem];
-    }
-
-    .wrap .container div p {
-        @apply text-[5rem];
-    }
-}
-
-/* For Mobile Devices */
-@media (max-width: 768px) {
-    .container {
-        @apply w-full px-4;
-    }
-
-    .title .container h1 {
-        @apply text-[4rem];
-    }
-
-    .skills .container div,
-    .projects .container div {
-        @apply flex-1 w-full;
-    }
-
-    .languages .container div {
-        @apply pt-40;
-    }
-
-    .wrap .container div p {
-        @apply text-[3.5rem];
-    }
-
-    .github-button:hover,
-    .linkedin-button:hover,
-    .email-button:hover {
-        @apply w-auto;
-    }
 }
 </style>
