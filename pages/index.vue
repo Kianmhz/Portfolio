@@ -1,6 +1,5 @@
 <script setup>
 // Reactive references and states.
-const isPageLoaded = ref(false);
 const currentProjectIndex = ref(0);
 const scroll = reactive({
   home: null,
