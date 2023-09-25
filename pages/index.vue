@@ -89,7 +89,7 @@ const updateElementPositionsOnScroll = () => {
   elements.rightIntroSectionTwoTitle.style.left = `${sectionTwoRate}%`;
   
   const sectionThreeStartPosition = elements.firstTextSectionThree.offsetTop;
-  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 200, 0);
+  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 20, 0);
   elements.firstTextSectionThree.style.right = `${sectionThreeRate * 0.1}%`;
   elements.secondTextSectionThree.style.right = `${sectionThreeRate * 0.2}%`;
   elements.thirdTextSectionThree.style.right = `${sectionThreeRate * 0.3}%`;
@@ -403,7 +403,7 @@ onUnmounted(() => {
 }
 
 .languages .container div {
-    flex: 1 100%;
+    flex: auto;
     padding-top: 80px;
 }
 
@@ -501,7 +501,7 @@ onUnmounted(() => {
 
 /* Buttons styles */
 .button-text {
-    @apply inline-block ml-1 text-white opacity-0 translate-x-[-20px] whitespace-nowrap;
+    @apply inline-block ml-1 opacity-0 translate-x-[-20px] whitespace-nowrap;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 

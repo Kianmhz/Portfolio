@@ -101,40 +101,38 @@ body {
 /* For Tablets */
 @media (max-width: 1024px) and (orientation: landscape){
     .container {
-        overflow: hidden;
-        width: 90%;
+        @apply overflow-hidden w-[90%]; 
     }
 
     /* For navbar */
     .nav-bar .container{
-        overflow: visible;
+        @apply overflow-visible;
     }
 
     /* For intro */
     .intro .container {
-        margin-top: 200px;
+        @apply mt-[200px];
     }
 
     /* For title */
     .title {
-        margin-top: 200px;
+        @apply mt-[200px];
     }
     .title .container div h1 {
-        font-size: 4rem;
+        @apply text-[4rem];
     }
 
     /* For skils */
     .skills .container div {
-        flex: 1 1 100% !important;
-        row-gap: 1rem;
+        @apply flex-auto gap-y-[1rem] !important;
     }
     .skills .container div:nth-child(1) {
-        margin-bottom: 3rem;
+        @apply mb-[3rem];
     }
 
     /* For languages and logos */
     .logos {
-        row-gap: 5rem !important;
+        @apply gap-y-[5rem] !important;
     }
     svg {
         @apply w-[18vh] !important;
@@ -174,7 +172,7 @@ body {
 
     /* For wrap text */
     .wrap .container div p {
-        font-size: 4rem !important;
+        @apply text-[4rem] !important;
     }
 }
 
@@ -182,62 +180,59 @@ body {
 /* For Mobile Devices */
 @media (max-width: 768px) and (orientation: portrait) {
     .container {
-        overflow: hidden;
-        width: 80%;
+        @apply w-[80%] overflow-hidden;
     }
 
     /* For navbar */
     .nav {
-        display: none;
+        @apply hidden;
     }
     .nav-bar .container{
-        overflow: visible;
+        @apply overflow-visible;
     }
     .nav:nth-child(1) {
-        display: flex;
+        @apply flex;
     }
 
     /* For intro */
     .intro .container {
-        margin-top: 200px;
-        flex-direction: column;
-        text-align: center;
+        @apply mt-[200px] flex-col text-center;
     }
     .intro .container div h1{
-        font-size: 4rem;
+        @apply text-[4rem];
     }
     .intro button span {
-        display: none;
+        @apply hidden;
     }
 
     /* For title */
+    .title {
+        @apply h-[40vh] !important;
+    }
     .title .container div h1{
-        font-size: 2rem;
+        @apply text-[2rem];
     }
     .slider {
-        @apply h-[20vh] !important;
+        @apply h-[40vh] !important;
     }
 
     /* For skils */
     .skills .container {
-        flex-direction: column;
-        text-align: center;
+        @apply flex-col text-center;
     }
     .skills .container div {
-        flex: auto !important;
+        @apply flex-auto !important;
     }
     #skills-grid {
-        grid-template-columns: repeat(1, 1fr);
+        @apply grid-cols-1 mt-[5rem];
     }
 
     /* For languages and logos */
     .languages .container {
-        flex-direction: column;
-        text-align: center;
+        @apply flex-col text-center;
     }
     .logos {
-        grid-template-columns: repeat(2, 1fr) !important;
-        row-gap: 8rem !important;
+        @apply grid-cols-2 gap-y-[8rem] !important;
     }
     svg {
         @apply w-[10vh] !important;
@@ -254,35 +249,31 @@ body {
 
     /* For projects */
     .projects .container div {
-        flex-direction: column;
-        text-align: center;
+        @apply flex-col text-center;
     }
     .github-button {
-        margin: 0 auto;
+        @apply m-auto;
     }
 
     /* For resume cards */
     .resume {
-        display: none;
+        @apply hidden;
     }
 
     /* For wrap text */
     .wrap .container div p {
-        font-size: 2.8rem !important;
+        @apply text-[2.8rem] !important;
     }
 
     /* For contacts */
     #contacts div {
-        flex: 1 1 100%;
+        @apply flex-auto !important;
     }
     #contacts {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+        @apply flex-col justify-center items-center text-center;
     }
     .linkedin-button,
     .email-button {
-        margin: 0 auto;
+        @apply m-auto;
     }
 }
