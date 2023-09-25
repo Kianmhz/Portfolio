@@ -95,10 +95,11 @@ body {
         transform: translateX(0);
         opacity: 1;
     }
-  }
+}
+
 
 /* For Tablets */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: landscape){
     .container {
         overflow: hidden;
         width: 90%;
@@ -136,7 +137,7 @@ body {
         row-gap: 5rem !important;
     }
     svg {
-        @apply w-[20vh] !important;
+        @apply w-[18vh] !important;
     }
 
     svg:nth-child(4) {
@@ -179,7 +180,7 @@ body {
 
 
 /* For Mobile Devices */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (orientation: portrait) {
     .container {
         overflow: hidden;
         width: 80%;
@@ -243,7 +244,7 @@ body {
     }
 
     svg:nth-child(4) {
-        @apply w-[20vh] !important;
+        @apply w-[19vh] !important;
     }
 
     svg:nth-child(5),
@@ -271,7 +272,13 @@ body {
     }
 
     /* For contacts */
-    #contacts .container {
+    #contacts div {
+        flex: 1 1 100%;
+    }
+    #contacts {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
     }
     .linkedin-button,
