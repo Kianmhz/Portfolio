@@ -99,22 +99,84 @@ body {
 
 /* For Tablets */
 @media (max-width: 1024px) {
-    .title .container h1 {
-        @apply text-[4.5rem];
+    .container {
+        overflow: hidden;
+        width: 90%;
+    }
+
+    /* For navbar */
+    .nav-bar .container{
+        overflow: visible;
+    }
+
+    /* For intro */
+    .intro .container {
+        margin-top: 200px;
+    }
+
+    /* For title */
+    .title {
+        margin-top: 200px;
+    }
+    .title .container div h1 {
+        font-size: 4rem;
+    }
+
+    /* For skils */
+    .skills .container div {
+        flex: 1 1 100% !important;
+        row-gap: 1rem;
+    }
+    .skills .container div:nth-child(1) {
+        margin-bottom: 3rem;
+    }
+
+    /* For languages and logos */
+    .logos {
+        row-gap: 5rem !important;
+    }
+    svg {
+        @apply w-[20vh] !important;
+    }
+
+    svg:nth-child(4) {
+        @apply w-[35vh] !important;
+    }
+
+    svg:nth-child(5),
+    svg:nth-child(6) {
+        @apply w-[30vh] !important;
+    }
+
+    /* For projects */
+    .projects .container div h1 {
+        @apply text-[2rem] !important;
     }
     
-    .projects .container div h1 {
-        @apply text-[3rem];
-    }
-
     .projects .container div p {
-        @apply text-[1.5rem];
+        @apply text-[1.5rem] !important;
     }
 
+    /* For resume cards */
+    .resume-header {
+        @apply text-[2rem] !important;
+    }
+    .resume-card {
+        @apply p-5 !important;
+    }
+    .resume-card p {
+        @apply text-[1rem] !important;
+    }
+    .resume-card h1 {
+        @apply text-[1rem] !important;
+    }
+
+    /* For wrap text */
     .wrap .container div p {
-        @apply text-[5rem];
+        font-size: 4rem !important;
     }
 }
+
 
 /* For Mobile Devices */
 @media (max-width: 768px) {
@@ -126,6 +188,9 @@ body {
     /* For navbar */
     .nav {
         display: none;
+    }
+    .nav-bar .container{
+        overflow: visible;
     }
     .nav:nth-child(1) {
         display: flex;
@@ -171,7 +236,7 @@ body {
     }
     .logos {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 1rem;
+        row-gap: 8rem !important;
     }
     svg {
         @apply w-[10vh] !important;

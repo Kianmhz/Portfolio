@@ -1,5 +1,5 @@
 <template>
-<div class="resume-header text-[3rem] font-[700] text-[var(--main-color)]">
+<div class="resume-header">
     <span class="my-text">My</span>
     <div class="wrapper">
         <ul class="list">
@@ -12,7 +12,7 @@
 
 <style scoped>
 .resume-header {
-    @apply flex justify-center items-center my-[50px];
+    @apply flex justify-center items-center my-[3%] text-[3rem] font-[700] text-[var(--main-color)];
 }
 
 .wrapper {

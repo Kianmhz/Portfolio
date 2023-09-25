@@ -214,7 +214,7 @@ onUnmounted(() => {
     <div class="skills" :ref="el => { scroll.whatIDo = el }">
         <div class="container">
             <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
-                <h1 class="text-[3rem] font-[700] mb-[20px]">What I Do</h1>
+                <h1 class="text-[3rem] font-[700]">What I Do</h1>
                 <p>
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et
@@ -395,7 +395,7 @@ onUnmounted(() => {
 }
 
 .skills .container div p {
-    @apply text-[1.1rem] font-[400] mb-[20px] text-[var(--secondary-text-color)];
+    @apply text-[1.1rem] font-[400] text-[var(--secondary-text-color)];
 }
 
 .languages {
@@ -416,20 +416,24 @@ onUnmounted(() => {
     @apply flex justify-center relative;
 }
 
+.projects .container {
+    padding-bottom: 30vh;
+}
+
 .projects .container div {
     flex: 1 1 50%;
 }
 
 .projects .container div h1 {
-    @apply text-[3rem] font-[700] mb-[20px];
+    @apply text-[3rem] font-[700] mb-[2%];
 }
 
 .projects .container div p {
-    @apply text-[2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)];
+    @apply text-[2rem] font-[400] mb-[2%] text-[var(--secondary-text-color)];
 }
 
 .project-item {
-    @apply absolute w-full top-0 left-0 flex justify-center items-center;
+    @apply  flex justify-center items-center;
 }
 
 .project-info {
@@ -438,10 +442,6 @@ onUnmounted(() => {
 
 .project-image {
     @apply opacity-0 transform translate-x-[50px];
-}
-
-.project-image img{
-    aspect-ratio: 4/5;
 }
 
 /* Projects buttons styles */
