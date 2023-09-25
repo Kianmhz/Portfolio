@@ -173,6 +173,7 @@ onUnmounted(() => {
             <Navbar :scroll="scroll"/>
         </div>
     </transition>
+    
     <div class="intro" :ref="el => { scroll.home = el }">
         <div class="container">
             <div>
@@ -203,7 +204,7 @@ onUnmounted(() => {
     <div class="title" :ref="el => { scroll.title = el }">
         <Slider />
         <div class="container">
-            <div class="text-[3rem] font-[700] mb-[20px]">
+            <div class="text-[3rem] font-[700]">
                 <h1 style="transform: translateX(100%);" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
                 <h1 style="transform: translateX(-100%);" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
             </div>
@@ -220,7 +221,7 @@ onUnmounted(() => {
                     dolore magna aliqua."
                 </p>
             </div>
-            <div class="grid grid-cols-2 gap-[50px] opacity-[0] transform translate-y-[40px]" id="skills-grid"
+            <div class="grid grid-cols-2 gap-[5rem] opacity-[0] transform translate-y-[40px]" id="skills-grid"
                 :class="{ 'animate-skills': state.inViewSkills }">
                 <Skillsets />
             </div>
@@ -231,7 +232,7 @@ onUnmounted(() => {
         <div class="container">
             <div class="opacity-[0] translate-y-[80px]" :class="{ 'fade-in': state.inViewLanguages }">
                 <h1 class="text-[3rem] font-[700]">Languages</h1>
-                <Logos />
+                <Logos class="logos"/>
             </div>
         </div>
     </div>
@@ -248,7 +249,7 @@ onUnmounted(() => {
 
     <div class="projects" :ref="el => { scroll.projects = el }">
         <div class="container">
-            <transition-group name="fade" tag="div" class="relative w-full h-[1000px]">
+            <transition-group name="fade" tag="div" class="relative w-full h-[90vh]">
                 <div v-if="currentProjectIndex === 0" key="0" class="project-item">
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 1</h1>
@@ -281,7 +282,7 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 3</h1>
                         <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
-                        <button class="github-button hover:w-[92.2px];">
+                        <button class="github-button">
                             <font-awesome-icon :icon="['fab', 'github']" size="lg" />
                             <span class="button-text">Github</span>
                         </button>
@@ -295,23 +296,25 @@ onUnmounted(() => {
     </div>
 
     <div class="flex justify-center" :ref="el => { scroll.resume = el }">
-        <div class="container">
-            <button id="back" class="mx-[100px]" @click="goBack"><font-awesome-icon
+        <div class="container gap-[5%]">
+            <button id="back" class="" @click="goBack"><font-awesome-icon
                     :icon="['fas', 'circle-chevron-left']" size="xl" /></button>
             <div class="dots">
                 <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
                 <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
                 <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
             </div>
-            <button id="forward" class="mx-[100px]" @click="goForward"><font-awesome-icon
+            <button id="forward" class="" @click="goForward"><font-awesome-icon
                     :icon="['fas', 'circle-chevron-right']" size="xl" /></button>
         </div>
     </div>
 
-    <ResumeHeader />
-    <div class="flex justify-center items-center">
-        <div class="container">
-            <Cards />
+    <div class="resume">
+        <ResumeHeader />
+        <div class="flex justify-center items-center">
+            <div class="container">
+                <Cards />
+            </div>
         </div>
     </div>
 
@@ -325,7 +328,7 @@ onUnmounted(() => {
         </div>
     </div>
 
-    <div class="flex justify-center py-[50px] relative">
+    <div class="flex justify-center" id="contacts">
         <div class="container">
             <Contact />
         </div>
@@ -372,7 +375,7 @@ onUnmounted(() => {
 
 /* Title section styles */
 .title {
-    @apply flex justify-center items-center h-screen;
+    @apply flex justify-center items-center h-[70vh];
 }
   
 .title .container h1 {
@@ -404,6 +407,10 @@ onUnmounted(() => {
     padding-top: 80px;
 }
 
+.logos {
+    @apply grid grid-cols-3 gap-y-[10rem] justify-items-center items-center;
+}
+
 /* Projects section styles */
 .projects {
     @apply flex justify-center relative;
@@ -418,7 +425,7 @@ onUnmounted(() => {
 }
 
 .projects .container div p {
-    @apply text-[2rem] font-[700] mb-[20px];
+    @apply text-[2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)];
 }
 
 .project-item {
@@ -439,11 +446,11 @@ onUnmounted(() => {
 
 /* Projects buttons styles */
 #back:hover {
-    animation: bounce-x 0.8s infinite;
+    animation: bounce-x 0.8s;
 }
 
 #forward:hover {
-    animation: bouncex 0.8s infinite;
+    animation: bouncex 0.8s;
 }
 
 .dots {
@@ -451,7 +458,7 @@ onUnmounted(() => {
 }
 
 .dots div {
-    @apply w-3 h-3 rounded-full bg-gray-500 cursor-pointer;
+    @apply w-3 h-3 rounded-full bg-[var(--secondary-text-color)] cursor-pointer;
 }
 
 .dots div.active {
@@ -472,21 +479,21 @@ onUnmounted(() => {
 }
 
 .wrap .container div p:nth-child(1) {
-    background: linear-gradient(to right, var(--tertiary-color), var(--secondary-color));
+    background: linear-gradient(to right, #E92EFB, #FF2079);
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
 }
 
 .wrap .container div p:nth-child(2) {
-    background: linear-gradient(to right, var(--secondary-color), #00ff9d);
+    background: linear-gradient(to right, #FF2079, #440BD4);
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
 }
 
 .wrap .container div p:nth-child(3) {
-    background: linear-gradient(to right, #00ff9d, var(--main-color));
+    background: linear-gradient(to right, #440BD4, #04005E);
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
@@ -533,6 +540,7 @@ onUnmounted(() => {
 .github-button:hover .button-text {
     @apply opacity-100 transform translate-x-0;
 }
+
 
 /* In view transitions */
 

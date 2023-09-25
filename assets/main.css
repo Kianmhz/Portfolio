@@ -5,9 +5,9 @@
     --main-text-color: #ffffff;
     --secondary-text-color: #909090;
 
-    --main-color: #00DC82;
-    --secondary-color: #00EEC1;
-    --tertiary-color: #00FFFF;
+    --main-color: #440BD4;
+    --secondary-color: #E92EFB;
+    --tertiary-color: #FF2079;
 }
 
 /* Scrollbar customization */
@@ -119,29 +119,98 @@ body {
 /* For Mobile Devices */
 @media (max-width: 768px) {
     .container {
-        @apply w-full px-4;
+        overflow: hidden;
+        width: 80%;
     }
 
-    .title .container h1 {
-        @apply text-[4rem];
+    /* For navbar */
+    .nav {
+        display: none;
+    }
+    .nav:nth-child(1) {
+        display: flex;
     }
 
-    .skills .container div,
+    /* For intro */
+    .intro .container {
+        margin-top: 200px;
+        flex-direction: column;
+        text-align: center;
+    }
+    .intro .container div h1{
+        font-size: 4rem;
+    }
+    .intro button span {
+        display: none;
+    }
+
+    /* For title */
+    .title .container div h1{
+        font-size: 2rem;
+    }
+    .slider {
+        @apply h-[20vh] !important;
+    }
+
+    /* For skils */
+    .skills .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .skills .container div {
+        flex: auto !important;
+    }
+    #skills-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    /* For languages and logos */
+    .languages .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .logos {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem;
+    }
+    svg {
+        @apply w-[10vh] !important;
+    }
+
+    svg:nth-child(4) {
+        @apply w-[20vh] !important;
+    }
+
+    svg:nth-child(5),
+    svg:nth-child(6) {
+        @apply w-[16vh] !important;
+    }
+
+    /* For projects */
     .projects .container div {
-        @apply flex-1 w-full;
+        flex-direction: column;
+        text-align: center;
+    }
+    .github-button {
+        margin: 0 auto;
     }
 
-    .languages .container div {
-        @apply pt-40;
+    /* For resume cards */
+    .resume {
+        display: none;
     }
 
+    /* For wrap text */
     .wrap .container div p {
-        @apply text-[3.5rem];
+        font-size: 2.8rem !important;
     }
 
-    .github-button:hover,
-    .linkedin-button:hover,
-    .email-button:hover {
-        @apply w-auto;
+    /* For contacts */
+    #contacts .container {
+        text-align: center;
+    }
+    .linkedin-button,
+    .email-button {
+        margin: 0 auto;
     }
 }

@@ -1,25 +1,26 @@
 <template>
     <div class="slider">
-        <video class="w-full h-full object-cover" autoplay loop muted>
-            <source src="~/assets/video/video.mp4" type="video/mp4">
+        <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+            <source src="~/assets/video/video2.mp4" type="video/mp4">
         </video>
     </div>
 </template>
 
 <style scoped>
 .slider {
-    @apply w-full h-full absolute z-0;
+    @apply w-full h-[70vh] absolute z-0;
 }
 
-/* to make the bottom and top edges of video transition to background */
+/* To make the bottom and top edges of video transition to background */
+/* Change height to change the brightness */
 .slider::after {
-    @apply absolute bottom-0 left-0 w-full h-[80%];
+    @apply absolute bottom-0 left-0 w-full h-[85%];
     content: '';
     background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
 .slider::before {
-    @apply absolute top-0 left-0 w-full h-[80%];
+    @apply absolute top-0 left-0 w-full h-[85%];
     content: '';
     background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }

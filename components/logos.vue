@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-3 gap-y-[150px] justify-items-center items-center">
+    <div>
         <svg version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/"
             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -118,7 +118,7 @@
 
 <style scoped>
 svg {
-    @apply w-[20%] h-auto transition-transform duration-300 ease-in;
+    @apply w-[10vh] h-auto transition-transform duration-300 ease-in;
 }
 
 svg:hover {
@@ -126,11 +126,11 @@ svg:hover {
 }
 
 svg:nth-child(4) {
-    @apply w-[35%] h-auto;
+    @apply w-[18vh] h-auto;
 }
 
 svg:nth-child(5),
 svg:nth-child(6) {
-    @apply w-[30%] h-auto;
+    @apply w-[15vh] h-auto;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="relative w-[1000px] h-[500px]">
+    <div class="relative w-[100vh] h-[50vh]">
         <div class="resume-card" id="card3">
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                 et dolore magna aliqua."</p>
@@ -20,7 +20,7 @@
 
 <style scoped>
 .resume-card {
-    @apply absolute w-[calc(100%-40px)] h-[calc(100%-40px)] p-10;
+    @apply absolute w-[100%] h-[100%] p-10;
     background: linear-gradient(to right, rgb(24, 24, 24), rgb(0, 0, 0));
     transition: 0.3s ease;
     box-shadow: -30px 0px 30px rgba(0, 0, 0, 0.7);
@@ -31,12 +31,12 @@
 }
 
 .resume-card h1 {
-    @apply absolute top-[350px] text-[var(--secondary-text-color)] text-[2rem] mb-[20px];
+    @apply absolute top-[80%] text-[var(--secondary-text-color)] text-[2rem];
 }
 
 /* Card-specific styles for positioning and hover effect */
 #card1 {
-    @apply z-[3] translate-x-[10%];
+    @apply z-[3] translate-x-[15%];
     border-left: 2px solid var(--tertiary-color);
 }
 
@@ -46,7 +46,7 @@
 }
 
 #card3 {
-    @apply z-[1] translate-x-[-10%];
+    @apply z-[1] translate-x-[-15%];
     border-left: 2px solid var(--main-color);
 }
 
@@ -71,7 +71,7 @@
 }
 
 #card3:hover~#card2 {
-    @apply transform translate-x-[90%] filter brightness-[0.5];
+    @apply transform translate-x-[85%] filter brightness-[0.5];
 }
 
 #card2:hover~#card1 {
