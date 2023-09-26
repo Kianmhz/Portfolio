@@ -35,16 +35,16 @@ onMounted(() => {
 
 <style scoped>
 .nav-bar {
-  @apply flex flex-row flex-wrap justify-center w-full;
+  @apply flex justify-center w-full;
   background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
 }
 
 .container {
-  @apply flex justify-between items-center flex-wrap;
+  @apply flex justify-between items-center;
 }
 
 .nav {
-  @apply pt-2 transition-all duration-200 opacity-0 hover:text-[var(--main-color)];
+  @apply pt-2 text-[1rem] transition-all duration-200 opacity-0 hover:text-[var(--main-color)];
 }
 
 /* to make the logo centered */
