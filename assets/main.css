@@ -1,4 +1,4 @@
-*{text-align: justify; padding: 0; margin: 0; box-sizing: border-box;}
+*{padding: 0; margin: 0; box-sizing: border-box;}
 
 :root {
     --main-bg-color: #000000;
@@ -114,6 +114,12 @@ body {
     .intro .container {
         @apply mt-[200px];
     }
+    .intro .container div h1 {
+        @apply text-[4rem];
+    }
+    .intro .container div h2 {
+        @apply text-[2rem];
+    }
 
     /* For title */
     .title {
@@ -124,6 +130,9 @@ body {
     }
 
     /* For skils */
+    .skills h1 {
+        @apply text-[2rem];
+    }
     .skills .container div {
         @apply flex-auto gap-y-[1rem] !important;
     }
@@ -151,10 +160,6 @@ body {
     /* For projects */
     .projects .container div h1 {
         @apply text-[2rem] !important;
-    }
-    
-    .projects .container div p {
-        @apply text-[1.5rem] !important;
     }
 
     /* For resume cards */
@@ -199,6 +204,9 @@ body {
     .intro .container {
         @apply mt-[200px] flex-col text-center;
     }
+    .intro .container div h2 {
+        @apply text-[2rem];
+    }
     .intro .container div h1{
         @apply text-[4rem];
     }
@@ -217,9 +225,15 @@ body {
         @apply h-[40vh] !important;
     }
 
-    /* For skils */
+    /* For skills */
+    .skills h1 {
+        @apply text-[2rem];
+    }
     .skills .container {
         @apply flex-col text-center;
+    }
+    .skills .container p{
+        @apply text-center;
     }
     .skills .container div {
         @apply flex-auto !important;
@@ -249,6 +263,9 @@ body {
     }
 
     /* For projects */
+    .projects .container div h1 {
+        @apply text-[2rem] !important;
+    }
     .projects .container div {
         @apply flex-col text-center;
     }
@@ -267,10 +284,10 @@ body {
     }
 
     /* For contacts */
-    #contacts div {
+    .contacts div {
         @apply flex-auto !important;
     }
-    #contacts {
+    .contacts {
         @apply flex-col justify-center items-center text-center;
     }
     .linkedin-button,

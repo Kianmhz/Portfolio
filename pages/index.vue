@@ -181,7 +181,7 @@ onUnmounted(() => {
                     :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
                 <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
                     <h1 class="text-[7rem] font-[700]">Kianmehr<span class="text-[var(--main-color)]">.</span></h1>
-                    <p class="text-[1.2rem] font-[400] mb-[20px] mr-[80px] text-[var(--secondary-text-color)]">
+                    <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore
                         et
@@ -215,7 +215,7 @@ onUnmounted(() => {
         <div class="container">
             <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
                 <h1 class="text-[3rem] font-[700]">What I Do</h1>
-                <p class="mr-[80px]">
+                <p>
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et
                     dolore magna aliqua."
@@ -327,7 +327,7 @@ onUnmounted(() => {
         </div>
     </div>
 
-    <div class="flex justify-center" id="contacts">
+    <div class="contacts">
         <div class="container">
             <Contact />
         </div>
@@ -428,7 +428,7 @@ onUnmounted(() => {
 }
 
 .projects .container div p {
-    @apply text-[1.2rem] font-[400] mb-[20px] mr-[80px] text-[var(--secondary-text-color)];
+    @apply text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)];
 }
 
 .project-item {
@@ -496,6 +496,11 @@ onUnmounted(() => {
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
+}
+
+/* Contacts section styles */
+.contacts {
+    @apply flex justify-center;
 }
 
 /* Buttons styles */

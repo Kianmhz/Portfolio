@@ -38,7 +38,7 @@ h1 {
 }
 
 h2 {
-    @apply text-[2rem] mr-[80px] font-[700];
+    @apply text-[2rem] font-[700];
 }
 
 p {
