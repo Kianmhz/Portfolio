@@ -444,11 +444,11 @@ onUnmounted(() => {
 }
 
 /* Projects buttons styles */
-#back:hover {
+#back:not(:active) {
     animation: bounce-x 0.8s;
 }
 
-#forward:hover {
+#forward:not(:active) {
     animation: bouncex 0.8s;
 }
 
