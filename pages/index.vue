@@ -89,7 +89,7 @@ const updateElementPositionsOnScroll = () => {
   elements.rightIntroSectionTwoTitle.style.left = `${sectionTwoRate}%`;
   
   const sectionThreeStartPosition = elements.firstTextSectionThree.offsetTop;
-  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 20, 0);
+  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 200, 0);
   elements.firstTextSectionThree.style.right = `${sectionThreeRate * 0.1}%`;
   elements.secondTextSectionThree.style.right = `${sectionThreeRate * 0.2}%`;
   elements.thirdTextSectionThree.style.right = `${sectionThreeRate * 0.3}%`;
@@ -177,18 +177,18 @@ onUnmounted(() => {
     <div class="intro" :ref="el => { scroll.home = el }">
         <div class="container">
             <div>
-                <h2 class="text-[2rem] font-[700] transform translate-y-[40px] opacity-[0]"
+                <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0]"
                     :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
                 <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <h1 class="text-[5rem] font-[700]">Kianmehr<span class="text-[var(--main-color)]">.</span></h1>
-                    <p class="text-[1.1rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
+                    <h1 class="text-[7rem] font-[700]">Kianmehr<span class="text-[var(--main-color)]">.</span></h1>
+                    <p class="text-[1.2rem] font-[400] mb-[20px] mr-[80px] text-[var(--secondary-text-color)]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore
                         et
                         dolore magna aliqua.
                     </p>
                 </div>
-                <button @click="scrollTo('title')" id="intro-button" class="py-[15px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0" :class="{ 'animate-intro': state.inViewIntro }">
+                <button @click="scrollTo('title')" id="intro-button" class="py-[20px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0" :class="{ 'animate-intro': state.inViewIntro }">
                     <span class="content">
                         <span>SCROLL FOR MORE</span>
                     </span>
@@ -204,7 +204,7 @@ onUnmounted(() => {
     <div class="title" :ref="el => { scroll.title = el }">
         <Slider />
         <div class="container">
-            <div class="text-[3rem] font-[700]">
+            <div>
                 <h1 style="transform: translateX(100%);" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
                 <h1 style="transform: translateX(-100%);" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
             </div>
@@ -215,7 +215,7 @@ onUnmounted(() => {
         <div class="container">
             <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
                 <h1 class="text-[3rem] font-[700]">What I Do</h1>
-                <p>
+                <p class="mr-[80px]">
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et
                     dolore magna aliqua."
@@ -231,7 +231,6 @@ onUnmounted(() => {
     <div class="languages">
         <div class="container">
             <div class="opacity-[0] translate-y-[80px]" :class="{ 'fade-in': state.inViewLanguages }">
-                <h1 class="text-[3rem] font-[700]">Languages</h1>
                 <Logos class="logos"/>
             </div>
         </div>
@@ -343,11 +342,11 @@ onUnmounted(() => {
 }
 
 .intro .container div {
-    @apply flex-[1];
+    @apply flex-1;
 }
 
 .content {
-    @apply inline-block relative;
+    @apply inline-block relative text-[1rem];
     transition: transform 0.4s, opacity 0.4s ease-in-out;
 }
 
@@ -379,7 +378,7 @@ onUnmounted(() => {
 }
   
 .title .container h1 {
-    @apply text-[7rem] font-extrabold relative whitespace-nowrap text-transparent;
+    @apply text-[7rem] font-[700] relative whitespace-nowrap text-transparent;
     background: linear-gradient(to right, var(--main-color), var(--secondary-color));
     -webkit-background-clip: text;
     background-clip: text;
@@ -395,7 +394,7 @@ onUnmounted(() => {
 }
 
 .skills .container div p {
-    @apply text-[1.1rem] font-[400] text-[var(--secondary-text-color)];
+    @apply text-[1.2rem] font-[400] text-[var(--secondary-text-color)];
 }
 
 .languages {
@@ -425,11 +424,11 @@ onUnmounted(() => {
 }
 
 .projects .container div h1 {
-    @apply text-[3rem] font-[700] mb-[2%];
+    @apply text-[3rem] font-[700] mb-[20px];
 }
 
 .projects .container div p {
-    @apply text-[2rem] font-[400] mb-[2%] text-[var(--secondary-text-color)];
+    @apply text-[1.2rem] font-[400] mb-[20px] mr-[80px] text-[var(--secondary-text-color)];
 }
 
 .project-item {
@@ -501,7 +500,7 @@ onUnmounted(() => {
 
 /* Buttons styles */
 .button-text {
-    @apply inline-block ml-1 opacity-0 translate-x-[-20px] whitespace-nowrap;
+    @apply inline-block text-[1rem] ml-1 opacity-0 translate-x-[-20px] whitespace-nowrap;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 

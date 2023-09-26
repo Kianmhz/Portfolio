@@ -12,7 +12,7 @@
 
 <style scoped>
 .resume-header {
-    @apply flex justify-center items-center my-[3%] text-[3rem] font-[700] text-[var(--main-color)];
+    @apply flex justify-center items-center my-[50px] text-[3rem] font-[700] text-[var(--main-color)];
 }
 
 .wrapper {

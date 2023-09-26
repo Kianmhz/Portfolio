@@ -34,14 +34,14 @@ div {
 }
 
 h1 {
-    @apply text-[1rem] font-[700] text-[var(--main-color)];
+    @apply text-[1.2rem] font-[700] text-[var(--main-color)];
 }
 
 h2 {
-    @apply text-[2rem] font-[700];
+    @apply text-[2rem] mr-[80px] font-[700];
 }
 
 p {
-    @apply text-[1.1rem] font-[400] text-[var(--secondary-text-color)];
+    @apply text-[1.2rem] font-[400] text-[var(--secondary-text-color)];
 }
 </style>
