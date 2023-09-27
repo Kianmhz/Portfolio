@@ -89,10 +89,10 @@ const updateElementPositionsOnScroll = () => {
   elements.rightIntroSectionTwoTitle.style.left = `${sectionTwoRate}%`;
   
   const sectionThreeStartPosition = elements.firstTextSectionThree.offsetTop;
-  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 200, 0);
-  elements.firstTextSectionThree.style.right = `${sectionThreeRate * 0.1}%`;
-  elements.secondTextSectionThree.style.right = `${sectionThreeRate * 0.2}%`;
-  elements.thirdTextSectionThree.style.right = `${sectionThreeRate * 0.3}%`;
+  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 1, 0);
+elements.firstTextSectionThree.style.transform = `translateX(${sectionThreeRate * -1}%)`;
+elements.secondTextSectionThree.style.transform = `translateX(${sectionThreeRate * -2}%)`;
+elements.thirdTextSectionThree.style.transform = `translateX(${sectionThreeRate * -3}%)`;
 };
 
 // Scroll direction detection logic.
@@ -180,7 +180,7 @@ onUnmounted(() => {
                 <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0]"
                     :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
                 <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <h1 class="text-[7rem] font-[700]">Kianmehr<span class="text-[var(--main-color)]">.</span></h1>
+                    <h1 class="text-[7rem] font-[700]">Kianmehr<span class="intro-dot">.</span></h1>
                     <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore
@@ -341,6 +341,17 @@ onUnmounted(() => {
     @apply flex justify-around items-center h-screen;
 }
 
+.intro-dot {
+    animation: gradient 20s linear infinite;
+    
+    background: var(--gradient-color);
+    background-size: 1000% 100%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .intro .container div {
     @apply flex-1;
 }
@@ -377,11 +388,40 @@ onUnmounted(() => {
     @apply flex justify-center items-center h-[70vh];
 }
   
-.title .container h1 {
+.title .container h1:nth-child(1) {
     @apply text-[7rem] font-[700] relative whitespace-nowrap text-transparent;
-    background: linear-gradient(to right, var(--main-color), var(--secondary-color));
-    -webkit-background-clip: text;
+    animation: gradient 20s linear infinite;
+    
+    background: var(--gradient-color);
+    background-size: 1000% 100%;
+
     background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title .container h1:nth-child(2) {
+    @apply text-[7rem] font-[700] relative whitespace-nowrap text-transparent;
+    animation: gradient 20s linear infinite;
+    
+    background: linear-gradient(-45deg, 
+    var(--main-color) 0%, 
+    var(--secondary-color) 10%, 
+    var(--tertiary-color) 20%, 
+    var(--quaternary-color) 30%, 
+    var(--main-color) 40%,
+    var(--secondary-color) 50%, 
+    var(--tertiary-color) 60%, 
+    var(--quaternary-color) 70%, 
+    var(--main-color) 80%,
+    var(--secondary-color) 90%,
+    var(--tertiary-color) 100%
+);
+    background-size: 1000% 100%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Skills section styles */
@@ -474,29 +514,16 @@ onUnmounted(() => {
 }
 
 .wrap .container div p {
-    @apply relative text-[7rem] font-normal;
-}
+    @apply text-[7rem] font-normal;
+    animation: gradient 20s linear infinite;
+    
+    background: var(--gradient-color);
+    background-size: 1000% 100%;
 
-.wrap .container div p:nth-child(1) {
-    background: linear-gradient(to right, #E92EFB, #FF2079);
-    color: transparent;
-    -webkit-background-clip: text;
     background-clip: text;
-}
-
-.wrap .container div p:nth-child(2) {
-    background: linear-gradient(to right, #FF2079, #440BD4);
-    color: transparent;
     -webkit-background-clip: text;
-    background-clip: text;
-}
-
-.wrap .container div p:nth-child(3) {
-    background: linear-gradient(to right, #440BD4, #04005E);
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-}
+    -webkit-text-fill-color: transparent;
+}   
 
 /* Contacts section styles */
 .contacts {
