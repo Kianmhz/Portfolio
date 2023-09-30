@@ -236,13 +236,13 @@ body {
 
     /* For title */
     .title {
-        @apply h-[40vh] !important;
+        @apply h-[20vh] !important;
     }
     .title .container div h1{
         @apply text-[2rem] !important;
     }
     .slider {
-        @apply h-[40vh] !important;
+        @apply h-[20vh] !important;
     }
 
     /* For skills */
@@ -314,29 +314,4 @@ body {
     .email-button {
         @apply m-auto;
     }
-}
-
-.dynamic-gradient {
-        font-size: 7rem;
-        animation: gradient 20s linear infinite;
-        
-        background: linear-gradient(45deg, 
-        var(--main-color) 0%, 
-        var(--secondary-color) 10%, 
-        var(--tertiary-color) 20%, 
-        var(--quaternary-color) 30%, 
-        var(--main-color) 40%,
-        var(--secondary-color) 50%, 
-        var(--tertiary-color) 60%, 
-        var(--quaternary-color) 70%, 
-        var(--main-color) 80%,
-        var(--secondary-color) 90%,
-        var(--quaternary-color) 100%
-    );
-        background-size: 1000% 100%;
-    
-        /* Makes the gradient background only apply to the text, not the entire h1 */
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; /* Makes the text transparent, so only the background gradient shows through */
 }
