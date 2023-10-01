@@ -3,14 +3,10 @@ export default defineNuxtConfig({
   vite: {
     assetsInclude: ['**/*.JPG']
   },
-  modules: [
-    '@nuxtjs/tailwindcss',
-  ],
+  modules: ['@nuxtjs/tailwindcss',],
   devtools: { enabled: true },
   build: {
-    transpile: [
-        '@fortawesome/vue-fontawesome'
-    ]
+    transpile: ['@fortawesome/vue-fontawesome']
 },
   css: [
   "~/assets/main.css",
