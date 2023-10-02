@@ -164,9 +164,6 @@ body {
     }
 
     /* For languages and logos */
-    .logos {
-        @apply gap-y-[5rem] !important;
-    }
     svg {
         @apply w-[18vh] !important;
     }
@@ -249,14 +246,14 @@ body {
     }
 
     /* For skills */
+    .skills {
+        @apply h-[100%] !important;
+    }
     .skills h1 {
         @apply text-[2rem];
     }
     .skills .container {
         @apply flex-col text-center;
-    }
-    .skills .container p{
-        @apply text-center;
     }
     .skills .container div {
         @apply flex-auto !important;
@@ -264,25 +261,8 @@ body {
     #skills-grid {
         @apply grid-cols-1 mt-[5rem];
     }
-
-    /* For languages and logos */
-    .languages .container {
-        @apply flex-col text-center;
-    }
-    .logos {
-        @apply grid-cols-2 gap-y-[8rem] !important;
-    }
-    svg {
-        @apply w-[10vh] !important;
-    }
-
-    svg:nth-child(4) {
-        @apply w-[19vh] !important;
-    }
-
-    svg:nth-child(5),
-    svg:nth-child(6) {
-        @apply w-[16vh] !important;
+    #logos {
+        @apply hidden;
     }
 
     /* For projects */

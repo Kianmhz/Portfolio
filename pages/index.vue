@@ -42,7 +42,12 @@ const goForward = () => {
     }
 };
 const setProjectIndex = (index) => {
-    currentProjectIndex.value = index;
+    if (index > currentProjectIndex.value) {
+        goForward();
+    }
+    else if (index < currentProjectIndex.value) {
+        goBack();
+    }
 };
 
 // Helper functions for scroll-based animations.
@@ -225,13 +230,8 @@ onUnmounted(() => {
                 :class="{ 'animate-skills': state.inViewSkills }">
                 <Skillsets />
             </div>
-        </div>
-    </div>
-
-    <div class="languages">
-        <div class="container">
-            <div class="opacity-[0] translate-y-[80px]" :class="{ 'fade-in': state.inViewLanguages }">
-                <Logos class="logos"/>
+            <div id="logos">
+                <Logos />
             </div>
         </div>
     </div>
@@ -292,10 +292,7 @@ onUnmounted(() => {
                 </div>
             </transition-group>
         </div>
-    </div>
-
-    <div class="flex justify-center" :ref="el => { scroll.resume = el }">
-        <div class="container gap-[5%]">
+        <div class="flex justify-center items-center gap-[5rem]" :ref="el => { scroll.resume = el }">
             <button id="back" class="" @click="goBack"><font-awesome-icon
                     :icon="['fas', 'circle-chevron-left']" size="xl" /></button>
             <div class="dots">
@@ -426,7 +423,7 @@ onUnmounted(() => {
 
 /* Skills section styles */
 .skills {
-    @apply flex justify-center;
+    @apply flex justify-center h-[100vh];
 }
 
 .skills .container div {
@@ -437,26 +434,9 @@ onUnmounted(() => {
     @apply text-[1.2rem] font-[400] text-[var(--secondary-text-color)];
 }
 
-.languages {
-    @apply flex justify-center;
-}
-
-.languages .container div {
-    flex: auto;
-    padding-top: 80px;
-}
-
-.logos {
-    @apply grid grid-cols-3 gap-y-[10rem] justify-items-center items-center;
-}
-
 /* Projects section styles */
 .projects {
-    @apply flex justify-center relative;
-}
-
-.projects .container {
-    padding-bottom: 30vh;
+    @apply flex flex-col justify-center items-center relative h-[100vh];
 }
 
 .projects .container div {
@@ -483,6 +463,10 @@ onUnmounted(() => {
     @apply opacity-0 transform translate-x-[50px];
 }
 
+.project-image img{
+    aspect-ratio: 4/5;
+}
+
 /* Projects buttons styles */
 #back:not(:active) {
     animation: bounce-x 0.8s;
@@ -493,7 +477,7 @@ onUnmounted(() => {
 }
 
 .dots {
-    @apply flex gap-4 justify-center items-center relative;
+    @apply flex gap-4 justify-center items-center;
 }
 
 .dots div {
@@ -595,12 +579,6 @@ onUnmounted(() => {
 #skills-grid.animate-skills {
     @apply opacity-100 transform translate-y-0;
     transition: opacity 1s ease-in, transform 1s ease-in;
-}
-
-/* Logos in view transitions */
-.fade-in {
-    @apply opacity-100 transform translate-y-0;
-    transition: transform 0.5s 0.5s, opacity 0.5s 0.5s ease-in;
 }
 
 /* Projects in view transitions */
