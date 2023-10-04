@@ -220,7 +220,7 @@ onUnmounted(() => {
         <div class="container">
             <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
                 <h1 class="text-[3rem] font-[700]">What I Do</h1>
-                <p>
+                <p id="skills-about">
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et
                     dolore magna aliqua."
@@ -230,7 +230,7 @@ onUnmounted(() => {
                 :class="{ 'animate-skills': state.inViewSkills }">
                 <Skillsets />
             </div>
-            <div id="logos">
+            <div class="logos">
                 <Logos />
             </div>
         </div>
@@ -335,7 +335,7 @@ onUnmounted(() => {
 <style>
 /* Intro section styles */
 .intro {
-    @apply flex justify-around items-center h-screen;
+    @apply flex justify-center items-center h-screen;
 }
 
 .intro-dot {
@@ -423,7 +423,7 @@ onUnmounted(() => {
 
 /* Skills section styles */
 .skills {
-    @apply flex justify-center h-[100vh];
+    @apply flex justify-center h-[80vh];
 }
 
 .skills .container div {
@@ -432,6 +432,31 @@ onUnmounted(() => {
 
 .skills .container div p {
     @apply text-[1.2rem] font-[400] text-[var(--secondary-text-color)];
+}
+
+.logos {
+    @apply relative;
+}
+.logos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    z-index: 1;
+}
+
+.logos::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    z-index: 1;
 }
 
 /* Projects section styles */

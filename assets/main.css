@@ -135,7 +135,7 @@ body {
 
     /* For intro */
     .intro .container {
-        @apply mt-[200px];
+        @apply mt-[100px];
     }
     .intro .container div h1 {
         @apply text-[4rem];
@@ -146,21 +146,24 @@ body {
 
     /* For title */
     .title {
-        @apply mt-[200px];
+        @apply my-[4rem];
     }
     .title .container div h1 {
         @apply text-[4rem] !important;
     }
 
     /* For skils */
+    .skills {
+        @apply h-[100%] !important;
+    }
+    #skills-about {
+        @apply mb-[4rem];
+    }
     .skills h1 {
         @apply text-[2rem];
     }
-    .skills .container div {
-        @apply flex-auto gap-y-[1rem] !important;
-    }
-    .skills .container div:nth-child(1) {
-        @apply mb-[3rem];
+    #skills-grid {
+        @apply flex-auto gap-y-[5rem] mb-[4rem] !important;
     }
 
     /* For languages and logos */
@@ -261,7 +264,7 @@ body {
     #skills-grid {
         @apply grid-cols-1 mt-[5rem];
     }
-    #logos {
+    .logos {
         @apply hidden;
     }
 
