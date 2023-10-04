@@ -117,8 +117,24 @@ body {
 
 /* For dynamic gradient */
 @keyframes gradient {
-    0%{background-position:0% 0%}   /* Start at the top-left corner */
-    100%{background-position:100% 100%}  /* End at the bottom-right corner */
+    /* Start at the top-left corner */
+    0%{
+        background-position:0% 0%
+    }
+    /* End at the bottom-right corner */
+    100%{
+        background-position:100% 100%
+    }
+}
+
+/* For logo slider animation */
+@keyframes logo-scroll {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
 }
 
 
@@ -164,25 +180,6 @@ body {
     }
     #skills-grid {
         @apply flex-auto gap-y-[5rem] mb-[4rem] !important;
-    }
-
-    /* For languages and logos */
-    svg {
-        @apply w-[18vh] !important;
-    }
-
-    svg:nth-child(4) {
-        @apply w-[35vh] !important;
-    }
-
-    svg:nth-child(5),
-    svg:nth-child(6) {
-        @apply w-[30vh] !important;
-    }
-
-    /* For projects */
-    .projects .container div h1 {
-        @apply text-[2rem] !important;
     }
 
     /* For resume cards */

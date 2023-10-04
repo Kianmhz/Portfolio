@@ -41,10 +41,14 @@ const goForward = () => {
 };
 const setProjectIndex = (index) => {
     if (index > currentProjectIndex.value) {
-        goForward();
+        for (let i = currentProjectIndex.value; i < index; i++) {
+            goForward();
+        }
     }
     else if (index < currentProjectIndex.value) {
-        goBack();
+        for (let i = currentProjectIndex.value; i > index; i--) {
+            goBack();
+        }
     }
 };
 
@@ -337,7 +341,7 @@ onUnmounted(() => {
 }
 
 .intro-dot {
-    animation: gradient 20s linear infinite;
+    animation: gradient 20s linear infinite alternate;
     
     background: var(--gradient-color);
     background-size: 1000% 100%;
@@ -385,7 +389,7 @@ onUnmounted(() => {
   
 .title .container h1:nth-child(1) {
     @apply text-[7rem] font-[700] relative whitespace-nowrap text-transparent;
-    animation: gradient 20s linear infinite;
+    animation: gradient 20s linear infinite alternate;
     
     background: var(--gradient-color);
     background-size: 1000% 100%;
@@ -397,7 +401,7 @@ onUnmounted(() => {
 
 .title .container h1:nth-child(2) {
     @apply text-[7rem] font-[700] relative whitespace-nowrap text-transparent;
-    animation: gradient 20s linear infinite;
+    animation: gradient 20s linear infinite alternate;
     
     background: linear-gradient(-45deg, 
     var(--main-color) 0%, 
@@ -433,14 +437,14 @@ onUnmounted(() => {
 }
 
 .logos {
-    @apply relative;
+    @apply relative overflow-hidden;
 }
 .logos::before {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
-    width: 25%;
+    width: 20%;
     height: 100%;
     background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     z-index: 1;
@@ -451,7 +455,7 @@ onUnmounted(() => {
     position: absolute;
     top: 0;
     left: 0;
-    width: 25%;
+    width: 20%;
     height: 100%;
     background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     z-index: 1;
@@ -522,7 +526,7 @@ onUnmounted(() => {
 
 .wrap .container div p {
     @apply text-[7rem] font-normal;
-    animation: gradient 20s linear infinite;
+    animation: gradient 20s linear infinite alternate;
     
     background: var(--gradient-color);
     background-size: 1000% 100%;
