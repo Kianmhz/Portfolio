@@ -47,12 +47,13 @@
 
 body {
     @apply overflow-x-hidden;
+    font-family: 'lato';
     background: var(--main-bg-color);
     color: var(--main-text-color);
 }
 
 .container {
-    @apply w-4/5 max-w-[1400px] flex justify-center items-center flex-wrap z-10;
+    @apply w-4/5 flex justify-center items-center flex-wrap z-10;
 }
 
 /* Animations */

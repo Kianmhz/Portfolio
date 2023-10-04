@@ -245,7 +245,7 @@
 .logo-slider div {
 	display: flex;
     justify-content: space-around;
-    animation: logo-scroll 10s linear infinite;
+    animation: logo-scroll 20s linear infinite;
 }
 
 svg {

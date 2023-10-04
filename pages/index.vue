@@ -184,10 +184,10 @@ onUnmounted(() => {
     <div class="intro" :ref="el => { scroll.home = el }">
         <div class="container">
             <div>
-                <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0]"
+                <h2 class="text-[3rem] font-[900] transform translate-y-[40px] opacity-[0]"
                     :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
                 <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <h1 class="text-[7rem] font-[700]">Kianmehr<span class="intro-dot">.</span></h1>
+                    <h1 class="text-[7rem] font-[900]">Kianmehr<span class="intro-dot">.</span></h1>
                     <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore
@@ -221,7 +221,7 @@ onUnmounted(() => {
     <div class="skills" :ref="el => { scroll.whatIDo = el }">
         <div class="container">
             <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
-                <h1 class="text-[3rem] font-[700]">What I Do</h1>
+                <h1 class="text-[3rem] font-[900]">What I Do</h1>
                 <p id="skills-about">
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et
@@ -388,7 +388,7 @@ onUnmounted(() => {
 }
   
 .title .container h1:nth-child(1) {
-    @apply text-[7rem] font-[700] relative whitespace-nowrap text-transparent;
+    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     
     background: var(--gradient-color);
@@ -400,7 +400,7 @@ onUnmounted(() => {
 }
 
 .title .container h1:nth-child(2) {
-    @apply text-[7rem] font-[700] relative whitespace-nowrap text-transparent;
+    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     
     background: linear-gradient(-45deg, 
@@ -471,7 +471,7 @@ onUnmounted(() => {
 }
 
 .projects .container div h1 {
-    @apply text-[3rem] font-[700] mb-[20px];
+    @apply text-[3rem] font-[900] mb-[20px];
 }
 
 .projects .container div p {
@@ -491,7 +491,7 @@ onUnmounted(() => {
 }
 
 .project-image img{
-    aspect-ratio: 4/5;
+    aspect-ratio: 4/4;
 }
 
 /* Projects buttons styles */
