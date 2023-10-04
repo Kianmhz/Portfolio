@@ -9,8 +9,6 @@ const scroll = reactive({
   resume: null,
 });
 const state = reactive({
-    inViewTitle1: false,
-    inViewTitle2: false,
     inViewSkills: false,
     inViewIntro: false,
     inViewProject: false,
@@ -423,7 +421,7 @@ onUnmounted(() => {
 
 /* Skills section styles */
 .skills {
-    @apply flex justify-center h-[80vh];
+    @apply flex justify-center h-[100vh];
 }
 
 .skills .container div {
