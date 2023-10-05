@@ -7,10 +7,10 @@
     --main-text-color: #ffffff;
     --secondary-text-color: #909090;
 
-    --main-color: #440BD4;
-    --secondary-color: #E92EFB;
-    --tertiary-color: #FF2079;
-    --quaternary-color: #04005E;
+    --main-color: #332FD0;
+    --secondary-color: #9254C8;
+    --tertiary-color: #E15FED;
+    --quaternary-color: #6EDCD9;
 
     --gradient-color: linear-gradient(45deg, 
         var(--main-color) 0%, 
