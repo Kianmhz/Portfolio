@@ -37,7 +37,7 @@
 /* Card-specific styles for positioning and hover effect */
 #card1 {
     @apply z-[3] translate-x-[15%];
-    border-left: 2px solid var(--tertiary-color);
+    border-left: 2px solid var(--main-color);
 }
 
 #card2 {
@@ -47,7 +47,7 @@
 
 #card3 {
     @apply z-[1] translate-x-[-15%];
-    border-left: 2px solid var(--main-color);
+    border-left: 2px solid var(--quaternary-color);
 }
 
 #card2 {

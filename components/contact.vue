@@ -1,36 +1,29 @@
 <template>
-    <div>
-        <h1>Linkedin</h1>
-        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-        <button class="linkedin-button">
+<div class="contact-item">
+    <h1>Linkedin</h1>
+    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
+    <button class="contact-button">
+        <div class="button-icon">
             <font-awesome-icon :icon="['fab', 'linkedin']" size="lg" />
-            <span class="button-text">LinkedIn</span>
-        </button>
-    </div>
-    <div>
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            et
-            dolore magna aliqua."</p>
-    </div>
-    <div>
-        <h1>Email</h1>
-        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
-        <button class="email-button">
+        </div>
+        <div class="button-text">Linkedin</div>
+    </button>
+</div>
+<div class="contact-item">
+    <h1>Email</h1>
+    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
+    <button class="contact-button">
+        <div class="button-icon">
             <font-awesome-icon :icon="['fas', 'envelope']" size="lg" />
-            <span class="button-text">Email</span>
-        </button>
-    </div>
-    <div>
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            et
-            dolore magna aliqua."</p>
-    </div>
+        </div>
+        <div class="button-text">Email</div>
+    </button>
+</div>
 </template>
 
 <style scoped>
-div {
-    flex: 1 1 50%;
-    padding: 30px 0;
+.contact-item {
+    @apply mb-[50px];
 }
 
 h1 {

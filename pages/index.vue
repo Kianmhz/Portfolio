@@ -255,9 +255,11 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 1</h1>
                         <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-                        <button class="github-button">
-                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            <span class="button-text">Github</span>
+                        <button class="contact-button">
+                            <div class="button-icon">
+                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            </div>
+                            <div class="button-text">Github</div>
                         </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
@@ -269,9 +271,11 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 2</h1>
                         <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                        <button class="github-button">
-                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            <span class="button-text">Github</span>
+                        <button class="contact-button">
+                            <div class="button-icon">
+                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            </div>
+                            <div class="button-text">Github</div>
                         </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
@@ -283,9 +287,11 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 3</h1>
                         <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
-                        <button class="github-button">
-                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            <span class="button-text">Github</span>
+                        <button class="contact-button">
+                            <div class="button-icon">
+                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            </div>
+                            <div class="button-text">Github</div>
                         </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
@@ -541,48 +547,9 @@ onUnmounted(() => {
     @apply flex justify-center;
 }
 
-/* Buttons styles */
-.button-text {
-    @apply inline-block text-[1rem] ml-1 opacity-0 translate-x-[-20px] whitespace-nowrap;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+.contacts .container {
+    @apply flex justify-around items-center;
 }
-
-.github-button{
-    @apply flex items-center border-0 w-[39.4px] font-normal p-2.5;
-    border-bottom: 2px solid var(--main-color);
-    transition: width 0.3s ease;
-}
-
-.linkedin-button {
-    @apply flex items-center border-0 w-[37.5px] font-normal p-2.5;
-    border-bottom: 2px solid var(--main-color);
-    transition: width 0.3s ease;
-}
-
-.email-button {
-    @apply flex items-center border-0 w-[40px] font-normal p-2.5;
-    border-bottom: 2px solid var(--main-color);
-    transition: width 0.3s ease;
-}
-
-.linkedin-button:hover {
-    width: 102px;
-}
-
-.email-button:hover {
-    width: 82.8px;
-}
-
-.github-button:hover {
-    width: 92.2px;
-}
-
-.linkedin-button:hover .button-text,
-.email-button:hover .button-text,
-.github-button:hover .button-text {
-    @apply opacity-100 transform translate-x-0;
-}
-
 
 /* In view transitions */
 
