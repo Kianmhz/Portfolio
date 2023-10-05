@@ -184,7 +184,7 @@ onUnmounted(() => {
     <div class="intro" :ref="el => { scroll.home = el }">
         <div class="container">
             <div>
-                <h2 class="text-[3rem] font-[900] transform translate-y-[40px] opacity-[0]"
+                <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0]"
                     :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
                 <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
                     <h1 class="text-[7rem] font-[900]">Kianmehr<span class="intro-dot">.</span></h1>
@@ -197,7 +197,7 @@ onUnmounted(() => {
                 </div>
                 <button @click="scrollTo('title')" id="intro-button" class="py-[20px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0" :class="{ 'animate-intro': state.inViewIntro }">
                     <span class="content">
-                        <span>SCROLL FOR MORE</span>
+                        <span>EXPLORE BELOW</span>
                     </span>
                     <div class="arrow"></div>
                 </button>
@@ -337,6 +337,10 @@ onUnmounted(() => {
             <Contact />
         </div>
     </div>
+
+    <footer>
+        <footer-content />
+    </footer>
 </div>
 </template>
 
