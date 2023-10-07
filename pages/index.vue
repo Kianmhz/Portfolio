@@ -1,6 +1,5 @@
 <script setup>
 // Reactive references and states.
-const currentProjectIndex = ref(0);
 const scroll = reactive({
   home: null,
   title: null,
@@ -25,6 +24,7 @@ const elements = reactive({
 });
 
 // Navigation functions for project viewing.
+const currentProjectIndex = ref(0);
 const goBack = () => {
     if (currentProjectIndex.value > 0) {
         currentProjectIndex.value--;
@@ -52,55 +52,50 @@ const setProjectIndex = (index) => {
     }
 };
 
-// Helper functions for scroll-based animations.
-let sectionOffsets, sectionHeights;
-const calculateSectionData = () => {
-  if (
-    elements.leftIntroTitle &&
-    elements.leftIntroSectionTwoTitle &&
-    elements.firstTextSectionThree
-  ) {
-    sectionOffsets = [
-      elements.leftIntroTitle.offsetTop,
-      elements.leftIntroSectionTwoTitle.offsetTop,
-      elements.firstTextSectionThree.offsetTop,
-    ];
-    sectionHeights = [
-      elements.leftIntroTitle.offsetHeight,
-      elements.leftIntroSectionTwoTitle.offsetHeight,
-      elements.firstTextSectionThree.offsetHeight,
-    ];
-  }
-};
-const updateElementPositionsOnScroll = () => {
-  const totalScreenHeight = document.documentElement.scrollHeight - window.innerHeight;
+let rafId = null;
 
-  // logic for calculating scroll rate.
-  const calculateRate = (startPosition, multiplier, maxRate, offset = 0) => {
-    let rate = ((window.scrollY - startPosition + offset) / (totalScreenHeight - startPosition)) * multiplier;
-    if (rate > maxRate) {
-      rate = maxRate;
-    }
-    return rate;
-  };
-  
-  // Animate elements based on scroll position.
-  const sectionOneStartPosition = elements.leftIntroTitle.offsetTop - window.innerHeight * 1.6;
-  const sectionOneRate = calculateRate(sectionOneStartPosition, 500, 120);
-  elements.leftIntroTitle.style.right = `${sectionOneRate}%`;
-  elements.rightIntroTitle.style.left = `${sectionOneRate}%`;
-  
-  const sectionTwoStartPosition = elements.leftIntroSectionTwoTitle.offsetTop - window.innerHeight * 1.6;
-  const sectionTwoRate = calculateRate(sectionTwoStartPosition, 340, 120);
-  elements.leftIntroSectionTwoTitle.style.right = `${sectionTwoRate}%`;
-  elements.rightIntroSectionTwoTitle.style.left = `${sectionTwoRate}%`;
-  
-  const sectionThreeStartPosition = elements.firstTextSectionThree.offsetTop;
-  const sectionThreeRate = calculateRate(sectionThreeStartPosition, 1, 0);
-elements.firstTextSectionThree.style.transform = `translateX(${sectionThreeRate * -1}%)`;
-elements.secondTextSectionThree.style.transform = `translateX(${sectionThreeRate * -2}%)`;
-elements.thirdTextSectionThree.style.transform = `translateX(${sectionThreeRate * -3}%)`;
+const updateElementPositionsOnScroll = () => {
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+  }
+
+  rafId = requestAnimationFrame(() => {
+    const totalScreenHeight = document.documentElement.scrollHeight - window.innerHeight;
+    
+    // Section 1
+    const sectionOneStartPosition = elements.leftIntroTitle.offsetTop - window.innerHeight * 0.6;
+    const sectionOneRate = ((window.scrollY - sectionOneStartPosition) / (totalScreenHeight - sectionOneStartPosition));
+
+    // Section 2
+    const sectionTwoStartPosition = elements.leftIntroSectionTwoTitle.offsetTop - window.innerHeight * 0.4;
+    const sectionTwoRate = ((window.scrollY - sectionTwoStartPosition) / (totalScreenHeight - sectionTwoStartPosition));
+
+    // Section 3
+    const sectionThreeStartPosition = elements.firstTextSectionThree.offsetTop - window.innerHeight * 0.6;
+    const sectionThreeRate = ((window.scrollY - sectionThreeStartPosition) / (totalScreenHeight - sectionThreeStartPosition));
+
+    // Now apply the rates to your animations
+    elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 100}%)`;
+    elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 100}%)`;
+    
+    elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 100}%)`;
+    elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 100}%)`;
+
+    elements.firstTextSectionThree.style.transform = `translateX(-${sectionThreeRate * 100}%)`;
+    elements.secondTextSectionThree.style.transform = `translateX(-${sectionThreeRate * 90}%)`; // you can adjust multipliers
+    elements.thirdTextSectionThree.style.transform = `translateX(-${sectionThreeRate * 80}%)`;  // as per your needs
+  });
 };
+
+// Attach a throttled version of the scroll handler
+let lastScrollTime = Date.now();
+window.addEventListener('scroll', () => {
+  const now = Date.now();
+  if (now - lastScrollTime > 50) { // throttle every 50ms
+    updateElementPositionsOnScroll();
+    lastScrollTime = now;
+  }
+});
 
 // Scroll direction detection logic.
 const SCROLL_THRESHOLD = 100;
@@ -158,9 +153,7 @@ onMounted(() => {
     });
 
     // Initialize sections data and attach scroll handlers.
-    calculateSectionData();
     window.addEventListener('scroll', updateElementPositionsOnScroll);
-    window.addEventListener('resize', calculateSectionData);
     window.addEventListener('scroll', handleScroll);
 });
 
@@ -168,7 +161,6 @@ onUnmounted(() => {
     observer.disconnect();
 
     window.removeEventListener('scroll', updateElementPositionsOnScroll);
-    window.removeEventListener('resize', calculateSectionData);
     window.removeEventListener('scroll', handleScroll);
 });
 </script>
@@ -212,8 +204,8 @@ onUnmounted(() => {
         <Slider />
         <div class="container">
             <div>
-                <h1 style="transform: translateX(100%);" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
-                <h1 style="transform: translateX(-100%);" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
+                <h1 :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
+                <h1 :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
             </div>
         </div>
     </div>
@@ -242,8 +234,8 @@ onUnmounted(() => {
         <Slider />
         <div class="container">
             <div>
-                <h1 style="transform: translateX(100%);" :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
-                <h1 style="transform: translateX(-100%);" :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
+                <h1 :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
+                <h1 :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
             </div>
         </div>
     </div>
@@ -255,11 +247,9 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 1</h1>
                         <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-                        <button class="contact-button">
-                            <div class="button-icon">
-                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            </div>
-                            <div class="button-text">Github</div>
+                        <button class="github-button">
+                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            <span class="button-text">Github</span>
                         </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
@@ -271,11 +261,9 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 2</h1>
                         <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                        <button class="contact-button">
-                            <div class="button-icon">
-                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            </div>
-                            <div class="button-text">Github</div>
+                        <button class="github-button">
+                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            <span class="button-text">Github</span>
                         </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
@@ -287,11 +275,9 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 3</h1>
                         <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
-                        <button class="contact-button">
-                            <div class="button-icon">
-                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            </div>
-                            <div class="button-text">Github</div>
+                        <button class="github-button">
+                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            <span class="button-text">Github</span>
                         </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
@@ -324,7 +310,7 @@ onUnmounted(() => {
 
     <div class="wrap">
         <div class="container">
-            <div>
+            <div style="transform: translateX(100%);">
                 <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
                 <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
                 <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>

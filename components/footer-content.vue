@@ -18,10 +18,6 @@
     justify-content: center;
 }
 
-.author-text {
-    margin: 0 20px; /* Space between lines and text */
-}
-
 .author-name {
     animation: gradient 20s linear infinite alternate;
     
@@ -36,7 +32,7 @@
 
 .line {
     height: 1px;
-    background: linear-gradient(to right, rgba(255,255,255,0), #ffffff, rgba(255,255,255,0));
+    background: linear-gradient(to right, rgba(255,255,255,0), var(--secondary-text-color), rgba(255,255,255,0));
     flex-grow: 1;
 }
 </style>
