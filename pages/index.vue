@@ -247,9 +247,11 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 1</h1>
                         <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-                        <button class="github-button">
-                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            <span class="button-text">Github</span>
+                        <button class="contact-button">
+                            <div class="button-icon">
+                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            </div>
+                            <div class="button-text">Github</div>
                         </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
@@ -261,9 +263,11 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 2</h1>
                         <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                        <button class="github-button">
-                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            <span class="button-text">Github</span>
+                        <button class="contact-button">
+                            <div class="button-icon">
+                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            </div>
+                            <div class="button-text">Github</div>
                         </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
@@ -275,9 +279,11 @@ onUnmounted(() => {
                     <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
                         <h1>Project 3</h1>
                         <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
-                        <button class="github-button">
-                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            <span class="button-text">Github</span>
+                        <button class="contact-button">
+                            <div class="button-icon">
+                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                            </div>
+                            <div class="button-text">Github</div>
                         </button>
                     </div>
                     <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
