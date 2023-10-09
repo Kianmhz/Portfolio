@@ -54,38 +54,46 @@ const setProjectIndex = (index) => {
 
 let rafId = null;
 
+const calculateRate = (element, startOffset = 0, endOffset = 0, invert = false) => {
+  const elementStart = element.offsetTop - window.innerHeight + startOffset;
+  const elementEnd = element.offsetTop + element.offsetHeight + endOffset;
+  const scrollRange = elementEnd - elementStart;
+
+  let rate = (window.scrollY - elementStart) / scrollRange;
+
+  // Invert the rate if necessary
+  if (invert) {
+    rate = 1 - rate;
+  }
+
+  // Clamp the rate between 0 and 1 to ensure it doesn't go beyond these values
+  return Math.min(Math.max(rate, 0), 1);
+};
+
 const updateElementPositionsOnScroll = () => {
   if (rafId) {
     cancelAnimationFrame(rafId);
   }
 
   rafId = requestAnimationFrame(() => {
-    const totalScreenHeight = document.documentElement.scrollHeight - window.innerHeight;
-    
-    // Section 1
-    const sectionOneStartPosition = elements.leftIntroTitle.offsetTop - window.innerHeight * 0.6;
-    const sectionOneRate = ((window.scrollY - sectionOneStartPosition) / (totalScreenHeight - sectionOneStartPosition));
+    // Calculate rates for each section
+    const sectionOneRate = calculateRate(elements.leftIntroTitle);
+    const sectionTwoRate = calculateRate(elements.leftIntroSectionTwoTitle);
+    const sectionThreeRate = calculateRate(elements.firstTextSectionThree , 0 , -200, true);
 
-    // Section 2
-    const sectionTwoStartPosition = elements.leftIntroSectionTwoTitle.offsetTop - window.innerHeight * 0.4;
-    const sectionTwoRate = ((window.scrollY - sectionTwoStartPosition) / (totalScreenHeight - sectionTwoStartPosition));
+    // Apply the rates to the animations
+    elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 30}%)`;
+    elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 30}%)`;
 
-    // Section 3
-    const sectionThreeStartPosition = elements.firstTextSectionThree.offsetTop - window.innerHeight * 0.6;
-    const sectionThreeRate = ((window.scrollY - sectionThreeStartPosition) / (totalScreenHeight - sectionThreeStartPosition));
+    elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 20}%)`;
+    elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 20}%)`;
 
-    // Now apply the rates to your animations
-    elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 100}%)`;
-    elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 100}%)`;
-    
-    elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 100}%)`;
-    elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 100}%)`;
-
-    elements.firstTextSectionThree.style.transform = `translateX(-${sectionThreeRate * 100}%)`;
-    elements.secondTextSectionThree.style.transform = `translateX(-${sectionThreeRate * 90}%)`; // you can adjust multipliers
-    elements.thirdTextSectionThree.style.transform = `translateX(-${sectionThreeRate * 80}%)`;  // as per your needs
+    elements.firstTextSectionThree.style.transform = `translateX(${sectionThreeRate * 30}%)`;
+    elements.secondTextSectionThree.style.transform = `translateX(${sectionThreeRate * 50}%)`;
+    elements.thirdTextSectionThree.style.transform = `translateX(${sectionThreeRate * 70}%)`;
   });
 };
+
 
 // Attach a throttled version of the scroll handler
 let lastScrollTime = Date.now();
@@ -316,7 +324,7 @@ onUnmounted(() => {
 
     <div class="wrap">
         <div class="container">
-            <div style="transform: translateX(100%);">
+            <div>
                 <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
                 <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
                 <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
