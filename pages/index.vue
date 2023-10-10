@@ -172,7 +172,7 @@ onUnmounted(() => {
 <div v-cloak>
     <transition name="navbar-fade">
         <div class="navbar-wrapper" v-show="isScrollingUp==true">
-            <Navbar :scroll="scroll"/>
+            <navbar :scroll="scroll"/>
         </div>
     </transition>
     
@@ -204,7 +204,7 @@ onUnmounted(() => {
     </div>
 
     <div class="title" :ref="el => { scroll.title = el }">
-        <Slider />
+        <slider />
         <div class="container">
             <div>
                 <h1 :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
@@ -225,16 +225,16 @@ onUnmounted(() => {
             </div>
             <div class="grid grid-cols-2 gap-[5rem] opacity-[0] transform translate-y-[40px]" id="skills-grid"
                 :class="{ 'animate-skills': state.inViewSkills }">
-                <Skillsets />
+                <skillsets />
             </div>
             <div class="logos">
-                <Logos />
+                <logos />
             </div>
         </div>
     </div>
 
     <div class="title">
-        <Slider />
+        <slider />
         <div class="container">
             <div>
                 <h1 :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
@@ -309,11 +309,9 @@ onUnmounted(() => {
     </div>
 
     <div class="resume">
-        <ResumeHeader />
-        <div class="flex justify-center items-center">
-            <div class="container">
-                <Cards />
-            </div>
+        <resumeHeader />
+        <div class="container">
+            <card-factory />
         </div>
     </div>
 
@@ -329,7 +327,7 @@ onUnmounted(() => {
 
     <div class="contacts">
         <div class="container">
-            <Contact />
+            <contact />
         </div>
     </div>
 
@@ -518,6 +516,11 @@ onUnmounted(() => {
 
 .dots div.active {
     @apply w-4 h-4 bg-[var(--main-color)];
+}
+
+/* Resume section styles */
+.resume {
+    @apply flex flex-col justify-center items-center;
 }
 
 /* Wrap section styles */
