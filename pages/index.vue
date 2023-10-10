@@ -327,7 +327,7 @@ onUnmounted(() => {
 
     <div class="contacts">
         <div class="container">
-            <contact />
+            <contact-factory />
         </div>
     </div>
 
@@ -554,12 +554,6 @@ onUnmounted(() => {
 .contacts {
     display: flex;
     justify-content: center;
-}
-
-.contacts .container {
-    display: grid;
-    grid-template-columns: repeat(3, auto); /* This creates two columns */
-    column-gap: 20px; /* You can adjust this value for spacing between the items */
 }
 
 /* In view transitions */
