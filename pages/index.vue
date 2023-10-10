@@ -227,9 +227,9 @@ onUnmounted(() => {
                 :class="{ 'animate-skills': state.inViewSkills }">
                 <skillsets />
             </div>
-            <div class="logos">
-                <logos />
-            </div>
+        </div>
+        <div class="logos">
+            <logos />
         </div>
     </div>
 
@@ -343,6 +343,12 @@ onUnmounted(() => {
     @apply flex justify-center items-center h-screen;
 }
 
+.intro .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+}
+
 .intro-dot {
     animation: gradient 20s linear infinite alternate;
     
@@ -352,10 +358,6 @@ onUnmounted(() => {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.intro .container div {
-    @apply flex-1;
 }
 
 .content {
@@ -428,11 +430,14 @@ onUnmounted(() => {
 
 /* Skills section styles */
 .skills {
-    @apply flex justify-center h-[100vh];
+    @apply flex justify-center items-center flex-col h-screen;
 }
 
-.skills .container div {
-    flex: 1 1 50%;
+.skills .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+    margin-bottom: 10%;
 }
 
 .skills .container div p {
@@ -440,8 +445,9 @@ onUnmounted(() => {
 }
 
 .logos {
-    @apply relative overflow-hidden;
+    @apply relative overflow-hidden w-4/5;
 }
+
 .logos::before {
     content: "";
     position: absolute;
@@ -553,7 +559,7 @@ onUnmounted(() => {
 .contacts .container {
     display: grid;
     grid-template-columns: repeat(3, auto); /* This creates two columns */
-    gap: 20px; /* You can adjust this value for spacing between the items */
+    column-gap: 20px; /* You can adjust this value for spacing between the items */
 }
 
 /* In view transitions */
