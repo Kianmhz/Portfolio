@@ -20,7 +20,7 @@
 
 .author-name {
     animation: gradient 20s linear infinite alternate;
-    
+
     background: var(--gradient-color);
     background-size: 1000% 100%;
 
@@ -32,7 +32,7 @@
 
 .line {
     height: 1px;
-    background: linear-gradient(to right, rgba(255,255,255,0), var(--secondary-text-color), rgba(255,255,255,0));
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--secondary-text-color), rgba(255, 255, 255, 0));
     flex-grow: 1;
 }
 </style>

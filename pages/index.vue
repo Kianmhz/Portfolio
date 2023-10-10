@@ -1,11 +1,11 @@
 <script setup>
 // Reactive references and states.
 const scroll = reactive({
-  home: null,
-  title: null,
-  whatIDo: null,
-  projects: null,
-  resume: null,
+    home: null,
+    title: null,
+    whatIDo: null,
+    projects: null,
+    resume: null,
 });
 const state = reactive({
     inViewSkills: false,
@@ -55,43 +55,43 @@ const setProjectIndex = (index) => {
 let rafId = null;
 
 const calculateRate = (element, startOffset = 0, endOffset = 0, invert = false) => {
-  const elementStart = element.offsetTop - window.innerHeight + startOffset;
-  const elementEnd = element.offsetTop + element.offsetHeight + endOffset;
-  const scrollRange = elementEnd - elementStart;
+    const elementStart = element.offsetTop - window.innerHeight + startOffset;
+    const elementEnd = element.offsetTop + element.offsetHeight + endOffset;
+    const scrollRange = elementEnd - elementStart;
 
-  let rate = (window.scrollY - elementStart) / scrollRange;
+    let rate = (window.scrollY - elementStart) / scrollRange;
 
-  // Invert the rate if necessary
-  if (invert) {
-    rate = 1 - rate;
-  }
+    // Invert the rate if necessary
+    if (invert) {
+        rate = 1 - rate;
+    }
 
-  // Clamp the rate between 0 and 1 to ensure it doesn't go beyond these values
-  return Math.min(Math.max(rate, 0), 1);
+    // Clamp the rate between 0 and 1 to ensure it doesn't go beyond these values
+    return Math.min(Math.max(rate, 0), 1);
 };
 
 const updateElementPositionsOnScroll = () => {
-  if (rafId) {
-    cancelAnimationFrame(rafId);
-  }
+    if (rafId) {
+        cancelAnimationFrame(rafId);
+    }
 
-  rafId = requestAnimationFrame(() => {
-    // Calculate rates for each section
-    const sectionOneRate = calculateRate(elements.leftIntroTitle);
-    const sectionTwoRate = calculateRate(elements.leftIntroSectionTwoTitle);
-    const sectionThreeRate = calculateRate(elements.firstTextSectionThree , 0 , -200, true);
+    rafId = requestAnimationFrame(() => {
+        // Calculate rates for each section
+        const sectionOneRate = calculateRate(elements.leftIntroTitle);
+        const sectionTwoRate = calculateRate(elements.leftIntroSectionTwoTitle);
+        const sectionThreeRate = calculateRate(elements.firstTextSectionThree, 0, -200, true);
 
-    // Apply the rates to the animations
-    elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 30}%)`;
-    elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 30}%)`;
+        // Apply the rates to the animations
+        elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 30}%)`;
+        elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 30}%)`;
 
-    elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 20}%)`;
-    elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 20}%)`;
+        elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 20}%)`;
+        elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 20}%)`;
 
-    elements.firstTextSectionThree.style.transform = `translateX(${sectionThreeRate * 30}%)`;
-    elements.secondTextSectionThree.style.transform = `translateX(${sectionThreeRate * 50}%)`;
-    elements.thirdTextSectionThree.style.transform = `translateX(${sectionThreeRate * 70}%)`;
-  });
+        elements.firstTextSectionThree.style.transform = `translateX(${sectionThreeRate * 30}%)`;
+        elements.secondTextSectionThree.style.transform = `translateX(${sectionThreeRate * 50}%)`;
+        elements.thirdTextSectionThree.style.transform = `translateX(${sectionThreeRate * 70}%)`;
+    });
 };
 
 // Scroll direction detection logic.
@@ -105,7 +105,7 @@ const scrollDetector = () => {
             isScrollingUp.value = false;
         }
         maximumScrollPosition.value = currentScrollPosition;
-    } 
+    }
     else if (currentScrollPosition < maximumScrollPosition.value - SCROLL_THRESHOLD) {
         if (!isScrollingUp.value) {
             isScrollingUp.value = true;
@@ -116,10 +116,10 @@ const scrollDetector = () => {
 
 // Smooth scroll to section.
 const scrollTo = (refName) => {
-  const sectionRef = scroll[refName];
-  if (sectionRef) {
-    sectionRef.scrollIntoView({ behavior: 'smooth' });
-  }
+    const sectionRef = scroll[refName];
+    if (sectionRef) {
+        sectionRef.scrollIntoView({ behavior: 'smooth' });
+    }
 };
 
 // attach scroll handler
@@ -169,172 +169,174 @@ onUnmounted(() => {
 </script>
 
 <template>
-<div v-cloak>
-    <transition name="navbar-fade">
-        <div class="navbar-wrapper" v-show="isScrollingUp==true">
-            <navbar :scroll="scroll"/>
+    <div v-cloak>
+        <transition name="navbar-fade">
+            <div class="navbar-wrapper" v-show="isScrollingUp == true">
+                <navbar :scroll="scroll" />
+            </div>
+        </transition>
+
+        <div class="intro" :ref="el => { scroll.home = el }">
+            <div class="container">
+                <div>
+                    <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0]"
+                        :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
+                    <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
+                        <h1 class="text-[7rem] font-[900]">Kianmehr<span class="intro-dot">.</span></h1>
+                        <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et
+                            dolore magna aliqua.
+                        </p>
+                    </div>
+                    <button @click="scrollTo('title')" id="intro-button"
+                        class="py-[20px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0"
+                        :class="{ 'animate-intro': state.inViewIntro }">
+                        <span class="content">
+                            <span>EXPLORE BELOW</span>
+                        </span>
+                        <div class="arrow"></div>
+                    </button>
+                </div>
+                <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
+                    <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
+                </div>
+            </div>
         </div>
-    </transition>
-    
-    <div class="intro" :ref="el => { scroll.home = el }">
-        <div class="container">
-            <div>
-                <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0]"
-                    :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
-                <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <h1 class="text-[7rem] font-[900]">Kianmehr<span class="intro-dot">.</span></h1>
-                    <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
+
+        <div class="title" :ref="el => { scroll.title = el }">
+            <slider />
+            <div class="container">
+                <div>
+                    <h1 :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
+                    <h1 :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="skills" :ref="el => { scroll.whatIDo = el }">
+            <div class="container">
+                <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
+                    <h1 class="text-[3rem] font-[900]">What I Do</h1>
+                    <p id="skills-about">
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                         et
-                        dolore magna aliqua.
+                        dolore magna aliqua."
                     </p>
                 </div>
-                <button @click="scrollTo('title')" id="intro-button" class="py-[20px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0" :class="{ 'animate-intro': state.inViewIntro }">
-                    <span class="content">
-                        <span>EXPLORE BELOW</span>
-                    </span>
-                    <div class="arrow"></div>
-                </button>
-            </div>
-            <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
-            </div>
-        </div>
-    </div>
-
-    <div class="title" :ref="el => { scroll.title = el }">
-        <slider />
-        <div class="container">
-            <div>
-                <h1 :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
-                <h1 :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="skills" :ref="el => { scroll.whatIDo = el }">
-        <div class="container">
-            <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
-                <h1 class="text-[3rem] font-[900]">What I Do</h1>
-                <p id="skills-about">
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua."
-                </p>
-            </div>
-            <div class="opacity-[0] transform translate-y-[40px]" id="skills-grid"
-                :class="{ 'animate-skills': state.inViewSkills }">
-                <skillset-factory />
-            </div>
-        </div>
-        <div class="logos">
-            <logos />
-        </div>
-    </div>
-
-    <div class="title">
-        <slider />
-        <div class="container">
-            <div>
-                <h1 :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
-                <h1 :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="projects" :ref="el => { scroll.projects = el }">
-        <div class="container">
-            <transition-group name="fade" tag="div" class="relative w-full h-[90vh]">
-                <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                    <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
-                        <h1>Project 1</h1>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-                        <button class="contact-button">
-                            <div class="button-icon">
-                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            </div>
-                            <div class="button-text">Github</div>
-                        </button>
-                    </div>
-                    <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
-                        <img src="~/assets/img/IMG_1042.JPG" />
-                    </div>
+                <div class="opacity-[0] transform translate-y-[40px]" id="skills-grid"
+                    :class="{ 'animate-skills': state.inViewSkills }">
+                    <skillset-factory />
                 </div>
-
-                <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                    <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
-                        <h1>Project 2</h1>
-                        <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
-                        <button class="contact-button">
-                            <div class="button-icon">
-                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            </div>
-                            <div class="button-text">Github</div>
-                        </button>
-                    </div>
-                    <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
-                        <img src="~/assets/img/IMG_1042.JPG" />
-                    </div>
-                </div>
-
-                <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                    <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
-                        <h1>Project 3</h1>
-                        <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
-                        <button class="contact-button">
-                            <div class="button-icon">
-                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                            </div>
-                            <div class="button-text">Github</div>
-                        </button>
-                    </div>
-                    <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
-                        <img src="~/assets/img/IMG_1042.JPG" />
-                    </div>
-                </div>
-            </transition-group>
-        </div>
-        <div class="flex justify-center items-center gap-[5rem]" :ref="el => { scroll.resume = el }">
-            <button id="back" class="" @click="goBack"><font-awesome-icon
-                    :icon="['fas', 'circle-chevron-left']" size="xl" /></button>
-            <div class="dots">
-                <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
-                <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
-                <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
             </div>
-            <button id="forward" class="" @click="goForward"><font-awesome-icon
-                    :icon="['fas', 'circle-chevron-right']" size="xl" /></button>
-        </div>
-    </div>
-
-    <div class="resume">
-        <resumeHeader />
-        <div class="container">
-            <card-factory />
-        </div>
-    </div>
-
-    <div class="wrap">
-        <div class="container">
-            <div>
-                <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
-                <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
-                <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
+            <div class="logos">
+                <logos />
             </div>
         </div>
-    </div>
 
-    <div class="contacts">
-        <div class="container">
-            <contact-factory />
+        <div class="title">
+            <slider />
+            <div class="container">
+                <div>
+                    <h1 :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
+                    <h1 :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <footer>
-        <footer-content />
-    </footer>
-</div>
+        <div class="projects" :ref="el => { scroll.projects = el }">
+            <div class="container">
+                <transition-group name="fade" tag="div" class="relative w-full h-[90vh]">
+                    <div v-if="currentProjectIndex === 0" key="0" class="project-item">
+                        <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
+                            <h1>Project 1</h1>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+                            <button class="contact-button">
+                                <div class="button-icon">
+                                    <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                </div>
+                                <div class="button-text">Github</div>
+                            </button>
+                        </div>
+                        <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
+                            <img src="~/assets/img/IMG_1042.JPG" />
+                        </div>
+                    </div>
+
+                    <div v-if="currentProjectIndex === 1" key="1" class="project-item">
+                        <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
+                            <h1>Project 2</h1>
+                            <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                            <button class="contact-button">
+                                <div class="button-icon">
+                                    <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                </div>
+                                <div class="button-text">Github</div>
+                            </button>
+                        </div>
+                        <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
+                            <img src="~/assets/img/IMG_1042.JPG" />
+                        </div>
+                    </div>
+
+                    <div v-if="currentProjectIndex === 2" key="2" class="project-item">
+                        <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
+                            <h1>Project 3</h1>
+                            <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
+                            <button class="contact-button">
+                                <div class="button-icon">
+                                    <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                </div>
+                                <div class="button-text">Github</div>
+                            </button>
+                        </div>
+                        <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
+                            <img src="~/assets/img/IMG_1042.JPG" />
+                        </div>
+                    </div>
+                </transition-group>
+            </div>
+            <div class="flex justify-center items-center gap-[5rem]" :ref="el => { scroll.resume = el }">
+                <button id="back" class="" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
+                        size="xl" /></button>
+                <div class="dots">
+                    <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
+                    <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
+                    <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
+                </div>
+                <button id="forward" class="" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
+                        size="xl" /></button>
+            </div>
+        </div>
+
+        <div class="resume">
+            <resumeHeader />
+            <div class="container">
+                <card-factory />
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="container">
+                <div>
+                    <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
+                    <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
+                    <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contacts">
+            <div class="container">
+                <contact-factory />
+            </div>
+        </div>
+
+        <footer>
+            <footer-content />
+        </footer>
+    </div>
 </template>
 
 <style>
@@ -351,7 +353,7 @@ onUnmounted(() => {
 
 .intro-dot {
     animation: gradient 20s linear infinite alternate;
-    
+
     background: var(--gradient-color);
     background-size: 1000% 100%;
 
@@ -391,11 +393,11 @@ onUnmounted(() => {
 .title {
     @apply flex justify-center items-center h-[70vh];
 }
-  
+
 .title .container h1:nth-child(1) {
     @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
-    
+
     background: var(--gradient-color);
     background-size: 1000% 100%;
 
@@ -407,20 +409,19 @@ onUnmounted(() => {
 .title .container h1:nth-child(2) {
     @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
-    
-    background: linear-gradient(-45deg, 
-    var(--main-color) 0%, 
-    var(--secondary-color) 10%, 
-    var(--tertiary-color) 20%, 
-    var(--quaternary-color) 30%, 
-    var(--main-color) 40%,
-    var(--secondary-color) 50%, 
-    var(--tertiary-color) 60%, 
-    var(--quaternary-color) 70%, 
-    var(--main-color) 80%,
-    var(--secondary-color) 90%,
-    var(--tertiary-color) 100%
-);
+
+    background: linear-gradient(-45deg,
+            var(--main-color) 0%,
+            var(--secondary-color) 10%,
+            var(--tertiary-color) 20%,
+            var(--quaternary-color) 30%,
+            var(--main-color) 40%,
+            var(--secondary-color) 50%,
+            var(--tertiary-color) 60%,
+            var(--quaternary-color) 70%,
+            var(--main-color) 80%,
+            var(--secondary-color) 90%,
+            var(--tertiary-color) 100%);
     background-size: 1000% 100%;
 
     background-clip: text;
@@ -488,7 +489,7 @@ onUnmounted(() => {
 }
 
 .project-item {
-    @apply  flex justify-center items-center;
+    @apply flex justify-center items-center;
 }
 
 .project-info {
@@ -499,7 +500,7 @@ onUnmounted(() => {
     @apply opacity-0 transform translate-x-[50px];
 }
 
-.project-image img{
+.project-image img {
     aspect-ratio: 4/4;
 }
 
@@ -541,14 +542,14 @@ onUnmounted(() => {
 .wrap .container div p {
     @apply text-[7rem] font-normal;
     animation: gradient 20s linear infinite alternate;
-    
+
     background: var(--gradient-color);
     background-size: 1000% 100%;
 
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}   
+}
 
 /* Contacts section styles */
 .contacts {
@@ -610,19 +611,21 @@ onUnmounted(() => {
 /* navbar animation */
 .navbar-wrapper {
     @apply fixed top-0 left-0 right-0 z-[100];
-  }
+}
 
-.navbar-fade-enter-from, .navbar-fade-leave-to {
+.navbar-fade-enter-from,
+.navbar-fade-leave-to {
     opacity: 0;
     transform: translateY(-100%);
 }
 
-.navbar-fade-enter-to, .navbar-fade-leave-from {
+.navbar-fade-enter-to,
+.navbar-fade-leave-from {
     opacity: 1;
     transform: translateY(0);
 }
 
-.navbar-fade-enter-active, .navbar-fade-leave-active {
+.navbar-fade-enter-active,
+.navbar-fade-leave-active {
     transition: opacity 0.5s ease, transform 0.5s ease;
-}
-</style>
+}</style>

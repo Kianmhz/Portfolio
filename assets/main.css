@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=League+Spartan&family=Montserrat&family=Open+Sans&family=Roboto:wght@400;500;700&display=swap');
 
-*{padding: 0; margin: 0; box-sizing: border-box;}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 :root {
     --main-bg-color: #000000;
@@ -12,29 +16,30 @@
     --tertiary-color: #E15FED;
     --quaternary-color: #6EDCD9;
 
-    --gradient-color: linear-gradient(45deg, 
-        var(--main-color) 0%, 
-        var(--secondary-color) 10%, 
-        var(--tertiary-color) 20%, 
-        var(--quaternary-color) 30%, 
-        var(--main-color) 40%,
-        var(--secondary-color) 50%, 
-        var(--tertiary-color) 60%, 
-        var(--quaternary-color) 70%, 
-        var(--main-color) 80%,
-        var(--secondary-color) 90%,
-        var(--tertiary-color) 100%
-    );
+    --gradient-color: linear-gradient(45deg,
+            var(--main-color) 0%,
+            var(--secondary-color) 10%,
+            var(--tertiary-color) 20%,
+            var(--quaternary-color) 30%,
+            var(--main-color) 40%,
+            var(--secondary-color) 50%,
+            var(--tertiary-color) 60%,
+            var(--quaternary-color) 70%,
+            var(--main-color) 80%,
+            var(--secondary-color) 90%,
+            var(--tertiary-color) 100%);
 }
 
 /* Scrollbar customization */
 ::-webkit-scrollbar {
     width: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: #44444489;
     border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background-color: #555;
 }
@@ -74,15 +79,16 @@ body {
     transform: translateX(-10px);
     @apply opacity-100 text-white
 }
-  
+
 .contact-button:hover .button-text::before {
     @apply w-full;
 }
-  
-.button-icon::before , .button-text::before {
+
+.button-icon::before,
+.button-text::before {
     content: '';
     transition: 0.3s ease-in-out;
-    width:0px;
+    width: 0px;
     @apply absolute h-[2px] bg-[var(--main-color)] bottom-0 left-0;
 }
 
@@ -93,12 +99,19 @@ body {
 /* Animations */
 /* Bounce towards down */
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translate(-50%, 0) rotate(-45deg);
     }
+
     40% {
         transform: translate(-50%, -30%) rotate(-45deg);
     }
+
     60% {
         transform: translate(-50%, -15%) rotate(-45deg);
     }
@@ -106,12 +119,19 @@ body {
 
 /* Bounce towards negative x */
 @keyframes bounce-x {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateX(0%);
     }
+
     40% {
         transform: translateX(-30%);
     }
+
     60% {
         transform: translateX(-15%);
     }
@@ -119,12 +139,19 @@ body {
 
 /* Bounce towards x */
 @keyframes bouncex {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateX(0%);
     }
+
     40% {
         transform: translateX(30%);
     }
+
     60% {
         transform: translateX(15%);
     }
@@ -132,10 +159,26 @@ body {
 
 /* For Resume header to change text */
 @keyframes change {
-    0%, 25% {transform:translate3d(0,0,0);}
-    25%, 50% {transform:translate3d(0,-50%,0);}
-    50%, 75% {transform:translate3d(0,-50%,0);}
-    75%, 100% {transform:translate3d(0,0,0);}
+
+    0%,
+    25% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    25%,
+    50% {
+        transform: translate3d(0, -50%, 0);
+    }
+
+    50%,
+    75% {
+        transform: translate3d(0, -50%, 0);
+    }
+
+    75%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
 }
 
 /* For header on load animation */
@@ -144,6 +187,7 @@ body {
         transform: translateX(-100%);
         opacity: 0;
     }
+
     100% {
         transform: translateX(0);
         opacity: 1;
@@ -152,35 +196,38 @@ body {
 
 /* For dynamic gradient */
 @keyframes gradient {
+
     /* Start at the top-left corner */
-    0%{
-        background-position:0% 0%
+    0% {
+        background-position: 0% 0%
     }
+
     /* End at the bottom-right corner */
-    100%{
-        background-position:100% 100%
+    100% {
+        background-position: 100% 100%
     }
 }
 
 /* For logo slider animation */
 @keyframes logo-scroll {
-	0% {
-		transform: translateX(0%);
-	}
-	100% {
-		transform: translateX(-100%);
-	}
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 
 /* For Tablets */
-@media (max-width: 1024px) and (orientation: landscape){
+@media (max-width: 1024px) and (orientation: landscape) {
     .container {
-        @apply overflow-hidden w-[90%]; 
+        @apply overflow-hidden w-[90%];
     }
 
     /* For navbar */
-    .nav-bar .container{
+    .nav-bar .container {
         @apply overflow-visible;
     }
 
@@ -188,9 +235,11 @@ body {
     .intro .container {
         @apply mt-[100px];
     }
+
     .intro .container div h1 {
         @apply text-[4rem];
     }
+
     .intro .container div h2 {
         @apply text-[2rem];
     }
@@ -199,6 +248,7 @@ body {
     .title {
         @apply my-[4rem];
     }
+
     .title .container div h1 {
         @apply text-[4rem] !important;
     }
@@ -207,12 +257,15 @@ body {
     .skills {
         @apply h-[100%] !important;
     }
+
     #skills-about {
         @apply mb-[4rem];
     }
+
     .skills h1 {
         @apply text-[2rem];
     }
+
     #skills-grid {
         @apply flex-auto gap-y-[5rem] mb-[4rem] !important;
     }
@@ -221,12 +274,15 @@ body {
     .resume-header {
         @apply text-[2rem] !important;
     }
+
     .resume-card {
         @apply p-5 !important;
     }
+
     .resume-card p {
         @apply text-[1rem] !important;
     }
+
     .resume-card h1 {
         @apply text-[1rem] !important;
     }
@@ -248,9 +304,11 @@ body {
     .nav {
         @apply hidden;
     }
-    .nav-bar .container{
+
+    .nav-bar .container {
         @apply overflow-visible;
     }
+
     .nav:nth-child(1) {
         @apply flex;
     }
@@ -259,12 +317,15 @@ body {
     .intro .container {
         @apply mt-[200px] flex-col text-center;
     }
+
     .intro .container div h2 {
         @apply text-[2rem];
     }
-    .intro .container div h1{
+
+    .intro .container div h1 {
         @apply text-[4rem];
     }
+
     .intro button span {
         @apply hidden;
     }
@@ -273,9 +334,11 @@ body {
     .title {
         @apply h-[20vh] !important;
     }
-    .title .container div h1{
+
+    .title .container div h1 {
         @apply text-[2rem] !important;
     }
+
     .slider {
         @apply h-[20vh] !important;
     }
@@ -284,18 +347,23 @@ body {
     .skills {
         @apply h-[100%] !important;
     }
+
     .skills h1 {
         @apply text-[2rem];
     }
+
     .skills .container {
         @apply flex-col text-center;
     }
+
     .skills .container div {
         @apply flex-auto !important;
     }
+
     #skills-grid {
         @apply grid-cols-1 mt-[5rem];
     }
+
     .logos {
         @apply hidden;
     }
@@ -304,9 +372,11 @@ body {
     .projects .container div h1 {
         @apply text-[2rem] !important;
     }
+
     .projects .container div {
         @apply flex-col text-center;
     }
+
     .github-button {
         @apply m-auto;
     }
@@ -325,9 +395,11 @@ body {
     .contacts div {
         @apply flex-auto !important;
     }
+
     .contacts {
         @apply flex-col justify-center items-center text-center;
     }
+
     .linkedin-button,
     .email-button {
         @apply m-auto;

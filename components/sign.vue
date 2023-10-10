@@ -1,11 +1,9 @@
 <template>
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="707.000000pt" height="353.000000pt" viewBox="0 0 707.000000 353.000000"
- preserveAspectRatio="xMidYMid meet">
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="707.000000pt" height="353.000000pt"
+    viewBox="0 0 707.000000 353.000000" preserveAspectRatio="xMidYMid meet">
 
-<g transform="translate(0.000000,353.000000) scale(0.100000,-0.100000)"
-fill="#fff" stroke="none">
-<path class="svg" d="M6575 3418 c-189 -19 -1178 -250 -1647 -384 -438 -125 -1594 -504
+    <g transform="translate(0.000000,353.000000) scale(0.100000,-0.100000)" fill="#fff" stroke="none">
+      <path class="svg" d="M6575 3418 c-189 -19 -1178 -250 -1647 -384 -438 -125 -1594 -504
 -1889 -619 -79 -31 -152 -55 -164 -53 -26 4 -24 30 16 308 16 113 33 249 36
 303 6 93 5 97 -14 97 -28 0 -56 -40 -145 -201 -105 -188 -183 -312 -224 -356
 -35 -37 -36 -37 -50 -18 -18 24 -11 60 17 95 10 14 25 35 31 48 24 48 -31 75
@@ -28,17 +26,17 @@ fill="#fff" stroke="none">
 -168 -1015 -364 -1896 -790 -2540 -1227 -54 -36 -104 -66 -112 -66 -21 0 -19
 22 14 205 16 88 33 191 36 228 5 49 14 76 29 92 12 14 74 43 146 70 467 176
 2129 702 2639 835 150 40 196 46 205 31z m-3206 -1654 c4 -20 -25 -34 -40 -19
--15 15 -1 44 19 40 10 -2 19 -11 21 -21z"/>
-</g>
-</svg>
+-15 15 -1 44 19 40 10 -2 19 -11 21 -21z" />
+    </g>
+  </svg>
 </template>
 
 <style scoped>
 .sign {
-    @apply w-auto h-12;
-  }
-  
+  @apply w-auto h-12;
+}
+
 .sign:hover .svg {
-    fill: var(--main-color);
-  }
+  fill: var(--main-color);
+}
 </style>

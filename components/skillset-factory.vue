@@ -8,12 +8,7 @@ const contentCards = ref([
 </script>
 
 <template>
-    <div class="grid grid-cols-2 gap-[5rem]">
-      <skillsets 
-        v-for="card in contentCards"
-        :key="card.id"
-        :title="card.title"
-        :content="card.content"
-      />
-    </div>
+  <div class="grid grid-cols-2 gap-[5rem]">
+    <skillsets v-for="card in contentCards" :key="card.id" :title="card.title" :content="card.content" />
+  </div>
 </template>

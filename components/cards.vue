@@ -4,8 +4,8 @@ const props = defineProps(['id', 'title', 'content']);
 
 <template>
     <div class="resume-card" :id="`card${id}`">
-      <p>{{ content }}</p>
-      <h1 class="resume-title">{{ title }}</h1>
+        <p>{{ content }}</p>
+        <h1 class="resume-title">{{ title }}</h1>
     </div>
 </template>
 
