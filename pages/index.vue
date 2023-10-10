@@ -223,9 +223,9 @@ onUnmounted(() => {
                     dolore magna aliqua."
                 </p>
             </div>
-            <div class="grid grid-cols-2 gap-[5rem] opacity-[0] transform translate-y-[40px]" id="skills-grid"
+            <div class="opacity-[0] transform translate-y-[40px]" id="skills-grid"
                 :class="{ 'animate-skills': state.inViewSkills }">
-                <skillsets />
+                <skillset-factory />
             </div>
         </div>
         <div class="logos">
