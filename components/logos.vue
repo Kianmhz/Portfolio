@@ -249,19 +249,19 @@
 }
 
 svg {
-    @apply w-[10vh] h-auto;
+    @apply w-[5%] h-auto;
 }
 
 svg:nth-child(4) {
-    @apply w-[18vh] h-auto;
+    @apply w-[10%];
 }
 
 svg:nth-child(5),
 svg:nth-child(6) {
-    @apply w-[15vh] h-auto;
+    @apply w-[8%];
 }
 
 svg:nth-child(7) {
-    @apply w-[12vh] h-auto;
+    @apply w-[7%];
 }
 </style>
