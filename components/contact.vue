@@ -19,11 +19,21 @@
         <div class="button-text">Email</div>
     </button>
 </div>
+<div class="contact-item">
+    <h1>Codepen</h1>
+    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing</h2>
+    <button class="contact-button">
+        <div class="button-icon">
+            <font-awesome-icon :icon="['fab', 'codepen']" size="lg"/>
+        </div>
+        <div class="button-text">Codepen</div>
+    </button>
+</div>
 </template>
 
 <style scoped>
 .contact-item {
-    @apply mb-[50px];
+    @apply mb-[50px] flex flex-col;
 }
 
 h1 {

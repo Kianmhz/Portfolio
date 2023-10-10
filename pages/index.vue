@@ -543,11 +543,14 @@ onUnmounted(() => {
 
 /* Contacts section styles */
 .contacts {
-    @apply flex justify-center;
+    display: flex;
+    justify-content: center;
 }
 
 .contacts .container {
-    @apply flex justify-around items-center;
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* This creates two columns */
+    gap: 20px; /* You can adjust this value for spacing between the items */
 }
 
 /* In view transitions */
