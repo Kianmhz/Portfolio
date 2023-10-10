@@ -94,22 +94,11 @@ const updateElementPositionsOnScroll = () => {
   });
 };
 
-
-// Attach a throttled version of the scroll handler
-let lastScrollTime = Date.now();
-window.addEventListener('scroll', () => {
-  const now = Date.now();
-  if (now - lastScrollTime > 50) { // throttle every 50ms
-    updateElementPositionsOnScroll();
-    lastScrollTime = now;
-  }
-});
-
 // Scroll direction detection logic.
 const SCROLL_THRESHOLD = 100;
 const maximumScrollPosition = ref(0);
 const isScrollingUp = ref(true);
-const handleScroll = () => {
+const scrollDetector = () => {
     const currentScrollPosition = window.scrollY;
     if (currentScrollPosition > maximumScrollPosition.value + SCROLL_THRESHOLD) {
         if (isScrollingUp.value) {
@@ -133,8 +122,18 @@ const scrollTo = (refName) => {
   }
 };
 
-let observer;
+// attach scroll handler
+let lastScrollTime = Date.now();
+const scrollHandler = () => {
+    const now = Date.now();
+    if (now - lastScrollTime > 10) { // throttle scroll handler to 10ms
+        updateElementPositionsOnScroll();
+        scrollDetector();
+        lastScrollTime = now;
+    }
+};
 
+let observer;
 onMounted(() => {
     // Initialize Intersection Observer.
     const classToStateMap = {
@@ -160,16 +159,12 @@ onMounted(() => {
         }
     });
 
-    // Initialize sections data and attach scroll handlers.
-    window.addEventListener('scroll', updateElementPositionsOnScroll);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', scrollHandler);
 });
 
 onUnmounted(() => {
     observer.disconnect();
-
-    window.removeEventListener('scroll', updateElementPositionsOnScroll);
-    window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('scroll', scrollHandler);
 });
 </script>
 
