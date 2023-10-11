@@ -249,7 +249,7 @@ onUnmounted(() => {
             <div class="container">
                 <transition-group name="fade" tag="div" class="relative w-full h-[90vh]">
                     <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                        <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
+                        <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Project 1</h1>
                             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
                             <button class="contact-button">
@@ -259,13 +259,13 @@ onUnmounted(() => {
                                 <div class="button-text">Github</div>
                             </button>
                         </div>
-                        <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
+                        <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
                             <img src="~/assets/img/IMG_1042.JPG" />
                         </div>
                     </div>
 
                     <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                        <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
+                        <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Project 2</h1>
                             <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
                             <button class="contact-button">
@@ -275,13 +275,13 @@ onUnmounted(() => {
                                 <div class="button-text">Github</div>
                             </button>
                         </div>
-                        <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
+                        <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
                             <img src="~/assets/img/IMG_1042.JPG" />
                         </div>
                     </div>
 
                     <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                        <div class="project-info" :class="{ 'animate-in': state.inViewProject }">
+                        <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Project 3</h1>
                             <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
                             <button class="contact-button">
@@ -291,7 +291,7 @@ onUnmounted(() => {
                                 <div class="button-text">Github</div>
                             </button>
                         </div>
-                        <div class="project-image" :class="{ 'animate-in': state.inViewProject }">
+                        <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
                             <img src="~/assets/img/IMG_1042.JPG" />
                         </div>
                     </div>
@@ -578,8 +578,8 @@ onUnmounted(() => {
 }
 
 /* Projects in view transitions */
-.project-info.animate-in,
-.project-image.animate-in {
+.project-info.animate-projects,
+.project-image.animate-projects {
     @apply opacity-100 transform translate-y-0 translate-x-0;
     transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
