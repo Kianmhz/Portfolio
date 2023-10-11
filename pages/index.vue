@@ -55,8 +55,8 @@ const setProjectIndex = (index) => {
 let rafId = null;
 
 const calculateRate = (element, startOffset = 0, endOffset = 0, invert = false) => {
-    const elementStart = element.offsetTop - window.innerHeight + startOffset;
-    const elementEnd = element.offsetTop + element.offsetHeight + endOffset;
+    const elementStart = element.getBoundingClientRect().top + window.scrollY - window.innerHeight + startOffset;
+    const elementEnd = element.getBoundingClientRect().top + window.scrollY + element.offsetHeight + endOffset;
     const scrollRange = elementEnd - elementStart;
 
     let rate = (window.scrollY - elementStart) / scrollRange;
@@ -125,9 +125,10 @@ const scrollTo = (refName) => {
 // attach scroll handler
 let lastScrollTime = Date.now();
 const scrollHandler = () => {
+    updateElementPositionsOnScroll();
+
     const now = Date.now();
-    if (now - lastScrollTime > 10) { // throttle scroll handler to 10ms
-        updateElementPositionsOnScroll();
+    if (now - lastScrollTime > 100) { // throttle scroll handler to 100ms
         scrollDetector();
         lastScrollTime = now;
     }
@@ -160,11 +161,13 @@ onMounted(() => {
     });
 
     window.addEventListener('scroll', scrollHandler);
+    window.addEventListener('resize', updateElementPositionsOnScroll);
 });
 
 onUnmounted(() => {
     observer.disconnect();
     window.removeEventListener('scroll', scrollHandler);
+    window.removeEventListener('resize', updateElementPositionsOnScroll);
 });
 </script>
 
@@ -208,7 +211,7 @@ onUnmounted(() => {
         <div class="title" :ref="el => { scroll.title = el }">
             <slider />
             <div class="container">
-                <div>
+                <div class="will-change-transform">
                     <h1 :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
                     <h1 :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
                 </div>
@@ -238,7 +241,7 @@ onUnmounted(() => {
         <div class="title">
             <slider />
             <div class="container">
-                <div>
+                <div class="will-change-transform">
                     <h1 :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
                     <h1 :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
                 </div>
@@ -319,7 +322,7 @@ onUnmounted(() => {
 
         <div class="wrap">
             <div class="container">
-                <div>
+                <div class="will-change-transform">
                     <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
                     <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
                     <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
