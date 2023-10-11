@@ -476,10 +476,6 @@ onUnmounted(() => {
     @apply flex flex-col justify-center items-center relative h-[100vh];
 }
 
-.projects .container div {
-    flex: 1 1 50%;
-}
-
 .projects .container div h1 {
     @apply text-[3rem] font-[900] mb-[20px];
 }
@@ -489,7 +485,7 @@ onUnmounted(() => {
 }
 
 .project-item {
-    @apply flex justify-center items-center;
+    @apply grid grid-cols-2 justify-center items-center gap-[50px];
 }
 
 .project-info {
