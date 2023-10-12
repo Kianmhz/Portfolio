@@ -1,8 +1,8 @@
 <script setup>
 const contactItems = ref([
-  { title: "Linkedin", description: "Lorem ipsum dolor sit amet, consectetur adipiscing", icon: ['fab', 'linkedin'] },
-  { title: "Email", description: "Lorem ipsum dolor sit amet, consectetur adipiscing", icon: ['fas', 'envelope'] },
-  { title: "Codepen", description: "Lorem ipsum dolor sit amet, consectetur adipiscing", icon: ['fab', 'codepen'] }
+  { title: "Linkedin", description: "Connect with me professionally and let's build bridges.", icon: ['fab', 'linkedin'] },
+  { title: "Email", description: "Reach out directly for inquiries, collaborations, or just to say hi.", icon: ['fas', 'envelope'] },
+  { title: "Codepen", description: "Explore my snippets, experiments, and innovative solutions.", icon: ['fab', 'codepen'] }
 ]);
 </script>
 
