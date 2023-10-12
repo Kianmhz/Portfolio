@@ -1,14 +1,14 @@
 <script setup>
 const cards = ref([
-    { id: 3, title: "Python", content: "Lorem ipsum..." },
-    { id: 2, title: "C++", content: "Lorem ipsum..." },
-    { id: 1, title: "Resume", content: "Lorem ipsum..." }
+    { id: 3, title: "Python Certification", content: "Certified in Python, I possess a strong foundation in scripting and backend development, showcasing my dedication to continuous learning in this versatile language."},
+    { id: 2, title: "C++ Certification", content: "A reflection to my proficiency in C++, this certification validates my skills in object-oriented programming and data structures." },
+    { id: 1, title: "Professional Resume", content: "A blend of foundational knowledge and hands-on projects, showcasing my dedication to software engineering." }
 ]);
 </script>
 
 <template>
     <div class="cards-wrapper">
-        <Cards v-for="card in cards" :key="card.id" :id="card.id" :title="card.title" :content="card.content" />
+        <Cards v-for="card in cards" :id="card.id" :title="card.title" :content="card.content" />
     </div>
 </template>
 
