@@ -187,7 +187,8 @@ onUnmounted(() => {
                     <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
                         <h1 class="text-[7rem] font-[900]">Kianmehr<span class="intro-dot">.</span></h1>
                         <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
-                            A passionate Software Developer driven by creativity, innovation and a continuous quest for proficiency. Every
+                            A dedicated Software Developer driven by creativity, innovation and a continuous quest for
+                            proficiency. Every
                             project I pursue is a journey of exploration, dedication, and a drive for excellence.
                         </p>
                     </div>
@@ -221,9 +222,9 @@ onUnmounted(() => {
                 <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
                     <h1 class="text-[3rem] font-[900]">What I Do</h1>
                     <p id="skills-about">
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et
-                        dolore magna aliqua."
+                        Creating digital experiences through a fusion of sleek design and seamless functionality. From the
+                        first click to the lasting impression, I blend aesthetics with performance, making every interaction
+                        matter.
                     </p>
                 </div>
                 <div class="opacity-[0] transform translate-y-[40px]" id="skills-grid"
