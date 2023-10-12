@@ -183,14 +183,12 @@ onUnmounted(() => {
             <div class="container">
                 <div>
                     <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0]"
-                        :class="{ 'animate-intro': state.inViewIntro }">Hello, it's</h2>
+                        :class="{ 'animate-intro': state.inViewIntro }">Hello, I'm</h2>
                     <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
                         <h1 class="text-[7rem] font-[900]">Kianmehr<span class="intro-dot">.</span></h1>
                         <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et
-                            dolore magna aliqua.
+                            A passionate Software Developer driven by creativity, innovation and a continuous quest for proficiency. Every
+                            project I pursue is a journey of exploration, dedication, and a drive for excellence.
                         </p>
                     </div>
                     <button @click="scrollTo('title')" id="intro-button"
@@ -203,7 +201,7 @@ onUnmounted(() => {
                     </button>
                 </div>
                 <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <img src="~/assets/img/IMG_1042.JPG" alt="Kianmehr's Image" />
+                    <img src="~/assets/img/me.JPG" alt="Kianmehr's Image" />
                 </div>
             </div>
         </div>
@@ -627,4 +625,5 @@ onUnmounted(() => {
 .navbar-fade-enter-active,
 .navbar-fade-leave-active {
     transition: opacity 0.5s ease, transform 0.5s ease;
-}</style>
+}
+</style>
