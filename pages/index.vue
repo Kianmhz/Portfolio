@@ -252,8 +252,11 @@ onUnmounted(() => {
                 <transition-group name="fade" tag="div" class="relative w-full h-[90vh]">
                     <div v-if="currentProjectIndex === 0" key="0" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
-                            <h1>Project 1</h1>
-                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+                            <h1>Dine Discover</h1>
+                            <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for exploring
+                                restaurants. While the platform is not operational, its design emphasizes a user-friendly interface, clean
+                                visuals, and organized data. Features include user authentication, search, and detailed
+                                restaurant reviews.</p>
                             <button class="contact-button">
                                 <div class="button-icon">
                                     <font-awesome-icon :icon="['fab', 'github']" size="lg" />
@@ -262,14 +265,18 @@ onUnmounted(() => {
                             </button>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                            <img src="~/assets/img/IMG_1042.JPG" />
+                            <img src="~/assets/img/DineDiscover.PNG" />
                         </div>
                     </div>
 
                     <div v-if="currentProjectIndex === 1" key="1" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
-                            <h1>Project 2</h1>
-                            <p>"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+                            <h1>Instagram Bot</h1>
+                            <p>Utilizing Python Playwright library, this bot is designed to streamline various Instagram
+                                tasks. With
+                                capabilities like logging in, posting photos and videos, as well as managing follow/unfollow
+                                actions, it's built to run in a continuous loop, ensuring sustained activity and
+                                automation.</p>
                             <button class="contact-button">
                                 <div class="button-icon">
                                     <font-awesome-icon :icon="['fab', 'github']" size="lg" />
@@ -278,14 +285,17 @@ onUnmounted(() => {
                             </button>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                            <img src="~/assets/img/IMG_1042.JPG" />
+                            <img src="~/assets/img/ig.png" />
                         </div>
                     </div>
 
                     <div v-if="currentProjectIndex === 2" key="2" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
-                            <h1>Project 3</h1>
-                            <p>"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi."</p>
+                            <h1>X / Twitter Bot</h1>
+                            <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
+                                logging in, posting multimedia content, and following or
+                                unfollowing users. Designed for long-term operations, it runs in an infinite loop, ensuring
+                                consistent and reliable automation.</p>
                             <button class="contact-button">
                                 <div class="button-icon">
                                     <font-awesome-icon :icon="['fab', 'github']" size="lg" />
@@ -294,7 +304,7 @@ onUnmounted(() => {
                             </button>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                            <img src="~/assets/img/IMG_1042.JPG" />
+                            <img src="~/assets/img/x.jpeg" />
                         </div>
                     </div>
                 </transition-group>
@@ -626,5 +636,4 @@ onUnmounted(() => {
 .navbar-fade-enter-active,
 .navbar-fade-leave-active {
     transition: opacity 0.5s ease, transform 0.5s ease;
-}
-</style>
+}</style>
