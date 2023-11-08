@@ -403,7 +403,7 @@ onUnmounted(() => {
 
 /* Title section styles */
 .title {
-    @apply flex justify-center items-center h-[70vh];
+    @apply flex justify-center items-center h-[800px];
 }
 
 .title .container h1:nth-child(1) {
@@ -450,7 +450,7 @@ onUnmounted(() => {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 50px;
-    margin-bottom: 10%;
+    margin-bottom: 200px;
 }
 
 .skills .container div p {
@@ -540,7 +540,7 @@ onUnmounted(() => {
 
 /* Wrap section styles */
 .wrap {
-    @apply flex justify-center py-[50px];
+    @apply flex justify-center my-[50px];
 }
 
 .wrap .container {
@@ -563,6 +563,7 @@ onUnmounted(() => {
 .contacts {
     display: flex;
     justify-content: center;
+    margin: 100px 0 50px 0; 
 }
 
 /* In view transitions */

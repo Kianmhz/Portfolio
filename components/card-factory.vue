@@ -7,7 +7,7 @@ const cards = ref([
 </script>
 
 <template>
-    <div class="cards-wrapper">
+    <div class="container cards-wrapper">
         <Cards v-for="card in cards" :id="card.id" :title="card.title" :content="card.content" />
     </div>
 </template>
@@ -16,8 +16,7 @@ const cards = ref([
 .cards-wrapper {
     display: flex;
     position: relative;
-    width: 75%;
-    height: 50vh;
+    height: 500px;
 }
 
 /* Card-specific styles for positioning and hover effect */
