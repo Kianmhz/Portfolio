@@ -13,7 +13,7 @@ const props = defineProps(['id', 'title', 'content']);
 .resume-card {
     @apply absolute w-[100%] h-[100%] p-10;
     background: linear-gradient(to right, rgb(24, 24, 24), rgb(0, 0, 0));
-    transition: 0.3s ease;
+    transition: 0.3s ease-in-out;
     box-shadow: -30px 0px 30px rgba(0, 0, 0, 0.7);
 }
 

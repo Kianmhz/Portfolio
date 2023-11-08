@@ -249,7 +249,7 @@ onUnmounted(() => {
 
         <div class="projects" :ref="el => { scroll.projects = el }">
             <div class="container">
-                <transition-group name="fade" tag="div" class="relative w-full h-[90vh]">
+                <transition-group name="fade" tag="div" class="relative mt-[50px] h-[100vh] max-h-[750px]">
                     <div v-if="currentProjectIndex === 0" key="0" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Dine Discover</h1>
@@ -309,7 +309,7 @@ onUnmounted(() => {
                     </div>
                 </transition-group>
             </div>
-            <div class="flex justify-center items-center gap-[5rem]" :ref="el => { scroll.resume = el }">
+            <div class="flex justify-center items-center gap-[80px]" :ref="el => { scroll.resume = el }">
                 <button id="back" class="" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
                         size="xl" /></button>
                 <div class="dots">
@@ -485,7 +485,7 @@ onUnmounted(() => {
 
 /* Projects section styles */
 .projects {
-    @apply flex flex-col justify-center items-center relative h-[100vh];
+    @apply flex flex-col justify-center items-center gap-[100px];
 }
 
 .projects .container div h1 {

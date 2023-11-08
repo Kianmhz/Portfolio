@@ -1,6 +1,6 @@
 <template>
     <div class="resume-header">
-        <span class="my-text">My</span>
+        <span >My</span>
         <div class="wrapper">
             <ul class="list">
                 <li class="item">Resume &</li>
