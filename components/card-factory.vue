@@ -14,9 +14,7 @@ const cards = ref([
 
 <style scoped>
 .cards-wrapper {
-    display: flex;
-    position: relative;
-    height: 500px;
+    @apply flex relative w-4/5 h-[500px];
 }
 
 /* Card-specific styles for positioning and hover effect */

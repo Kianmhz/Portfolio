@@ -21,8 +21,6 @@ const props = defineProps(['icon', 'title', 'content']);
 }
 
 h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 10px 0;
+  @apply text-[1.2rem] font-[700] my-[10px];
 }
 </style>

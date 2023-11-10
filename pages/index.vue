@@ -182,10 +182,10 @@ onUnmounted(() => {
         <div class="intro" :ref="el => { scroll.home = el }">
             <div class="container">
                 <div>
-                    <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0]"
+                    <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0] max-lg:text-[2.5rem] max-sm:text-[1.5rem]"
                         :class="{ 'animate-intro': state.inViewIntro }">Hello, I'm</h2>
                     <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                        <h1 class="text-[7rem] font-[900]">Kianmehr<span class="intro-dot">.</span></h1>
+                        <h1 class="text-[7rem] font-[900] max-lg:text-[5rem] max-sm:text-[4rem]">Kianmehr<span class="intro-dot">.</span></h1>
                         <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
                             A dedicated Software Developer driven by creativity, innovation and a continuous quest for
                             proficiency. Every
@@ -193,7 +193,7 @@ onUnmounted(() => {
                         </p>
                     </div>
                     <button @click="scrollTo('title')" id="intro-button"
-                        class="py-[20px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0"
+                        class="py-[20px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0 max-sm:hidden"
                         :class="{ 'animate-intro': state.inViewIntro }">
                         <span class="content">
                             <span>EXPLORE BELOW</span>
@@ -202,7 +202,7 @@ onUnmounted(() => {
                     </button>
                 </div>
                 <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <img src="~/assets/img/me.JPG" alt="Kianmehr's Image" />
+                    <img src="~/assets/img/me.png" alt="Kianmehr's Image" />
                 </div>
             </div>
         </div>
@@ -220,7 +220,7 @@ onUnmounted(() => {
         <div class="skills" :ref="el => { scroll.whatIDo = el }">
             <div class="container">
                 <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
-                    <h1 class="text-[3rem] font-[900]">What I Do</h1>
+                    <h1 class="text-[3rem] font-[900] max-lg:text-[2.5rem]">What I Do</h1>
                     <p id="skills-about">
                         Creating digital experiences through a fusion of sleek design and seamless functionality. From the
                         first click to the lasting impression, I blend aesthetics with performance, making every interaction
@@ -254,7 +254,8 @@ onUnmounted(() => {
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Dine Discover</h1>
                             <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for exploring
-                                restaurants. While the platform is not operational, its design emphasizes a user-friendly interface, clean
+                                restaurants. While the platform is not operational, its design emphasizes a user-friendly
+                                interface, clean
                                 visuals, and organized data. Features include user authentication, search, and detailed
                                 restaurant reviews.</p>
                             <button class="contact-button">
@@ -358,9 +359,7 @@ onUnmounted(() => {
 }
 
 .intro .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 50px;
+    @apply grid grid-cols-2 gap-x-[50px] max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:text-center;
 }
 
 .intro-dot {
@@ -403,11 +402,11 @@ onUnmounted(() => {
 
 /* Title section styles */
 .title {
-    @apply flex justify-center items-center h-[800px];
+    @apply flex justify-center items-center h-[300px];
 }
 
 .title .container h1:nth-child(1) {
-    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent;
+    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2rem];
     animation: gradient 20s linear infinite alternate;
 
     background: var(--gradient-color);
@@ -419,7 +418,7 @@ onUnmounted(() => {
 }
 
 .title .container h1:nth-child(2) {
-    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent;
+    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2rem];
     animation: gradient 20s linear infinite alternate;
 
     background: linear-gradient(-45deg,
@@ -447,10 +446,7 @@ onUnmounted(() => {
 }
 
 .skills .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 50px;
-    margin-bottom: 200px;
+    @apply grid grid-cols-2 gap-x-[50px] mb-[200px] max-lg:grid-cols-1 max-lg:gap-y-[100px] max-sm:text-center;
 }
 
 .skills .container div p {
@@ -458,7 +454,7 @@ onUnmounted(() => {
 }
 
 .logos {
-    @apply relative overflow-hidden w-4/5;
+    @apply relative overflow-hidden w-4/5 max-sm:hidden;
 }
 
 .logos::before {
@@ -485,11 +481,11 @@ onUnmounted(() => {
 
 /* Projects section styles */
 .projects {
-    @apply flex flex-col justify-center items-center gap-[100px];
+    @apply flex flex-col justify-center items-center gap-[100px] max-lg:overflow-hidden max-sm:overflow-hidden;
 }
 
 .projects .container div h1 {
-    @apply text-[3rem] font-[900] mb-[20px];
+    @apply text-[3rem] font-[900] mb-[20px] max-lg:text-[2.5rem];
 }
 
 .projects .container div p {
@@ -497,11 +493,15 @@ onUnmounted(() => {
 }
 
 .project-item {
-    @apply grid grid-cols-2 justify-center items-center gap-[50px];
+    @apply grid grid-cols-2 justify-center items-center gap-[50px] max-sm:grid-cols-1 max-sm:text-center;
 }
 
 .project-info {
     @apply opacity-0 transform translate-y-[50px];
+}
+
+.project-info button {
+    @apply max-sm:flex max-sm:justify-center;
 }
 
 .project-image {
@@ -535,12 +535,12 @@ onUnmounted(() => {
 
 /* Resume section styles */
 .resume {
-    @apply flex flex-col justify-center items-center;
+    @apply flex flex-col justify-center items-center max-lg:overflow-hidden max-sm:hidden;
 }
 
 /* Wrap section styles */
 .wrap {
-    @apply flex justify-center my-[50px];
+    @apply flex justify-center my-[50px] max-lg:overflow-hidden max-sm:overflow-hidden;
 }
 
 .wrap .container {
@@ -548,7 +548,8 @@ onUnmounted(() => {
 }
 
 .wrap .container div p {
-    @apply text-[7rem] font-normal;
+    @apply text-[7rem] max-lg:text-[5rem] max-sm:text-[3rem];
+    font-weight: 700;
     animation: gradient 20s linear infinite alternate;
 
     background: var(--gradient-color);
@@ -563,7 +564,7 @@ onUnmounted(() => {
 .contacts {
     display: flex;
     justify-content: center;
-    margin: 100px 0 50px 0; 
+    margin: 100px 0;
 }
 
 /* In view transitions */
@@ -637,4 +638,5 @@ onUnmounted(() => {
 .navbar-fade-enter-active,
 .navbar-fade-leave-active {
     transition: opacity 0.5s ease, transform 0.5s ease;
-}</style>
+}
+</style>

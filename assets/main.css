@@ -57,22 +57,22 @@ body {
 }
 
 .container {
-    @apply w-4/5 flex justify-center items-center flex-wrap z-10;
+    @apply w-4/5 flex justify-center items-center flex-wrap z-10 max-lg:w-[90%] max-sm:w-[90%];
 }
 
 /* Button styles */
 .contact-button {
-    @apply flex items-center;
+    @apply flex items-center max-sm:w-full;
 }
 
 .button-icon {
-    @apply relative p-[10px]
+    @apply relative p-[10px];
 }
 
 .button-text {
     transform: translateX(-30px);
     transition: 0.3s ease-in-out;
-    @apply relative p-[10px] text-transparent
+    @apply relative p-[10px] text-transparent max-sm:hidden;
 }
 
 .contact-button:hover .button-text {
@@ -216,192 +216,5 @@ body {
 
     100% {
         transform: translateX(-100%);
-    }
-}
-
-
-/* For Tablets */
-@media (max-width: 1024px) and (orientation: landscape) {
-    .container {
-        @apply overflow-hidden w-[90%];
-    }
-
-    /* For navbar */
-    .nav-bar .container {
-        @apply overflow-visible;
-    }
-
-    /* For intro */
-    .intro .container {
-        @apply mt-[100px];
-    }
-
-    .intro .container div h1 {
-        @apply text-[4rem];
-    }
-
-    .intro .container div h2 {
-        @apply text-[2rem];
-    }
-
-    /* For title */
-    .title {
-        @apply my-[4rem];
-    }
-
-    .title .container div h1 {
-        @apply text-[4rem] !important;
-    }
-
-    /* For skils */
-    .skills {
-        @apply h-[100%] !important;
-    }
-
-    #skills-about {
-        @apply mb-[4rem];
-    }
-
-    .skills h1 {
-        @apply text-[2rem];
-    }
-
-    #skills-grid {
-        @apply flex-auto gap-y-[5rem] mb-[4rem] !important;
-    }
-
-    /* For resume cards */
-    .resume-header {
-        @apply text-[2rem] !important;
-    }
-
-    .resume-card {
-        @apply p-5 !important;
-    }
-
-    .resume-card p {
-        @apply text-[1rem] !important;
-    }
-
-    .resume-card h1 {
-        @apply text-[1rem] !important;
-    }
-
-    /* For wrap text */
-    .wrap .container div p {
-        @apply text-[4rem] !important;
-    }
-}
-
-
-/* For Mobile Devices */
-@media (max-width: 768px) and (orientation: portrait) {
-    .container {
-        @apply w-[80%] overflow-hidden;
-    }
-
-    /* For navbar */
-    .nav {
-        @apply hidden;
-    }
-
-    .nav-bar .container {
-        @apply overflow-visible;
-    }
-
-    .nav:nth-child(1) {
-        @apply flex;
-    }
-
-    /* For intro */
-    .intro .container {
-        @apply mt-[200px] flex-col text-center;
-    }
-
-    .intro .container div h2 {
-        @apply text-[2rem];
-    }
-
-    .intro .container div h1 {
-        @apply text-[4rem];
-    }
-
-    .intro button span {
-        @apply hidden;
-    }
-
-    /* For title */
-    .title {
-        @apply h-[20vh] !important;
-    }
-
-    .title .container div h1 {
-        @apply text-[2rem] !important;
-    }
-
-    .slider {
-        @apply h-[20vh] !important;
-    }
-
-    /* For skills */
-    .skills {
-        @apply h-[100%] !important;
-    }
-
-    .skills h1 {
-        @apply text-[2rem];
-    }
-
-    .skills .container {
-        @apply flex-col text-center;
-    }
-
-    .skills .container div {
-        @apply flex-auto !important;
-    }
-
-    #skills-grid {
-        @apply grid-cols-1 mt-[5rem];
-    }
-
-    .logos {
-        @apply hidden;
-    }
-
-    /* For projects */
-    .projects .container div h1 {
-        @apply text-[2rem] !important;
-    }
-
-    .projects .container div {
-        @apply flex-col text-center;
-    }
-
-    .github-button {
-        @apply m-auto;
-    }
-
-    /* For resume cards */
-    .resume {
-        @apply hidden;
-    }
-
-    /* For wrap text */
-    .wrap .container div p {
-        @apply text-[2.8rem] !important;
-    }
-
-    /* For contacts */
-    .contacts div {
-        @apply flex-auto !important;
-    }
-
-    .contacts {
-        @apply flex-col justify-center items-center text-center;
-    }
-
-    .linkedin-button,
-    .email-button {
-        @apply m-auto;
     }
 }

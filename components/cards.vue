@@ -18,10 +18,10 @@ const props = defineProps(['id', 'title', 'content']);
 }
 
 .resume-card p {
-    @apply text-[2rem];
+    @apply text-[2rem] max-lg:text-[1.5rem];
 }
 
 .resume-title {
-    @apply absolute top-[80%] text-[var(--secondary-text-color)] text-[2rem];
+    @apply absolute top-[80%] text-[var(--secondary-text-color)] text-[2rem] max-lg:text-[1.5rem];
 }
 </style>

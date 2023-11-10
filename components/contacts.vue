@@ -17,19 +17,15 @@ const props = defineProps(['title', 'description', 'icon']);
     
     
 <style scoped>
-.contact-item {
-    @apply mb-[50px] flex flex-col;
-}
-
 h1 {
     @apply text-[1.2rem] font-[700] text-[var(--main-color)];
 }
 
-h2 {
-    @apply text-[2rem] font-[700];
+.contact-button {
+    @apply max-sm:flex max-sm:justify-center
 }
 
-p {
-    @apply text-[1.2rem] font-[400] text-[var(--secondary-text-color)];
+h2 {
+    @apply text-[2rem] font-[700] max-lg:text-[1.2rem];
 }
 </style>

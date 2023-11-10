@@ -8,7 +8,7 @@ const contentSkills = ref([
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-[5rem]">
+  <div class="grid grid-cols-2 gap-[50px] max-sm:grid-cols-1 max-sm:text-center">
     <skillsets v-for="skill in contentSkills" :id="skill.id" :title="skill.title" :icon="skill.icon" :content="skill.content" />
   </div>
 </template>
