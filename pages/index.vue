@@ -249,8 +249,8 @@ onUnmounted(() => {
 
         <div class="projects" :ref="el => { scroll.projects = el }">
             <div class="container">
-                <transition-group name="fade" tag="div" class="relative mt-[50px] h-[100vh] max-h-[750px]">
-                    <div v-if="currentProjectIndex === 0" key="0" class="project-item">
+                <transition-group name="fade" tag="div" class="relative">
+                    <div v-show="currentProjectIndex === 0" key="0" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Dine Discover</h1>
                             <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for exploring
@@ -270,7 +270,7 @@ onUnmounted(() => {
                         </div>
                     </div>
 
-                    <div v-if="currentProjectIndex === 1" key="1" class="project-item">
+                    <div v-show="currentProjectIndex === 1" key="1" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Instagram Bot</h1>
                             <p>Utilizing Python Playwright library, this bot is designed to streamline various Instagram
@@ -290,7 +290,7 @@ onUnmounted(() => {
                         </div>
                     </div>
 
-                    <div v-if="currentProjectIndex === 2" key="2" class="project-item">
+                    <div v-show="currentProjectIndex === 2" key="2" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>X / Twitter Bot</h1>
                             <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
@@ -600,17 +600,22 @@ onUnmounted(() => {
 
 .fade-leave-active {
     position: absolute;
+    top: 0;
+}
+
+.fade-leave-active,
+.fade-enter-active {
     transition: opacity 0.5s, transform 0.5s;
 }
 
 .fade-leave-to {
     opacity: 0;
-    transform: translateX(var(--translate-x-leave));
+    transform: translateX(-100%);
 }
 
 .fade-enter-from {
     opacity: 0;
-    transform: translateX(var(--translate-x-enter));
+    transform: translateX(100%);
 }
 
 .fade-enter-to {
