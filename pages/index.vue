@@ -82,11 +82,11 @@ const updateElementPositionsOnScroll = () => {
         const sectionThreeRate = calculateRate(elements.firstTextSectionThree, 0, -200, true);
 
         // Apply the rates to the animations
-        elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 30}%)`;
-        elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 30}%)`;
+        elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 25}%)`;
+        elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 25}%)`;
 
-        elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 20}%)`;
-        elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 20}%)`;
+        elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 25}%)`;
+        elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 25}%)`;
 
         elements.firstTextSectionThree.style.transform = `translateX(${sectionThreeRate * 30}%)`;
         elements.secondTextSectionThree.style.transform = `translateX(${sectionThreeRate * 50}%)`;
@@ -355,7 +355,7 @@ onUnmounted(() => {
 <style>
 /* Intro section styles */
 .intro {
-    @apply flex justify-center items-center h-screen;
+    @apply flex justify-center items-center h-screen max-lg:mt-[80px] max-sm:mt-[0];
 }
 
 .intro .container {
@@ -402,11 +402,11 @@ onUnmounted(() => {
 
 /* Title section styles */
 .title {
-    @apply flex justify-center items-center h-[300px];
+    @apply flex justify-center items-center h-[70vh] max-sm:overflow-hidden;
 }
 
 .title .container h1:nth-child(1) {
-    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2rem];
+    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.5rem];
     animation: gradient 20s linear infinite alternate;
 
     background: var(--gradient-color);
@@ -418,7 +418,7 @@ onUnmounted(() => {
 }
 
 .title .container h1:nth-child(2) {
-    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2rem];
+    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.5rem];
     animation: gradient 20s linear infinite alternate;
 
     background: linear-gradient(-45deg,
@@ -442,11 +442,11 @@ onUnmounted(() => {
 
 /* Skills section styles */
 .skills {
-    @apply flex justify-center items-center flex-col h-screen;
+    @apply flex justify-center items-center flex-col h-screen max-lg:h-full max-sm:h-full;
 }
 
 .skills .container {
-    @apply grid grid-cols-2 gap-x-[50px] mb-[200px] max-lg:grid-cols-1 max-lg:gap-y-[100px] max-sm:text-center;
+    @apply grid grid-cols-2 gap-x-[50px] mb-[10%] max-lg:grid-cols-1 max-lg:gap-y-[100px] max-sm:text-center;
 }
 
 .skills .container div p {

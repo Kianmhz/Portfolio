@@ -8,7 +8,7 @@
 
 <style scoped>
 .slider {
-    @apply w-full h-[70%] absolute z-0;
+    @apply w-full h-[70vh] absolute z-0;
 }
 
 /* To make the bottom and top edges of video transition to background */
