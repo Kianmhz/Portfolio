@@ -402,11 +402,15 @@ onUnmounted(() => {
 
 /* Title section styles */
 .title {
-    @apply flex justify-center items-center h-[70vh] max-sm:overflow-hidden;
+    @apply flex justify-center items-center max-sm:overflow-hidden;
+}
+
+.title .container {
+    @apply absolute;
 }
 
 .title .container h1:nth-child(1) {
-    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.5rem];
+    @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.5rem];
     animation: gradient 20s linear infinite alternate;
 
     background: var(--gradient-color);
@@ -418,7 +422,7 @@ onUnmounted(() => {
 }
 
 .title .container h1:nth-child(2) {
-    @apply text-[7rem] font-[900] relative whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.5rem];
+    @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.5rem];
     animation: gradient 20s linear infinite alternate;
 
     background: linear-gradient(-45deg,
