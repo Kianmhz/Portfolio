@@ -259,12 +259,14 @@ onUnmounted(() => {
                                 interface, clean
                                 visuals, and organized data. Features include user authentication, search, and detailed
                                 restaurant reviews.</p>
-                            <button class="contact-button">
-                                <div class="button-icon">
-                                    <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                </div>
-                                <div class="button-text">Github</div>
-                            </button>
+                            <a href="https://github.com/Kianmhz" target="_blank" rel="noopener noreferrer">
+                                <button class="contact-button">
+                                    <div class="button-icon">
+                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                    </div>
+                                    <div class="button-text">Github</div>
+                                </button>
+                            </a>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
                             <img src="~/assets/img/DineDiscover.PNG" />
@@ -279,12 +281,14 @@ onUnmounted(() => {
                                 capabilities like logging in, posting photos and videos, as well as managing follow/unfollow
                                 actions, it's built to run in a continuous loop, ensuring sustained activity and
                                 automation.</p>
-                            <button class="contact-button">
-                                <div class="button-icon">
-                                    <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                </div>
-                                <div class="button-text">Github</div>
-                            </button>
+                            <a href="https://github.com/Kianmhz" target="_blank" rel="noopener noreferrer">
+                                <button class="contact-button">
+                                    <div class="button-icon">
+                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                    </div>
+                                    <div class="button-text">Github</div>
+                                </button>
+                            </a>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
                             <img src="~/assets/img/ig.png" />
@@ -298,12 +302,14 @@ onUnmounted(() => {
                                 logging in, posting multimedia content, and following or
                                 unfollowing users. Designed for long-term operations, it runs in an infinite loop, ensuring
                                 consistent and reliable automation.</p>
-                            <button class="contact-button">
-                                <div class="button-icon">
-                                    <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                </div>
-                                <div class="button-text">Github</div>
-                            </button>
+                            <a href="https://github.com/Kianmhz" target="_blank" rel="noopener noreferrer">
+                                <button class="contact-button">
+                                    <div class="button-icon">
+                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                    </div>
+                                    <div class="button-text">Github</div>
+                                </button>
+                            </a>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
                             <img src="~/assets/img/x.jpeg" />
