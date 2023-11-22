@@ -1,11 +1,11 @@
 <script setup>
-const props = defineProps(['id', 'title', 'content']);
+const props = defineProps(['id', 'src', 'title', 'content']);
 </script>  
 
 <template>
     <div class="resume-card" :id="`card${id}`">
         <p>{{ content }}</p>
-        <h1 class="resume-title">{{ title }}</h1>
+        <a :href="src" target="_blank" rel="noopener noreferrer" class="resume-title">{{ title }}</a>
     </div>
 </template>
 

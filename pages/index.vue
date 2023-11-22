@@ -616,6 +616,7 @@ onUnmounted(() => {
 .fade-leave-active {
     position: absolute;
     top: 0;
+    left: 0;
 }
 
 .fade-leave-active,
