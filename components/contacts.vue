@@ -1,17 +1,19 @@
 <script setup>
-const props = defineProps(['title', 'description', 'icon']);
+const props = defineProps(['title', "link", 'description', 'icon']);
 </script>
 
 <template>
     <div class="contact-item">
         <h1>{{ title }}</h1>
         <h2>{{ description }}</h2>
-        <button class="contact-button">
-            <div class="button-icon">
-                <font-awesome-icon :icon="icon" size="lg" />
-            </div>
-            <div class="button-text">{{ title }}</div>
-        </button>
+        <a :href="link">
+            <button class="contact-button">
+                <div class="button-icon">
+                    <font-awesome-icon :icon="icon" size="lg" />
+                </div>
+                <div class="button-text">{{ title }}</div>
+            </button>
+        </a>
     </div>
 </template>
     
