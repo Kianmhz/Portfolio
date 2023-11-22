@@ -52,6 +52,28 @@ const setProjectIndex = (index) => {
     }
 };
 
+// Touch event handlers for project viewing.
+const touchStartX = ref(0);
+const touchEndX = ref(0);
+
+const handleTouchStart = (event) => {
+    touchStartX.value = event.touches[0].clientX;
+};
+
+const handleTouchEnd = (event) => {
+    touchEndX.value = event.changedTouches[0].clientX;
+    handleGesture();
+};
+
+const handleGesture = () => {
+    const threshold = 50; // Adjust this threshold as needed
+    if (touchEndX.value < touchStartX.value - threshold) {
+        goForward();
+    } else if (touchEndX.value > touchStartX.value + threshold) {
+        goBack();
+    }
+};
+
 let rafId = null;
 
 const calculateRate = (element, startOffset = 0, endOffset = 0, invert = false) => {
@@ -248,7 +270,7 @@ onUnmounted(() => {
             </div>
         </div>
 
-        <div class="projects" :ref="el => { scroll.projects = el }">
+        <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd" :ref="el => { scroll.projects = el }">
             <div class="container">
                 <transition-group name="fade" tag="div" class="relative">
                     <div v-show="currentProjectIndex === 0" key="0" class="project-item">
@@ -409,7 +431,7 @@ onUnmounted(() => {
 
 /* Title section styles */
 .title {
-    @apply flex justify-center items-center max-sm:overflow-hidden;
+    @apply flex justify-center items-center;
 }
 
 .title .container {
@@ -417,7 +439,7 @@ onUnmounted(() => {
 }
 
 .title .container h1:nth-child(1) {
-    @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.5rem];
+    @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.4rem];
     animation: gradient 20s linear infinite alternate;
 
     background: var(--gradient-color);
@@ -429,7 +451,7 @@ onUnmounted(() => {
 }
 
 .title .container h1:nth-child(2) {
-    @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.5rem];
+    @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.4rem];
     animation: gradient 20s linear infinite alternate;
 
     background: linear-gradient(-45deg,
@@ -626,12 +648,12 @@ onUnmounted(() => {
 
 .fade-leave-to {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(var(--translate-x-leave));
 }
 
 .fade-enter-from {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(var(--translate-x-enter));
 }
 
 .fade-enter-to {
