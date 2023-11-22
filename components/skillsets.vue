@@ -3,7 +3,7 @@ const props = defineProps(['icon', 'title', 'content']);
 </script>
 
 <template>
-  <div>
+  <div class="skillsets">
     <font-awesome-icon class="skill-icon" :icon="icon" size="2xl"/>
     <h2>{{ title }}</h2>
     <p>{{ content }}</p>
@@ -13,11 +13,12 @@ const props = defineProps(['icon', 'title', 'content']);
 <style scoped>
 .skill-icon {
   font-size: 40px;
-  transition: scale 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.skill-icon:hover {
-  scale: 1.3;
+.skillsets:hover .skill-icon {
+  transform: scale(1.2);
+  color: var(--main-color)
 }
 
 h2 {

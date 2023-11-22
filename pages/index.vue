@@ -79,7 +79,7 @@ const updateElementPositionsOnScroll = () => {
         // Calculate rates for each section
         const sectionOneRate = calculateRate(elements.leftIntroTitle);
         const sectionTwoRate = calculateRate(elements.leftIntroSectionTwoTitle);
-        const sectionThreeRate = calculateRate(elements.firstTextSectionThree, 0, -200, true);
+        const sectionThreeRate = calculateRate(elements.firstTextSectionThree, 0, -200);
 
         // Apply the rates to the animations
         elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 25}%)`;
@@ -88,9 +88,9 @@ const updateElementPositionsOnScroll = () => {
         elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 25}%)`;
         elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 25}%)`;
 
-        elements.firstTextSectionThree.style.transform = `translateX(${sectionThreeRate * 30}%)`;
-        elements.secondTextSectionThree.style.transform = `translateX(${sectionThreeRate * 50}%)`;
-        elements.thirdTextSectionThree.style.transform = `translateX(${sectionThreeRate * 70}%)`;
+        elements.firstTextSectionThree.style.opacity = sectionThreeRate >= 0.1 ? 1 : 0;
+        elements.secondTextSectionThree.style.opacity = sectionThreeRate >= 0.3 ? 1 : 0;
+        elements.thirdTextSectionThree.style.opacity = sectionThreeRate >= 0.5 ? 1 : 0;
     });
 };
 
@@ -185,7 +185,8 @@ onUnmounted(() => {
                     <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0] max-lg:text-[2.5rem] max-sm:text-[1.5rem]"
                         :class="{ 'animate-intro': state.inViewIntro }">Hello, I'm</h2>
                     <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                        <h1 class="text-[7rem] font-[900] max-lg:text-[5rem] max-sm:text-[4rem]">Kianmehr<span class="intro-dot">.</span></h1>
+                        <h1 class="text-[7rem] font-[900] max-lg:text-[5rem] max-sm:text-[4rem]">Kianmehr<span
+                                class="intro-dot">.</span></h1>
                         <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
                             A dedicated Software Developer driven by creativity, innovation and a continuous quest for
                             proficiency. Every
@@ -311,14 +312,14 @@ onUnmounted(() => {
                 </transition-group>
             </div>
             <div class="flex justify-center items-center gap-[80px]" :ref="el => { scroll.resume = el }">
-                <button id="back" class="" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
+                <button id="back" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
                         size="xl" /></button>
                 <div class="dots">
                     <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
                     <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
                     <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
                 </div>
-                <button id="forward" class="" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
+                <button id="forward" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
                         size="xl" /></button>
             </div>
         </div>
@@ -562,6 +563,7 @@ onUnmounted(() => {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    transition: opacity 0.5s ease-in-out;
 }
 
 /* Contacts section styles */
@@ -576,30 +578,33 @@ onUnmounted(() => {
 /* Intro in view transitions */
 .animate-intro {
     @apply opacity-100 transform translate-y-0;
-    transition: transform 1s, opacity 1s;
+    transition: transform 1s, opacity 1s ease;
 }
 
 #intro-button.animate-intro {
     @apply opacity-100;
-    transition: opacity 0.5s 2s;
+    transition: opacity 0.5s 2s ease;
 }
 
 /* Skills in view transitions */
 .animate-skills {
     @apply opacity-100 transform translate-y-0;
-    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transition-delay: 0.1s;
 }
 
 #skills-grid.animate-skills {
     @apply opacity-100 transform translate-y-0;
-    transition: opacity 1s ease-in, transform 1s ease-in;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    transition-delay: 0.1s;
 }
 
 /* Projects in view transitions */
 .project-info.animate-projects,
 .project-image.animate-projects {
     @apply opacity-100 transform translate-y-0 translate-x-0;
-    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transition-delay: 0.1s;
 }
 
 .fade-leave-active {

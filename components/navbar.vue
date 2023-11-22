@@ -44,7 +44,7 @@ onMounted(() => {
 }
 
 .nav {
-  @apply pt-2 text-[1rem] transition-all duration-200 opacity-0 hover:text-[var(--main-color)] max-sm:hidden max-sm:first:flex;
+  @apply mt-2 text-[1rem] font-bold transition-all duration-200 opacity-0 hover:text-[var(--main-color)] max-sm:hidden max-sm:first:flex;
 }
 
 /* to make the logo centered */
