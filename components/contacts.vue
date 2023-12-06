@@ -24,10 +24,10 @@ h1 {
 }
 
 .contact-button {
-    @apply max-sm:flex max-sm:justify-center
+    @apply max-sm:flex max-sm:justify-center;
 }
 
 h2 {
-    @apply text-[2rem] font-[700] max-lg:text-[1.2rem];
+    @apply text-[2rem] font-[700] max-lg:text-[1.5rem];
 }
 </style>

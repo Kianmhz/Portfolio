@@ -272,7 +272,7 @@ onUnmounted(() => {
 
         <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd" :ref="el => { scroll.projects = el }">
             <div class="container">
-                <transition-group name="fade" tag="div" class="relative">
+                <transition-group name="project-fade" tag="div" class="relative flex justify-center items-center">
                     <div v-show="currentProjectIndex === 0" key="0" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Dine Discover</h1>
@@ -384,7 +384,7 @@ onUnmounted(() => {
 <style>
 /* Intro section styles */
 .intro {
-    @apply flex justify-center items-center h-screen max-lg:mt-[80px] max-sm:mt-[0];
+    @apply flex justify-center items-center mt-[20px] h-screen max-lg:mt-[80px] max-sm:mt-[20px];
 }
 
 .intro .container {
@@ -514,7 +514,7 @@ onUnmounted(() => {
 
 /* Projects section styles */
 .projects {
-    @apply flex flex-col justify-center items-center gap-[100px] max-lg:overflow-hidden max-sm:overflow-hidden;
+    @apply flex flex-col justify-center items-center mt-[50px] gap-[60px] max-lg:overflow-hidden max-sm:overflow-hidden;
 }
 
 .projects .container div h1 {
@@ -547,10 +547,12 @@ onUnmounted(() => {
 
 /* Projects buttons styles */
 #back:not(:active) {
+    @apply max-sm:hidden;
     animation: bounce-x 0.8s;
 }
 
 #forward:not(:active) {
+    @apply max-sm:hidden;
     animation: bouncex 0.8s;
 }
 
@@ -635,28 +637,28 @@ onUnmounted(() => {
     transition-delay: 0.1s;
 }
 
-.fade-leave-active {
+.project-fade-leave-active {
     position: absolute;
     top: 0;
     left: 0;
 }
 
-.fade-leave-active,
-.fade-enter-active {
+.project-fade-leave-active,
+.project-fade-enter-active {
     transition: opacity 0.5s, transform 0.5s;
 }
 
-.fade-leave-to {
+.project-fade-leave-to {
     opacity: 0;
     transform: translateX(var(--translate-x-leave));
 }
 
-.fade-enter-from {
+.project-fade-enter-from {
     opacity: 0;
     transform: translateX(var(--translate-x-enter));
 }
 
-.fade-enter-to {
+.project-fade-enter-to {
     @apply opacity-100 transform translate-x-0;
     transition: opacity 0.5s, transform 0.5s;
 }
