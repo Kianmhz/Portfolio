@@ -225,7 +225,7 @@ onUnmounted(() => {
                     </button>
                 </div>
                 <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <NuxtImg format="webp" preload src="/me.png" alt="Kianmehr's Image" />
+                    <NuxtImg class="ml-auto" width="550px" format="webp" preload src="/me.png" alt="Kianmehr's Image" />
                 </div>
             </div>
         </div>
@@ -533,7 +533,7 @@ onUnmounted(() => {
     @apply opacity-0 transform translate-y-[50px];
 }
 
-.project-info button {
+.contact-button {
     @apply max-sm:flex max-sm:justify-center;
 }
 
@@ -542,7 +542,8 @@ onUnmounted(() => {
 }
 
 .project-image img {
-    width: 100%;
+    width: 550px;
+    margin-left: auto;
 }
 
 /* Projects buttons styles */
