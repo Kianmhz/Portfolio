@@ -7,7 +7,7 @@ const contactItems = ref([
 </script>
 
 <template>
-  <div class=" grid grid-cols-3 gap-x-5 max-sm:grid-cols-1 max-sm:text-center max-sm:gap-y-10">
+  <div class=" grid grid-cols-3 gap-x-5 max-sm:grid-cols-1 max-sm:text-center max-sm:gap-y-16">
     <contacts v-for="item in contactItems" :key="item.title" :link="item.link" :title="item.title" :description="item.description"
       :icon="item.icon" />
   </div>

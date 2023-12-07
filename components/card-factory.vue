@@ -14,7 +14,7 @@ const cards = ref([
 
 <style scoped>
 .cards-wrapper {
-    @apply flex relative w-4/5 h-[500px] max-lg:h-[350px];
+    @apply flex relative w-[75%] h-[500px] max-lg:h-[350px];
 }
 
 /* Card-specific styles for positioning and hover effect */
@@ -24,7 +24,7 @@ const cards = ref([
 }
 
 .resume-card[id='card2'] {
-    @apply z-[2] filter brightness-[0.5];
+    @apply z-[2] brightness-[0.5];
     border-left: 2px solid var(--secondary-color);
 }
 

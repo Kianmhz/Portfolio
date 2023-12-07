@@ -1,7 +1,7 @@
 <template>
     <div class="slider">
         <video class="w-full h-full object-cover" autoplay loop muted playsinline>
-            <source src="~/assets/video/video2.mp4" type="video/mp4">
+            <source src="~/assets/video/slider.webm" type="video/webm">
         </video>
     </div>
 </template>

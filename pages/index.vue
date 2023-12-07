@@ -225,7 +225,7 @@ onUnmounted(() => {
                     </button>
                 </div>
                 <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <img src="~/assets/img/me.png" alt="Kianmehr's Image" />
+                    <NuxtImg format="webp" preload src="/me.png" alt="Kianmehr's Image" />
                 </div>
             </div>
         </div>
@@ -272,8 +272,8 @@ onUnmounted(() => {
 
         <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd" :ref="el => { scroll.projects = el }">
             <div class="container">
-                <transition-group name="project-fade" tag="div" class="relative flex justify-center items-center">
-                    <div v-show="currentProjectIndex === 0" key="0" class="project-item">
+                <transition-group name="project-fade" tag="div" class="relative h-[600px] max-lg:h-[350px] max-sm:h-[750px]">
+                    <div v-if="currentProjectIndex === 0" key="0" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Dine Discover</h1>
                             <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for exploring
@@ -291,11 +291,11 @@ onUnmounted(() => {
                             </a>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                            <img src="~/assets/img/DineDiscover.png" />
+                            <NuxtImg format="webp" src="/dine.png" loading="lazy"/>
                         </div>
                     </div>
 
-                    <div v-show="currentProjectIndex === 1" key="1" class="project-item">
+                    <div v-if="currentProjectIndex === 1" key="1" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Instagram Bot</h1>
                             <p>Utilizing Python Playwright library, this bot is designed to streamline various Instagram
@@ -313,11 +313,11 @@ onUnmounted(() => {
                             </a>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                            <img src="~/assets/img/ig.png" />
+                            <NuxtImg format="webp" src="/ig.png" loading="lazy"/>
                         </div>
                     </div>
 
-                    <div v-show="currentProjectIndex === 2" key="2" class="project-item">
+                    <div v-if="currentProjectIndex === 2" key="2" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>X / Twitter Bot</h1>
                             <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
@@ -334,7 +334,7 @@ onUnmounted(() => {
                             </a>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                            <img src="~/assets/img/x.jpeg" />
+                            <NuxtImg format="webp" src="/x.jpeg" loading="lazy"/>
                         </div>
                     </div>
                 </transition-group>
@@ -487,7 +487,7 @@ onUnmounted(() => {
 }
 
 .logos {
-    @apply relative overflow-hidden w-4/5 max-sm:hidden;
+    @apply relative overflow-hidden w-[90%] max-sm:hidden;
 }
 
 .logos::before {
@@ -542,7 +542,7 @@ onUnmounted(() => {
 }
 
 .project-image img {
-    aspect-ratio: 4/4;
+    width: 100%;
 }
 
 /* Projects buttons styles */

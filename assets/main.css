@@ -57,7 +57,7 @@ body {
 }
 
 .container {
-    @apply w-4/5 flex justify-center items-center flex-wrap z-10 max-lg:w-[90%] max-sm:w-[90%];
+    @apply flex justify-center items-center flex-wrap z-10 max-sm:w-[90%];
 }
 
 /* Button styles */

@@ -5,7 +5,7 @@ const props = defineProps(['id', 'src', 'title', 'content']);
 <template>
     <div class="resume-card" :id="`card${id}`">
         <p>{{ content }}</p>
-        <a :href="src" target="_blank" rel="noopener noreferrer" class="resume-title">{{ title }}</a>
+        <NuxtLink :href="src" target="_blank" rel="noopener noreferrer" class="resume-title">{{ title }}</NuxtLink>
     </div>
 </template>
 
