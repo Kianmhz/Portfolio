@@ -6,14 +6,14 @@ const props = defineProps(['title', "link", 'description', 'icon']);
     <div class="contact-item">
         <h1>{{ title }}</h1>
         <h2>{{ description }}</h2>
-        <a :href="link" target="_blank" rel="noopener noreferrer">
-            <button class="contact-button">
-                <div class="button-icon">
-                    <font-awesome-icon :icon="icon" size="lg" />
-                </div>
-                <div class="button-text">{{ title }}</div>
+            <button>
+                <a class="contact-button" :href="link" target="_blank" rel="noopener noreferrer">
+                    <div class="button-icon">
+                        <font-awesome-icon :icon="icon" size="lg" />
+                    </div>
+                    <div class="button-text">{{ title }}</div>
+                </a>
             </button>
-        </a>
     </div>
 </template>
     

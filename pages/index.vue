@@ -110,9 +110,9 @@ const updateElementPositionsOnScroll = () => {
         elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 25}%)`;
         elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 25}%)`;
 
-        elements.firstTextSectionThree.style.opacity = sectionThreeRate >= 0.1 ? 1 : 0;
-        elements.secondTextSectionThree.style.opacity = sectionThreeRate >= 0.3 ? 1 : 0;
-        elements.thirdTextSectionThree.style.opacity = sectionThreeRate >= 0.5 ? 1 : 0;
+        elements.firstTextSectionThree.style.opacity = sectionThreeRate >= 0.2 ? 1 : 0;
+        elements.secondTextSectionThree.style.opacity = sectionThreeRate >= 0.4 ? 1 : 0;
+        elements.thirdTextSectionThree.style.opacity = sectionThreeRate >= 0.6 ? 1 : 0;
     });
 };
 
@@ -168,13 +168,13 @@ onMounted(() => {
     const observerCallback = (entries) => {
         entries.forEach(entry => {
             const stateProperty = classToStateMap[entry.target.className];
-            if (stateProperty) {
-                state[stateProperty] = entry.isIntersecting;
+            if (stateProperty && entry.isIntersecting) {
+                state[stateProperty] = true;
             }
         });
     };
 
-    observer = new IntersectionObserver(observerCallback, { threshold: 0.1 });
+    observer = new IntersectionObserver(observerCallback, { threshold: 0.6 });
     Object.keys(classToStateMap).forEach(className => {
         const element = document.querySelector(`.${className}`);
         if (element) {
@@ -272,7 +272,7 @@ onUnmounted(() => {
 
         <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd" :ref="el => { scroll.projects = el }">
             <div class="container">
-                <transition-group name="project-fade" tag="div" class="relative h-[600px] max-lg:h-[350px] max-sm:h-[750px]">
+                <transition-group name="project-fade" tag="div" class="relative">
                     <div v-if="currentProjectIndex === 0" key="0" class="project-item">
                         <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
                             <h1>Dine Discover</h1>
@@ -281,14 +281,14 @@ onUnmounted(() => {
                                 interface, clean
                                 visuals, and organized data. Features include user authentication, search, and detailed
                                 restaurant reviews.</p>
-                            <a href="https://github.com/Kianmhz/Restaurant-finder" target="_blank" rel="noopener noreferrer">
-                                <button class="contact-button">
+                            <button>
+                                <a class="contact-button" href="https://github.com/Kianmhz/restaurant-finder" target="_blank" rel="noopener noreferrer">
                                     <div class="button-icon">
                                         <font-awesome-icon :icon="['fab', 'github']" size="lg" />
                                     </div>
                                     <div class="button-text">Github</div>
-                                </button>
-                            </a>
+                                </a>
+                            </button>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
                             <NuxtImg format="webp" src="/dine.png" loading="lazy"/>
@@ -303,14 +303,14 @@ onUnmounted(() => {
                                 capabilities like logging in, posting photos and videos, as well as managing follow/unfollow
                                 actions, it's built to run in a continuous loop, ensuring sustained activity and
                                 automation.</p>
-                            <a href="https://github.com/Kianmhz/IG-bot" target="_blank" rel="noopener noreferrer">
-                                <button class="contact-button">
-                                    <div class="button-icon">
-                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                    </div>
-                                    <div class="button-text">Github</div>
+                                <button>
+                                    <a class="contact-button" href="https://github.com/Kianmhz/IG-bot" target="_blank" rel="noopener noreferrer">
+                                        <div class="button-icon">
+                                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                        </div>
+                                        <div class="button-text">Github</div>
+                                    </a>
                                 </button>
-                            </a>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
                             <NuxtImg format="webp" src="/ig.png" loading="lazy"/>
@@ -324,14 +324,14 @@ onUnmounted(() => {
                                 logging in, posting multimedia content, and following or
                                 unfollowing users. Designed for long-term operations, it runs in an infinite loop, ensuring
                                 consistent and reliable automation.</p>
-                            <a href="https://github.com/Kianmhz/X-bot" target="_blank" rel="noopener noreferrer">
-                                <button class="contact-button">
+                            <button>
+                                <a class="contact-button" href="https://github.com/Kianmhz/X-bot" target="_blank" rel="noopener noreferrer">
                                     <div class="button-icon">
                                         <font-awesome-icon :icon="['fab', 'github']" size="lg" />
                                     </div>
                                     <div class="button-text">Github</div>
-                                </button>
-                            </a>
+                                </a>
+                            </button>
                         </div>
                         <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
                             <NuxtImg format="webp" src="/x.jpeg" loading="lazy"/>
@@ -620,13 +620,11 @@ onUnmounted(() => {
 .animate-skills {
     @apply opacity-100 transform translate-y-0;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    transition-delay: 0.1s;
 }
 
 #skills-grid.animate-skills {
     @apply opacity-100 transform translate-y-0;
     transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-    transition-delay: 0.1s;
 }
 
 /* Projects in view transitions */
@@ -634,7 +632,6 @@ onUnmounted(() => {
 .project-image.animate-projects {
     @apply opacity-100 transform translate-y-0 translate-x-0;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    transition-delay: 0.1s;
 }
 
 .project-fade-leave-active {
