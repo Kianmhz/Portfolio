@@ -10,8 +10,7 @@ const scroll = reactive({
 const state = reactive({
     inViewSkills: false,
     inViewIntro: false,
-    inViewProject: false,
-    inViewLanguages: false,
+    inViewProjects: false,
 });
 const elements = reactive({
     leftIntroTitle: null,
@@ -157,29 +156,29 @@ const scrollHandler = () => {
     }
 };
 
-let observer;
+const introRef = ref(null);
+const skillsRef = ref(null);
+const projectsRef = ref(null);
+
 onMounted(() => {
     // Initialize Intersection Observer.
-    const classToStateMap = {
-        'skills': 'inViewSkills',
-        'intro': 'inViewIntro',
-        'projects': 'inViewProject',
-        'languages': 'inViewLanguages',
-    };
     const observerCallback = (entries) => {
         entries.forEach(entry => {
-            const stateProperty = classToStateMap[entry.target.className];
-            if (stateProperty && entry.isIntersecting) {
-                state[stateProperty] = true;
+            const targetRef = entry.target.__vue_ref;
+            if (targetRef && entry.isIntersecting) {
+                state[targetRef] = true;
             }
         });
     };
 
-    observer = new IntersectionObserver(observerCallback, { threshold: 0.6 });
-    Object.keys(classToStateMap).forEach(className => {
-        const element = document.querySelector(`.${className}`);
-        if (element) {
-            observer.observe(element);
+    const observer = new IntersectionObserver(observerCallback, { threshold: 0.6 });
+
+    const refsToObserve = [skillsRef, introRef, projectsRef];
+    refsToObserve.forEach(ref => {
+        if (ref.value) {
+            observer.observe(ref.value);
+            // Attach a custom property to link the observed element to its state
+            ref.value.__vue_ref = 'inView' + ref.value.className.charAt(0).toUpperCase() + ref.value.className.slice(1);
         }
     });
 
@@ -209,7 +208,7 @@ onUpdated(() => {
             </div>
         </transition>
 
-        <div class="intro" :ref="el => { scroll.home = el }">
+        <div class="intro" :ref="el => { introRef = el; scroll.home = el }">
             <div class="container">
                 <div>
                     <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0] max-lg:text-[2.5rem] max-sm:text-[1.5rem]"
@@ -233,7 +232,7 @@ onUpdated(() => {
                     </button>
                 </div>
                 <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <NuxtImg class="ml-auto" width="550px" format="webp" preload src="/me.png" alt="Kianmehr's Image" />
+                    <NuxtImg class="ml-auto" width="550px" format="webp" src="/me.png" alt="Kianmehr's Image" />
                 </div>
             </div>
         </div>
@@ -248,7 +247,7 @@ onUpdated(() => {
             </div>
         </div>
 
-        <div class="skills" :ref="el => { scroll.whatIDo = el }">
+        <div class="skills" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
             <div class="container">
                 <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
                     <h1 class="text-[3rem] font-[900] max-lg:text-[2.5rem]">What I Do</h1>
@@ -278,20 +277,24 @@ onUpdated(() => {
             </div>
         </div>
 
-        <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd" :ref="el => { scroll.projects = el }">
+        <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd"
+            :ref="el => { projectsRef = el; scroll.projects = el }">
             <div class="flex flex-col justify-center items-center max-lg:overflow-hidden max-sm:overflow-hidden">
                 <div class="container">
                     <transition-group name="project-fade" tag="div" class="relative">
                         <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                            <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
+                            <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
                                 <h1>Dine Discover</h1>
-                                <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for exploring
-                                    restaurants. While the platform is not operational, its design emphasizes a user-friendly
+                                <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for
+                                    exploring
+                                    restaurants. While the platform is not operational, its design emphasizes a
+                                    user-friendly
                                     interface, clean
                                     visuals, and organized data. Features include user authentication, search, and detailed
                                     restaurant reviews.</p>
                                 <button>
-                                    <a class="contact-button" href="https://github.com/Kianmhz/restaurant-finder" target="_blank" rel="noopener noreferrer">
+                                    <a class="contact-button" href="https://github.com/Kianmhz/restaurant-finder"
+                                        target="_blank" rel="noopener noreferrer">
                                         <div class="button-icon">
                                             <font-awesome-icon :icon="['fab', 'github']" size="lg" />
                                         </div>
@@ -299,42 +302,23 @@ onUpdated(() => {
                                     </a>
                                 </button>
                             </div>
-                            <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                                <NuxtImg format="webp" src="/dine.png" loading="lazy"/>
+                            <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
+                                <NuxtImg format="webp" src="/dine.png" loading="lazy" />
                             </div>
                         </div>
-    
+
                         <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                            <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
+                            <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
                                 <h1>Instagram Bot</h1>
                                 <p>Utilizing Python Playwright library, this bot is designed to streamline various Instagram
                                     tasks. With
-                                    capabilities like logging in, posting photos and videos, as well as managing follow/unfollow
+                                    capabilities like logging in, posting photos and videos, as well as managing
+                                    follow/unfollow
                                     actions, it's built to run in a continuous loop, ensuring sustained activity and
                                     automation.</p>
-                                    <button>
-                                        <a class="contact-button" href="https://github.com/Kianmhz/IG-bot" target="_blank" rel="noopener noreferrer">
-                                            <div class="button-icon">
-                                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                            </div>
-                                            <div class="button-text">Github</div>
-                                        </a>
-                                    </button>
-                            </div>
-                            <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                                <NuxtImg format="webp" src="/ig.png" loading="lazy"/>
-                            </div>
-                        </div>
-    
-                        <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                            <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
-                                <h1>X / Twitter Bot</h1>
-                                <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
-                                    logging in, posting multimedia content, and following or
-                                    unfollowing users. Designed for long-term operations, it runs in an infinite loop, ensuring
-                                    consistent and reliable automation.</p>
                                 <button>
-                                    <a class="contact-button" href="https://github.com/Kianmhz/X-bot" target="_blank" rel="noopener noreferrer">
+                                    <a class="contact-button" href="https://github.com/Kianmhz/IG-bot" target="_blank"
+                                        rel="noopener noreferrer">
                                         <div class="button-icon">
                                             <font-awesome-icon :icon="['fab', 'github']" size="lg" />
                                         </div>
@@ -342,8 +326,31 @@ onUpdated(() => {
                                     </a>
                                 </button>
                             </div>
-                            <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                                <NuxtImg format="webp" src="/x.jpeg" loading="lazy"/>
+                            <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
+                                <NuxtImg format="webp" src="/ig.png" loading="lazy" />
+                            </div>
+                        </div>
+
+                        <div v-if="currentProjectIndex === 2" key="2" class="project-item">
+                            <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
+                                <h1>X / Twitter Bot</h1>
+                                <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
+                                    logging in, posting multimedia content, and following or
+                                    unfollowing users. Designed for long-term operations, it runs in an infinite loop,
+                                    ensuring
+                                    consistent and reliable automation.</p>
+                                <button>
+                                    <a class="contact-button" href="https://github.com/Kianmhz/X-bot" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <div class="button-icon">
+                                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                        </div>
+                                        <div class="button-text">Github</div>
+                                    </a>
+                                </button>
+                            </div>
+                            <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
+                                <NuxtImg format="webp" src="/x.jpeg" loading="lazy" />
                             </div>
                         </div>
                     </transition-group>
@@ -688,5 +695,4 @@ onUpdated(() => {
 .navbar-fade-enter-active,
 .navbar-fade-leave-active {
     transition: opacity 0.5s ease, transform 0.5s ease;
-}
-</style>
+}</style>
