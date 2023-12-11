@@ -39,6 +39,7 @@ const goForward = () => {
         document.documentElement.style.setProperty('--translate-x-enter', '100%');
     }
 };
+
 const setProjectIndex = (index) => {
     if (index > currentProjectIndex.value) {
         for (let i = currentProjectIndex.value; i < index; i++) {
@@ -191,6 +192,13 @@ onUnmounted(() => {
     window.removeEventListener('scroll', scrollHandler);
     window.removeEventListener('resize', updateElementPositionsOnScroll);
 });
+
+onUpdated(() => {
+    const projects = document.querySelector('.projects');
+    const projectsHeight = projects.offsetHeight;
+    projects.style.height = `${projectsHeight}px`;
+    console.log(projects.style.height);
+});
 </script>
 
 <template>
@@ -271,85 +279,88 @@ onUnmounted(() => {
         </div>
 
         <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd" :ref="el => { scroll.projects = el }">
-            <div class="container">
-                <transition-group name="project-fade" tag="div" class="relative">
-                    <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                        <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
-                            <h1>Dine Discover</h1>
-                            <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for exploring
-                                restaurants. While the platform is not operational, its design emphasizes a user-friendly
-                                interface, clean
-                                visuals, and organized data. Features include user authentication, search, and detailed
-                                restaurant reviews.</p>
-                            <button>
-                                <a class="contact-button" href="https://github.com/Kianmhz/restaurant-finder" target="_blank" rel="noopener noreferrer">
-                                    <div class="button-icon">
-                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                    </div>
-                                    <div class="button-text">Github</div>
-                                </a>
-                            </button>
-                        </div>
-                        <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                            <NuxtImg format="webp" src="/dine.png" loading="lazy"/>
-                        </div>
-                    </div>
-
-                    <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                        <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
-                            <h1>Instagram Bot</h1>
-                            <p>Utilizing Python Playwright library, this bot is designed to streamline various Instagram
-                                tasks. With
-                                capabilities like logging in, posting photos and videos, as well as managing follow/unfollow
-                                actions, it's built to run in a continuous loop, ensuring sustained activity and
-                                automation.</p>
+            <div class="flex flex-col justify-center items-center max-lg:overflow-hidden max-sm:overflow-hidden">
+                <div class="container">
+                    <transition-group name="project-fade" tag="div" class="relative">
+                        <div v-if="currentProjectIndex === 0" key="0" class="project-item">
+                            <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
+                                <h1>Dine Discover</h1>
+                                <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for exploring
+                                    restaurants. While the platform is not operational, its design emphasizes a user-friendly
+                                    interface, clean
+                                    visuals, and organized data. Features include user authentication, search, and detailed
+                                    restaurant reviews.</p>
                                 <button>
-                                    <a class="contact-button" href="https://github.com/Kianmhz/IG-bot" target="_blank" rel="noopener noreferrer">
+                                    <a class="contact-button" href="https://github.com/Kianmhz/restaurant-finder" target="_blank" rel="noopener noreferrer">
                                         <div class="button-icon">
                                             <font-awesome-icon :icon="['fab', 'github']" size="lg" />
                                         </div>
                                         <div class="button-text">Github</div>
                                     </a>
                                 </button>
+                            </div>
+                            <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
+                                <NuxtImg format="webp" src="/dine.png" loading="lazy"/>
+                            </div>
                         </div>
-                        <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                            <NuxtImg format="webp" src="/ig.png" loading="lazy"/>
+    
+                        <div v-if="currentProjectIndex === 1" key="1" class="project-item">
+                            <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
+                                <h1>Instagram Bot</h1>
+                                <p>Utilizing Python Playwright library, this bot is designed to streamline various Instagram
+                                    tasks. With
+                                    capabilities like logging in, posting photos and videos, as well as managing follow/unfollow
+                                    actions, it's built to run in a continuous loop, ensuring sustained activity and
+                                    automation.</p>
+                                    <button>
+                                        <a class="contact-button" href="https://github.com/Kianmhz/IG-bot" target="_blank" rel="noopener noreferrer">
+                                            <div class="button-icon">
+                                                <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                            </div>
+                                            <div class="button-text">Github</div>
+                                        </a>
+                                    </button>
+                            </div>
+                            <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
+                                <NuxtImg format="webp" src="/ig.png" loading="lazy"/>
+                            </div>
                         </div>
-                    </div>
-
-                    <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                        <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
-                            <h1>X / Twitter Bot</h1>
-                            <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
-                                logging in, posting multimedia content, and following or
-                                unfollowing users. Designed for long-term operations, it runs in an infinite loop, ensuring
-                                consistent and reliable automation.</p>
-                            <button>
-                                <a class="contact-button" href="https://github.com/Kianmhz/X-bot" target="_blank" rel="noopener noreferrer">
-                                    <div class="button-icon">
-                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                    </div>
-                                    <div class="button-text">Github</div>
-                                </a>
-                            </button>
+    
+                        <div v-if="currentProjectIndex === 2" key="2" class="project-item">
+                            <div class="project-info" :class="{ 'animate-projects': state.inViewProject }">
+                                <h1>X / Twitter Bot</h1>
+                                <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
+                                    logging in, posting multimedia content, and following or
+                                    unfollowing users. Designed for long-term operations, it runs in an infinite loop, ensuring
+                                    consistent and reliable automation.</p>
+                                <button>
+                                    <a class="contact-button" href="https://github.com/Kianmhz/X-bot" target="_blank" rel="noopener noreferrer">
+                                        <div class="button-icon">
+                                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                        </div>
+                                        <div class="button-text">Github</div>
+                                    </a>
+                                </button>
+                            </div>
+                            <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
+                                <NuxtImg format="webp" src="/x.jpeg" loading="lazy"/>
+                            </div>
                         </div>
-                        <div class="project-image" :class="{ 'animate-projects': state.inViewProject }">
-                            <NuxtImg format="webp" src="/x.jpeg" loading="lazy"/>
-                        </div>
-                    </div>
-                </transition-group>
-            </div>
-            <div class="flex justify-center items-center gap-[80px]" :ref="el => { scroll.resume = el }">
-                <button id="back" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
-                        size="xl" /></button>
-                <div class="dots">
-                    <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
-                    <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
-                    <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
+                    </transition-group>
                 </div>
-                <button id="forward" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
-                        size="xl" /></button>
             </div>
+        </div>
+
+        <div class="flex justify-center items-center mt-[60px] gap-[80px]" :ref="el => { scroll.resume = el }">
+            <button id="back" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
+                    size="xl" /></button>
+            <div class="dots">
+                <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
+                <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
+                <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
+            </div>
+            <button id="forward" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
+                    size="xl" /></button>
         </div>
 
         <div class="resume">
@@ -513,10 +524,6 @@ onUnmounted(() => {
 }
 
 /* Projects section styles */
-.projects {
-    @apply flex flex-col justify-center items-center mt-[50px] gap-[60px] max-lg:overflow-hidden max-sm:overflow-hidden;
-}
-
 .projects .container div h1 {
     @apply text-[3rem] font-[900] mb-[20px] max-lg:text-[2.5rem];
 }
@@ -643,7 +650,7 @@ onUnmounted(() => {
 
 .project-fade-leave-active,
 .project-fade-enter-active {
-    transition: opacity 0.5s, transform 0.5s;
+    transition: 0.5s all;
 }
 
 .project-fade-leave-to {
@@ -658,7 +665,7 @@ onUnmounted(() => {
 
 .project-fade-enter-to {
     @apply opacity-100 transform translate-x-0;
-    transition: opacity 0.5s, transform 0.5s;
+    transition: 0.5s all;
 }
 
 /* navbar animation */
