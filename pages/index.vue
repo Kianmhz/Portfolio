@@ -156,6 +156,32 @@ const scrollHandler = () => {
     }
 };
 
+const reactiveProjectHeight = () => {
+    var projects = projectsRef.value;
+    projects.style.height = 0;
+    projects.style.height = projects.scrollHeight + 'px';
+
+    let projectText = projects.querySelector('.project-info');
+
+    console.log(projects.style.height);
+};
+
+let windowWidth = window.innerWidth;
+let windowHeight = window.innerHeight;
+
+function handleResize() {
+    let newWidth = window.innerWidth;
+    let newHeight = window.innerHeight;
+
+    // Check if the width has changed to determine if it's a genuine resize event
+    if (newWidth !== windowWidth) {
+        updateElementPositionsOnScroll();
+        reactiveProjectHeight();
+        windowWidth = newWidth;
+        windowHeight = newHeight;
+    }
+}
+
 const introRef = ref(null);
 const skillsRef = ref(null);
 const projectsRef = ref(null);
@@ -183,20 +209,16 @@ onMounted(() => {
     });
 
     window.addEventListener('scroll', scrollHandler);
-    window.addEventListener('resize', updateElementPositionsOnScroll);
+    window.addEventListener('resize', handleResize);
+
+    setTimeout(() => { reactiveProjectHeight(); }, 1000);
+
 });
 
 onUnmounted(() => {
     observer.disconnect();
     window.removeEventListener('scroll', scrollHandler);
     window.removeEventListener('resize', updateElementPositionsOnScroll);
-});
-
-onUpdated(() => {
-    const projects = document.querySelector('.projects');
-    const projectsHeight = projects.offsetHeight;
-    projects.style.height = `${projectsHeight}px`;
-    console.log(projects.style.height);
 });
 </script>
 
@@ -303,7 +325,7 @@ onUpdated(() => {
                                 </button>
                             </div>
                             <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <NuxtImg format="webp" src="/dine.png" loading="lazy" />
+                                <NuxtImg format="webp" src="/dine.png" />
                             </div>
                         </div>
 
@@ -327,7 +349,7 @@ onUpdated(() => {
                                 </button>
                             </div>
                             <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <NuxtImg format="webp" src="/ig.png" loading="lazy" />
+                                <NuxtImg format="webp" src="/ig.png" />
                             </div>
                         </div>
 
@@ -350,7 +372,7 @@ onUpdated(() => {
                                 </button>
                             </div>
                             <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <NuxtImg format="webp" src="/x.jpeg" loading="lazy" />
+                                <NuxtImg format="webp" src="/x.jpeg" />
                             </div>
                         </div>
                     </transition-group>
@@ -657,7 +679,7 @@ onUpdated(() => {
 
 .project-fade-leave-active,
 .project-fade-enter-active {
-    transition: 0.5s all;
+    transition: 0.5s all ease-in-out;
 }
 
 .project-fade-leave-to {
@@ -672,7 +694,7 @@ onUpdated(() => {
 
 .project-fade-enter-to {
     @apply opacity-100 transform translate-x-0;
-    transition: 0.5s all;
+    transition: 0.5s all ease-in-out;
 }
 
 /* navbar animation */
@@ -695,4 +717,5 @@ onUpdated(() => {
 .navbar-fade-enter-active,
 .navbar-fade-leave-active {
     transition: opacity 0.5s ease, transform 0.5s ease;
-}</style>
+}
+</style>
