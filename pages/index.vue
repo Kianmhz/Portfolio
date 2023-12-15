@@ -230,9 +230,9 @@ onUnmounted(() => {
         <div class="intro" :ref="el => { introRef = el; scroll.home = el }">
             <div class="container">
                 <div>
-                    <h2 class="text-[3rem] font-[700] transform translate-y-[40px] opacity-[0] max-lg:text-[2.5rem] max-sm:text-[1.5rem]"
+                    <h2 class="text-[3rem] font-[700] transform translate-y-[45px] opacity-[0] max-lg:text-[2.5rem] max-sm:text-[1.5rem]"
                         :class="{ 'animate-intro': state.inViewIntro }">Hello, I'm</h2>
-                    <div class="transform translate-y-[80px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
+                    <div class="transform translate-y-[90px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
                         <h1 class="text-[7rem] font-[900] max-lg:text-[5rem] max-sm:text-[4rem]">Kianmehr<span
                                 class="intro-dot">.</span></h1>
                         <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
@@ -268,7 +268,7 @@ onUnmounted(() => {
 
         <div class="skills" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
             <div class="container">
-                <div class="opacity-[0] transform translate-y-[40px]" :class="{ 'animate-skills': state.inViewSkills }">
+                <div class="opacity-[0] transform translate-y-[50px]" :class="{ 'animate-skills': state.inViewSkills }">
                     <h1 class="text-[3rem] font-[900] max-lg:text-[2.5rem]">What I Do</h1>
                     <p id="skills-about">
                         Creating digital experiences through a fusion of sleek design and seamless functionality. From the
@@ -276,7 +276,7 @@ onUnmounted(() => {
                         matter.
                     </p>
                 </div>
-                <div class="opacity-[0] transform translate-y-[40px]" id="skills-grid"
+                <div class="opacity-[0] transform translate-y-[50px]" id="skills-grid"
                     :class="{ 'animate-skills': state.inViewSkills }">
                     <skillset-factory />
                 </div>
@@ -563,7 +563,7 @@ onUnmounted(() => {
 }
 
 .project-info {
-    @apply opacity-0 transform translate-y-[50px];
+    @apply opacity-0 transform translate-y-[60px];
 }
 
 .contact-button {
@@ -571,7 +571,7 @@ onUnmounted(() => {
 }
 
 .project-image {
-    @apply opacity-0 transform translate-x-[50px];
+    @apply opacity-0 transform translate-x-[60px];
 }
 
 .project-image img {
