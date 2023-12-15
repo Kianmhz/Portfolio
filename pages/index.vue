@@ -160,12 +160,9 @@ const reactiveProjectHeight = () => {
     var projects = projectsRef.value;
     projects.style.height = 0;
     projects.style.height = projects.scrollHeight + 'px';
-
-    let projectText = projects.querySelector('.project-info');
-
-    console.log(projects.style.height);
 };
 
+// Resize handler
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 
@@ -197,7 +194,7 @@ onMounted(() => {
         });
     };
 
-    const observer = new IntersectionObserver(observerCallback, { threshold: 0.6 });
+    const observer = new IntersectionObserver(observerCallback, { threshold: 0.5 });
 
     const refsToObserve = [skillsRef, introRef, projectsRef];
     refsToObserve.forEach(ref => {
