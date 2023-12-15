@@ -609,7 +609,7 @@ onUnmounted(() => {
 
 /* Wrap section styles */
 .wrap {
-    @apply flex justify-center my-[50px] max-lg:overflow-hidden max-sm:overflow-hidden;
+    @apply flex justify-center my-[50px] max-lg:overflow-hidden max-sm:overflow-hidden max-sm:text-center;
 }
 
 .wrap .container {
