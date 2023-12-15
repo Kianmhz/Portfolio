@@ -2,13 +2,8 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxt/image',
     '@nuxtjs/google-fonts',
 ],
-image: {
-  dir: 'assets/img',
-  format: ['webp'],
-},
   devtools: { enabled: true },
   build: {
     transpile: ['@fortawesome/vue-fontawesome']

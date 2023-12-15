@@ -251,7 +251,7 @@ onUnmounted(() => {
                     </button>
                 </div>
                 <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <NuxtImg class="ml-auto" width="550px" format="webp" src="/me.png" alt="Kianmehr's Image" />
+                    <img class="ml-auto" loading="eager" width="550px" src="~/assets/img/me.webp" alt="Kianmehr's Image" />
                 </div>
             </div>
         </div>
@@ -322,7 +322,7 @@ onUnmounted(() => {
                                 </button>
                             </div>
                             <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <NuxtImg format="webp" src="/dine.png" />
+                                <img src="~/assets/img/dine.webp" />
                             </div>
                         </div>
 
@@ -346,7 +346,7 @@ onUnmounted(() => {
                                 </button>
                             </div>
                             <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <NuxtImg format="webp" src="/ig.png" />
+                                <img src="~/assets/img/ig.webp" />
                             </div>
                         </div>
 
@@ -369,7 +369,7 @@ onUnmounted(() => {
                                 </button>
                             </div>
                             <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <NuxtImg format="webp" src="/x.jpeg" />
+                                <img src="~/assets/img/x.webp" />
                             </div>
                         </div>
                     </transition-group>
