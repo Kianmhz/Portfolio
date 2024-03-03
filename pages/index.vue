@@ -322,7 +322,7 @@ onUnmounted(() => {
                                 </button>
                             </div>
                             <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <img src="~/assets/img/dine.webp" />
+                                <img src="~/assets/img/dine.webp" alt="DineD logo"/>
                             </div>
                         </div>
 
@@ -346,7 +346,7 @@ onUnmounted(() => {
                                 </button>
                             </div>
                             <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <img src="~/assets/img/ig.webp" />
+                                <img src="~/assets/img/ig.webp" alt="ig logo"/>
                             </div>
                         </div>
 
@@ -369,7 +369,7 @@ onUnmounted(() => {
                                 </button>
                             </div>
                             <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <img src="~/assets/img/x.webp" />
+                                <img src="~/assets/img/x.webp" alt="X logo"/>
                             </div>
                         </div>
                     </transition-group>
@@ -378,14 +378,14 @@ onUnmounted(() => {
         </div>
 
         <div class="flex justify-center items-center mt-[60px] gap-[80px]" :ref="el => { scroll.resume = el }">
-            <button id="back" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
+            <button aria-label="Go backward" id="back" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
                     size="xl" /></button>
             <div class="dots">
                 <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
                 <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
                 <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
             </div>
-            <button id="forward" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
+            <button aria-label="Go forward" id="forward" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
                     size="xl" /></button>
         </div>
 

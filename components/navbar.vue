@@ -21,7 +21,7 @@ onMounted(() => {
 <template>
   <div class="nav-bar" :class="{ 'no-slide': loaded }">
     <div class="container">
-      <button @click="scrollTo('home')" class="nav slide-in">
+      <button name @click="scrollTo('home')" class="nav slide-in" aria-label="Go to Homepage">
         <div class="img-container">
           <Sign class="sign" />
         </div>

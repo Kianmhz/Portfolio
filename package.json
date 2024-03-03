@@ -11,6 +11,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/google-fonts": "^3.1.1",
+    "@nuxtjs/seo": "^2.0.0-rc.8",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "autoprefixer": "^10.4.15",
     "nuxt": "^3.8.2",
@@ -24,6 +25,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@nuxt/image": "^1.1.0",
+    "@nuxtjs/robots": "^3.0.0",
     "vue-touch": "^2.0.0-beta.4"
   }
 }
