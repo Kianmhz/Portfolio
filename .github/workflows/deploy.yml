@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-    - name: Deploy to Server
-      env:
-        SERVER_IP: ${{ secrets.SERVER_IP }}
-      run: ssh -o StrictHostKeyChecking=no kianmhz@${{ env.SERVER_IP }} 'bash -s' < ~/deploy.sh
+      - name: Deploy to Server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+        run: ssh -o StrictHostKeyChecking=no kianmhz@${{ env.SERVER_IP }} 'bash /var/www/kianmhz.me/deploy.sh'
