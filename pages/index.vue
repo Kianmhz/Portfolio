@@ -220,201 +220,195 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div v-cloak>
-        <transition name="navbar-fade">
-            <div class="navbar-wrapper" v-show="isScrollingUp == true">
-                <navbar :scroll="scroll" />
-            </div>
-        </transition>
-
-        <div class="intro" :ref="el => { introRef = el; scroll.home = el }">
-            <div class="container">
-                <div>
-                    <h2 class="text-[3rem] font-[700] transform translate-y-[45px] opacity-[0] max-lg:text-[2.5rem] max-sm:text-[1.5rem]"
-                        :class="{ 'animate-intro': state.inViewIntro }">Hello, I'm</h2>
-                    <div class="transform translate-y-[90px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                        <h1 class="text-[7rem] font-[900] max-lg:text-[5rem] max-sm:text-[4rem]">Kianmehr<span
-                                class="intro-dot">.</span></h1>
-                        <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
-                            A dedicated Software Developer driven by creativity, innovation and a continuous quest for
-                            proficiency. Every
-                            project I pursue is a journey of exploration, dedication, and a drive for excellence.
-                        </p>
-                    </div>
-                    <button @click="scrollTo('title')" id="intro-button"
-                        class="py-[20px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0 max-sm:hidden"
-                        :class="{ 'animate-intro': state.inViewIntro }">
-                        <span class="content">
-                            <span>EXPLORE BELOW</span>
-                        </span>
-                        <div class="arrow"></div>
-                    </button>
-                </div>
-                <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <img class="ml-auto" loading="eager" width="550px" src="~/assets/img/me.webp" alt="Kianmehr's Image" />
-                </div>
-            </div>
+    <transition name="navbar-fade">
+        <div class="navbar-wrapper" v-show="isScrollingUp == true">
+            <BaseNavbar :scroll="scroll" />
         </div>
+    </transition>
 
-        <div class="title" :ref="el => { scroll.title = el }">
-            <slider />
-            <div class="container">
-                <div class="will-change-transform">
-                    <h1 :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
-                    <h1 :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="skills" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
-            <div class="container">
-                <div class="opacity-[0] transform translate-y-[50px]" :class="{ 'animate-skills': state.inViewSkills }">
-                    <h1 class="text-[3rem] font-[900] max-lg:text-[2.5rem]">What I Do</h1>
-                    <p id="skills-about">
-                        Creating digital experiences through a fusion of sleek design and seamless functionality. From the
-                        first click to the lasting impression, I blend aesthetics with performance, making every interaction
-                        matter.
+    <div class="intro" :ref="el => { introRef = el; scroll.home = el }">
+        <div class="container">
+            <div>
+                <h2 class="text-[3rem] font-[700] transform translate-y-[45px] opacity-[0] max-lg:text-[2.5rem] max-sm:text-[1.5rem]"
+                    :class="{ 'animate-intro': state.inViewIntro }">Hello, I'm</h2>
+                <div class="transform translate-y-[90px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
+                    <h1 class="text-[7rem] font-[900] max-lg:text-[5rem] max-sm:text-[4rem]">Kianmehr<span
+                            class="intro-dot">.</span></h1>
+                    <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
+                        A dedicated Software Developer driven by creativity, innovation and a continuous quest for
+                        proficiency. Every
+                        project I pursue is a journey of exploration, dedication, and a drive for excellence.
                     </p>
                 </div>
-                <div class="opacity-[0] transform translate-y-[50px]" id="skills-grid"
-                    :class="{ 'animate-skills': state.inViewSkills }">
-                    <skillset-factory />
-                </div>
+                <button @click="scrollTo('title')" id="intro-button"
+                    class="py-[20px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0 max-sm:hidden"
+                    :class="{ 'animate-intro': state.inViewIntro }">
+                    <span class="content">
+                        <span>EXPLORE BELOW</span>
+                    </span>
+                    <div class="arrow"></div>
+                </button>
             </div>
-            <div class="logos">
-                <logos />
+            <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
+                <img class="ml-auto" loading="eager" width="550px" src="~/assets/img/me.webp" alt="Kianmehr's Image" />
             </div>
         </div>
+    </div>
 
-        <div class="title">
-            <slider />
+    <div class="title" :ref="el => { scroll.title = el }">
+        <slider />
+        <div class="container">
+            <div class="will-change-transform">
+                <h1 :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
+                <h1 :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="skills" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
+        <div class="container">
+            <div class="opacity-[0] transform translate-y-[50px]" :class="{ 'animate-skills': state.inViewSkills }">
+                <h1 class="text-[3rem] font-[900] max-lg:text-[2.5rem]">What I Do</h1>
+                <p id="skills-about">
+                    Creating digital experiences through a fusion of sleek design and seamless functionality. From the
+                    first click to the lasting impression, I blend aesthetics with performance, making every interaction
+                    matter.
+                </p>
+            </div>
+            <div class="opacity-[0] transform translate-y-[50px]" id="skills-grid"
+                :class="{ 'animate-skills': state.inViewSkills }">
+                <Skillset />
+            </div>
+        </div>
+        <div class="logos">
+            <logos />
+        </div>
+    </div>
+
+    <div class="title">
+        <slider />
+        <div class="container">
+            <div class="will-change-transform">
+                <h1 :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
+                <h1 :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd"
+        :ref="el => { projectsRef = el; scroll.projects = el }">
+        <div class="flex flex-col justify-center items-center max-lg:overflow-hidden max-sm:overflow-hidden">
             <div class="container">
-                <div class="will-change-transform">
-                    <h1 :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
-                    <h1 :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd"
-            :ref="el => { projectsRef = el; scroll.projects = el }">
-            <div class="flex flex-col justify-center items-center max-lg:overflow-hidden max-sm:overflow-hidden">
-                <div class="container">
-                    <transition-group name="project-fade" tag="div" class="relative">
-                        <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                            <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
-                                <h1>Dine Discover</h1>
-                                <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for
-                                    exploring
-                                    restaurants. While the platform is not operational, its design emphasizes a
-                                    user-friendly
-                                    interface, clean
-                                    visuals, and organized data. Features include user authentication, search, and detailed
-                                    restaurant reviews.</p>
-                                <button>
-                                    <a class="contact-button" href="https://github.com/Kianmhz/restaurant-finder"
-                                        target="_blank" rel="noopener noreferrer">
-                                        <div class="button-icon">
-                                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                        </div>
-                                        <div class="button-text">Github</div>
-                                    </a>
-                                </button>
-                            </div>
-                            <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <img src="~/assets/img/dine.webp" alt="DineD logo"/>
-                            </div>
+                <transition-group name="project-fade" tag="div" class="relative">
+                    <div v-if="currentProjectIndex === 0" key="0" class="project-item">
+                        <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
+                            <h1>Dine Discover</h1>
+                            <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for
+                                exploring
+                                restaurants. While the platform is not operational, its design emphasizes a
+                                user-friendly
+                                interface, clean
+                                visuals, and organized data. Features include user authentication, search, and detailed
+                                restaurant reviews.</p>
+                            <button>
+                                <a class="contact-button" href="https://github.com/Kianmhz/restaurant-finder"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <div class="button-icon">
+                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                    </div>
+                                    <div class="button-text">Github</div>
+                                </a>
+                            </button>
                         </div>
-
-                        <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                            <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
-                                <h1>Instagram Bot</h1>
-                                <p>Utilizing Python Playwright library, this bot is designed to streamline various Instagram
-                                    tasks. With
-                                    capabilities like logging in, posting photos and videos, as well as managing
-                                    follow/unfollow
-                                    actions, it's built to run in a continuous loop, ensuring sustained activity and
-                                    automation.</p>
-                                <button>
-                                    <a class="contact-button" href="https://github.com/Kianmhz/IG-bot" target="_blank"
-                                        rel="noopener noreferrer">
-                                        <div class="button-icon">
-                                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                        </div>
-                                        <div class="button-text">Github</div>
-                                    </a>
-                                </button>
-                            </div>
-                            <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <img src="~/assets/img/ig.webp" alt="ig logo"/>
-                            </div>
+                        <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
+                            <img src="~/assets/img/dine.webp" alt="DineD logo"/>
                         </div>
+                    </div>
 
-                        <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                            <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
-                                <h1>X / Twitter Bot</h1>
-                                <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
-                                    logging in, posting multimedia content, and following or
-                                    unfollowing users. Designed for long-term operations, it runs in an infinite loop,
-                                    ensuring
-                                    consistent and reliable automation.</p>
-                                <button>
-                                    <a class="contact-button" href="https://github.com/Kianmhz/X-bot" target="_blank"
-                                        rel="noopener noreferrer">
-                                        <div class="button-icon">
-                                            <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                        </div>
-                                        <div class="button-text">Github</div>
-                                    </a>
-                                </button>
-                            </div>
-                            <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                                <img src="~/assets/img/x.webp" alt="X logo"/>
-                            </div>
+                    <div v-if="currentProjectIndex === 1" key="1" class="project-item">
+                        <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
+                            <h1>Instagram Bot</h1>
+                            <p>Utilizing Python Playwright library, this bot is designed to streamline various Instagram
+                                tasks. With
+                                capabilities like logging in, posting photos and videos, as well as managing
+                                follow/unfollow
+                                actions, it's built to run in a continuous loop, ensuring sustained activity and
+                                automation.</p>
+                            <button>
+                                <a class="contact-button" href="https://github.com/Kianmhz/IG-bot" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <div class="button-icon">
+                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                    </div>
+                                    <div class="button-text">Github</div>
+                                </a>
+                            </button>
                         </div>
-                    </transition-group>
-                </div>
+                        <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
+                            <img src="~/assets/img/ig.webp" alt="ig logo"/>
+                        </div>
+                    </div>
+
+                    <div v-if="currentProjectIndex === 2" key="2" class="project-item">
+                        <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
+                            <h1>X / Twitter Bot</h1>
+                            <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
+                                logging in, posting multimedia content, and following or
+                                unfollowing users. Designed for long-term operations, it runs in an infinite loop,
+                                ensuring
+                                consistent and reliable automation.</p>
+                            <button>
+                                <a class="contact-button" href="https://github.com/Kianmhz/X-bot" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <div class="button-icon">
+                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
+                                    </div>
+                                    <div class="button-text">Github</div>
+                                </a>
+                            </button>
+                        </div>
+                        <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
+                            <img src="~/assets/img/x.webp" alt="X logo"/>
+                        </div>
+                    </div>
+                </transition-group>
             </div>
         </div>
+    </div>
 
-        <div class="flex justify-center items-center mt-[60px] gap-[80px]" :ref="el => { scroll.resume = el }">
-            <button aria-label="Go backward" id="back" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
-                    size="xl" /></button>
-            <div class="dots">
-                <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
-                <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
-                <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
-            </div>
-            <button aria-label="Go forward" id="forward" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
-                    size="xl" /></button>
+    <div class="flex justify-center items-center mt-[60px] gap-[80px]" :ref="el => { scroll.resume = el }">
+        <button aria-label="Go backward" id="back" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
+                size="xl" /></button>
+        <div class="dots">
+            <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
+            <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
+            <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
         </div>
+        <button aria-label="Go forward" id="forward" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
+                size="xl" /></button>
+    </div>
 
-        <div class="resume">
-            <resumeHeader />
-            <div class="container">
-                <card-factory />
-            </div>
+    <div class="resume">
+        <resumeHeader />
+        <div class="container">
+            <card-factory />
         </div>
+    </div>
 
-        <div class="wrap">
-            <div class="container">
-                <div class="will-change-transform">
-                    <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
-                    <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
-                    <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="contacts">
-            <div class="container">
-                <contact-factory />
+    <div class="wrap">
+        <div class="container">
+            <div class="will-change-transform">
+                <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
+                <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
+                <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
             </div>
         </div>
+    </div>
 
-        <footer>
-            <footer-content />
-        </footer>
+    <div class="contacts">
+        <div class="container">
+            <Contact />
+        </div>
     </div>
 </template>
 

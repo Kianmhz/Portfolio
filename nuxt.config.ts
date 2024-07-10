@@ -1,28 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/google-fonts",
-  ],
+  modules: ["@nuxt/fonts", "@nuxt/ui", 'nuxt-swiper'],
   devtools: { enabled: true },
-  build: {
-    transpile: ["@fortawesome/vue-fontawesome"],
-  },
-  css: ["~/assets/main.css", "@fortawesome/fontawesome-svg-core/styles.css"],
-  googleFonts: {
-    families: {
-      Roboto: {
-        wght: [400, 500, 700],
-      },
-      Lato: {
-        wght: [400, 700, 900],
-      },
-      "League Spartan": true,
-      Montserrat: true,
-      "Open Sans": true,
-    },
-  },
+  css: ["~/assets/main.css"],
   ssr: false,
+
   app: {
     head: {
       htmlAttrs: {
@@ -41,4 +23,6 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", href: "/logoV2.webp" }],
     },
   },
+
+  compatibilityDate: "2024-07-10",
 });
