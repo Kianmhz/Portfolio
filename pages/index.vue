@@ -280,9 +280,7 @@ onUnmounted(() => {
                 <Skillset />
             </div>
         </div>
-        <div class="logos">
             <logos />
-        </div>
     </div>
 
     <div class="title">

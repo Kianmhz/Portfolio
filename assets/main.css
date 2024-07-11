@@ -42,20 +42,11 @@
     background-color: #555;
 }
 
-/* To prevent FOUC and scroll jump */
-[v-cloak] {
-    display: none;
-}
-
 body {
     @apply overflow-x-hidden;
     font-family: 'lato';
     background: var(--main-bg-color);
     color: var(--main-text-color);
-}
-
-.container {
-    @apply flex justify-center items-center flex-wrap z-10 max-sm:w-[90%];
 }
 
 /* Button styles */
@@ -203,16 +194,5 @@ body {
     /* End at the bottom-right corner */
     100% {
         background-position: 100% 100%
-    }
-}
-
-/* For logo slider animation */
-@keyframes logo-scroll {
-    0% {
-        transform: translateX(0%);
-    }
-
-    100% {
-        transform: translateX(-100%);
     }
 }
