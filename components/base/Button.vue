@@ -1,0 +1,71 @@
+<template>
+    <button>
+      <NuxtLink
+        class="contact-button"
+        :to="link"
+        target="_blank"
+      >
+        <div class="button-icon">
+          <Icon :icon="icon" class="text-2xl" />
+        </div>
+        <div class="button-text">{{ title }}</div>
+      </NuxtLink>
+    </button>
+  </template>
+  
+  <script setup>
+import { Icon } from '@iconify/vue';
+
+  const props = defineProps({
+    link: {
+      type: String,
+      required: false
+    },
+    icon: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    }
+  });
+  </script>
+  
+  <style scoped>
+  .contact-button {
+    @apply flex items-center max-sm:w-full;
+  }
+  
+  .button-icon {
+    @apply relative p-[10px];
+  }
+  
+  .button-text {
+    transform: translateX(-30px);
+    transition: 0.3s ease-in-out;
+    @apply relative p-[10px] text-transparent max-sm:hidden;
+  }
+  
+  .contact-button:hover .button-text {
+    transform: translateX(-10px);
+    @apply opacity-100 text-white;
+  }
+  
+  .contact-button:hover .button-text::before {
+    @apply w-full;
+  }
+  
+  .button-icon::before,
+  .button-text::before {
+    content: '';
+    transition: 0.3s ease-in-out;
+    width: 0px;
+    @apply absolute h-[2px] bg-[var(--main-color)] bottom-0 left-0;
+  }
+  
+  .button-icon::before {
+    @apply w-full;
+  }
+  </style>
+  

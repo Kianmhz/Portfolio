@@ -19,8 +19,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="nav-bar" :class="{ 'no-slide': loaded }">
-    <div class="container">
+  <UContainer>
+    <div class="flex justify-between items-center h-16" :class="{ 'no-slide': loaded }">
       <button name @click="scrollTo('home')" class="nav slide-in" aria-label="Go to Homepage">
         <div class="img-container">
           <Sign class="sign" />
@@ -30,17 +30,12 @@ onMounted(() => {
       <button @click="scrollTo('projects')" class="nav slide-in delay-2">Projects</button>
       <button @click="scrollTo('resume')" class="nav slide-in delay-3">Resume</button>
     </div>
-  </div>
+  </UContainer>
 </template>
 
 <style scoped>
 .nav-bar {
-  @apply flex justify-center w-full;
   background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
-}
-
-.container {
-  @apply flex justify-between items-center;
 }
 
 .nav {

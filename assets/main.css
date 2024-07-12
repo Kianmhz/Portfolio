@@ -86,26 +86,6 @@ body {
 }
 
 /* Animations */
-/* Bounce towards down */
-@keyframes bounce {
-
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translate(-50%, 0) rotate(-45deg);
-    }
-
-    40% {
-        transform: translate(-50%, -30%) rotate(-45deg);
-    }
-
-    60% {
-        transform: translate(-50%, -15%) rotate(-45deg);
-    }
-}
-
 /* Bounce towards negative x */
 @keyframes bounce-x {
 

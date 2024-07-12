@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxt/fonts", "@nuxt/ui", 'nuxt-swiper'],
+  modules: ["@nuxt/fonts", "@nuxt/ui", 'nuxt-swiper', "nuxt-aos"],
   devtools: { enabled: true },
   css: ["~/assets/main.css",],
   ssr: false,

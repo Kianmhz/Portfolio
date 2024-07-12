@@ -225,35 +225,45 @@ onUnmounted(() => {
             <BaseNavbar :scroll="scroll" />
         </div>
     </transition>
-
-    <div class="intro" :ref="el => { introRef = el; scroll.home = el }">
-        <div class="container">
+    <UContainer>    
+        <div class="intro flex flex-col text-center justify-center items-center h-screen sm:flex-row sm:text-left">
             <div>
-                <h2 class="text-[3rem] font-[700] transform translate-y-[45px] opacity-[0] max-lg:text-[2.5rem] max-sm:text-[1.5rem]"
-                    :class="{ 'animate-intro': state.inViewIntro }">Hello, I'm</h2>
-                <div class="transform translate-y-[90px] opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                    <h1 class="text-[7rem] font-[900] max-lg:text-[5rem] max-sm:text-[4rem]">Kianmehr<span
+                <h2             
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+                data-aos-once="True"  
+                class="text-5xl font-bold">Hello, I'm</h2>
+                <div             
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="150"
+                data-aos-easing="ease-in-out"
+                data-aos-once="True" >
+                    <h1 class="text-8xl leading-normal font-bold ">Kianmehr<span
                             class="intro-dot">.</span></h1>
-                    <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">
+                    <p class="text-xl mb-5 text-[--secondary-text-color]">
                         A dedicated Software Developer driven by creativity, innovation and a continuous quest for
                         proficiency. Every
                         project I pursue is a journey of exploration, dedication, and a drive for excellence.
                     </p>
                 </div>
-                <button @click="scrollTo('title')" id="intro-button"
-                    class="py-[20px] relative transition-transform duration-300 transition-box-shadow duration-300 overflow-hidden bg-transparent border-none opacity-0 max-sm:hidden"
-                    :class="{ 'animate-intro': state.inViewIntro }">
-                    <span class="content">
-                        <span>EXPLORE BELOW</span>
-                    </span>
-                    <div class="arrow"></div>
-                </button>
+                <BaseButton
+                data-aos="fade"
+                data-aos-duration="1000"
+                data-aos-delay="2000"
+                data-aos-easing="ease-in-out"
+                data-aos-once="True"
+                @click="scrollTo('title')" id="intro-button"
+                icon="line-md:coffee-loop"
+                title="EXPLORE BELOW"
+                />
             </div>
-            <div class="opacity-[0]" :class="{ 'animate-intro': state.inViewIntro }">
-                <img class="ml-auto" loading="eager" width="550px" src="~/assets/img/me.webp" alt="Kianmehr's Image" />
+            <div>
+                <img class="ml-auto w-1/2" loading="eager" src="~/assets/img/me.webp" alt="Kianmehr's Image" />
             </div>
         </div>
-    </div>
+    </UContainer>
 
     <div class="title" :ref="el => { scroll.title = el }">
         <slider />
@@ -412,14 +422,6 @@ onUnmounted(() => {
 
 <style>
 /* Intro section styles */
-.intro {
-    @apply flex justify-center items-center mt-[20px] h-screen max-lg:mt-[80px] max-sm:mt-[20px];
-}
-
-.intro .container {
-    @apply grid grid-cols-2 gap-x-[50px] max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:text-center;
-}
-
 .intro-dot {
     animation: gradient 20s linear infinite alternate;
 
@@ -429,33 +431,6 @@ onUnmounted(() => {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.content {
-    @apply inline-block relative text-[1rem];
-    transition: transform 0.4s, opacity 0.4s ease-in-out;
-}
-
-.content::after {
-    @apply absolute bottom-[-10px] left-0 w-full h-[2px] bg-[var(--main-color)];
-    content: '';
-}
-
-#intro-button:hover .content {
-    @apply transform scale-[0.5] opacity-0;
-}
-
-.arrow {
-    @apply absolute left-1/2 bottom-[10%] w-5 h-5 opacity-0;
-    border-left: 3px solid var(--main-color);
-    border-bottom: 3px solid var(--main-color);
-    transform: translate(-50%, 100%) rotate(-45deg);
-    transition: transform 0.5s 0.1s, opacity 0.5s ease-in-out 0.1s;
-}
-
-#intro-button:hover .arrow {
-    @apply opacity-100;
-    animation: bounce 0.8s infinite;
 }
 
 /* Title section styles */
