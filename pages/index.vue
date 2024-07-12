@@ -408,14 +408,14 @@ onUnmounted(() => {
         </div>
     </div>
 
-    <div class="wrap">
-        <div class="container">
-            <div class="will-change-transform">
+    <div class="wrap my-10 text-center sm:text-left">
+        <UContainer>
+            <div class="will-change-transform whitespace-nowrap">
                 <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
                 <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
                 <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
             </div>
-        </div>
+        </UContainer>
     </div>
     <Contact />
 </template>
@@ -529,15 +529,7 @@ onUnmounted(() => {
 }
 
 /* Wrap section styles */
-.wrap {
-    @apply flex justify-center my-[50px] max-lg:overflow-hidden max-sm:overflow-hidden max-sm:text-center;
-}
-
-.wrap .container {
-    @apply justify-start whitespace-nowrap;
-}
-
-.wrap .container div p {
+.wrap div p {
     @apply text-[7rem] max-lg:text-[5rem] max-sm:text-[3rem];
     font-weight: 700;
     animation: gradient 20s linear infinite alternate;
