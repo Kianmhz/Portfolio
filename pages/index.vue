@@ -417,12 +417,7 @@ onUnmounted(() => {
             </div>
         </div>
     </div>
-
-    <div class="contacts">
-        <div class="container">
-            <Contact />
-        </div>
-    </div>
+    <Contact />
 </template>
 
 <style>
@@ -554,13 +549,6 @@ onUnmounted(() => {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: opacity 0.5s ease-in-out;
-}
-
-/* Contacts section styles */
-.contacts {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0;
 }
 
 /* In view transitions */
