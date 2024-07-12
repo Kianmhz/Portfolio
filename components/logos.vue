@@ -17,7 +17,7 @@ const tripledIcons = computed(() => icons.value.concat(icons.value, icons.value)
 </script>
 
 <template>
-  <div class="logos">
+  <div class="relative max-sm:hidden">
     <Swiper
       :modules="[Autoplay, FreeMode]"
       :slidesPerView="4"
@@ -27,43 +27,11 @@ const tripledIcons = computed(() => icons.value.concat(icons.value, icons.value)
       :freeMode="true"
       :freeModeMomentum="false"
     >
-      <SwiperSlide v-for="icon in tripledIcons" :key="icon">
-        <Icon :icon="icon" class="text-[6vw]"/>
+      <SwiperSlide class="flex justify-center items-center" v-for="icon in tripledIcons" :key="icon">
+        <Icon :icon="icon" class="text-[5vw]"/>
       </SwiperSlide>
     </Swiper>
+    <div class="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-l from-black to-transparent z-10"></div>
+    <div class="absolute top-0 left-0 w-1/4 h-full bg-gradient-to-r from-black to-transparent z-10"></div>
   </div>
 </template>
-
-<style scoped>
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logos {
-  @apply max-sm:hidden;
-}
-
-.logos::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20%;
-  height: 100%;
-  background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  z-index: 1;
-}
-
-.logos::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  z-index: 1;
-}
-</style>

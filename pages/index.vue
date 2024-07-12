@@ -265,42 +265,47 @@ onUnmounted(() => {
         </div>
     </UContainer>
 
-    <div class="title" :ref="el => { scroll.title = el }">
+    <div class="relative">
         <slider />
-        <div class="container">
-            <div class="will-change-transform">
-                <h1 :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
-                <h1 :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
+        <UContainer>
+            <div class="flex justify-center items-center" :ref="el => { scroll.title = el }">
+                <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                    <h1 class="title1" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
+                    <h1 class="title2" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
+                </div>
             </div>
-        </div>
+        </UContainer>
     </div>
 
-    <div class="skills" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
-        <div class="container">
-            <div class="opacity-[0] transform translate-y-[50px]" :class="{ 'animate-skills': state.inViewSkills }">
-                <h1 class="text-[3rem] font-[900] max-lg:text-[2.5rem]">What I Do</h1>
-                <p id="skills-about">
-                    Creating digital experiences through a fusion of sleek design and seamless functionality. From the
-                    first click to the lasting impression, I blend aesthetics with performance, making every interaction
-                    matter.
-                </p>
+    <div class="flex justify-center items-center flex-col h-screen" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
+        <UContainer>
+            <div class="grid grid-cols-1 text-center gap-x-14 mb-28 lg:grid-cols-2 sm:text-left">
+                <div class="flex flex-col justify-center">
+                    <h1 class="text-5xl leading-normal font-bold">What I Do</h1>
+                    <p class="text-lg text-[--secondary-text-color]">
+                        Creating digital experiences through a fusion of sleek design and seamless functionality. From the
+                        first click to the lasting impression, I blend aesthetics with performance, making every interaction
+                        matter.
+                    </p>
+                </div>
+                <div class="">
+                    <Skillset />
+                </div>
             </div>
-            <div class="opacity-[0] transform translate-y-[50px]" id="skills-grid"
-                :class="{ 'animate-skills': state.inViewSkills }">
-                <Skillset />
-            </div>
-        </div>
             <logos />
+        </UContainer>
     </div>
 
-    <div class="title">
+    <div class="relative">
         <slider />
-        <div class="container">
-            <div class="will-change-transform">
-                <h1 :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
-                <h1 :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
+        <UContainer>
+            <div class="flex justify-center items-center">
+                <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                    <h1 class="title1" :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
+                    <h1 class="title2" :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
+                </div>
             </div>
-        </div>
+        </UContainer>
     </div>
 
     <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd"
@@ -434,15 +439,8 @@ onUnmounted(() => {
 }
 
 /* Title section styles */
-.title {
-    @apply flex justify-center items-center;
-}
 
-.title .container {
-    @apply absolute;
-}
-
-.title .container h1:nth-child(1) {
+.title1 {
     @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.4rem];
     animation: gradient 20s linear infinite alternate;
 
@@ -454,7 +452,7 @@ onUnmounted(() => {
     -webkit-text-fill-color: transparent;
 }
 
-.title .container h1:nth-child(2) {
+.title2 {
     @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.4rem];
     animation: gradient 20s linear infinite alternate;
 
@@ -475,45 +473,6 @@ onUnmounted(() => {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-/* Skills section styles */
-.skills {
-    @apply flex justify-center items-center flex-col h-screen max-lg:h-full max-sm:h-full;
-}
-
-.skills .container {
-    @apply grid grid-cols-2 gap-x-[50px] mb-[10%] max-lg:grid-cols-1 max-lg:gap-y-[100px] max-sm:text-center;
-}
-
-.skills .container div p {
-    @apply text-[1.2rem] font-[400] text-[var(--secondary-text-color)];
-}
-
-.logos {
-    @apply relative overflow-hidden w-[90%] max-sm:hidden;
-}
-
-.logos::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-    z-index: 1;
-}
-
-.logos::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-    z-index: 1;
 }
 
 /* Projects section styles */
@@ -605,28 +564,6 @@ onUnmounted(() => {
 }
 
 /* In view transitions */
-
-/* Intro in view transitions */
-.animate-intro {
-    @apply opacity-100 transform translate-y-0;
-    transition: transform 1s, opacity 1s ease;
-}
-
-#intro-button.animate-intro {
-    @apply opacity-100;
-    transition: opacity 0.5s 2s ease;
-}
-
-/* Skills in view transitions */
-.animate-skills {
-    @apply opacity-100 transform translate-y-0;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
-#skills-grid.animate-skills {
-    @apply opacity-100 transform translate-y-0;
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-}
 
 /* Projects in view transitions */
 .project-info.animate-projects,
