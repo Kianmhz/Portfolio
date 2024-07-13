@@ -256,7 +256,7 @@ onUnmounted(() => {
                 data-aos-once="True"
                 @click="scrollTo('title')" id="intro-button"
                 icon="line-md:coffee-loop"
-                title="EXPLORE BELOW"
+                title="EXPLORE"
                 />
             </div>
             <div>
@@ -411,12 +411,7 @@ onUnmounted(() => {
                 size="xl" /></button>
     </div>
 
-    <div class="resume">
-        <resumeHeader />
-        <div class="container">
-            <card-factory />
-        </div>
-    </div>
+    <Cards />
 
     <div class="wrap my-10 text-center sm:text-left">
         <UContainer>
@@ -427,6 +422,7 @@ onUnmounted(() => {
             </div>
         </UContainer>
     </div>
+    
     <Contact />
 </template>
 
@@ -531,11 +527,6 @@ onUnmounted(() => {
 
 .dots div.active {
     @apply w-4 h-4 bg-[var(--main-color)];
-}
-
-/* Resume section styles */
-.resume {
-    @apply flex flex-col justify-center items-center max-lg:overflow-hidden max-sm:hidden;
 }
 
 /* Wrap section styles */
