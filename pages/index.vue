@@ -7,11 +7,7 @@ const scroll = reactive({
     projects: null,
     resume: null,
 });
-const state = reactive({
-    inViewSkills: false,
-    inViewIntro: false,
-    inViewProjects: false,
-});
+
 const elements = reactive({
     leftIntroTitle: null,
     rightIntroTitle: null,
@@ -21,58 +17,6 @@ const elements = reactive({
     secondTextSectionThree: null,
     thirdTextSectionThree: null
 });
-
-// Navigation functions for project viewing.
-const currentProjectIndex = ref(0);
-const goBack = () => {
-    if (currentProjectIndex.value > 0) {
-        currentProjectIndex.value--;
-        document.documentElement.style.setProperty('--translate-x-leave', '100%');
-        document.documentElement.style.setProperty('--translate-x-enter', '-100%');
-    }
-};
-const goForward = () => {
-    if (currentProjectIndex.value < 2) {
-        currentProjectIndex.value++;
-        document.documentElement.style.setProperty('--translate-x-leave', '-100%');
-        document.documentElement.style.setProperty('--translate-x-enter', '100%');
-    }
-};
-
-const setProjectIndex = (index) => {
-    if (index > currentProjectIndex.value) {
-        for (let i = currentProjectIndex.value; i < index; i++) {
-            goForward();
-        }
-    }
-    else if (index < currentProjectIndex.value) {
-        for (let i = currentProjectIndex.value; i > index; i--) {
-            goBack();
-        }
-    }
-};
-
-// Touch event handlers for project viewing.
-const touchStartX = ref(0);
-const touchEndX = ref(0);
-
-const handleTouchStart = (event) => {
-    touchStartX.value = event.touches[0].clientX;
-};
-
-const handleTouchEnd = (event) => {
-    touchEndX.value = event.changedTouches[0].clientX;
-    handleGesture();
-};
-
-const handleGesture = () => {
-    const threshold = 50; // Adjust this threshold as needed
-    if (touchEndX.value < touchStartX.value - threshold) {
-        goForward();
-    } else if (touchEndX.value > touchStartX.value + threshold) {
-        goBack();
-    }
-};
 
 let rafId = null;
 
@@ -156,12 +100,6 @@ const scrollHandler = () => {
     }
 };
 
-const reactiveProjectHeight = () => {
-    var projects = projectsRef.value;
-    projects.style.height = 0;
-    projects.style.height = projects.scrollHeight + 'px';
-};
-
 // Resize handler
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
@@ -173,38 +111,12 @@ function handleResize() {
     // Check if the width has changed to determine if it's a genuine resize event
     if (newWidth !== windowWidth) {
         updateElementPositionsOnScroll();
-        reactiveProjectHeight();
         windowWidth = newWidth;
         windowHeight = newHeight;
     }
 }
 
-const introRef = ref(null);
-const skillsRef = ref(null);
-const projectsRef = ref(null);
-
 onMounted(() => {
-    // Initialize Intersection Observer.
-    const observerCallback = (entries) => {
-        entries.forEach(entry => {
-            const targetRef = entry.target.__vue_ref;
-            if (targetRef && entry.isIntersecting) {
-                state[targetRef] = true;
-            }
-        });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, { threshold: 0.5 });
-
-    const refsToObserve = [skillsRef, introRef, projectsRef];
-    refsToObserve.forEach(ref => {
-        if (ref.value) {
-            observer.observe(ref.value);
-            // Attach a custom property to link the observed element to its state
-            ref.value.__vue_ref = 'inView' + ref.value.className.charAt(0).toUpperCase() + ref.value.className.slice(1);
-        }
-    });
-
     window.addEventListener('scroll', scrollHandler);
     window.addEventListener('resize', handleResize);
 
@@ -260,7 +172,7 @@ onUnmounted(() => {
                 />
             </div>
             <div>
-                <img class="ml-auto w-1/2" loading="eager" src="~/assets/img/me.webp" alt="Kianmehr's Image" />
+                <img class="ml-auto w-1/2" loading="eager" src="/img/me.webp" alt="Kianmehr's Image" />
             </div>
         </div>
     </UContainer>
@@ -318,97 +230,8 @@ onUnmounted(() => {
         </UContainer>
     </div>
 
-    <div class="projects" @touchstart="handleTouchStart" @touchend="handleTouchEnd"
-        :ref="el => { projectsRef = el; scroll.projects = el }">
-        <div class="flex flex-col justify-center items-center max-lg:overflow-hidden max-sm:overflow-hidden">
-            <div class="container">
-                <transition-group name="project-fade" tag="div" class="relative">
-                    <div v-if="currentProjectIndex === 0" key="0" class="project-item">
-                        <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
-                            <h1>Dine Discover</h1>
-                            <p>Developed with Vanilla JS and Django, Dine Discover is a conceptual platform for
-                                exploring
-                                restaurants. While the platform is not operational, its design emphasizes a
-                                user-friendly
-                                interface, clean
-                                visuals, and organized data. Features include user authentication, search, and detailed
-                                restaurant reviews.</p>
-                            <button>
-                                <a class="contact-button" href="https://github.com/Kianmhz/restaurant-finder"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <div class="button-icon">
-                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                    </div>
-                                    <div class="button-text">Github</div>
-                                </a>
-                            </button>
-                        </div>
-                        <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                            <img src="~/assets/img/dine.webp" alt="DineD logo"/>
-                        </div>
-                    </div>
-
-                    <div v-if="currentProjectIndex === 1" key="1" class="project-item">
-                        <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
-                            <h1>Instagram Bot</h1>
-                            <p>Utilizing Python Playwright library, this bot is designed to streamline various Instagram
-                                tasks. With
-                                capabilities like logging in, posting photos and videos, as well as managing
-                                follow/unfollow
-                                actions, it's built to run in a continuous loop, ensuring sustained activity and
-                                automation.</p>
-                            <button>
-                                <a class="contact-button" href="https://github.com/Kianmhz/IG-bot" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <div class="button-icon">
-                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                    </div>
-                                    <div class="button-text">Github</div>
-                                </a>
-                            </button>
-                        </div>
-                        <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                            <img src="~/assets/img/ig.webp" alt="ig logo"/>
-                        </div>
-                    </div>
-
-                    <div v-if="currentProjectIndex === 2" key="2" class="project-item">
-                        <div class="project-info" :class="{ 'animate-projects': state.inViewProjects }">
-                            <h1>X / Twitter Bot</h1>
-                            <p>Engineered with Python Playwright library, Twitter Bot is equipped to handle tasks like
-                                logging in, posting multimedia content, and following or
-                                unfollowing users. Designed for long-term operations, it runs in an infinite loop,
-                                ensuring
-                                consistent and reliable automation.</p>
-                            <button>
-                                <a class="contact-button" href="https://github.com/Kianmhz/X-bot" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <div class="button-icon">
-                                        <font-awesome-icon :icon="['fab', 'github']" size="lg" />
-                                    </div>
-                                    <div class="button-text">Github</div>
-                                </a>
-                            </button>
-                        </div>
-                        <div class="project-image" :class="{ 'animate-projects': state.inViewProjects }">
-                            <img src="~/assets/img/x.webp" alt="X logo"/>
-                        </div>
-                    </div>
-                </transition-group>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex justify-center items-center mt-[60px] gap-[80px]" :ref="el => { scroll.resume = el }">
-        <button aria-label="Go backward" id="back" @click="goBack"><font-awesome-icon :icon="['fas', 'circle-chevron-left']"
-                size="xl" /></button>
-        <div class="dots">
-            <div :class="{ active: currentProjectIndex === 0 }" @click="setProjectIndex(0)"></div>
-            <div :class="{ active: currentProjectIndex === 1 }" @click="setProjectIndex(1)"></div>
-            <div :class="{ active: currentProjectIndex === 2 }" @click="setProjectIndex(2)"></div>
-        </div>
-        <button aria-label="Go forward" id="forward" @click="goForward"><font-awesome-icon :icon="['fas', 'circle-chevron-right']"
-                size="xl" /></button>
+    <div :ref="el => { projectsRef = el; scroll.projects = el }">
+        <Projects />
     </div>
 
     <Cards />
@@ -476,59 +299,6 @@ onUnmounted(() => {
     -webkit-text-fill-color: transparent;
 }
 
-/* Projects section styles */
-.projects .container div h1 {
-    @apply text-[3rem] font-[900] mb-[20px] max-lg:text-[2.5rem];
-}
-
-.projects .container div p {
-    @apply text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)];
-}
-
-.project-item {
-    @apply grid grid-cols-2 justify-center items-center gap-[50px] max-sm:grid-cols-1 max-sm:text-center;
-}
-
-.project-info {
-    @apply opacity-0 transform translate-y-[60px];
-}
-
-.contact-button {
-    @apply max-sm:flex max-sm:justify-center;
-}
-
-.project-image {
-    @apply opacity-0 transform translate-x-[60px];
-}
-
-.project-image img {
-    width: 550px;
-    margin-left: auto;
-}
-
-/* Projects buttons styles */
-#back:not(:active) {
-    @apply max-sm:hidden;
-    animation: bounce-x 0.8s;
-}
-
-#forward:not(:active) {
-    @apply max-sm:hidden;
-    animation: bouncex 0.8s;
-}
-
-.dots {
-    @apply flex gap-4 justify-center items-center;
-}
-
-.dots div {
-    @apply w-3 h-3 rounded-full bg-[var(--secondary-text-color)] cursor-pointer;
-}
-
-.dots div.active {
-    @apply w-4 h-4 bg-[var(--main-color)];
-}
-
 /* Wrap section styles */
 .wrap div p {
     @apply text-[7rem] max-lg:text-[5rem] max-sm:text-[3rem];
@@ -545,39 +315,6 @@ onUnmounted(() => {
 }
 
 /* In view transitions */
-
-/* Projects in view transitions */
-.project-info.animate-projects,
-.project-image.animate-projects {
-    @apply opacity-100 transform translate-y-0 translate-x-0;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
-.project-fade-leave-active {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.project-fade-leave-active,
-.project-fade-enter-active {
-    transition: 0.5s all ease-in-out;
-}
-
-.project-fade-leave-to {
-    opacity: 0;
-    transform: translateX(var(--translate-x-leave));
-}
-
-.project-fade-enter-from {
-    opacity: 0;
-    transform: translateX(var(--translate-x-enter));
-}
-
-.project-fade-enter-to {
-    @apply opacity-100 transform translate-x-0;
-    transition: 0.5s all ease-in-out;
-}
 
 /* navbar animation */
 .navbar-wrapper {
