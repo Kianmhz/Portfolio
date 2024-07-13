@@ -280,7 +280,12 @@ onUnmounted(() => {
     <div class="flex justify-center items-center flex-col h-screen" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
         <UContainer>
             <div class="grid grid-cols-1 text-center gap-x-14 mb-28 lg:grid-cols-2 sm:text-left">
-                <div class="flex flex-col justify-center">
+                <div
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+                data-aos-once="True"
+                class="flex flex-col justify-center">
                     <h1 class="text-5xl leading-normal font-bold">What I Do</h1>
                     <p class="text-lg text-[--secondary-text-color]">
                         Creating digital experiences through a fusion of sleek design and seamless functionality. From the
@@ -288,7 +293,12 @@ onUnmounted(() => {
                         matter.
                     </p>
                 </div>
-                <div class="">
+                <div 
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="300"
+                data-aos-easing="ease-in-out"
+                data-aos-once="True">
                     <Skillset />
                 </div>
             </div>
