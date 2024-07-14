@@ -1,8 +1,8 @@
 <script setup>
 const props = defineProps({
   scroll: Object,
+  scrollTo: Function, 
 });
-
 
 // Scroll direction detection logic.
 const SCROLL_THRESHOLD = 100;
