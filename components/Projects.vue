@@ -35,33 +35,30 @@ const projects = ref([
 </script>
 
 <template>
-  <div class="flex flex-col justify-center items-center max-lg:overflow-hidden max-sm:overflow-hidden">
-    <UContainer>
-      <Swiper
-        :modules="[Autoplay, Pagination]"
-        :slidesPerView="1"
-        :loop="true"
-        :autoplay="{ delay: 3000, disableOnInteraction: false }"
-        :pagination="{ clickable: true }"
-        class="projects"
-      >
-        <SwiperSlide v-for="(project, index) in projects" :key="index">
-          <div class="grid grid-cols-2 justify-center items-center gap-[50px] max-sm:grid-cols-1 max-sm:text-center">
-            <div>
-              <h1 class="text-[3rem] font-[900] mb-[20px] max-lg:text-[2.5rem]">{{ project.title }}</h1>
-              <p class="text-[1.2rem] font-[400] mb-[20px] text-[var(--secondary-text-color)]">{{ project.description }}</p>
-              <BaseButton
-              icon='codicon:github'
-              title='GitHub'
-              :link= project.link
-              />
-            </div>
-            <div class="project-image">
-              <img :src="project.image" :alt="project.alt" class="w-[550px] ml-auto" />
-            </div>
+  <UContainer>
+    <Swiper
+      :modules="[Autoplay, Pagination]"
+      :slidesPerView="1"
+      :loop="true"
+      :autoplay="{ delay: 3000, disableOnInteraction: false }"
+      :pagination="{ clickable: true }"
+    >
+      <SwiperSlide v-for="(project, index) in projects" :key="index">
+        <div class="grid grid-cols-1 justify-center items-center gap-20 text-center sm:grid-cols-2 sm:text-left">
+          <div>
+            <h1 class="text-5xl leading-loose font-bold">{{ project.title }}</h1>
+            <p class="text-lg mb-5 text-[--secondary-text-color]">{{ project.description }}</p>
+            <BaseButton
+            icon='codicon:github'
+            title='GitHub'
+            :link= project.link
+            />
           </div>
-        </SwiperSlide>
-      </Swiper>
-    </UContainer>
-  </div>
+          <div class="">
+            <img :src="project.image" :alt="project.alt" class="ml-auto" />
+          </div>
+        </div>
+      </SwiperSlide>
+    </Swiper>
+  </UContainer>
 </template>

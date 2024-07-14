@@ -154,7 +154,7 @@ onUnmounted(() => {
                 data-aos-once="True" >
                     <h1 class="text-8xl leading-normal font-bold ">Kianmehr<span
                             class="intro-dot">.</span></h1>
-                    <p class="text-xl mb-5 text-[--secondary-text-color]">
+                    <p class="text-lg mb-5 text-[--secondary-text-color]">
                         A dedicated Software Developer driven by creativity, innovation and a continuous quest for
                         proficiency. Every
                         project I pursue is a journey of exploration, dedication, and a drive for excellence.
@@ -198,7 +198,7 @@ onUnmounted(() => {
                 data-aos-easing="ease-in-out"
                 data-aos-once="True"
                 class="flex flex-col justify-center">
-                    <h1 class="text-5xl leading-normal font-bold">What I Do</h1>
+                    <h1 class="text-5xl leading-relaxed font-bold">What I Do</h1>
                     <p class="text-lg text-[--secondary-text-color]">
                         Creating digital experiences through a fusion of sleek design and seamless functionality. From the
                         first click to the lasting impression, I blend aesthetics with performance, making every interaction

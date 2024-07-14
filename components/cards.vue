@@ -9,9 +9,9 @@ const cards = ref([
 <template>
   <UContainer>
     <div class="flex flex-col justify-center items-center max-sm:hidden">
-      <div class="flex justify-center items-center my-[50px] text-[3rem] font-[900] text-[var(--main-color)] max-lg:text-[2.5rem]">
+      <div class="flex justify-center items-center my-10 text-5xl font-bold text-[--main-color]">
         <span >My</span>
-        <div class="overflow-hidden h-[60px] pl-5">
+        <div class="overflow-hidden h-[60px] pl-3">
             <ul class="list">
                 <li class="item">Resume &</li>
                 <li class="item">Certificates</li>
@@ -20,8 +20,8 @@ const cards = ref([
       </div>
       <div class="flex relative w-[75%] h-[350px] lg:h-[500px]">
         <div v-for="card in cards" :key="card.id" class="resume-card" :id="`card${card.id}`">
-          <p class="text-[2rem] max-lg:text-[1.5rem]">{{ card.content }}</p>
-          <NuxtLink :href="card.src" target="_blank" rel="noopener noreferrer" class="absolute top-[80%] text-[--secondary-text-color] text-[2rem] max-lg:text-[1.5rem]">{{ card.title }}</NuxtLink>
+          <p class="text-3xl">{{ card.content }}</p>
+          <NuxtLink :href="card.src" target="_blank" rel="noopener noreferrer" class="absolute bottom-16 text-[--secondary-text-color] text-3xl">{{ card.title }}</NuxtLink>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ onMounted(() => {
   <UContainer>
     <div class="flex justify-between items-center h-16" :class="{ 'no-slide': loaded }">
       <button name @click="scrollTo('home')" class="nav slide-in" aria-label="Go to Homepage">
-        <div class="img-container">
+        <div class="img-container flex justify-center items-center w-full">
           <Sign class="sign" />
         </div>
       </button>
@@ -34,17 +34,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.nav-bar {
-  background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
-}
-
 .nav {
-  @apply mt-2 text-[1rem] transition-all duration-200 opacity-0 hover:text-[var(--main-color)] max-sm:hidden max-sm:first:flex;
-}
-
-/* to make the logo centered */
-.img-container {
-  @apply flex justify-center items-center w-full;
+  @apply text-base transition-all duration-200 opacity-0 hover:text-[--main-color] max-sm:hidden max-sm:first:flex;
 }
 
 /* Initial load Animation for header */
@@ -66,7 +57,6 @@ onMounted(() => {
 .delay-2 {
   animation-delay: 0.5s;
 }
-
 .delay-3 {
   animation-delay: 0.75s;
 }
