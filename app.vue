@@ -1,3 +1,7 @@
+<script setup>
+import 'aos/dist/aos.css';
+</script>
+
 <template>
   <div>
     <NuxtLoadingIndicator/>

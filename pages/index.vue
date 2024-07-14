@@ -21,6 +21,7 @@ const elements = reactive({
 let rafId = null;
 
 const calculateRate = (element, startOffset = 0, endOffset = 0, invert = false) => {
+    if (!element) return 0;
     const elementStart = element.getBoundingClientRect().top + window.scrollY - window.innerHeight + startOffset;
     const elementEnd = element.getBoundingClientRect().top + window.scrollY + element.offsetHeight + endOffset;
     const scrollRange = elementEnd - elementStart;
@@ -48,15 +49,15 @@ const updateElementPositionsOnScroll = () => {
         const sectionThreeRate = calculateRate(elements.firstTextSectionThree, 0, -200);
 
         // Apply the rates to the animations
-        elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 25}%)`;
-        elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 25}%)`;
+        if (elements.leftIntroTitle) elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 25}%)`;
+        if (elements.rightIntroTitle) elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 25}%)`;
 
-        elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 25}%)`;
-        elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 25}%)`;
+        if (elements.leftIntroSectionTwoTitle) elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 25}%)`;
+        if (elements.rightIntroSectionTwoTitle) elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 25}%)`;
 
-        elements.firstTextSectionThree.style.opacity = sectionThreeRate >= 0.2 ? 1 : 0;
-        elements.secondTextSectionThree.style.opacity = sectionThreeRate >= 0.4 ? 1 : 0;
-        elements.thirdTextSectionThree.style.opacity = sectionThreeRate >= 0.6 ? 1 : 0;
+        if (elements.firstTextSectionThree) elements.firstTextSectionThree.style.opacity = sectionThreeRate >= 0.2 ? 1 : 0;
+        if (elements.secondTextSectionThree) elements.secondTextSectionThree.style.opacity = sectionThreeRate >= 0.4 ? 1 : 0;
+        if (elements.thirdTextSectionThree) elements.thirdTextSectionThree.style.opacity = sectionThreeRate >= 0.6 ? 1 : 0;
     });
 };
 
@@ -69,8 +70,8 @@ const scrollTo = (refName) => {
 };
 
 // Resize handler
-let windowWidth = window.innerWidth;
-let windowHeight = window.innerHeight;
+let windowWidth = 0;
+let windowHeight = 0;
 
 function handleResize() {
     let newWidth = window.innerWidth;
@@ -85,8 +86,11 @@ function handleResize() {
 }
 
 onMounted(() => {
+    windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
     window.addEventListener('scroll', updateElementPositionsOnScroll);
     window.addEventListener('resize', handleResize);
+    updateElementPositionsOnScroll();
 });
 
 onUnmounted(() => {
@@ -105,14 +109,14 @@ onUnmounted(() => {
                 data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-easing="ease-in-out"
-                data-aos-once="True"  
+                data-aos-once="true"  
                 class="text-5xl font-bold">Hello, I'm</h2>
                 <div             
                 data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-delay="150"
                 data-aos-easing="ease-in-out"
-                data-aos-once="True" >
+                data-aos-once="true" >
                     <h1 class="text-8xl leading-normal font-bold ">Kianmehr<span
                             class="intro-dot">.</span></h1>
                     <p class="text-lg mb-5 text-[--secondary-text-color]">
@@ -126,14 +130,19 @@ onUnmounted(() => {
                 data-aos-duration="1000"
                 data-aos-delay="2000"
                 data-aos-easing="ease-in-out"
-                data-aos-once="True"
+                data-aos-once="true"
                 @click="scrollTo('title')" id="intro-button"
                 icon="line-md:coffee-loop"
                 title="EXPLORE"
                 />
             </div>
             <div>
-                <img class="ml-auto w-1/2" loading="eager" src="/img/me.webp" alt="Kianmehr's Image" />
+                <NuxtImg
+                data-aos="fade"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+                data-aos-once="true" 
+                class="ml-auto w-1/2" loading="eager" src="/img/me.webp" alt="Kianmehr's Image" />
             </div>
         </div>
     </UContainer>
@@ -157,7 +166,7 @@ onUnmounted(() => {
                 data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-easing="ease-in-out"
-                data-aos-once="True"
+                data-aos-once="true"
                 class="flex flex-col justify-center">
                     <h1 class="text-5xl leading-relaxed font-bold">What I Do</h1>
                     <p class="text-lg text-[--secondary-text-color]">
@@ -171,7 +180,7 @@ onUnmounted(() => {
                 data-aos-duration="1000"
                 data-aos-delay="300"
                 data-aos-easing="ease-in-out"
-                data-aos-once="True">
+                data-aos-once="true">
                     <Skillset />
                 </div>
             </div>
