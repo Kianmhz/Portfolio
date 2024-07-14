@@ -44,7 +44,7 @@ const projects = ref([
       :pagination="{ clickable: true }"
     >
       <SwiperSlide v-for="(project, index) in projects" :key="index">
-        <div class="grid grid-cols-1 justify-center items-center gap-20 text-center sm:grid-cols-2 sm:text-left">
+        <div class="mt-20 grid grid-cols-1 justify-center items-center gap-20 text-center sm:grid-cols-2 sm:text-left">
           <div>
             <h1 class="text-5xl leading-loose font-bold">{{ project.title }}</h1>
             <p class="text-lg mb-5 text-[--secondary-text-color]">{{ project.description }}</p>
