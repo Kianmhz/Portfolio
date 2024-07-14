@@ -1,12 +1,37 @@
 <script setup>
-const { scroll } = defineProps(['scroll']);
+const props = defineProps({
+  scroll: Object,
+});
 
-// Smooth scroll to section.
-const scrollTo = (refName) => {
-  const sectionRef = scroll[refName];
-  if (sectionRef) {
-    sectionRef.scrollIntoView({ behavior: 'smooth' });
-  }
+
+// Scroll direction detection logic.
+const SCROLL_THRESHOLD = 100;
+const maximumScrollPosition = ref(0);
+const isScrollingUp = ref(true);
+const scrollDetector = () => {
+    const currentScrollPosition = window.scrollY;
+    if (currentScrollPosition > maximumScrollPosition.value + SCROLL_THRESHOLD) {
+        if (isScrollingUp.value) {
+            isScrollingUp.value = false;
+        }
+        maximumScrollPosition.value = currentScrollPosition;
+    }
+    else if (currentScrollPosition < maximumScrollPosition.value - SCROLL_THRESHOLD) {
+        if (!isScrollingUp.value) {
+            isScrollingUp.value = true;
+        }
+        maximumScrollPosition.value = currentScrollPosition;
+    }
+};
+
+// attach scroll handler
+let lastScrollTime = Date.now();
+const scrollHandler = () => {
+    const now = Date.now();
+    if (now - lastScrollTime > 100) { // throttle scroll handler to 100ms
+        scrollDetector();
+        lastScrollTime = now;
+    }
 };
 
 const loaded = ref(false);
@@ -15,22 +40,32 @@ onMounted(() => {
   setTimeout(() => {
     loaded.value = true;
   }, 2000); // slightly longer than animation duration to ensure it completes
+
+  window.addEventListener('scroll', scrollHandler);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', scrollHandler);
 });
 </script>
 
 <template>
-  <UContainer>
-    <div class="flex justify-between items-center h-16" :class="{ 'no-slide': loaded }">
-      <button name @click="scrollTo('home')" class="nav slide-in" aria-label="Go to Homepage">
-        <div class="img-container flex justify-center items-center w-full">
-          <Sign class="sign" />
+  <transition name="navbar-fade">
+    <div class="navbar-wrapper" v-show="isScrollingUp">
+      <UContainer>
+        <div class="flex justify-between items-center h-16" :class="{ 'no-slide': loaded }">
+          <button @click="scrollTo('home')" class="nav slide-in" aria-label="Go to Homepage">
+            <div class="img-container flex justify-center items-center w-full">
+              <Sign class="sign" />
+            </div>
+          </button>
+          <button @click="scrollTo('whatIDo')" class="nav slide-in delay-1">What I do</button>
+          <button @click="scrollTo('projects')" class="nav slide-in delay-2">Projects</button>
+          <button @click="scrollTo('resume')" class="nav slide-in delay-3">Resume</button>
         </div>
-      </button>
-      <button @click="scrollTo('whatIDo')" class="nav slide-in delay-1">What I do</button>
-      <button @click="scrollTo('projects')" class="nav slide-in delay-2">Projects</button>
-      <button @click="scrollTo('resume')" class="nav slide-in delay-3">Resume</button>
+      </UContainer>
     </div>
-  </UContainer>
+  </transition>
 </template>
 
 <style scoped>
@@ -59,5 +94,27 @@ onMounted(() => {
 }
 .delay-3 {
   animation-delay: 0.75s;
+}
+
+/* navbar animation */
+.navbar-wrapper {
+  @apply fixed top-0 left-0 right-0 z-[100];
+}
+
+.navbar-fade-enter-from,
+.navbar-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.navbar-fade-enter-to,
+.navbar-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navbar-fade-enter-active,
+.navbar-fade-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 </style>

@@ -19,7 +19,7 @@ export default defineNuxtConfig({
           content: "Kianmehr Haddad Zahmatkesh Personal portfolio Website",
         },
       ],
-      link: [{ rel: "icon", href: "/logoV2.webp" }],
+      link: [{ rel: "icon", href: "/img/logoV2.webp" }],
     },
   },
 

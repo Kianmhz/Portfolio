@@ -60,43 +60,11 @@ const updateElementPositionsOnScroll = () => {
     });
 };
 
-// Scroll direction detection logic.
-const SCROLL_THRESHOLD = 100;
-const maximumScrollPosition = ref(0);
-const isScrollingUp = ref(true);
-const scrollDetector = () => {
-    const currentScrollPosition = window.scrollY;
-    if (currentScrollPosition > maximumScrollPosition.value + SCROLL_THRESHOLD) {
-        if (isScrollingUp.value) {
-            isScrollingUp.value = false;
-        }
-        maximumScrollPosition.value = currentScrollPosition;
-    }
-    else if (currentScrollPosition < maximumScrollPosition.value - SCROLL_THRESHOLD) {
-        if (!isScrollingUp.value) {
-            isScrollingUp.value = true;
-        }
-        maximumScrollPosition.value = currentScrollPosition;
-    }
-};
-
 // Smooth scroll to section.
 const scrollTo = (refName) => {
     const sectionRef = scroll[refName];
     if (sectionRef) {
         sectionRef.scrollIntoView({ behavior: 'smooth' });
-    }
-};
-
-// attach scroll handler
-let lastScrollTime = Date.now();
-const scrollHandler = () => {
-    updateElementPositionsOnScroll();
-
-    const now = Date.now();
-    if (now - lastScrollTime > 100) { // throttle scroll handler to 100ms
-        scrollDetector();
-        lastScrollTime = now;
     }
 };
 
@@ -117,26 +85,19 @@ function handleResize() {
 }
 
 onMounted(() => {
-    window.addEventListener('scroll', scrollHandler);
+    window.addEventListener('scroll', updateElementPositionsOnScroll);
     window.addEventListener('resize', handleResize);
-
-    setTimeout(() => { reactiveProjectHeight(); }, 1000);
-
 });
 
 onUnmounted(() => {
-    observer.disconnect();
-    window.removeEventListener('scroll', scrollHandler);
-    window.removeEventListener('resize', updateElementPositionsOnScroll);
+    window.removeEventListener('scroll', updateElementPositionsOnScroll);
+    window.removeEventListener('resize', handleResize);
 });
 </script>
 
 <template>
-    <transition name="navbar-fade">
-        <div class="navbar-wrapper" v-show="isScrollingUp == true">
-            <BaseNavbar :scroll="scroll" />
-        </div>
-    </transition>
+    <BaseNavbar :scroll="scroll" :scrollTo="scrollTo"/>
+    
     <UContainer>    
         <div class="intro flex flex-col text-center justify-center items-center h-screen sm:flex-row sm:text-left">
             <div>
@@ -312,29 +273,5 @@ onUnmounted(() => {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: opacity 0.5s ease-in-out;
-}
-
-/* In view transitions */
-
-/* navbar animation */
-.navbar-wrapper {
-    @apply fixed top-0 left-0 right-0 z-[100];
-}
-
-.navbar-fade-enter-from,
-.navbar-fade-leave-to {
-    opacity: 0;
-    transform: translateY(-100%);
-}
-
-.navbar-fade-enter-to,
-.navbar-fade-leave-from {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.navbar-fade-enter-active,
-.navbar-fade-leave-active {
-    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 </style>
