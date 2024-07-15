@@ -1,5 +1,5 @@
 <script setup>
-import { Icon } from '@iconify/vue'; // Ensure this is the correct import
+import { Icon } from '@iconify/vue';
 
 const skills = ref([
   { id: 1, icon: 'fa6-solid:code', title: "Frontend Development", content: "Transforming designs into interactive experiences, optimized for speed and scalability." },
@@ -11,10 +11,10 @@ const skills = ref([
 
 <template>
   <div class="grid grid-cols-1 text-center gap-12 sm:grid-cols-2 sm:text-left">
-    <div v-for="skill in skills" :key="skill.id" class="group">
+    <div v-for="skill in skills" :key="skill.id" class="flex flex-col items-center sm:items-start">
       <Icon :icon="skill.icon" class="text-4xl"/>
-      <h2 class="text-xl font-bold my-2.5">{{ skill.title }}</h2>
-      <p class="text-lg text-[--secondary-text-color]">{{ skill.content }}</p>
+      <h2 class="text-lg sm:text-xl font-bold my-2.5">{{ skill.title }}</h2>
+      <p class="text-md sm:text-lg text-[--secondary-text-color]">{{ skill.content }}</p>
     </div>
   </div>
 </template>

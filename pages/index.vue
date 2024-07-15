@@ -160,34 +160,34 @@ onUnmounted(() => {
         </UContainer>
     </div>
 
-    <div class="flex justify-center items-center flex-col h-screen" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
+    <div class="flex justify-center items-center flex-col min-h-screen" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
         <UContainer>
-            <div class="grid grid-cols-1 text-center gap-x-14 mb-28 lg:grid-cols-2 sm:text-left">
+            <div class="grid grid-cols-1 text-center gap-y-12 lg:mb-16 lg:grid-cols-2 lg:gap-x-14 sm:text-left">
                 <div
-                data-aos="fade-up"
-                data-aos-duration="1000"
-                data-aos-easing="ease-in-out"
-                data-aos-once="true"
-                class="flex flex-col justify-center">
-                    <h1 class="text-5xl leading-relaxed font-bold">What I Do</h1>
-                    <p class="text-lg text-[--secondary-text-color]">
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                    data-aos-easing="ease-in-out"
+                    data-aos-once="true"
+                    class="flex flex-col justify-center">
+                    <h1 class="text-3xl sm:text-5xl mb-4 font-bold">What I Do</h1>
+                    <p class="text-md sm:text-lg text-[--secondary-text-color]">
                         Creating digital experiences through a fusion of sleek design and seamless functionality. From the
                         first click to the lasting impression, I blend aesthetics with performance, making every interaction
                         matter.
                     </p>
                 </div>
                 <div 
-                data-aos="fade-up"
-                data-aos-duration="1000"
-                data-aos-delay="300"
-                data-aos-easing="ease-in-out"
-                data-aos-once="true">
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                    data-aos-delay="300"
+                    data-aos-easing="ease-in-out"
+                    data-aos-once="true">
                     <Skillset />
                 </div>
             </div>
             <logos />
         </UContainer>
-    </div>
+    </div>    
 
     <div class="relative">
         <slider />
