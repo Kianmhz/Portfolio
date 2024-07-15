@@ -233,7 +233,7 @@ onUnmounted(() => {
 
 /* Title section styles */
 .title1 {
-    @apply text-[7rem] font-bold whitespace-nowrap text-transparent;
+    @apply text-4xl md:text-8xl font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     background: var(--gradient-color);
     background-size: 1000% 100%;
@@ -242,7 +242,7 @@ onUnmounted(() => {
 }
 
 .title2 {
-    @apply text-[7rem] font-bold whitespace-nowrap text-transparent;
+    @apply text-4xl md:text-8xl font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     background: linear-gradient(-45deg,
             var(--main-color) 0%,
@@ -263,7 +263,7 @@ onUnmounted(() => {
 
 /* Wrap section styles */
 .wrap div p {
-    @apply text-[7rem] font-bold whitespace-nowrap text-transparent;
+    @apply text-4xl md:text-8xl font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     background: var(--gradient-color);
     background-size: 1000% 100%;
