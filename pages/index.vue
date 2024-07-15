@@ -102,50 +102,51 @@ onUnmounted(() => {
 <template>
     <BaseNavbar :scroll="scroll" :scrollTo="scrollTo"/>
     
-    <UContainer>    
+    <UContainer>
         <div class="intro flex flex-col text-center justify-center items-center h-screen sm:flex-row sm:text-left">
-            <div>
-                <h2             
-                data-aos="fade-up"
-                data-aos-duration="1000"
-                data-aos-easing="ease-in-out"
-                data-aos-once="true"  
-                class="text-5xl font-bold">Hello, I'm</h2>
-                <div             
-                data-aos="fade-up"
-                data-aos-duration="1000"
-                data-aos-delay="150"
-                data-aos-easing="ease-in-out"
-                data-aos-once="true" >
-                    <h1 class="text-8xl leading-normal font-bold ">Kianmehr<span
-                            class="intro-dot">.</span></h1>
-                    <p class="text-lg mb-5 text-[--secondary-text-color]">
+            <div class="w-full sm:w-1/2">
+                <h2 
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                    data-aos-easing="ease-in-out"
+                    data-aos-once="true"  
+                    class="text-3xl sm:text-5xl font-bold">Hello, I'm
+                </h2>
+                <div 
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                    data-aos-delay="150"
+                    data-aos-easing="ease-in-out"
+                    data-aos-once="true" >
+                    <h1 class="text-5xl sm:text-8xl py-5 font-bold ">Kianmehr<span class="intro-dot">.</span></h1>
+                    <p class="text-md sm:text-lg text-[--secondary-text-color]">
                         A dedicated Software Developer driven by creativity, innovation and a continuous quest for
                         proficiency. Every
                         project I pursue is a journey of exploration, dedication, and a drive for excellence.
                     </p>
                 </div>
                 <BaseButton
-                data-aos="fade"
-                data-aos-duration="1000"
-                data-aos-delay="2000"
-                data-aos-easing="ease-in-out"
-                data-aos-once="true"
-                @click="scrollTo('title')" id="intro-button"
-                icon="line-md:coffee-loop"
-                title="EXPLORE"
+                    data-aos="fade"
+                    data-aos-duration="1000"
+                    data-aos-delay="2000"
+                    data-aos-easing="ease-in-out"
+                    data-aos-once="true"
+                    @click="scrollTo('title')" id="intro-button"
+                    icon="line-md:coffee-loop"
+                    title="EXPLORE"
+                    class="mt-4"
                 />
             </div>
-            <div>
+            <div class="w-full sm:w-1/2">
                 <NuxtImg
-                data-aos="fade"
-                data-aos-duration="1000"
-                data-aos-easing="ease-in-out"
-                data-aos-once="true" 
-                class="ml-auto w-1/2" loading="eager" src="/img/me.webp" alt="Kianmehr's Image" />
+                    data-aos="fade"
+                    data-aos-duration="1000"
+                    data-aos-easing="ease-in-out"
+                    data-aos-once="true" 
+                    class="ml-auto max-sm:mx-auto w-3/4" loading="eager" src="/img/me.webp" alt="Kianmehr's Image" />
             </div>
         </div>
-    </UContainer>
+    </UContainer>    
 
     <div class="relative">
         <slider />
@@ -223,33 +224,26 @@ onUnmounted(() => {
 /* Intro section styles */
 .intro-dot {
     animation: gradient 20s linear infinite alternate;
-
     background: var(--gradient-color);
     background-size: 1000% 100%;
-
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 /* Title section styles */
-
 .title1 {
-    @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.4rem];
+    @apply text-[7rem] font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
-
     background: var(--gradient-color);
     background-size: 1000% 100%;
-
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .title2 {
-    @apply text-[7rem] font-[900] whitespace-nowrap text-transparent max-lg:text-[4rem] max-sm:text-[2.4rem];
+    @apply text-[7rem] font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
-
     background: linear-gradient(-45deg,
             var(--main-color) 0%,
             var(--secondary-color) 10%,
@@ -263,24 +257,18 @@ onUnmounted(() => {
             var(--secondary-color) 90%,
             var(--tertiary-color) 100%);
     background-size: 1000% 100%;
-
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 /* Wrap section styles */
 .wrap div p {
-    @apply text-[7rem] max-lg:text-[5rem] max-sm:text-[3rem];
-    font-weight: 700;
+    @apply text-[7rem] font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
-
     background: var(--gradient-color);
     background-size: 1000% 100%;
-
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     transition: opacity 0.5s ease-in-out;
 }
 </style>
