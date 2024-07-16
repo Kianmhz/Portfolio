@@ -56,7 +56,7 @@ const projects = ref([
               />
             </div>
             <div class="">
-              <NuxtImg :src="project.image" :alt="project.alt" class="ml-auto w-full sm:w-auto" />
+              <NuxtImg :src="project.image" :alt="project.alt" class="ml-auto max-sm:mx-auto w-full sm:w-auto" />
             </div>
           </div>
         </div>

@@ -210,7 +210,7 @@ onUnmounted(() => {
     <UContainer>
         <div class="wrap text-5xl md:text-7xl lg:text-8xl font-bold text-transparent my-20 text-center sm:text-left will-change-transform whitespace-nowrap">
             <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
-            <p class="my-14" :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
+            <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
             <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
         </div>
     </UContainer>
@@ -230,8 +230,12 @@ onUnmounted(() => {
 }
 
 /* Title section styles */
+.title-1, .title-2 {
+    @apply text-4xl md:text-7xl lg:text-8xl font-bold whitespace-nowrap text-transparent;
+    line-height: 1.5;
+}
+
 .title-1 {
-    @apply text-4xl md:text-7xl lg:text-8xl leading-normal md:leading-relaxed lg:leading-relaxed font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     background: var(--gradient-color);
     background-size: 1000% 100%;
@@ -240,7 +244,6 @@ onUnmounted(() => {
 }
 
 .title-2 {
-    @apply text-4xl md:text-7xl lg:text-8xl font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     background: linear-gradient(-45deg,
             var(--main-color) 0%,
@@ -267,5 +270,6 @@ onUnmounted(() => {
     background-clip: text;
     -webkit-background-clip: text;
     transition: opacity 0.5s ease-in-out;
+    line-height: 1.625;
 }
 </style>
