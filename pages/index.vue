@@ -103,7 +103,7 @@ onUnmounted(() => {
     <BaseNavbar :scroll="scroll" :scrollTo="scrollTo"/>
     
     <UContainer>
-        <div class="intro flex flex-col text-center justify-center items-center h-screen sm:flex-row sm:text-left">
+        <div class="intro flex flex-col text-center justify-center items-center min-h-dvh sm:flex-row sm:text-left">
             <div class="w-full sm:w-1/2">
                 <h2 
                     data-aos="fade-up"
@@ -160,9 +160,9 @@ onUnmounted(() => {
         </UContainer>
     </div>
 
-    <div class="flex justify-center items-center flex-col min-h-screen" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
-        <UContainer>
-            <div class="grid grid-cols-1 text-center gap-y-12 lg:mb-20 lg:grid-cols-2 lg:gap-x-14 sm:text-left">
+    <UContainer>
+        <div class="flex flex-col justify-center items-center gap-32 min-h-dvh" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
+            <div class="grid grid-cols-1 text-center gap-y-12 lg:grid-cols-2 lg:gap-x-14 sm:text-left">
                 <div
                     data-aos="fade-up"
                     data-aos-duration="1000"
@@ -171,9 +171,9 @@ onUnmounted(() => {
                     class="flex flex-col justify-center">
                     <h1 class="text-3xl sm:text-4xl mb-4 font-bold">What I Do</h1>
                     <p class="text-md sm:text-lg text-[--secondary-text-color]">
-                        Creating digital experiences through a fusion of sleek design and seamless functionality. From the
-                        first click to the lasting impression, I blend aesthetics with performance, making every interaction
-                        matter.
+                    Creating digital experiences through a fusion of sleek design and seamless functionality. From the
+                    first click to the lasting impression, I blend aesthetics with performance, making every interaction
+                    matter.
                     </p>
                 </div>
                 <div 
@@ -186,8 +186,8 @@ onUnmounted(() => {
                 </div>
             </div>
             <logos />
-        </UContainer>
-    </div>    
+        </div>
+    </UContainer>      
 
     <div class="relative">
         <Slider />
@@ -232,7 +232,7 @@ onUnmounted(() => {
 
 /* Title section styles */
 .title1 {
-    @apply text-4xl md:text-8xl font-bold whitespace-nowrap text-transparent;
+    @apply text-4xl md:text-7xl mb-5 font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     background: var(--gradient-color);
     background-size: 1000% 100%;
@@ -241,7 +241,7 @@ onUnmounted(() => {
 }
 
 .title2 {
-    @apply text-4xl md:text-8xl font-bold whitespace-nowrap text-transparent;
+    @apply text-4xl md:text-7xl font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     background: linear-gradient(-45deg,
             var(--main-color) 0%,

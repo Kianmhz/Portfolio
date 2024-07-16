@@ -15,9 +15,8 @@ const icons = ref([
 // Triple the icons array
 const tripledIcons = computed(() => icons.value.concat(icons.value, icons.value));
 </script>
-
 <template>
-  <div class="relative max-sm:hidden">
+  <div class=" w-full relative max-sm:hidden">
     <Swiper
       :modules="[Autoplay, FreeMode]"
       :slidesPerView="4"
@@ -28,7 +27,7 @@ const tripledIcons = computed(() => icons.value.concat(icons.value, icons.value)
       :freeModeMomentum="false"
     >
       <SwiperSlide class="flex justify-center items-center" v-for="icon in tripledIcons" :key="icon">
-        <Icon :icon="icon" class="text-[5vw]"/>
+        <Icon :icon="icon" class="text-8xl"/>
       </SwiperSlide>
     </Swiper>
     <div class="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-l from-black to-transparent z-10"></div>
