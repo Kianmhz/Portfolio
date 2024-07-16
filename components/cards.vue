@@ -9,18 +9,18 @@ const cards = ref([
 <template>
   <UContainer>
     <div class="flex flex-col justify-center items-center max-sm:hidden">
-      <div class="flex justify-center items-center my-10 text-5xl font-bold text-[--main-color]">
-        <span >My</span>
-        <div class="overflow-hidden h-[60px] pl-3">
-            <ul class="list">
-                <li class="item">Resume &</li>
-                <li class="item">Certificates</li>
-            </ul>
+      <div class="flex justify-center items-center my-10 text-4xl lg:text-5xl font-bold text-[--main-color]">
+        <span>My</span>
+        <div class="overflow-hidden h-[40px] sm:h-[60px] pl-3">
+          <ul class="list">
+            <li class="item">Resume &</li>
+            <li class="item">Certificates</li>
+          </ul>
         </div>
       </div>
-      <div class="flex relative w-[75%] h-[350px] lg:h-[500px]">
+      <div class="flex relative w-full sm:w-3/4 sm:h-80 lg:h-96">
         <div v-for="card in cards" :key="card.id" class="resume-card" :id="'card' + card.id">
-          <p class="text-3xl">{{ card.content }}</p>
+          <p class="text-2xl lg:text-3xl">{{ card.content }}</p>
           <NuxtLink :to="card.src" external target="_blank" class="title">{{ card.title }}</NuxtLink>
         </div>
       </div>
@@ -30,13 +30,13 @@ const cards = ref([
 
 <style scoped>
 .list {
-  @apply text-left list-none leading-[60px];
+  @apply text-left list-none leading-[40px] sm:leading-[60px];
   animation: change 3s infinite;
 }
 
 /* Card-specific styles for positioning and hover effect */
 .title {
-  @apply absolute animate-pulse bottom-16 text-[--secondary-text-color] text-3xl transition-colors duration-300 ease-in-out;
+  @apply absolute animate-pulse bottom-10 sm:bottom-16 text-[--secondary-text-color] text-2xl lg:text-3xl transition-colors duration-300 ease-in-out;
 }
 
 /* Use more specific selectors for hover effects */
@@ -53,7 +53,7 @@ const cards = ref([
 }
 
 .resume-card#card1 {
-  @apply z-[3] translate-x-[15%];
+  @apply z-[3] sm:translate-x-[15%];
   border-left: 2px solid var(--main-color);
 }
 
@@ -63,7 +63,7 @@ const cards = ref([
 }
 
 .resume-card#card3 {
-  @apply z-[1] translate-x-[-15%] brightness-[0.5];
+  @apply z-[1] sm:translate-x-[-15%] brightness-[0.5];
   border-left: 2px solid var(--quaternary-color);
 }
 
@@ -75,17 +75,17 @@ const cards = ref([
 
 .resume-card#card3:hover~.resume-card#card1,
 .resume-card#card2:hover~.resume-card#card1 {
-  @apply transform translate-x-[100%] filter brightness-[0.5];
+  @apply transform sm:translate-x-[100%] filter brightness-[0.5];
 }
 
 .resume-card#card3:hover~.resume-card#card2 {
-  @apply transform translate-x-[85%] filter brightness-[0.5];
+  @apply transform sm:translate-x-[85%] filter brightness-[0.5];
 }
 
 .resume-card {
-  @apply absolute w-[100%] h-[100%] p-10;
+  @apply absolute w-[100%] h-[100%] p-6 sm:p-10;
   background: linear-gradient(to right, rgb(24, 24, 24), rgb(0, 0, 0));
   transition: 0.3s ease-in-out;
-  box-shadow: -30px 0px 30px rgba(0, 0, 0, 0.7);
+  box-shadow: -20px 0px 20px rgba(0, 0, 0, 0.7);
 }
 </style>

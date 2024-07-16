@@ -162,7 +162,7 @@ onUnmounted(() => {
 
     <div class="flex justify-center items-center flex-col min-h-screen" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
         <UContainer>
-            <div class="grid grid-cols-1 text-center gap-y-12 lg:mb-16 lg:grid-cols-2 lg:gap-x-14 sm:text-left">
+            <div class="grid grid-cols-1 text-center gap-y-12 lg:mb-20 lg:grid-cols-2 lg:gap-x-14 sm:text-left">
                 <div
                     data-aos="fade-up"
                     data-aos-duration="1000"
