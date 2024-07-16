@@ -1,5 +1,5 @@
 <script setup>
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay} from 'swiper/modules';
 
 const projects = ref([
   {
@@ -37,25 +37,25 @@ const projects = ref([
 <template>
   <UContainer>
     <Swiper
-      :modules="[Autoplay, Pagination]"
+      :modules="[Autoplay]"
       :slidesPerView="1"
       :loop="true"
       :autoplay="{ delay: 3000, disableOnInteraction: false }"
       :pagination="{ clickable: true }"
     >
       <SwiperSlide v-for="(project, index) in projects" :key="index">
-        <div class="mt-20 grid grid-cols-1 justify-center items-center gap-20 text-center sm:grid-cols-2 sm:text-left">
+        <div class="mt-10 sm:mt-20 grid grid-cols-1 justify-center items-center gap-10 sm:gap-20 text-center sm:grid-cols-2 sm:text-left">
           <div>
-            <h1 class="text-5xl leading-loose font-bold">{{ project.title }}</h1>
-            <p class="text-lg mb-5 text-[--secondary-text-color]">{{ project.description }}</p>
+            <h1 class="text-3xl sm:text-4xl font-bold">{{ project.title }}</h1>
+            <p class="text-md sm:text-lg my-5 text-[--secondary-text-color]">{{ project.description }}</p>
             <BaseButton
-            icon='codicon:github'
-            title='GitHub'
-            :link= project.link
+              icon='codicon:github'
+              title='GitHub'
+              :link="project.link"
             />
           </div>
           <div class="">
-            <img :src="project.image" :alt="project.alt" class="ml-auto" />
+            <NuxtImg :src="project.image" :alt="project.alt" class="ml-auto w-full sm:w-auto" />
           </div>
         </div>
       </SwiperSlide>

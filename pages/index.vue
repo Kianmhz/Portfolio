@@ -110,7 +110,7 @@ onUnmounted(() => {
                     data-aos-duration="1000"
                     data-aos-easing="ease-in-out"
                     data-aos-once="true"  
-                    class="text-3xl sm:text-5xl font-bold">Hello, I'm
+                    class="text-3xl sm:text-4xl font-bold">Hello, I'm
                 </h2>
                 <div 
                     data-aos="fade-up"
@@ -118,7 +118,7 @@ onUnmounted(() => {
                     data-aos-delay="150"
                     data-aos-easing="ease-in-out"
                     data-aos-once="true" >
-                    <h1 class="text-5xl sm:text-8xl py-5 font-bold ">Kianmehr<span class="intro-dot">.</span></h1>
+                    <h1 class="text-6xl sm:text-8xl py-5 font-bold ">Kianmehr<span class="intro-dot">.</span></h1>
                     <p class="text-md sm:text-lg text-[--secondary-text-color]">
                         A dedicated Software Developer driven by creativity, innovation and a continuous quest for
                         proficiency. Every
@@ -149,7 +149,7 @@ onUnmounted(() => {
     </UContainer>    
 
     <div class="relative">
-        <slider />
+        <Slider />
         <UContainer>
             <div class="flex justify-center items-center" :ref="el => { scroll.title = el }">
                 <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
@@ -169,7 +169,7 @@ onUnmounted(() => {
                     data-aos-easing="ease-in-out"
                     data-aos-once="true"
                     class="flex flex-col justify-center">
-                    <h1 class="text-3xl sm:text-5xl mb-4 font-bold">What I Do</h1>
+                    <h1 class="text-3xl sm:text-4xl mb-4 font-bold">What I Do</h1>
                     <p class="text-md sm:text-lg text-[--secondary-text-color]">
                         Creating digital experiences through a fusion of sleek design and seamless functionality. From the
                         first click to the lasting impression, I blend aesthetics with performance, making every interaction
@@ -190,7 +190,7 @@ onUnmounted(() => {
     </div>    
 
     <div class="relative">
-        <slider />
+        <Slider />
         <UContainer>
             <div class="flex justify-center items-center">
                 <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
@@ -201,11 +201,10 @@ onUnmounted(() => {
         </UContainer>
     </div>
 
-    <div :ref="el => { projectsRef = el; scroll.projects = el }">
+    <div class="" :ref="el => { projectsRef = el; scroll.projects = el }">
         <Projects />
+        <Cards />
     </div>
-
-    <Cards />
 
     <div class="wrap my-10 text-center sm:text-left">
         <UContainer>
