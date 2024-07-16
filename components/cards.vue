@@ -11,7 +11,7 @@ const cards = ref([
     <div class="flex flex-col justify-center items-center max-sm:hidden">
       <div class="flex relative w-full sm:w-3/4 sm:h-80 lg:h-96">
         <div v-for="card in cards" :key="card.id" class="resume-card" :id="'card' + card.id">
-          <p class="text-2xl lg:text-3xl">{{ card.content }}</p>
+          <p class="text-2xl leading-normal">{{ card.content }}</p>
           <NuxtLink :to="card.src" external target="_blank" class="title">{{ card.title }}</NuxtLink>
         </div>
       </div>
@@ -20,14 +20,9 @@ const cards = ref([
 </template>
 
 <style scoped>
-.list {
-  @apply text-left list-none leading-[40px] sm:leading-[60px];
-  animation: change 3s infinite;
-}
-
 /* Card-specific styles for positioning and hover effect */
 .title {
-  @apply absolute animate-pulse bottom-10 sm:bottom-16 text-[--secondary-text-color] text-2xl lg:text-3xl transition-colors duration-300 ease-in-out;
+  @apply absolute animate-pulse bottom-10 sm:bottom-16 text-[--secondary-text-color] text-2xl transition-colors duration-300 ease-in-out;
 }
 
 /* Use more specific selectors for hover effects */

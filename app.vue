@@ -21,7 +21,7 @@ import 'aos/dist/aos.css';
 
 :root {
   --main-bg-color: #000000;
-  --main-text-color: #ffffff;
+  --main-text-color: #EEEEEE;
   --secondary-text-color: #909090;
 
   --main-color: #332FD0;
@@ -58,7 +58,7 @@ import 'aos/dist/aos.css';
 }
 
 body {
-  font-family: 'lato';
+  font-family: 'Oxygen';
   background: var(--main-bg-color);
   color: var(--main-text-color);
 }
