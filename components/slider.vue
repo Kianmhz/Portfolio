@@ -1,5 +1,5 @@
 <template>
-    <div class="relative w-full lg:h-[400px] md:h-[400px] sm:h-[300px] z-0">
+    <div class="relative w-full lg:h-[500px] md:h-[400px] sm:h-[300px] z-0">
       <video class="w-full h-full object-cover" autoplay loop muted playsInline>
         <source src="/video/slider.mp4" type="video/mp4">
       </video>

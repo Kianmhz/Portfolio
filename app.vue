@@ -58,7 +58,6 @@ import 'aos/dist/aos.css';
 }
 
 body {
-  @apply overflow-x-hidden;
   font-family: 'lato';
   background: var(--main-bg-color);
   color: var(--main-text-color);

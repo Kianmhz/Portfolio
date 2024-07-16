@@ -21,7 +21,7 @@ const tripledIcons = computed(() => icons.value.concat(icons.value, icons.value)
       :modules="[Autoplay, FreeMode]"
       :slidesPerView="4"
       :loop="true"
-      :autoplay="{ delay: 100, disableOnInteraction: false }"
+      :autoplay="{ delay: 0, disableOnInteraction: false }"
       :speed="6000"
       :freeMode="true"
       :freeModeMomentum="false"

@@ -9,15 +9,6 @@ const cards = ref([
 <template>
   <UContainer>
     <div class="flex flex-col justify-center items-center max-sm:hidden">
-      <div class="flex justify-center items-center my-10 text-4xl lg:text-5xl font-bold text-[--main-color]">
-        <span>My</span>
-        <div class="overflow-hidden h-[40px] sm:h-[60px] pl-3">
-          <ul class="list">
-            <li class="item">Resume &</li>
-            <li class="item">Certificates</li>
-          </ul>
-        </div>
-      </div>
       <div class="flex relative w-full sm:w-3/4 sm:h-80 lg:h-96">
         <div v-for="card in cards" :key="card.id" class="resume-card" :id="'card' + card.id">
           <p class="text-2xl lg:text-3xl">{{ card.content }}</p>

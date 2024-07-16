@@ -44,18 +44,20 @@ const projects = ref([
       :pagination="{ clickable: true }"
     >
       <SwiperSlide v-for="(project, index) in projects" :key="index">
-        <div class="mt-10 sm:mt-20 grid grid-cols-1 justify-center items-center gap-10 sm:gap-20 text-center sm:grid-cols-2 sm:text-left">
-          <div>
-            <h1 class="text-3xl sm:text-4xl font-bold">{{ project.title }}</h1>
-            <p class="text-md sm:text-lg my-5 text-[--secondary-text-color]">{{ project.description }}</p>
-            <BaseButton
-              icon='codicon:github'
-              title='GitHub'
-              :link="project.link"
-            />
-          </div>
-          <div class="">
-            <NuxtImg :src="project.image" :alt="project.alt" class="ml-auto w-full sm:w-auto" />
+        <div class="my-20">
+          <div class="grid grid-cols-1 justify-center items-center gap-10 sm:gap-20 text-center sm:grid-cols-2 sm:text-left">
+            <div>
+              <h1 class="text-3xl sm:text-4xl font-bold">{{ project.title }}</h1>
+              <p class="text-md sm:text-lg my-5 text-[--secondary-text-color]">{{ project.description }}</p>
+              <BaseButton
+                icon='codicon:github'
+                title='GitHub'
+                :link="project.link"
+              />
+            </div>
+            <div class="">
+              <NuxtImg :src="project.image" :alt="project.alt" class="ml-auto w-full sm:w-auto" />
+            </div>
           </div>
         </div>
       </SwiperSlide>

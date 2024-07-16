@@ -103,14 +103,14 @@ onUnmounted(() => {
     <BaseNavbar :scroll="scroll" :scrollTo="scrollTo"/>
     
     <UContainer>
-        <div class="intro flex flex-col text-center justify-center items-center min-h-dvh sm:flex-row sm:text-left">
+        <div class="flex flex-col text-center justify-center items-center min-h-dvh sm:flex-row sm:text-left">
             <div class="w-full sm:w-1/2">
                 <h2 
                     data-aos="fade-up"
                     data-aos-duration="1000"
                     data-aos-easing="ease-in-out"
                     data-aos-once="true"  
-                    class="text-3xl sm:text-4xl font-bold">Hello, I'm
+                    class="text-3xl lg:text-4xl font-bold">Hello, I'm
                 </h2>
                 <div 
                     data-aos="fade-up"
@@ -118,7 +118,7 @@ onUnmounted(() => {
                     data-aos-delay="150"
                     data-aos-easing="ease-in-out"
                     data-aos-once="true" >
-                    <h1 class="text-6xl sm:text-8xl py-5 font-bold ">Kianmehr<span class="intro-dot">.</span></h1>
+                    <h1 class="text-6xl md:text-7xl lg:text-8xl py-5 font-bold ">Kianmehr<span class="intro-dot">.</span></h1>
                     <p class="text-md sm:text-lg text-[--secondary-text-color]">
                         A dedicated Software Developer driven by creativity, innovation and a continuous quest for
                         proficiency. Every
@@ -153,15 +153,15 @@ onUnmounted(() => {
         <UContainer>
             <div class="flex justify-center items-center" :ref="el => { scroll.title = el }">
                 <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
-                    <h1 class="title1" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
-                    <h1 class="title2" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
+                    <h1 class="title-1" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
+                    <h1 class="title-2" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
                 </div>
             </div>
         </UContainer>
     </div>
 
     <UContainer>
-        <div class="flex flex-col justify-center items-center gap-32 min-h-dvh" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
+        <div class="flex flex-col justify-center items-center gap-32 my-20" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
             <div class="grid grid-cols-1 text-center gap-y-12 lg:grid-cols-2 lg:gap-x-14 sm:text-left">
                 <div
                     data-aos="fade-up"
@@ -194,27 +194,26 @@ onUnmounted(() => {
         <UContainer>
             <div class="flex justify-center items-center">
                 <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
-                    <h1 class="title1" :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
-                    <h1 class="title2" :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
+                    <h1 class="title-1" :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
+                    <h1 class="title-2" :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
                 </div>
             </div>
         </UContainer>
     </div>
 
-    <div class="" :ref="el => { projectsRef = el; scroll.projects = el }">
+    <div :ref="el => { projectsRef = el; scroll.projects = el }">
         <Projects />
-        <Cards />
     </div>
+    
+    <Cards />
 
-    <div class="wrap my-10 text-center sm:text-left">
-        <UContainer>
-            <div class="will-change-transform whitespace-nowrap">
-                <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
-                <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
-                <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
-            </div>
-        </UContainer>
-    </div>
+    <UContainer>
+        <div class="wrap text-5xl md:text-7xl lg:text-8xl font-bold text-transparent my-20 text-center sm:text-left will-change-transform whitespace-nowrap">
+            <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
+            <p class="my-14" :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
+            <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
+        </div>
+    </UContainer>
     
     <Contact />
 </template>
@@ -231,8 +230,8 @@ onUnmounted(() => {
 }
 
 /* Title section styles */
-.title1 {
-    @apply text-4xl md:text-7xl mb-5 font-bold whitespace-nowrap text-transparent;
+.title-1 {
+    @apply text-4xl md:text-7xl lg:text-8xl leading-normal md:leading-relaxed lg:leading-relaxed font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     background: var(--gradient-color);
     background-size: 1000% 100%;
@@ -240,8 +239,8 @@ onUnmounted(() => {
     -webkit-background-clip: text;
 }
 
-.title2 {
-    @apply text-4xl md:text-7xl font-bold whitespace-nowrap text-transparent;
+.title-2 {
+    @apply text-4xl md:text-7xl lg:text-8xl font-bold whitespace-nowrap text-transparent;
     animation: gradient 20s linear infinite alternate;
     background: linear-gradient(-45deg,
             var(--main-color) 0%,
@@ -261,8 +260,7 @@ onUnmounted(() => {
 }
 
 /* Wrap section styles */
-.wrap div p {
-    @apply text-4xl md:text-8xl font-bold whitespace-nowrap text-transparent;
+.wrap p {
     animation: gradient 20s linear infinite alternate;
     background: var(--gradient-color);
     background-size: 1000% 100%;
