@@ -61,6 +61,7 @@ body {
   font-family: 'Oxygen';
   background: var(--main-bg-color);
   color: var(--main-text-color);
+  overflow-x: hidden;
 }
 
 /* Animations */

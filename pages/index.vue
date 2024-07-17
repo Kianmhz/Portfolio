@@ -1,11 +1,9 @@
 <script setup>
-// Reactive references and states.
 const scroll = {
     home: ref(null),
-    title: ref(null),
     whatIDo: ref(null),
     projects: ref(null),
-    resume: ref(null),
+    contact: ref(null),
 };
 
 const elements = {
@@ -103,7 +101,7 @@ onUnmounted(() => {
     <BaseNavbar :scroll="scroll" :scrollTo="scrollTo"/>
     
     <UContainer>
-        <div class="flex flex-col text-center justify-center items-center min-h-dvh sm:flex-row sm:text-left">
+        <div class="flex flex-col text-center justify-center items-center min-h-dvh sm:flex-row sm:text-left" :ref="scroll.home">
             <div class="w-full sm:w-1/2">
                 <h2 
                     data-aos="fade-up"
@@ -131,7 +129,7 @@ onUnmounted(() => {
                     data-aos-delay="2000"
                     data-aos-easing="ease-in-out"
                     data-aos-once="true"
-                    @click="scrollTo('title')" id="intro-button"
+                    @click="scrollTo('whatIDo')" id="intro-button"
                     icon="line-md:coffee-loop"
                     title="EXPLORE"
                     class="mt-4"
@@ -151,7 +149,7 @@ onUnmounted(() => {
     <div class="relative">
         <Slider />
         <UContainer>
-            <div class="flex justify-center items-center" :ref="scroll.title">
+            <div class="flex justify-center items-center">
                 <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
                     <h1 class="title-1" :ref="elements.leftIntroTitle">A Peek Into My</h1>
                     <h1 class="title-2" :ref="elements.rightIntroTitle">Software Skills</h1>
@@ -214,8 +212,10 @@ onUnmounted(() => {
             <p :ref="elements.thirdTextSectionThree">Stay in touch!</p>
         </div>
     </UContainer>
-    
-    <Contact />
+
+    <div :ref="scroll.contact">
+        <Contact/>
+    </div>
 </template>
 
 <style>

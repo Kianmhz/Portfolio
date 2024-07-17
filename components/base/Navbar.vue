@@ -51,7 +51,7 @@ onUnmounted(() => {
           </button>
           <button @click="scrollTo('whatIDo')" class="nav slide-in delay-1">What I do</button>
           <button @click="scrollTo('projects')" class="nav slide-in delay-2">Projects</button>
-          <button @click="scrollTo('resume')" class="nav slide-in delay-3">Contacts</button>
+          <button @click="scrollTo('contact')" class="nav slide-in delay-3">Contacts</button>
         </div>
       </UContainer>
     </div>
