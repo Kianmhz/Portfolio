@@ -41,18 +41,20 @@ onUnmounted(() => {
 
 <template>
   <transition name="navbar-fade">
-    <UContainer v-show="isScrollingUp" class="fixed top-0 left-0 right-0 z-[100]">
-      <div class="flex justify-between items-center h-16" :class="{ 'no-slide': loaded }">
-        <button @click="scrollTo('home')" class="nav slide-in" aria-label="Go to Homepage">
-          <div class="flex justify-center items-center w-full">
-            <Sign class="sign" />
-          </div>
-        </button>
-        <button @click="scrollTo('whatIDo')" class="nav slide-in delay-1">What I do</button>
-        <button @click="scrollTo('projects')" class="nav slide-in delay-2">Projects</button>
-        <button @click="scrollTo('resume')" class="nav slide-in delay-3">Resume</button>
-      </div>
-    </UContainer>
+    <div v-show="isScrollingUp" class="fixed top-0 left-0 right-0 z-[100] bg-gradient-to-b from-black to-transparent">
+      <UContainer>
+        <div class="flex justify-between items-center h-16" :class="{ 'no-slide': loaded }">
+          <button @click="scrollTo('home')" class="nav slide-in" aria-label="Go to Homepage">
+            <div class="flex justify-center items-center w-full">
+              <Sign class="sign" />
+            </div>
+          </button>
+          <button @click="scrollTo('whatIDo')" class="nav slide-in delay-1">What I do</button>
+          <button @click="scrollTo('projects')" class="nav slide-in delay-2">Projects</button>
+          <button @click="scrollTo('resume')" class="nav slide-in delay-3">Contacts</button>
+        </div>
+      </UContainer>
+    </div>
   </transition>
 </template>
 
