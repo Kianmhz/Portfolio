@@ -1,29 +1,29 @@
 <script setup>
 // Reactive references and states.
-const scroll = reactive({
-    home: null,
-    title: null,
-    whatIDo: null,
-    projects: null,
-    resume: null,
-});
+const scroll = {
+    home: ref(null),
+    title: ref(null),
+    whatIDo: ref(null),
+    projects: ref(null),
+    resume: ref(null),
+};
 
-const elements = reactive({
-    leftIntroTitle: null,
-    rightIntroTitle: null,
-    leftIntroSectionTwoTitle: null,
-    rightIntroSectionTwoTitle: null,
-    firstTextSectionThree: null,
-    secondTextSectionThree: null,
-    thirdTextSectionThree: null
-});
+const elements = {
+    leftIntroTitle: ref(null),
+    rightIntroTitle: ref(null),
+    leftIntroSectionTwoTitle: ref(null),
+    rightIntroSectionTwoTitle: ref(null),
+    firstTextSectionThree: ref(null),
+    secondTextSectionThree: ref(null),
+    thirdTextSectionThree: ref(null)
+};
 
 let rafId = null;
 
 const calculateRate = (element, startOffset = 0, endOffset = 0, invert = false) => {
-    if (!element) return 0;
-    const elementStart = element.getBoundingClientRect().top + window.scrollY - window.innerHeight + startOffset;
-    const elementEnd = element.getBoundingClientRect().top + window.scrollY + element.offsetHeight + endOffset;
+    if (!element.value) return 0;
+    const elementStart = element.value.getBoundingClientRect().top + window.scrollY - window.innerHeight + startOffset;
+    const elementEnd = element.value.getBoundingClientRect().top + window.scrollY + element.value.offsetHeight + endOffset;
     const scrollRange = elementEnd - elementStart;
 
     let rate = (window.scrollY - elementStart) / scrollRange;
@@ -49,23 +49,23 @@ const updateElementPositionsOnScroll = () => {
         const sectionThreeRate = calculateRate(elements.firstTextSectionThree, 0, -200);
 
         // Apply the rates to the animations
-        if (elements.leftIntroTitle) elements.leftIntroTitle.style.transform = `translateX(-${sectionOneRate * 25}%)`;
-        if (elements.rightIntroTitle) elements.rightIntroTitle.style.transform = `translateX(${sectionOneRate * 25}%)`;
+        if (elements.leftIntroTitle.value) elements.leftIntroTitle.value.style.transform = `translateX(-${sectionOneRate * 25}%)`;
+        if (elements.rightIntroTitle.value) elements.rightIntroTitle.value.style.transform = `translateX(${sectionOneRate * 25}%)`;
 
-        if (elements.leftIntroSectionTwoTitle) elements.leftIntroSectionTwoTitle.style.transform = `translateX(-${sectionTwoRate * 25}%)`;
-        if (elements.rightIntroSectionTwoTitle) elements.rightIntroSectionTwoTitle.style.transform = `translateX(${sectionTwoRate * 25}%)`;
+        if (elements.leftIntroSectionTwoTitle.value) elements.leftIntroSectionTwoTitle.value.style.transform = `translateX(-${sectionTwoRate * 25}%)`;
+        if (elements.rightIntroSectionTwoTitle.value) elements.rightIntroSectionTwoTitle.value.style.transform = `translateX(${sectionTwoRate * 25}%)`;
 
-        if (elements.firstTextSectionThree) elements.firstTextSectionThree.style.opacity = sectionThreeRate >= 0.2 ? 1 : 0;
-        if (elements.secondTextSectionThree) elements.secondTextSectionThree.style.opacity = sectionThreeRate >= 0.4 ? 1 : 0;
-        if (elements.thirdTextSectionThree) elements.thirdTextSectionThree.style.opacity = sectionThreeRate >= 0.6 ? 1 : 0;
+        if (elements.firstTextSectionThree.value) elements.firstTextSectionThree.value.style.opacity = sectionThreeRate >= 0.2 ? 1 : 0;
+        if (elements.secondTextSectionThree.value) elements.secondTextSectionThree.value.style.opacity = sectionThreeRate >= 0.4 ? 1 : 0;
+        if (elements.thirdTextSectionThree.value) elements.thirdTextSectionThree.value.style.opacity = sectionThreeRate >= 0.6 ? 1 : 0;
     });
 };
 
 // Smooth scroll to section.
 const scrollTo = (refName) => {
     const sectionRef = scroll[refName];
-    if (sectionRef) {
-        sectionRef.scrollIntoView({ behavior: 'smooth' });
+    if (sectionRef.value) {
+        sectionRef.value.scrollIntoView({ behavior: 'smooth' });
     }
 };
 
@@ -151,17 +151,17 @@ onUnmounted(() => {
     <div class="relative">
         <Slider />
         <UContainer>
-            <div class="flex justify-center items-center" :ref="el => { scroll.title = el }">
+            <div class="flex justify-center items-center" :ref="scroll.title">
                 <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
-                    <h1 class="title-1" :ref="el => { elements.leftIntroTitle = el }">A Peek Into My</h1>
-                    <h1 class="title-2" :ref="el => { elements.rightIntroTitle = el }">Software Skills</h1>
+                    <h1 class="title-1" :ref="elements.leftIntroTitle">A Peek Into My</h1>
+                    <h1 class="title-2" :ref="elements.rightIntroTitle">Software Skills</h1>
                 </div>
             </div>
         </UContainer>
     </div>
 
     <UContainer>
-        <div class="flex flex-col justify-center items-center gap-32 my-20" :ref="el => { skillsRef = el; scroll.whatIDo = el }">
+        <div class="flex flex-col justify-center items-center gap-32 my-20" :ref="scroll.whatIDo">
             <div class="grid grid-cols-1 text-center gap-y-12 lg:grid-cols-2 lg:gap-x-14 sm:text-left">
                 <div
                     data-aos="fade-up"
@@ -194,14 +194,14 @@ onUnmounted(() => {
         <UContainer>
             <div class="flex justify-center items-center">
                 <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
-                    <h1 class="title-1" :ref="el => { elements.leftIntroSectionTwoTitle = el }">Discover My</h1>
-                    <h1 class="title-2" :ref="el => { elements.rightIntroSectionTwoTitle = el }">Recent Projects</h1>
+                    <h1 class="title-1" :ref="elements.leftIntroSectionTwoTitle">Discover My</h1>
+                    <h1 class="title-2" :ref="elements.rightIntroSectionTwoTitle">Recent Projects</h1>
                 </div>
             </div>
         </UContainer>
     </div>
 
-    <div :ref="el => { projectsRef = el; scroll.projects = el }">
+    <div :ref="scroll.projects">
         <Projects />
     </div>
     
@@ -209,9 +209,9 @@ onUnmounted(() => {
 
     <UContainer>
         <div class="wrap text-5xl md:text-7xl lg:text-8xl font-bold text-transparent my-20 text-center sm:text-left will-change-transform whitespace-nowrap">
-            <p :ref="el => { elements.firstTextSectionThree = el }">And that's a wrap</p>
-            <p :ref="el => { elements.secondTextSectionThree = el }">What's next?</p>
-            <p :ref="el => { elements.thirdTextSectionThree = el }">Stay in touch!</p>
+            <p :ref="elements.firstTextSectionThree">And that's a wrap</p>
+            <p :ref="elements.secondTextSectionThree">What's next?</p>
+            <p :ref="elements.thirdTextSectionThree">Stay in touch!</p>
         </div>
     </UContainer>
     

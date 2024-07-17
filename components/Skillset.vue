@@ -1,5 +1,4 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { Icon } from '@iconify/vue';
 
 const skills = ref([
