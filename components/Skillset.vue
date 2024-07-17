@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { Icon } from '@iconify/vue';
 
 const skills = ref([
@@ -8,7 +9,7 @@ const skills = ref([
   { id: 4, icon: 'iconamoon:synchronize-bold', title: "Automation", content: "Designing scripts and bots to automate repetitive tasks, streamlining processes for efficiency." }
 ]);
 
-const threshold = 200; // Adjust this value to change the distance threshold for revealing the border
+const threshold = 150; // Adjust this value to change the distance threshold for revealing the border
 
 const handleMouseMove = (event) => {
   const gridItems = document.querySelectorAll('.grid-item');
@@ -18,15 +19,19 @@ const handleMouseMove = (event) => {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const distanceX = Math.max(0, Math.abs(x) - rect.width);
-    const distanceY = Math.max(0, Math.abs(y) - rect.height);
+    const distanceX = Math.max(0, Math.abs(x - rect.width / 2) - rect.width / 2);
+    const distanceY = Math.max(0, Math.abs(y - rect.height / 2) - rect.height / 2);
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
     const opacity = Math.max(0, Math.min(1, (threshold - distance) / threshold));
 
-    item.style.setProperty('--mouse-x', `${x}px`);
-    item.style.setProperty('--mouse-y', `${y}px`);
-    item.style.setProperty('--border-opacity', opacity);
+    if (distance <= threshold) {
+      item.style.setProperty('--mouse-x', `${x}px`);
+      item.style.setProperty('--mouse-y', `${y}px`);
+      item.style.setProperty('--border-opacity', opacity);
+    } else {
+      item.style.setProperty('--border-opacity', '0');
+    }
   });
 };
 
@@ -52,7 +57,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="grid-wrapper relative">
+  <div class="relative">
     <div class="grid grid-cols-1 text-center gap-4 sm:grid-cols-2 sm:text-left">
       <div 
         v-for="skill in skills" 
@@ -68,10 +73,6 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-.grid-wrapper {
-  position: relative;
-}
-
 .grid-item {
   --mouse-x: 50%;
   --mouse-y: 50%;
