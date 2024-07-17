@@ -1,28 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/google-fonts",
-  ],
+  modules: ["@nuxt/fonts", "@nuxt/ui", 'nuxt-swiper', "nuxt-aos", "@nuxt/image"],
   devtools: { enabled: true },
-  build: {
-    transpile: ["@fortawesome/vue-fontawesome"],
+  fonts: {
+    families: [
+      { name: 'Oxygen', provider: 'google' },
+    ]
   },
-  css: ["~/assets/main.css", "@fortawesome/fontawesome-svg-core/styles.css"],
-  googleFonts: {
-    families: {
-      Roboto: {
-        wght: [400, 500, 700],
-      },
-      Lato: {
-        wght: [400, 700, 900],
-      },
-      "League Spartan": true,
-      Montserrat: true,
-      "Open Sans": true,
-    },
-  },
-  ssr: false,
+
   app: {
     head: {
       htmlAttrs: {
@@ -38,7 +23,9 @@ export default defineNuxtConfig({
           content: "Kianmehr Haddad Zahmatkesh Personal portfolio Website",
         },
       ],
-      link: [{ rel: "icon", href: "/logoV2.webp" }],
+      link: [{ rel: "icon", href: "/img/logoV2.webp" }],
     },
   },
+
+  compatibilityDate: "2024-07-10",
 });
