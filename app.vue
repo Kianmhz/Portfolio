@@ -22,7 +22,7 @@ import 'aos/dist/aos.css';
 :root {
   --main-bg-color: #000000;
   --main-text-color: #EEEEEE;
-  --secondary-text-color: #909090;
+  --secondary-text-color: #A1A1A1;
 
   --main-color: #332FD0;
   --secondary-color: #9254C8;
