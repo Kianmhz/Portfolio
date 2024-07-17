@@ -101,7 +101,7 @@ onUnmounted(() => {
     <BaseNavbar :scroll="scroll" :scrollTo="scrollTo"/>
     
     <UContainer>
-        <div class="flex flex-col text-center justify-center items-center min-h-dvh sm:flex-row sm:text-left" :ref="scroll.home">
+        <div class="intro-height flex flex-col text-center justify-center items-center sm:flex-row sm:text-left" :ref="scroll.home">
             <div class="w-full sm:w-1/2">
                 <h2 
                     data-aos="fade-up"
@@ -144,7 +144,7 @@ onUnmounted(() => {
                     class="ml-auto max-sm:mx-auto w-3/4" loading="eager" src="/img/me.webp" alt="Kianmehr's Image" />
             </div>
         </div>
-    </UContainer>    
+    </UContainer> 
 
     <div class="relative">
         <Slider />
@@ -220,6 +220,11 @@ onUnmounted(() => {
 
 <style>
 /* Intro section styles */
+.intro-height {
+    min-height: calc(100dvh - 4rem); /* Adjust the height to be the full viewport height minus the navbar height */
+    padding-top: 4rem; /* Adjust the padding to be the navbar height */
+}
+
 .intro-dot {
     animation: gradient 20s linear infinite alternate;
     background: var(--gradient-color);
