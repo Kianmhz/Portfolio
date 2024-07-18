@@ -1,7 +1,3 @@
-<script setup>
-import 'aos/dist/aos.css';
-</script>
-
 <template>
   <div>
     <NuxtLoadingIndicator/>
@@ -41,10 +37,6 @@ import 'aos/dist/aos.css';
           var(--main-color) 80%,
           var(--secondary-color) 90%,
           var(--tertiary-color) 100%);
-}
-
-[v-cloak] {
-  display: none;
 }
 
 /* Scrollbar customization */

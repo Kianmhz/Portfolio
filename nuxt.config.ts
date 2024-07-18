@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   modules: ["@nuxt/fonts", "@nuxt/ui", 'nuxt-swiper', "nuxt-aos", "@nuxt/image"],
   devtools: { enabled: true },
+  image: {
+    cloudflare: {
+      baseURL: 'https://kianmhz.me' // Replace with your domain
+    }
+  },
   fonts: {
     families: [
       { name: 'Oxygen', provider: 'google' },
