@@ -1,11 +1,21 @@
 <template>
   <button>
-    <NuxtLink class="contact-button" :to="link" target="_blank">
-      <div class="button-icon">
-        <Icon :icon="icon" class="text-2xl" />
+    <template v-if="link">
+      <NuxtLink class="contact-button" :to="link" target="_blank">
+        <div class="button-icon">
+          <Icon :icon="icon" class="text-2xl" />
+        </div>
+        <div class="button-text">{{ title }}</div>
+      </NuxtLink>
+    </template>
+    <template v-else>
+      <div class="contact-button">
+        <div class="button-icon">
+          <Icon :icon="icon" class="text-2xl" />
+        </div>
+        <div class="button-text">{{ title }}</div>
       </div>
-      <div class="button-text">{{ title }}</div>
-    </NuxtLink>
+    </template>
   </button>
 </template>
 

@@ -43,6 +43,10 @@ import 'aos/dist/aos.css';
           var(--tertiary-color) 100%);
 }
 
+[v-cloak] {
+  display: none;
+}
+
 /* Scrollbar customization */
 ::-webkit-scrollbar {
   width: 8px;

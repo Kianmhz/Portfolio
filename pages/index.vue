@@ -100,51 +100,53 @@ onUnmounted(() => {
 <template>
     <BaseNavbar :scroll="scroll" :scrollTo="scrollTo"/>
     
-    <UContainer>
-        <div class="intro-height flex flex-col text-center justify-center items-center sm:flex-row sm:text-left" :ref="scroll.home">
-            <div class="w-full sm:w-1/2">
-                <h2 
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="true"  
-                    class="text-3xl lg:text-4xl font-bold">Hello, I'm
-                </h2>
-                <div 
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
-                    data-aos-delay="150"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="true" >
-                    <h1 class="text-6xl md:text-7xl lg:text-8xl py-5 font-bold ">Kianmehr<span class="intro-dot">.</span></h1>
-                    <p class="text-md sm:text-lg text-[--secondary-text-color]">
-                        A dedicated Software Developer driven by creativity, innovation and a continuous quest for
-                        proficiency. Every
-                        project I pursue is a journey of exploration, dedication, and a drive for excellence.
-                    </p>
+    <div v-cloak>
+        <UContainer>
+            <div class="intro-height flex flex-col text-center justify-center items-center sm:flex-row sm:text-left" :ref="scroll.home">
+                <div class="w-full sm:w-1/2">
+                    <h2 
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-easing="ease-in-out"
+                        data-aos-once="true"  
+                        class="text-3xl lg:text-4xl font-bold">Hello, I'm
+                    </h2>
+                    <div 
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="150"
+                        data-aos-easing="ease-in-out"
+                        data-aos-once="true" >
+                        <h1 class="text-6xl md:text-7xl lg:text-8xl py-5 font-bold ">Kianmehr<span class="intro-dot">.</span></h1>
+                        <p class="text-md sm:text-lg text-[--secondary-text-color]">
+                            A dedicated Software Developer driven by creativity, innovation and a continuous quest for
+                            proficiency. Every
+                            project I pursue is a journey of exploration, dedication, and a drive for excellence.
+                        </p>
+                    </div>
+                    <BaseButton
+                        data-aos="fade"
+                        data-aos-duration="1000"
+                        data-aos-delay="2000"
+                        data-aos-easing="ease-in-out"
+                        data-aos-once="true"
+                        @click="scrollTo('whatIDo')" id="intro-button"
+                        icon="line-md:coffee-loop"
+                        title="EXPLORE"
+                        class="mt-4"
+                    />
                 </div>
-                <BaseButton
-                    data-aos="fade"
-                    data-aos-duration="1000"
-                    data-aos-delay="2000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="true"
-                    @click="scrollTo('whatIDo')" id="intro-button"
-                    icon="line-md:coffee-loop"
-                    title="EXPLORE"
-                    class="mt-4"
-                />
+                <div class="w-full sm:w-1/2">
+                    <NuxtImg
+                        data-aos="fade"
+                        data-aos-duration="1000"
+                        data-aos-easing="ease-in-out"
+                        data-aos-once="true" 
+                        class="ml-auto max-sm:mx-auto w-3/4" loading="eager" src="/img/me.webp" alt="Kianmehr's Image" />
+                </div>
             </div>
-            <div class="w-full sm:w-1/2">
-                <NuxtImg
-                    data-aos="fade"
-                    data-aos-duration="1000"
-                    data-aos-easing="ease-in-out"
-                    data-aos-once="true" 
-                    class="ml-auto max-sm:mx-auto w-3/4" loading="eager" src="/img/me.webp" alt="Kianmehr's Image" />
-            </div>
-        </div>
-    </UContainer> 
+        </UContainer> 
+    </div>
 
     <div class="relative">
         <Slider />
