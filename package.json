@@ -10,6 +10,12 @@
     "start": "nuxt start"
   },
   "devDependencies": {
+    "@iconify-json/codicon": "^1.1.50",
+    "@iconify-json/fa6-solid": "^1.1.22",
+    "@iconify-json/iconamoon": "^1.1.4",
+    "@iconify-json/jam": "^1.1.8",
+    "@iconify-json/line-md": "^1.1.38",
+    "@iconify-json/material-symbols": "^1.1.84",
     "@nuxt/devtools": "latest",
     "@nuxt/fonts": "^0.7.1",
     "@nuxt/icon": "^1.0.0",

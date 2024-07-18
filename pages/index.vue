@@ -154,7 +154,7 @@ onUnmounted(() => {
     <div class="relative">
         <Slider />
         <UContainer>
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center" :ref="scroll.whatIDo">
                 <div class="will-change-transform absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
                     <h1 class="title-1" :ref="elements.leftIntroTitle">A Peek Into My</h1>
                     <h1 class="title-2" :ref="elements.rightIntroTitle">Software Skills</h1>
@@ -164,7 +164,7 @@ onUnmounted(() => {
     </div>
 
     <UContainer>
-        <div class="flex flex-col justify-center items-center gap-32 my-20" :ref="scroll.whatIDo">
+        <div class="flex flex-col justify-center items-center gap-32 my-20">
             <div class="grid grid-cols-1 text-center gap-y-12 lg:grid-cols-2 lg:gap-x-14 sm:text-left">
                 <div
                     data-aos="fade-up"
@@ -211,7 +211,7 @@ onUnmounted(() => {
     <Cards />
 
     <UContainer>
-        <div class="wrap text-5xl md:text-7xl lg:text-8xl font-bold text-transparent my-20 text-center sm:text-left will-change-transform whitespace-nowrap">
+        <div class="wrap text-4xl md:text-6xl lg:text-8xl font-bold text-transparent mb-20 text-center sm:my-20 sm:text-left will-change-transform whitespace-nowrap">
             <p :ref="elements.firstTextSectionThree">And that's a wrap</p>
             <p :ref="elements.secondTextSectionThree">What's next?</p>
             <p :ref="elements.thirdTextSectionThree">Stay in touch!</p>
@@ -241,8 +241,8 @@ onUnmounted(() => {
 
 /* Title section styles */
 .title-1, .title-2 {
-    @apply text-4xl md:text-7xl lg:text-8xl font-bold whitespace-nowrap text-transparent;
-    line-height: 1.5;
+    @apply text-4xl md:text-6xl lg:text-8xl font-bold whitespace-nowrap text-transparent;
+    line-height: 1.4;
 }
 
 .title-1 {

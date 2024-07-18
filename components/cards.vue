@@ -22,7 +22,7 @@ const cards = ref([
 <style scoped>
 /* Card-specific styles for positioning and hover effect */
 .title {
-  @apply absolute animate-pulse bottom-10 sm:bottom-16 text-[--secondary-text-color] text-2xl transition-colors duration-300 ease-in-out;
+  @apply absolute animate-pulse bottom-14 text-[--secondary-text-color] text-2xl transition-colors duration-300 ease-in-out;
 }
 
 /* Use more specific selectors for hover effects */

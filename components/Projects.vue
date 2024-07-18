@@ -35,32 +35,35 @@ const projects = ref([
 </script>
 
 <template>
-  <UContainer>
     <Swiper
       :modules="[Autoplay]"
+      :pagination="{
+        dynamicBullets: true,
+      }"
       :slidesPerView="1"
       :loop="true"
-      :autoplay="{ delay: 3000, disableOnInteraction: false }"
-      :pagination="{ clickable: true }"
+      :autoplay="{ delay: 6000, disableOnInteraction: false }"
+      :speed="500"
     >
       <SwiperSlide v-for="(project, index) in projects" :key="index">
         <div class="my-20">
-          <div class="grid grid-cols-1 justify-center items-center gap-10 sm:gap-20 text-center sm:grid-cols-2 sm:text-left">
-            <div>
-              <h1 class="text-3xl sm:text-4xl font-bold">{{ project.title }}</h1>
-              <p class="text-md sm:text-lg my-5 text-[--secondary-text-color]">{{ project.description }}</p>
-              <BaseButton
-                icon='codicon:github'
-                title='GitHub'
-                :link="project.link"
-              />
+          <UContainer>
+            <div class="grid grid-cols-1 justify-center items-center gap-10 sm:gap-20 text-center sm:grid-cols-2 sm:text-left">
+              <div>
+                <h1 class="text-3xl sm:text-4xl font-bold">{{ project.title }}</h1>
+                <p class="text-md sm:text-lg my-5 text-[--secondary-text-color]">{{ project.description }}</p>
+                <BaseButton
+                  icon='codicon:github'
+                  title='GitHub'
+                  :link="project.link"
+                />
+              </div>
+              <div class="">
+                <NuxtImg :src="project.image" :alt="project.alt" class="ml-auto max-sm:mx-auto w-full sm:w-auto" />
+              </div>
             </div>
-            <div class="">
-              <NuxtImg loading="lazy" :src="project.image" :alt="project.alt" class="ml-auto max-sm:mx-auto w-full sm:w-auto" />
-            </div>
-          </div>
+          </UContainer>
         </div>
       </SwiperSlide>
     </Swiper>
-  </UContainer>
 </template>
