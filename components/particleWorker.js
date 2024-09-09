@@ -9,7 +9,7 @@ self.onmessage = async function (e) {
   
     // Initialize canvas dimensions
     const cellSize = 10;
-    const numberOfParticles = 2000;
+    const numberOfParticles = 500;
   
     class Particle {
       constructor(effect) {
@@ -18,14 +18,14 @@ self.onmessage = async function (e) {
         this.y = Math.floor(Math.random() * this.effect.height);
         this.speedX;
         this.speedY;
-        this.speedModifier = Math.random() * 2 + 1;
+        this.speedModifier = Math.random() * 1 + 0;
         this.history = [{ x: this.x, y: this.y }];
         this.maxLength = Math.floor(Math.random() * 60 + 50);
         this.angle = 0;
         this.newAngle = 0;
         this.anglecorrector = Math.random() * 0.5 + 0.01;
         this.timer = this.maxLength * 2;
-        this.colors = ["#332FD0", "#9254C8", "#E15FED", "#6EDCD9"];
+        this.colors = ["#332FD0", "#9254C8"];
         this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
       }
   
