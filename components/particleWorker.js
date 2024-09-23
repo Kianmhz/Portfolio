@@ -8,25 +8,23 @@ self.onmessage = async function (e) {
     const imageBitmap = await createImageBitmap(blob);
   
     // Initialize canvas dimensions
-    const cellSize = 10;
-    const numberOfParticles = 500;
+    const CELL_SIZE = 6;
+    const MAX_PARTICLES  = 800;
+
+    // Particle colors
+    const PARTICLE_COLORS = ["#332FD0", "#9254C8"];
   
     class Particle {
       constructor(effect) {
         this.effect = effect;
         this.x = Math.floor(Math.random() * this.effect.width);
         this.y = Math.floor(Math.random() * this.effect.height);
-        this.speedX;
-        this.speedY;
         this.speedModifier = Math.random() * 1 + 0;
         this.history = [{ x: this.x, y: this.y }];
         this.maxLength = Math.floor(Math.random() * 60 + 50);
-        this.angle = 0;
-        this.newAngle = 0;
         this.anglecorrector = Math.random() * 0.5 + 0.01;
         this.timer = this.maxLength * 2;
-        this.colors = ["#332FD0", "#9254C8"];
-        this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+        this.color = PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)];
       }
   
       draw(context) {
@@ -42,8 +40,8 @@ self.onmessage = async function (e) {
       update() {
         this.timer--;
         if (this.timer >= 1) {
-          let x = Math.floor(this.x / this.effect.cellSize);
-          let y = Math.floor(this.y / this.effect.cellSize);
+          let x = Math.floor(this.x / this.effect.CELL_SIZE);
+          let y = Math.floor(this.y / this.effect.CELL_SIZE);
           let index = y * this.effect.cols + x;
   
           if (this.effect.flowField[index]) {
@@ -98,8 +96,8 @@ self.onmessage = async function (e) {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.particles = [];
-        this.numberOfParticles = numberOfParticles;
-        this.cellSize = cellSize;
+        this.MAX_PARTICLES  = MAX_PARTICLES ;
+        this.CELL_SIZE = CELL_SIZE;
         this.rows;
         this.cols;
         this.flowField = [];
@@ -107,16 +105,16 @@ self.onmessage = async function (e) {
       }
   
       init() {
-        this.rows = Math.floor(this.height / this.cellSize);
-        this.cols = Math.floor(this.width / this.cellSize);
+        this.rows = Math.floor(this.height / this.CELL_SIZE);
+        this.cols = Math.floor(this.width / this.CELL_SIZE);
         this.flowField = [];
   
         // Draw image and extract pixel data
         this.context.drawImage(imageBitmap, 0, 0, this.width, this.height);
         const pixels = this.context.getImageData(0, 0, this.width, this.height).data;
   
-        for (let y = 0; y < this.height; y += this.cellSize) {
-          for (let x = 0; x < this.width; x += this.cellSize) {
+        for (let y = 0; y < this.height; y += this.CELL_SIZE) {
+          for (let x = 0; x < this.width; x += this.CELL_SIZE) {
             const index = (y * this.width + x) * 4;
             const r = pixels[index];
             const g = pixels[index + 1];
@@ -135,7 +133,7 @@ self.onmessage = async function (e) {
         }
   
         // Create particles
-        for (let i = 0; i < this.numberOfParticles; i++) {
+        for (let i = 0; i < this.MAX_PARTICLES ; i++) {
           this.particles.push(new Particle(this));
         }
         this.particles.forEach(particle => particle.reset());

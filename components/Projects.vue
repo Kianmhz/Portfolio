@@ -9,7 +9,7 @@ const projects = ref([
       "A cutting-edge Telegram bot designed for real-time transaction monitoring. Developed to automate real-time transaction monitoring, ConfluX extracts key transaction details from wallet trackers, detects confluence events, and forwards relevant information to designated channels.",
     link: "https://t.me/solconf_bot",
     alt: "ConfluX Bot logo",
-    canvasImage: "/img/cx.png", // Set a unique canvas image
+    canvasImage: "/img/cx.png",
     ticon: "Telegram",
     icon: "mingcute:telegram-fill",
   },
@@ -20,7 +20,7 @@ const projects = ref([
                   actions, it's built to run in a continuous loop, ensuring sustained activity and automation.`,
     link: "https://github.com/Kianmhz/IG-bot",
     alt: "ig logo",
-    canvasImage: "/img/ig.png", // Set a unique canvas image
+    canvasImage: "/img/ig.png",
     ticon: "Github",
     icon: "codicon:github",
   },
@@ -32,7 +32,7 @@ const projects = ref([
                   consistent and reliable automation.`,
     link: "https://github.com/Kianmhz/X-bot",
     alt: "X logo",
-    canvasImage: "/img/x.png", // Set a unique canvas image
+    canvasImage: "/img/x.png",
     ticon: "Github",
     icon: "codicon:github",
   },
@@ -40,7 +40,6 @@ const projects = ref([
 
 let worker;
 
-// Check if we're in a browser environment
 if (typeof window !== "undefined") {
   worker = new Worker(new URL("./particleWorker.js", import.meta.url), {
     type: "module",
@@ -51,20 +50,29 @@ if (typeof window !== "undefined") {
 const initializedCanvases = {};
 
 const initOffscreenCanvas = (canvasId, canvasImageSrc) => {
-  if (!worker) return; // If the worker is not defined, exit
+  if (!worker) return;
 
   const canvas = document.getElementById(canvasId);
   if (!canvas || initializedCanvases[canvasId]) return;
 
+  // Get the parent container's width and set canvas dimensions
+  const parentElement = canvas.parentElement;
+  const width = parentElement.offsetWidth;
+  const height = parentElement.offsetHeight*2;
+
+  canvas.width = width;
+  canvas.height = height;
+
   const offscreen = canvas.transferControlToOffscreen();
-  worker.postMessage({ canvas: offscreen, imageSrc: canvasImageSrc }, [
+  worker.postMessage({ canvas: offscreen, imageSrc: canvasImageSrc, width, height }, [
     offscreen,
   ]);
 
   initializedCanvases[canvasId] = true;
 };
 
-// Initialize canvases for the current, next, and previous slides
+
+// Initialize canvases for the current and next slide
 const initializeCanvases = (activeIndex) => {
   nextTick(() => {
     // Initialize current slide
@@ -78,14 +86,6 @@ const initializeCanvases = (activeIndex) => {
       initOffscreenCanvas(
         `canvas-${activeIndex + 1}`,
         projects.value[activeIndex + 1].canvasImage
-      );
-    }
-
-    // Preload previous slide if available
-    if (projects.value[activeIndex - 1]) {
-      initOffscreenCanvas(
-        `canvas-${activeIndex - 1}`,
-        projects.value[activeIndex - 1].canvasImage
       );
     }
   });
@@ -128,8 +128,8 @@ onMounted(() => {
                 :link="project.link"
               />
             </div>
-            <div class="ml-auto">
-              <canvas :id="`canvas-${index}`" width="400" height="400"></canvas>
+            <div class="ml-auto max-sm:mx-auto">
+              <canvas :id="`canvas-${index}`"></canvas>
             </div>
           </div>
         </UContainer>

@@ -204,7 +204,7 @@ onUnmounted(() => {
         </UContainer>
     </div>
 
-    <div :ref="scroll.projects">
+    <div class="sm:my-10" :ref="scroll.projects">
         <Projects />
     </div>
     
