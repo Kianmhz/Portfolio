@@ -1,5 +1,4 @@
 <script setup>
-import { ref, onMounted, nextTick } from "vue";
 import { Autoplay } from "swiper/modules";
 
 // Define the projects data
@@ -8,9 +7,11 @@ const projects = ref([
     title: "ConfluX Bot",
     description:
       "A cutting-edge Telegram bot designed for real-time transaction monitoring. Developed to automate real-time transaction monitoring, ConfluX extracts key transaction details from wallet trackers, detects confluence events, and forwards relevant information to designated channels.",
-    link: "https://github.com/Kianmhz/conflux-bot",
+    link: "https://t.me/solconf_bot",
     alt: "ConfluX Bot logo",
     canvasImage: "/img/cx.png", // Set a unique canvas image
+    ticon: "Telegram",
+    icon: "mingcute:telegram-fill",
   },
   {
     title: "Instagram Bot",
@@ -20,6 +21,8 @@ const projects = ref([
     link: "https://github.com/Kianmhz/IG-bot",
     alt: "ig logo",
     canvasImage: "/img/ig.png", // Set a unique canvas image
+    ticon: "Github",
+    icon: "codicon:github",
   },
   {
     title: "X / Twitter Bot",
@@ -30,6 +33,8 @@ const projects = ref([
     link: "https://github.com/Kianmhz/X-bot",
     alt: "X logo",
     canvasImage: "/img/x.png", // Set a unique canvas image
+    ticon: "Github",
+    icon: "codicon:github",
   },
 ]);
 
@@ -118,8 +123,8 @@ onMounted(() => {
                 {{ project.description }}
               </p>
               <BaseButton
-                icon="codicon:github"
-                title="GitHub"
+                :icon="project.icon"
+                :title="project.ticon"
                 :link="project.link"
               />
             </div>

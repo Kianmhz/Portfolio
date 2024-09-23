@@ -16,6 +16,7 @@
     "@iconify-json/jam": "^1.1.8",
     "@iconify-json/line-md": "^1.1.38",
     "@iconify-json/material-symbols": "^1.1.84",
+    "@iconify-json/mingcute": "^1.2.0",
     "@nuxt/devtools": "latest",
     "@nuxt/fonts": "^0.7.1",
     "@nuxt/icon": "^1.0.0",
