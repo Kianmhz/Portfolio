@@ -5,25 +5,73 @@ on:
     branches:
       - main
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Nuxt
+        run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuxt-output
+          path: .output
+          retention-days: 1
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nuxt-output
+          path: .output
+
       - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: Deploy to Server
+      - name: Add server to known_hosts
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$SERVER_IP" >> ~/.ssh/known_hosts
+
+      - name: Sync build to server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+        run: |
+          rsync -az --delete \
+            --rsync-path="mkdir -p /var/www/kianmhz.me/.output && rsync" \
+            .output/ kianmhz@"$SERVER_IP":/var/www/kianmhz.me/.output/
+
+      - name: Restart service on server
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
         run: |
           ssh -o ServerAliveInterval=60 \
               -o ServerAliveCountMax=10 \
-              -o StrictHostKeyChecking=no \
-              kianmhz@${{ env.SERVER_IP }} 'bash /var/www/kianmhz.me/deploy.sh'
-
+              kianmhz@"$SERVER_IP" 'bash /var/www/kianmhz.me/deploy.sh'

@@ -69,7 +69,7 @@ const scrollToSection = (sectionName) => {
                 </h2>
                 <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" data-aos-easing="ease-in-out"
                     data-aos-once="true">
-                    <h1 class="text-6xl md:text-7xl lg:text-8xl py-5 font-bold">Kianmehr<span
+                    <h1 class="text-6xl md:text-7xl lg:text-8xl py-5 font-bold">Kian H<span
                             class="intro-dot">.</span></h1>
                     <p class="text-base sm:text-lg text-[--secondary-text-color]">
                         A dedicated Software Developer driven by creativity, innovation and a continuous quest for
@@ -82,7 +82,7 @@ const scrollToSection = (sectionName) => {
                     icon="line-md:coffee-loop" title="Explore" class="mt-4" />
             </div>
             <div class="w-full sm:w-1/2">
-                <NuxtImg provider="cloudflare" src="/img/me.webp" alt="Kianmehr's Image"
+                <NuxtImg provider="cloudflare" src="/img/me.webp" alt="Kian's Image"
                     class="ml-auto max-sm:mx-auto w-3/4" data-aos="fade" data-aos-duration="1000"
                     data-aos-easing="ease-in-out" data-aos-once="true" preload />
             </div>
